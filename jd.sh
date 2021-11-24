@@ -2658,47 +2658,38 @@ del_js() {
 	del_ck=$(echo $jd_num | sed "s/@/ /g")
 	for i in `echo "$del_ck"`
 	do
-		case "$del_ck_if" in
+		case "$i" in
 			[1-999])
-				for i in `echo $del_ck`
-				do
-					jx_file=$(ls $ccr_js_file/js_$i | grep "$jd_js"  | wc -l)
-					if [ "$jx_file" == "1" ];then
-						echo "开始删除并发文件js_$i的$js_name文件"
-						rm -rf $ccr_js_file/js_$i/$jd_js
-					else
-						echo "并发文件js_$i的$js_name文件已经删除了"
-					fi
-				done
+				jx_file=$(ls $ccr_js_file/js_$i | grep "$jd_js"  | wc -l)
+				if [ "$jx_file" == "1" ];then
+					echo "开始删除并发文件js_$i的$js_name文件"
+					rm -rf $ccr_js_file/js_$i/$jd_js
+				else
+					echo "并发文件js_$i的$js_name文件已经删除了"
+				fi
 			;;
 			all)
-				for i in `ls $ccr_js_file`
-				do
-					jx_file=$(ls $ccr_js_file/$i | grep "$jd_js"  | wc -l)
-					if [ "$jx_file" == "1" ];then
-						echo "开始删除并发文件js_$i的$js_name文件"
-						rm -rf $ccr_js_file/$i/$jd_js
-					else
-						echo "并发文件$i的$js_name文件已经删除了"
-					fi					
-				done
+				jx_file=$(ls $ccr_js_file/$i | grep "$jd_js"  | wc -l)
+				if [ "$jx_file" == "1" ];then
+					echo "开始删除并发文件js_$i的$js_name文件"
+					rm -rf $ccr_js_file/$i/$jd_js
+				else
+					echo "并发文件$i的$js_name文件已经删除了"
+				fi
 			;;
 			*)
-				for i in `echo $del_ck`
-				do
-					jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
-					if [ ! $jx_site ];then
-						echo "填写的用户名找不到，不删除$js_name文件"
+				jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
+				if [ ! $jx_site ];then
+					echo "填写的用户名找不到，不删除$js_name文件"
+				else
+					jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$jd_js"  | wc -l)
+					if [ "$jx_file" == "1" ];then
+						echo "开始删除并发文件js_$jx_site的$js_name文件"
+						rm -rf $ccr_js_file/js_$jx_site/$jd_js
 					else
-						jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$jd_js"  | wc -l)
-						if [ "$jx_file" == "1" ];then
-							echo "开始删除并发文件js_$jx_site的$js_name文件"
-							rm -rf $ccr_js_file/js_$jx_site/$jd_js
-						else
-							echo "并发文件js_$jx_site的$js_name文件已经删除了"
-						fi
+						echo "并发文件js_$jx_site的$js_name文件已经删除了"
 					fi
-				done
+				fi
 			;;
 		esac
 	done
