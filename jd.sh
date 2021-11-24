@@ -274,6 +274,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_superBrand.js		#特务Ｚ
 	jd_ddly.js			#勋章点亮(没有开启的手动开启吧，活动入口：东东农场->水车)
 	jd_cfd_fresh.js			#京喜财富岛合成生鲜
+	jd_dt.js			#答题领金豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -577,6 +578,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_ljd_xh.js			#领京豆
 	jd_wish.js			#众筹许愿池
 	jd_fanli.js			#京东饭粒
+	jd_dt.js			#答题领金豆
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
