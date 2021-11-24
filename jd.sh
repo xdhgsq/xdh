@@ -1,10 +1,4 @@
 #!/bin/sh
-#
-#by:ITdesk
-#
-#Github:https://github.com/ITdesk01/JD_Script/tree/main
-#
-#如果你魔改我的脚本，请魔改的彻底一点，不要留我的qq群，没时间处理一堆不用我库的人，决定魔改那就自己维护，你好我也好。
 
 #set -x
 
@@ -30,7 +24,7 @@ if [ "$dir_file" == "/usr/share/jd_openwrt_script/JD_Script" ];then
 	openwrt_script_config="/usr/share/jd_openwrt_script/script_config"
 else
 	clear
-	echo -e "$red检测到你使用本地安装方式安装脚本，不再支持本地模式！！！，请按github：https://github.com/ITdesk01/jd_openwrt_script 重新编译插件$white"
+	echo -e "$red检测到你使用本地安装方式安装脚本，不再支持本地模式！！！$white"
 	exit 0
 fi
 
@@ -1753,7 +1747,7 @@ checklog() {
 
 #检测当天更新情况并推送
 that_day() {
-	 wget -t 1 -T 20 https://raw.githubusercontent.com/ITdesk01/JD_Script/master/README.md -O /tmp/test_README.md
+	 wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
 	if [[ $? -eq 0 ]]; then
 		cd $dir_file
 		git fetch
@@ -2920,7 +2914,7 @@ ss_if() {
 		ss_server=$(grep "option global_server 'nil'" /etc/config/shadowsocksr | wc -l)
 		echo -e "$green开启检测github是否联通，请稍等。。$white"
 		if [ $ss_server == "0" ];then
-			wget -t 1 -T 20 https://raw.githubusercontent.com/ITdesk01/JD_Script/master/README.md -O /tmp/test_README.md
+			wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
 			if [[ $? -eq 0 ]]; then
 				echo "github正常访问，不做任何操作"
 			else
@@ -2932,7 +2926,7 @@ ss_if() {
 					/etc/init.d/shadowsocksr stop
 					/etc/init.d/shadowsocksr start
 					echo "重启进程完成"
-					wget -t 1 -T 20 https://raw.githubusercontent.com/ITdesk01/JD_Script/master/README.md -O /tmp/test_README.md
+					wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
 					if [[ $? -eq 0 ]]; then
 						echo -e "$green github正常访问，不做任何操作$white"
 					else
@@ -2951,7 +2945,7 @@ ss_if() {
 				fi
 			fi
 		else
-			wget -t 1 -T 20 https://raw.githubusercontent.com/ITdesk01/JD_Script/master/README.md -O /tmp/test_README.md
+			wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
 			if [[ $? -eq 0 ]]; then
 				echo "github正常访问，不做任何操作"
 			else
