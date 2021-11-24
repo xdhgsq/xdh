@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JD辅助工具</title>
+    <style type="text/css">
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+
+      .title {
+        margin: 0;
+        height: 250px;
+        padding-top: 150px;
+        text-align: center;
+        font-size: 20px;
+        font-weight: 600;
+        color: red;
+        box-sizing: border-box;
+      }
+
+      #qrImg {
+        height: 300px;
+        width: 300px;
+      }
+
+      #jumpapp {
+        margin-top: 10px;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: calc(100vh - 430px);
+        align-items: center;
+      }
+
+      .btn {
+        margin: 0 auto;
+        border: 1px #3079ed solid;
+        border-radius: 5px;
+        font-size: 32pt;
+        background: #4c8ffb;
+        color: white;
+      }
+
+      .qr {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        inset: 0px;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.45);
+        z-index: 1001;
+      }
+
+      .qrcontainer {
+        position: relative;
+        width: 256px;
+        padding: 16px;
+        border-radius: 8px;
+        border: 1px solid rgb(109, 138, 136);
+        background-color: rgb(255, 255, 255);
+        box-shadow: rgb(0 0 0 / 20%) 0px 0px 7px 3px;
+        box-sizing: content-box;
+      }
+
+      .des {
+        word-break: break-all;
+        padding-top: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="title">
+      登录方式二选一<br />
+      1、扫码或截图扫码<br />
+      2、点【APP登录】<br />
+    </p>
+    <div class="container">
+      <img id="qrImg" />
+      <button class="btn" id="jumpapp">APP登录</button>
+    </div>
+    <div id="res" class="qr">
+      <div class="qrcontainer">
+        <div id="cookie" class="des"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    get_code();
+    var oneKeyLog = '';
+    var resDiv = document.getElementById('res');
+    var user;
+    var tCheck;
+    document.getElementById('jumpapp').addEventListener('click', function () {
+      if (oneKeyLog) {
+        window.location.href = oneKeyLog;
+      } else {
+        alert('还没加载好，请稍后重试');
+      }
+    });
+    function get_code() {
+      let timeStamp = new Date().getTime();
+      ajax({
+        url: '/qrcode?t=' + timeStamp,
+        method: 'get',
+        success: function (data) {
+          if (data.err == 0) {
+            oneKeyLog = data.oneKeyLog;
+            user = data.user;
+            document.getElementById('qrImg').src = data.qrCodeImg;
+            checkLogin();
+          }
+        },
+      });
+    }
+    function checkLogin() {
+      let timeStamp = new Date().getTime();
+      ajax({
+        url: '/cookie?t=' + timeStamp,
+        method: 'post',
+        data: { user, msg: '无备注' },
+        success: function (data) {
+          if (data.err == 0) {
+            clearTimeout(tCheck);
+            console.log('Ck:' + data.cookie);
+            document.getElementById('res').style.display = 'flex';
+            document.getElementById('cookie').innerHTML =
+              '<span style="font-size:24px;color: red;">' +
+              data.msg +
+              '</span><br /><br />' +
+              '<span>' +
+              '你的CK：' +
+              '</span>' +
+              '<p>' +
+              data.cookie +
+              '</p><button id="copyToClip">复制CK</button>';
+            document.getElementById('copyToClip').onclick = function () {
+              copyText(data.cookie);
+              alert('复制成功');
+              window.location.reload();
+            };
+          } else if (data.err == 21) {
+            clearTimeout(tCheck);
+            alert('请求超时，二维码已失效或令牌过期！');
+            window.location.reload();
+          } else if (data.err == 176) {
+            tCheck = setTimeout(() => {
+              checkLogin();
+            }, 3000);
+          } else {
+            clearTimeout(tCheck);
+            alert('请求超时，二维码已失效或令牌过期！');
+            window.location.reload();
+          }
+        },
+      });
+    }
+    function copyText(text) {
+      // 数字没有 .length 不能执行selectText 需要转化成字符串
+      var textString = text.toString();
+      var input = document.querySelector('#copy-input');
+      if (!input) {
+        input = document.createElement('input');
+        input.id = 'copy-input';
+        input.readOnly = 'readOnly'; // 防止ios聚焦触发键盘事件
+        input.style.position = 'absolute';
+        input.style.left = '-1000px';
+        input.style.zIndex = '-1000';
+        document.body.appendChild(input);
+      }
+      input.value = textString;
+      // ios必须先选中文字且不支持 input.select();
+      selectText(input, 0, textString.length);
+      console.log(document.execCommand('copy'), 'execCommand');
+      if (document.execCommand('copy')) {
+        document.execCommand('copy');
+        //alert('已复制到粘贴板');
+      }
+      input.blur();
+      // input自带的select()方法在苹果端无法进行选择，所以需要自己去写一个类似的方法
+      // 选择文本。createTextRange(setSelectionRange)是input方法
+      function selectText(textbox, startIndex, stopIndex) {
+        if (textbox.createTextRange) {
+          //ie
+          const range = textbox.createTextRange();
+          range.collapse(true);
+          range.moveStart('character', startIndex); //起始光标
+          range.moveEnd('character', stopIndex - startIndex); //结束光标
+          range.select(); //不兼容苹果
+        } else {
+          //firefox/chrome
+          textbox.setSelectionRange(startIndex, stopIndex);
+          textbox.focus();
+        }
+      }
+    }
+    function ajax(options) {
+      var url = options.url;
+      var method = options.method;
+      var data = options.data;
+      var success = options.success;
+      var ajax = new XMLHttpRequest();
+      ajax.open(method, url);
+      if (method == 'post') {
+        ajax.setRequestHeader('Content-type', 'application/json');
+      }
+      ajax.send(JSON.stringify(data));
+      ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+          success(JSON.parse(ajax.responseText));
+        }
+      };
+    }
+  </script>
+</html>
+
