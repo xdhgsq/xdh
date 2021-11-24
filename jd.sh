@@ -275,6 +275,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_ddly.js			#勋章点亮(没有开启的手动开启吧，活动入口：东东农场->水车)
 	jd_cfd_fresh.js			#京喜财富岛合成生鲜
 	jd_dt.js			#答题领金豆
+	jd_jump.js			#跳跳乐瓜分京豆脚本
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -314,6 +315,7 @@ yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
+	jd_pigPet.js			#金融养猪
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -548,6 +550,8 @@ concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
+	jd_pigPet.js			#金融养猪
+	jd_mf.js			#集魔方
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -579,6 +583,8 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_wish.js			#众筹许愿池
 	jd_fanli.js			#京东饭粒
 	jd_dt.js			#答题领金豆
+	jd_jump.js			#跳跳乐瓜分京豆脚本
+	jd_pigPet.js			#金融养猪
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
