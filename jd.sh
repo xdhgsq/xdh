@@ -2580,36 +2580,107 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 	sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
 }
 
-del_jxdr() {
-	#检测变量删除对应并发文件夹的京喜工厂，达到不跑的目的，缺点run文件会出现找不到文件提示，无伤大雅
-	if [ ! $jx_dr ];then
+del_if() {
+	#不跑东东农场
+	if [ ! $jd_ddfruit ];then
+		echo "没有要删除的东东农场文件"
+	else
+		js_name="东东农场"
+		jd_num="$jd_ddfruit"
+		jd_js="jd_fruit.js"
+		del_js
+	fi
+
+	#不跑东东萌宠
+	if [ ! $jd_ddpet ];then
+		echo "没有要删除的东东萌宠文件"
+	else
+		js_name="东东萌宠"
+		jd_num="$jd_ddpet"
+		jd_js="jd_pet.js"
+		del_js
+	fi
+
+	#不跑宠汪汪
+	if [ ! $jd_ddjoy ];then
+		echo "没有要删除的宠汪汪文件"
+	else
+		js_name="宠汪汪"
+		jd_num="$jd_ddjoy"
+		jd_js="jd_joy.js"
+		del_js
+	fi
+
+	#不跑种豆得豆
+	if [ ! $jd_ddplan ];then
+		echo "没有要删除的种豆得豆文件"
+	else
+		js_name="种豆得豆"
+		jd_num="$jd_ddplan"
+		jd_js="jd_plantBean.js"
+		del_js
+	fi
+
+	#不跑京喜工厂
+	if [ ! $jx_dddr ];then
 		echo "没有要删除的京喜工厂文件"
 	else
-		del_ck=$(echo $jx_dr | sed "s/@/ /g")
-		del_ck_if=$(echo $del_ck | awk '{print $1}')
+		js_name="京喜工厂"
+		jd_num="$jx_dddr"
+		jd_js="jd_dreamFactory.js"
+		del_js
+	fi
+
+	#不跑京喜牧场
+	if [ ! $jx_ddmc ];then
+		echo "没有要删除的京喜牧场文件"
+	else
+		js_name="京喜牧场"
+		jd_num="$jx_ddmc"
+		jd_js="jd_jxmc.js"
+		del_js
+	fi
+
+	#不跑京喜财富岛
+	if [ ! $jx_ddcfd ];then
+		echo "没有要删除的京喜财富岛文件"
+	else
+		js_name="京喜财富岛"
+		jd_num="$jx_ddcfd"
+		jd_js="gua_wealth_island.js"
+		del_js
+	fi
+}
+
+
+del_js() {
+	#检测变量删除对应并发文件夹的js文件，达到不跑的目的，缺点run文件会出现找不到文件提示，无伤大雅
+	del_ck=$(echo $jd_num | sed "s/@/ /g")
+	for i in `echo "$del_ck"`
+	do
 		case "$del_ck_if" in
 			[1-999])
 				for i in `echo $del_ck`
 				do
-					jx_file=$(ls $ccr_js_file/js_$i | grep "jd_dreamFactory.js"  | wc -l)
+					jx_file=$(ls $ccr_js_file/js_$i | grep "$jd_js"  | wc -l)
 					if [ "$jx_file" == "1" ];then
-						echo "开始删除并发文件js_$i的京喜工厂文件"
-						rm -rf $ccr_js_file/js_$i/jd_dreamFactory.js
+						echo "开始删除并发文件js_$i的$js_name文件"
+						rm -rf $ccr_js_file/js_$i/$jd_js
 					else
-						echo "并发文件js_$i的京喜工厂文件已经删除了"
+						echo "并发文件js_$i的$js_name文件已经删除了"
 					fi
 				done
 			;;
 			all)
 				for i in `ls $ccr_js_file`
 				do
-					jx_file=$(ls $ccr_js_file/$i | grep "jd_dreamFactory.js"  | wc -l)
+					jx_file=$(ls $ccr_js_file/$i | grep "$jd_js"  | wc -l)
 					if [ "$jx_file" == "1" ];then
-						echo "开始删除并发文件js_$i的京喜工厂文件"
-						rm -rf $ccr_js_file/$i/jd_dreamFactory.js
+						echo "开始删除并发文件js_$i的$js_name文件"
+						rm -rf $ccr_js_file/$i/$jd_js
 					else
-						echo "并发文件$i的京喜工厂文件已经删除了"
-					fi
+						echo "并发文件$i的$js_name文件已经删除了"
+					fi					
 				done
 			;;
 			*)
@@ -2617,21 +2688,20 @@ del_jxdr() {
 				do
 					jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
 					if [ ! $jx_site ];then
-						echo "填写的用户名找不到，不删除京喜工厂文件"
+						echo "填写的用户名找不到，不删除$js_name文件"
 					else
-						jx_file=$(ls $ccr_js_file/js_$jx_site | grep "jd_dreamFactory.js"  | wc -l)
+						jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$jd_js"  | wc -l)
 						if [ "$jx_file" == "1" ];then
-							echo "开始删除并发文件js_$jx_site的京喜工厂文件"
-							rm -rf $ccr_js_file/js_$jx_site/jd_dreamFactory.js
+							echo "开始删除并发文件js_$jx_site的$js_name文件"
+							rm -rf $ccr_js_file/js_$jx_site/$jd_js
 						else
-							echo "并发文件js_$jx_site的京喜工厂文件已经删除了"
+							echo "并发文件js_$jx_site的$js_name文件已经删除了"
 						fi
 					fi
 				done
 			;;
 		esac
-
-	fi
+	done
 	clear
 }
 
@@ -2880,8 +2950,8 @@ system_variable() {
 
 	script_black
 
-	#删除并发的京喜文件
-	del_jxdr
+	#删除并发的文件
+	del_if
 }
 
 index_js() {
@@ -2970,7 +3040,7 @@ ss_if() {
 }
 
 jd_openwrt_config() {
-	jd_openwrt_config_version="1.6"
+	jd_openwrt_config_version="1.7"
 	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
 		jd_openwrt_config="$openwrt_script_config/jd_openwrt_script_config.txt"
 		if [ ! -f "$jd_openwrt_config" ]; then
@@ -2997,7 +3067,28 @@ jd_openwrt_config() {
 	jd_unsubscribe=$(grep "jd_unsubscribe" $jd_openwrt_config | awk -F "'" '{print $2}')
 	push_if=$(grep "push_if" $jd_openwrt_config | awk -F "'" '{print $2}')
 	weixin2=$(grep "weixin2" $jd_openwrt_config | awk -F "'" '{print $2}')
-	jx_dr=$(grep "jx_dr" $jd_openwrt_config | awk -F "'" '{print $2}')
+	
+	#不跑东东农场
+	jd_ddfruit=$(grep "jd_ddfruit" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#不跑东东萌宠
+	jd_ddpet=$(grep "jd_ddpet" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#不跑宠汪汪
+	jd_ddjoy=$(grep "jd_ddjoy" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#不跑种豆得豆
+	jd_ddplan=$(grep "jd_ddplan" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#不跑京喜工厂
+	jx_dddr=$(grep "jx_dddr" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#不跑京喜牧场
+	jx_ddmc=$(grep "jx_ddmc" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#不跑京喜财富岛
+	jx_ddcfd=$(grep "jx_ddcfd" $jd_openwrt_config | awk -F "'" '{print $2}')
+	
 
 	jd_sharecode_fr=$(grep "jd_sharecode_fr" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_sharecode_pet=$(grep "jd_sharecode_pet" $jd_openwrt_config | awk -F "'" '{print $2}')
@@ -3028,9 +3119,29 @@ push_if='1'
 (push_if填写为3，这里就必须要填，不然无法推送，不为3,可以不填)
 weixin2=''
 
+******************----------------------------------*******************************
+#指定账号不跑东东农场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
+jd_ddfruit=''
+
+#指定账号不跑东东萌宠，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
+jd_ddpet=''
+
+#指定账号不跑宠汪汪，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
+jd_ddjoy=''
+
+#指定账号不跑种豆得豆，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
+jd_ddplan=''
 
 #指定账号不跑京喜工厂，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jx_dr=''
+jx_dddr=''
+
+#指定账号不跑京喜牧场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
+jx_ddmc=''
+
+#指定账号不跑京喜财富岛，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
+jx_ddcfd=''
+
+******************----------------------------------*******************************
 
 #农场不浇水换豆 false关闭 true打开
 jd_fruit='false'
