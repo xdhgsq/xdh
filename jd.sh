@@ -3317,7 +3317,6 @@ jd_openwrt_config() {
 	jd_pet=$(grep "jd_pet" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_ddjoy=$(grep "ddjd_joy" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_plan=$(grep "jd_plan" $jd_openwrt_config | awk -F "'" '{print $2}')
-	jd_fruit=$(grep "jd_fruit" $jd_openwrt_config | awk -F "'" '{print $2}')
 
 	jd_sharecode_fr=$(grep "jd_sharecode_fr" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_sharecode_pet=$(grep "jd_sharecode_pet" $jd_openwrt_config | awk -F "'" '{print $2}')
@@ -3359,7 +3358,7 @@ jx_mc=''
 jx_cfd=''
 
 #指定账号不跑东东农场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jd_ddfruit='30'
+jd_ddfruit=''
 
 #指定账号不跑东东萌宠，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
 jd_ddpet=''
