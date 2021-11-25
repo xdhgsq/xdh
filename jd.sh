@@ -201,7 +201,6 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_daily_egg.js 		#京东金融-天天提鹅
 	jd_sgmh.js			#闪购盲盒长期活动
 	jd_ms.js			#京东秒秒币
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#极速版红包
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	#jd_live.js			#京东直播
@@ -280,6 +279,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_live_redrain.js		#红包雨
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -601,6 +601,8 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
+	#极速版签到
+	run_jsqd
 	run_08_12_16
 	run_06_18
 	run_10_15_20
@@ -760,7 +762,6 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_jdzz.js 			#京东赚赚长期活动
 	jd_ms.js 			#京东秒秒币 一个号大概60
 	jd_sgmh.js 			#闪购盲盒长期活动
-	jd_speed_sign.js 		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#极速版红包
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_jin_tie_xh.js  		#领金贴
@@ -803,7 +804,6 @@ EOF
 run_10_15_20() {
 cat >/tmp/jd_tmp/run_10_15_20 <<EOF
 	jd_superMarket.js 		#东东超市,0 10 15 20四场补货加劵
-	jd_speed_sign.js 		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#极速版红包
 EOF
 
@@ -822,30 +822,36 @@ EOF
 
 run_jsqd(){
 #极速版签到定制安排
+num="1"
 #允许10个任务一起跑，做个测试，看看403不
 ck_num="10"
 file_num=$(ls $ccr_js_file | wc -l)
 
-	while [ ${file_num} -gt 0 ]; do
+	while [ ${file_num} -gt ${num} ]; do
 		ps_speed=$(ps -ww |grep "jd_speed_sign.js" | grep -v grep | wc -l)
 		if [ "$ps_speed" -gt "$ck_num" ];then
 			echo -e "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个，${white}已满$ck_num个暂时不跑了"
 			while true; do
-				if [ "$ps_speed" -gt "$ck_num" ];then
-					echo "开始休息60秒以后再干活"
-					sleep 60
-				else
-					echo "休息结束开始干活"
+				if [ ${num} -gt ${file_num} ];then
+					echo -e "$green所有账号已经跑完了，停止脚本$white"
 					break
+				else
+					if [ "$ps_speed" -gt "$ck_num" ];then
+						echo -e "$green开始休息60秒以后再干活$white"
+						sleep 60
+					else
+						echo -e "$yellow休息结束开始干活$white"
+						break
+					fi
 				fi
 			done
 		else
-			echo -e "$green开始跑${yellow}js_${file_num}${green}文件里的jd_speed_sign.js$white"
-			$node $ccr_js_file/js_$file_num/jd_speed_sign.js &
-			sleep 10
+			echo -e "$green开始跑${yellow}js_${num}${green}文件里的jd_speed_sign.js$white"
+			$node $ccr_js_file/js_${num}/jd_speed_sign.js &
+			sleep 5
 			echo -e "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个"
 		fi
-		file_num=$(($file_num - 1))
+		num=$(($num + 1))
 	done
 }
 
