@@ -213,7 +213,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	sign_graphics_validate.js
 	jd_sign_graphics.js		#京东签到图形验证
 	JDJRValidator_Smiek.js
-	jd_dpqd.js			#店铺签到
 	jd_bean_sign.js			#京东多合一签到
 	JDSignValidator.js		#京东多合一签到依赖1
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
@@ -300,6 +299,7 @@ cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
 	jd_pigPet.js			#金融养猪
+	jd_dpqd.js			#店铺签到
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
