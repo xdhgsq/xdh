@@ -213,7 +213,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	sign_graphics_validate.js
 	jd_sign_graphics.js		#京东签到图形验证
 	JDJRValidator_Smiek.js
-	jd_dpqd.js			#店铺签到
 	jd_bean_sign.js			#京东多合一签到
 	JDSignValidator.js		#京东多合一签到依赖1
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
@@ -227,10 +226,10 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_ddly.js			#勋章点亮(没有开启的手动开启吧，活动入口：东东农场->水车)
 	jd_cfd_fresh.js			#京喜财富岛合成生鲜
 	jd_dt.js			#答题领金豆
-	jd_live_redrain.js		#红包雨
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
 	jd_speed_redpocke.js		#极速版红包
+	jd_sign_graphics1.js		#京东签到翻牌
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -300,6 +299,7 @@ cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
 	jd_pigPet.js			#金融养猪
+	jd_dpqd.js			#店铺签到
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -573,6 +573,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_pigPet.js			#金融养猪
+	jd_sign_graphics1.js		#京东签到翻牌
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
@@ -653,7 +654,6 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_big_winner.js		#翻翻乐
-	jd_live_redrain.js		#红包雨
 EOF
 	echo -e "$green run_01$start_script_time $white"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
