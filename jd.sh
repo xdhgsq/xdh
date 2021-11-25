@@ -192,25 +192,9 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_dreamFactory.js		#京喜工厂
 	jd_jdfactory.js			#东东工厂
 	jd_car.js			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
-	jd_club_lottery.js		#摇京豆
-	jd_shop.js			#进店领豆
-	jd_kd.js			#京东快递签到 一天运行一次即可
-	jd_small_home.js		#东东小窝
 	jd_speed.js			#天天加速
-	jd_pigPet.js			#金融养猪
-	jd_daily_egg.js 		#京东金融-天天提鹅
-	jd_sgmh.js			#闪购盲盒长期活动
-	jd_ms.js			#京东秒秒币
-	jd_speed_redpocke.js		#极速版红包
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
-	#jd_live.js			#京东直播
-	jd_moneyTree.js 		#摇钱树
-	jd_market_lottery.js 		#幸运大转盘
-	jd_health.js			#健康社区
-	jd_health_collect.js		#健康社区-收能量
-	jd_gold_creator.js		#金榜创造营
 	jd_cleancart.js			#清空购物车（默认不执行）
-	#jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_unsubscribe.js		#取关京东店铺和商品
 EOF
 
@@ -221,38 +205,6 @@ do
 done
 
 sleep 5
-
-#fangpidedongsun
-fangpidedongsun_url="https://raw.githubusercontent.com/fangpidedongsun/jd_scripts2/master"
-cat >$dir_file/config/tmp/fangpidedongsun_qx.txt <<EOF
-	jd_jingsubang.js 		#手机竞猜
-EOF
-
-for script_name in `cat $dir_file/config/tmp/fangpidedongsun_qx.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$fangpidedongsun_url"
-	wget $nianyuguai_url/$script_name -O $dir_file_js/$script_name
-	update_if
-done
-
-#smiek2221
-smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
-cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
-	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
-	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard70.js		#开卡70
-	gua_opencard71.js		#开卡71联合开卡
-	gua_opencard72.js		#开卡72黑五狂欢购
-EOF
-
-for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$smiek2221_url"
-	wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
 
 #zero205
 zero205_url="https://raw.githubusercontent.com/zero205/JD_tencent_scf/main"
@@ -265,7 +217,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_bean_sign.js			#京东多合一签到
 	JDSignValidator.js		#京东多合一签到依赖1
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
-	jd_superMarket.js		#东东超市
 	jd_try.js 			#京东试用（默认不启用）
 	jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_ttpt.js			#天天拼图
@@ -279,7 +230,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_live_redrain.js		#红包雨
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
+	jd_speed_redpocke.js		#极速版红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -305,6 +256,15 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_wish.js			#众筹许愿池
 	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
+	jd_club_lottery.js		#摇京豆
+	jd_shop.js			#进店领豆
+	jd_kd.js			#京东快递签到 一天运行一次即可
+	jd_ms.js			#京东秒秒币
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
+	jd_moneyTree.js 		#摇钱树
+	jd_market_lottery.js 		#幸运大转盘
+	jd_health_collect.js		#健康社区-收能量
+	jd_superMarket.js		#东东超市
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -312,6 +272,26 @@ do
 	url="$Aaron_url"
 	wget $Aaron_url/$script_name -O $dir_file_js/$script_name
 	update_if
+done
+
+
+#smiek2221
+smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
+cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
+	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
+	gua_MMdou.js                    #赚京豆MM豆
+	gua_opencard70.js		#开卡70
+	gua_opencard71.js		#开卡71联合开卡
+	gua_opencard72.js		#开卡72黑五狂欢购
+EOF
+
+for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	url="$smiek2221_url"
+	wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
+	update_if
+}&
 done
 
 #yuannian1112
@@ -444,6 +424,8 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_health.js			#健康社区
+	jd_sgmh.js			#闪购盲盒长期活动
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
 	jd_syj.js			#赚京豆
@@ -458,6 +440,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_gold_creator.js              #金榜创造营
 	jd_all_bean_change.js 		#京东月资产变动通知
 	jd_qqxing.js			#QQ星系牧场
 	jd_price.js		        #价保脚本
@@ -734,7 +717,6 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	#jd_joy_steal.js 		#可偷好友积分，零点开始，六点再偷一波狗粮
 	jd_superMarket.js 		#东东超市,6点 18点多加两场用于收金币
-	jd_gold_creator.js		#金榜创造营
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
 	jd_mf.js			#集魔方
