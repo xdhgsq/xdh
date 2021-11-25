@@ -52,7 +52,7 @@ wrap="%0D%0A%0D%0A" #Server酱换行
 wrap_tab="     "
 line="%0D%0A%0D%0A---%0D%0A%0D%0A"
 current_time=$(date +"%Y-%m-%d")
-by="#### 脚本仓库地址:https://github.com/ITdesk01/JD_Script/tree/main 核心JS采用lxk0301开源JS脚本"
+by="#### 脚本仓库地址:https://github.com/xdhgsq/xdh"
 
 if [ ! -f $openwrt_script_config/Checkjs_Sckey.txt ];then
 	echo >$openwrt_script_config/Checkjs_Sckey.txt
@@ -2162,7 +2162,7 @@ help() {
 	echo ""
 	echo -e "$yellow 6.个性化配置：$white $jd_config_version"
 	echo ""
-	echo -e "$yellow 7.JD_Script报错你可以反馈到这里:$white$green https://github.com/ITdesk01/JD_Script/issues$white"
+	echo -e "$yellow 7.JD_Script报错你可以反馈到这里:$white$green https://github.com/xdhgsq/xdh/issues$white"
 	echo ""
 	echo -e "$index_num"
 	echo ""
@@ -2213,8 +2213,8 @@ additional_settings() {
 	sed -i "s/|| 20/|| $jd_unsubscribe/g" $dir_file_js/jd_unsubscribe.js
 
 	if [ `cat $openwrt_script_config/sendNotify.js | grep "采用lxk0301开源JS脚本" | wc -l` == "0" ];then
-	sed -i "s/本脚本开源免费使用 By：https:\/\/gitee.com\/lxk0301\/jd_docker/#### 脚本仓库地址:https:\/\/github.com\/ITdesk01\/JD_Script\/tree\/main 核心JS采用lxk0301开源JS脚本/g" $openwrt_script_config/sendNotify.js
-	sed -i "s/本脚本开源免费使用 By：https:\/\/github.com\/LXK0301\/jd_scripts/#### 脚本仓库地址:https:\/\/github.com\/ITdesk01\/JD_Script\/tree\/main 核心JS采用lxk0301开源JS脚本/g" $openwrt_script_config/sendNotify.js
+	sed -i "s/本脚本开源免费使用 By：https:\/\/gitee.com\/lxk0301\/jd_docker/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
+	sed -i "s/本脚本开源免费使用 By：https:\/\/github.com\/LXK0301\/jd_scripts/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
 	fi
 	
 
@@ -2444,7 +2444,7 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 		ln -s $openwrt_script_config/sendNotify.js $dir_file/jd_try_file/tmp/sendNotify.js
 		ln -s $openwrt_script_config/USER_AGENTS.js $dir_file/jd_try_file/tmp/USER_AGENTS.js
 		cp $dir_file_js/jd_try.js $dir_file/jd_try_file/jd_try.js
-		wget https://raw.githubusercontent.com/ITdesk01/JD_Script/main/JSON/jdCookie.js -O $dir_file/jd_try_file/jdCookie.js
+		wget https://raw.githubusercontent.com/xdhgsq/xdh/main/JSON/jdCookie.js -O $dir_file/jd_try_file/jdCookie.js
 
 		jd_try_if=$(grep "jd_try" $cron_file | wc -l)
 		if [ "$jd_try_if" == "0" ];then
