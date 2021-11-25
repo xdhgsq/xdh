@@ -2669,7 +2669,7 @@ del_if() {
 
 del_js() {
 	#检测变量删除对应并发文件夹的js文件，达到不跑的目的，缺点run文件会出现找不到文件提示，无伤大雅
-	del_ck=$(echo $jd_num | sed "s/@/ /g")
+	del_ck=$(echo $jd_num | sed "s/@/\n/g")
 	for i in `echo "$del_ck"`
 	do
 		case "$i" in
