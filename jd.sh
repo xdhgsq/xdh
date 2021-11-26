@@ -231,7 +231,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_speed_redpocke.js		#极速版红包
 	jd_sign_graphics1.js		#京东签到翻牌
 	jd_live_redrain.js		#红包雨
-	jd_wish.js			#众筹许愿池
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -441,6 +440,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_wish.js			#众筹许愿池
 	jd_gold_creator.js              #金榜创造营
 	jd_all_bean_change.js 		#京东月资产变动通知
 	jd_qqxing.js			#QQ星系牧场
@@ -541,7 +541,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_pigPet.js			#金融养猪
 	jd_mf.js			#集魔方
-	jd_wish.js			#众筹许愿池
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -570,7 +569,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_ccSign.js			#领券中心签到
 	jd_unsubscribe.js 		#取关店铺，没时间要求
 	jd_ljd_xh.js			#领京豆
-	jd_wish.js			#众筹许愿池
 	jd_fanli.js			#京东饭粒
 	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
