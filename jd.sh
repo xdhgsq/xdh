@@ -2673,13 +2673,16 @@ del_js() {
 				fi
 			;;
 			all)
-				jx_file=$(ls $ccr_js_file/$i | grep "$jd_js"  | wc -l)
-				if [ "$jx_file" == "1" ];then
-					echo "开始删除并发文件js_$i的$js_name文件"
-					rm -rf $ccr_js_file/$i/$jd_js
-				else
-					echo "并发文件$i的$js_name文件已经删除了"
-				fi
+				for i in `ls $ccr_js_file`
+				do
+					jx_file=$(ls $ccr_js_file/$i | grep "$jd_js"  | wc -l)
+					if [ "$jx_file" == "1" ];then
+						echo "开始删除并发文件js_$i的$js_name文件"
+						rm -rf $ccr_js_file/$i/$jd_js
+					else
+						echo "并发文件$i的$js_name文件已经删除了"
+					fi
+				done
 			;;
 			*)
 				jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
