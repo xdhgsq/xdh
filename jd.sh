@@ -230,6 +230,8 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_gold_sign.js 		#京东金榜
 	jd_speed_redpocke.js		#极速版红包
 	jd_sign_graphics1.js		#京东签到翻牌
+	jd_live_redrain.js		#红包雨
+	jd_wish.js			#众筹许愿池
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -252,7 +254,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_ddworld.js			#东东世界
 	jd_live.js			#京东直播
 	jd_mf.js			#集魔方
-	jd_wish.js			#众筹许愿池
 	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js		#摇京豆
@@ -540,6 +541,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_pigPet.js			#金融养猪
 	jd_mf.js			#集魔方
+	jd_wish.js			#众筹许愿池
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -654,6 +656,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_big_winner.js		#翻翻乐
+	jd_live_redrain.js		#红包雨
 EOF
 	echo -e "$green run_01$start_script_time $white"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
