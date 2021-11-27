@@ -231,6 +231,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_speed_redpocke.js		#极速版红包
 	jd_sign_graphics1.js		#京东签到翻牌
 	jd_live_redrain.js		#红包雨
+	jd_syj.js			#赚京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -282,6 +283,7 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard70.js		#开卡70
 	gua_opencard71.js		#开卡71联合开卡
 	gua_opencard72.js		#开卡72黑五狂欢购
+	gua_opencard73.js		#开卡73
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -424,11 +426,11 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_health.js			#健康社区
 	jd_sgmh.js			#闪购盲盒长期活动
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
-	jd_syj.js			#赚京豆
 	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_OpenCard.py 			#开卡程序
@@ -524,6 +526,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ddly.js			#勋章点亮(没有开启的手动开启吧，活动入口：东东农场->水车)
 	jd_cfd_fresh.js			#京喜财富岛合成生鲜
 	jd_gold_sign.js			#京东金榜
+	jd_syj.js			#赚京豆
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -574,6 +577,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_pigPet.js			#金融养猪
 	jd_sign_graphics1.js		#京东签到翻牌
+	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
@@ -630,6 +634,7 @@ cat >/tmp/jd_tmp/opencard <<EOF
 	gua_opencard70.js		#开卡70
 	gua_opencard71.js		#开卡71联合开卡
 	gua_opencard72.js		#开卡72黑五狂欢购
+	gua_opencard73.js		#开卡73
 EOF
 
 	echo -e "$green opencard$start_script_time $white"
