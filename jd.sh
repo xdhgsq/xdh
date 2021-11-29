@@ -2597,7 +2597,7 @@ del_if() {
 	else
 		js_name="东东农场"
 		jd_num="$jd_ddfruit"
-		jd_js="jd_fruit.js"
+		js_file="jd_fruit.js"
 		del_js
 	fi
 
@@ -2607,7 +2607,7 @@ del_if() {
 	else
 		js_name="东东萌宠"
 		jd_num="$jd_ddpet"
-		jd_js="jd_pet.js"
+		js_file="jd_pet.js"
 		del_js
 	fi
 
@@ -2617,7 +2617,7 @@ del_if() {
 	else
 		js_name="宠汪汪"
 		jd_num="$jd_ddjoy"
-		jd_js="jd_joy.js"
+		js_file="jd_joy.js"
 		del_js
 	fi
 
@@ -2627,7 +2627,7 @@ del_if() {
 	else
 		js_name="种豆得豆"
 		jd_num="$jd_ddplan"
-		jd_js="jd_plantBean.js"
+		js_file="jd_plantBean.js"
 		del_js
 	fi
 
@@ -2637,7 +2637,7 @@ del_if() {
 	else
 		js_name="京喜工厂"
 		jd_num="$jx_dddr"
-		jd_js="jd_dreamFactory.js"
+		js_file="jd_dreamFactory.js"
 		del_js
 	fi
 
@@ -2647,7 +2647,7 @@ del_if() {
 	else
 		js_name="京喜牧场"
 		jd_num="$jx_ddmc"
-		jd_js="jd_jxmc.js"
+		js_file="jd_jxmc.js"
 		del_js
 	fi
 
@@ -2657,7 +2657,7 @@ del_if() {
 	else
 		js_name="京喜财富岛"
 		jd_num="$jx_ddcfd"
-		jd_js="gua_wealth_island.js"
+		js_file="gua_wealth_island.js"
 		del_js
 	fi
 }
@@ -2671,10 +2671,10 @@ del_js() {
 		case "$i" in
 			1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|101|102|103|104|105|106|107|108|109|110|111|112|113|114|115|116|117|118|119|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138|139|140|141|142|143|144|145|146|147|148|149|150|151|152|153|154|155|156|157|158|159|160|161|162|163|164|165|166|167|168|169|170|171|172|173|174|175|176|177|178|179|180|181|182|183|184|185|186|187|188|189|190|191|192|193|194|195|196|197|198|199|200)
 				#先支持删除200以内
-				jx_file=$(ls $ccr_js_file/js_$i | grep "$jd_js"  | wc -l)
+				jx_file=$(ls $ccr_js_file/js_$i | grep "$js_file"  | wc -l)
 				if [ "$jx_file" == "1" ];then
 					echo "开始删除并发文件js_$i的$js_name文件"
-					rm -rf $ccr_js_file/js_$i/$jd_js
+					rm -rf $ccr_js_file/js_$i/$js_file
 				else
 					echo "并发文件js_$i的$js_name文件已经删除了"
 				fi
@@ -2682,24 +2682,26 @@ del_js() {
 			all)
 				for i in `ls $ccr_js_file`
 				do
-					jx_file=$(ls $ccr_js_file/$i | grep "$jd_js"  | wc -l)
+					jx_file=$(ls $ccr_js_file/$i | grep "$js_file"  | wc -l)
 					if [ "$jx_file" == "1" ];then
 						echo "开始删除并发文件js_$i的$js_name文件"
-						rm -rf $ccr_js_file/$i/$jd_js
+						rm -rf $ccr_js_file/$i/$js_file
 					else
 						echo "并发文件$i的$js_name文件已经删除了"
 					fi
 				done
+				#顺便删除一下js文件的脚本，做到真得不跑了
+				rm -rf $dir_file_js/$js_file
 			;;
 			*)
 				jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
 				if [ ! $jx_site ];then
 					echo "填写的用户名找不到，不删除$js_name文件"
 				else
-					jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$jd_js"  | wc -l)
+					jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$js_file"  | wc -l)
 					if [ "$jx_file" == "1" ];then
 						echo "开始删除并发文件js_$jx_site的$js_name文件"
-						rm -rf $ccr_js_file/js_$jx_site/$jd_js
+						rm -rf $ccr_js_file/js_$jx_site/$js_file
 					else
 						echo "并发文件js_$jx_site的$js_name文件已经删除了"
 					fi
