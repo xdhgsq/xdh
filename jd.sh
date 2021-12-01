@@ -581,6 +581,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_sign_graphics1.js		#京东签到翻牌
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
+	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
@@ -616,6 +617,7 @@ cat >/tmp/jd_tmp/run_030 <<EOF
 	jd_health_collect.js		#健康社区-收能量
 	long_half_redrain.js		#半点红包雨
 	jd_dreamFactory.js 		#京喜工厂
+	jd_cfd.js 			#财富岛新版
 EOF
 	echo -e "$green run_030$start_script_time $white"
 
@@ -662,8 +664,6 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_big_winner.js		#翻翻乐
 	jd_live_redrain.js		#红包雨
-	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_cfd.js 			#财富岛新版
 EOF
 	echo -e "$green run_01$start_script_time $white"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
