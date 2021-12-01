@@ -611,7 +611,6 @@ run_020() {
 
 run_030() {
 cat >/tmp/jd_tmp/run_030 <<EOF
-	jd_cfd.js 		#财富岛新版
 	jd_jdfactory.js 		#东东工厂，不是京喜工厂
 	jd_jxmc.js			#京喜牧场
 	jd_health_collect.js		#健康社区-收能量
@@ -664,6 +663,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_big_winner.js		#翻翻乐
 	jd_live_redrain.js		#红包雨
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
+	jd_cfd.js 			#财富岛新版
 EOF
 	echo -e "$green run_01$start_script_time $white"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
