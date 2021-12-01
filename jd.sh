@@ -282,8 +282,6 @@ smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard70.js		#开卡70
-	gua_opencard71.js		#开卡71联合开卡
 	gua_opencard72.js		#开卡72黑五狂欢购
 	gua_opencard73.js		#开卡73
 	gua_opencard74.js		#开卡74
@@ -445,13 +443,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_wish.js			#众筹许愿池
-	jd_gold_creator.js              #金榜创造营
-	jd_all_bean_change.js 		#京东月资产变动通知
-	jd_qqxing.js			#QQ星系牧场
-	jd_vivo.js			#热血心跳,狂解压
-	jd_joy_reward.js
-	jd_joy_park_newtask.js		# 汪汪乐园过新手任务，有火爆账号的可以手动运行一次（默认不运行）
+	gua_opencard70.js		#开卡70
+	gua_opencard71.js		#开卡71联合开卡
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -638,8 +631,6 @@ EOF
 
 opencard() {
 cat >/tmp/jd_tmp/opencard <<EOF
-	gua_opencard70.js		#开卡70
-	gua_opencard71.js		#开卡71联合开卡
 	gua_opencard72.js		#开卡72黑五狂欢购
 	gua_opencard73.js		#开卡73
 	gua_opencard74.js		#开卡74
