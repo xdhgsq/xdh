@@ -824,8 +824,13 @@ file_num=$(ls $ccr_js_file | wc -l)
 					break
 				else
 					if [ "$ps_speed" -gt "$ck_num" ];then
-						echo -e "$green开始休息60秒以后再干活$white"
-						sleep 60
+						if [ "$ps_speed" == "0" ];then
+							echo -e "$green所有账号已经跑完了，停止脚本$white"
+							break
+						else
+							echo -e "$green开始休息60秒以后再干活$white"
+							sleep 60
+						fi
 					else
 						echo -e "$yellow休息结束开始干活$white"
 						break
