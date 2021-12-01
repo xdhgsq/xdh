@@ -224,7 +224,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_fanli.js			#京东饭粒
 	jd_superBrand.js		#特务Ｚ
 	jd_ddly.js			#勋章点亮(没有开启的手动开启吧，活动入口：东东农场->水车)
-	jd_cfd_fresh.js			#京喜财富岛合成生鲜
 	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
@@ -519,7 +518,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_syj.js 			#赚京豆
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_ddly.js			#勋章点亮(没有开启的手动开启吧，活动入口：东东农场->水车)
-	jd_cfd_fresh.js			#京喜财富岛合成生鲜
 	jd_gold_sign.js			#京东金榜
 	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
