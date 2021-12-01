@@ -233,6 +233,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_live_redrain.js		#红包雨
 	jd_syj.js			#赚京豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
+	jd_price.js		        #价保脚本
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -285,6 +286,7 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard71.js		#开卡71联合开卡
 	gua_opencard72.js		#开卡72黑五狂欢购
 	gua_opencard73.js		#开卡73
+	gua_opencard74.js		#开卡74
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -447,7 +449,6 @@ cat >/tmp/del_js.txt <<EOF
 	jd_gold_creator.js              #金榜创造营
 	jd_all_bean_change.js 		#京东月资产变动通知
 	jd_qqxing.js			#QQ星系牧场
-	jd_price.js		        #价保脚本
 	jd_vivo.js			#热血心跳,狂解压
 	jd_joy_reward.js
 	jd_joy_park_newtask.js		# 汪汪乐园过新手任务，有火爆账号的可以手动运行一次（默认不运行）
@@ -545,6 +546,8 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_pigPet.js			#金融养猪
 	jd_mf.js			#集魔方
+	jd_price.js		        #价保脚本
+	jd_cfd.js 			#财富岛新版
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -639,6 +642,7 @@ cat >/tmp/jd_tmp/opencard <<EOF
 	gua_opencard71.js		#开卡71联合开卡
 	gua_opencard72.js		#开卡72黑五狂欢购
 	gua_opencard73.js		#开卡73
+	gua_opencard74.js		#开卡74
 EOF
 
 	echo -e "$green opencard$start_script_time $white"
