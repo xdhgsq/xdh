@@ -304,7 +304,6 @@ cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
 	jd_pigPet.js			#金融养猪
-	jd_dpqd.js			#店铺签到
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -429,6 +428,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_dpqd.js			#店铺签到v
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_health.js			#健康社区
 	jd_sgmh.js			#闪购盲盒长期活动
@@ -529,6 +529,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_cfd_fresh.js			#京喜财富岛合成生鲜
 	jd_gold_sign.js			#京东金榜
 	jd_syj.js			#赚京豆
+	jd_dpqd.js			#店铺签到
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -574,7 +575,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_sign_graphics.js		#京东签到图形验证
-	jd_dpqd.js			#店铺签到
 	jd_ccSign.js			#领券中心签到
 	jd_unsubscribe.js 		#取关店铺，没时间要求
 	jd_ljd_xh.js			#领京豆
