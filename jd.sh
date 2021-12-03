@@ -283,6 +283,8 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard72.js		#开卡72黑五狂欢购
 	gua_opencard73.js		#开卡73
 	gua_opencard74.js		#开卡74
+	gua_opencard75.js		#开卡75
+	gua_opencard76.js		#开卡76
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -630,6 +632,8 @@ cat >/tmp/jd_tmp/opencard <<EOF
 	gua_opencard72.js		#开卡72黑五狂欢购
 	gua_opencard73.js		#开卡73
 	gua_opencard74.js		#开卡74
+	gua_opencard75.js		#开卡75
+	gua_opencard76.js		#开卡76
 EOF
 
 	echo -e "$green opencard$start_script_time $white"
