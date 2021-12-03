@@ -232,6 +232,8 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_syj.js			#赚京豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_price.js		        #价保脚本
+	jd_qqxing.js			#QQ星
+	jd_lottery_drew.js		#一分钱抽奖
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -280,8 +282,6 @@ smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard72.js		#开卡72黑五狂欢购
-	gua_opencard73.js		#开卡73
 	gua_opencard74.js		#开卡74
 	gua_opencard75.js		#开卡75
 	gua_opencard76.js		#开卡76
@@ -521,6 +521,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_gold_sign.js			#京东金榜
 	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
+	jd_qqxing.js			#QQ星
+	jd_lottery_drew.js		#一分钱抽奖
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -629,8 +631,6 @@ EOF
 
 opencard() {
 cat >/tmp/jd_tmp/opencard <<EOF
-	gua_opencard72.js		#开卡72黑五狂欢购
-	gua_opencard73.js		#开卡73
 	gua_opencard74.js		#开卡74
 	gua_opencard75.js		#开卡75
 	gua_opencard76.js		#开卡76
@@ -699,6 +699,7 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_health.js			#健康社区
 	jd_mohe.js			#5G超级盲盒
 	jd_syj.js 			#赚京豆
+	jd_qqxing.js			#QQ星
 EOF
 	echo -e "$green run_03$start_script_time $white"
 
