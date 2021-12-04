@@ -589,12 +589,9 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	#极速版签到
-	run_jsqd
 	run_08_12_16
 	run_06_18
 	run_10_15_20
-	run_03
 	run_030
 	run_01
 	echo -e "$green run_0$stop_script_time $white"
@@ -711,6 +708,9 @@ EOF
 	}&
 	done
 	wait
+	
+	#极速版签到
+	run_jsqd
 
 	echo -e "$green run_03$stop_script_time $white"
 }
