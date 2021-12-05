@@ -219,6 +219,9 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_try.js 			#京东试用（默认不启用）
 	jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_ttpt.js			#天天拼图
+	jd_joy_park_task.js		#汪汪乐园
+	jd_joy_park.js			#汪汪乐园养joy
+	jd_joy_tx.js 			#汪汪乐园提现
 	jd_big_winner.js		#翻翻乐
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
@@ -541,6 +544,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_mf.js			#集魔方
 	jd_price.js		        #价保脚本
+	jd_joy_park_task.js		#汪汪乐园
 	jd_cfd.js 			#财富岛新版
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
@@ -697,6 +701,8 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_mohe.js			#5G超级盲盒
 	jd_syj.js 			#赚京豆
 	jd_qqxing.js			#QQ星
+	jd_joy_park.js			#汪汪乐园养joy
+	jd_joy_park_task.js			#汪汪乐园
 EOF
 	echo -e "$green run_03$start_script_time $white"
 
@@ -756,6 +762,7 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
 	jd_superBrand.js		#特务Ｚ
+	jd_joy_tx.js 			#汪汪乐园提现
 EOF
 	echo -e "$green run_07$start_script_time $white"
 
