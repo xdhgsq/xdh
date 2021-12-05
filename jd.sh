@@ -235,6 +235,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_syj.js			#赚京豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_price.js		        #价保脚本
+	jd_nzmh.js			#女装盲盒
 	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
 EOF
@@ -567,6 +568,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_sgmh.js 			#闪购盲盒长期活动
+	jd_nzmh.js			#女装盲盒
 	jd_market_lottery.js 		#幸运大转盘
 	jd_jin_tie_xh.js  		#领金贴
 	jd_dreamFactory.js 		#京喜工厂
