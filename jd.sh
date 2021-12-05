@@ -229,7 +229,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
 	jd_speed_redpocke.js		#极速版红包
-	jd_sign_graphics1.js		#京东签到翻牌
 	jd_live_redrain.js		#红包雨
 	jd_syj.js			#赚京豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
@@ -237,7 +236,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_nzmh.js			#女装盲盒
 	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
-	jd_jdzz.js			#京东赚赚长期活动
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -446,6 +444,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_sign_graphics1.js		#京东签到翻牌
+	jd_jdzz.js			#京东赚赚长期活动
 	gua_opencard70.js		#开卡70
 	gua_opencard71.js		#开卡71联合开卡
 EOF
@@ -468,6 +468,7 @@ done
 	#index_js
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
+	rm -rf $dir_file_js/jd_jdzz.js*
 	additional_settings
 	concurrent_js_update
 	source /etc/profile
@@ -512,7 +513,6 @@ ccr_run() {
 #这里有的就不要加到concurrent_js_run_07,会导致跑多次
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_connoisseur.js		#内容鉴赏官
-	jd_jdzz.js			#京东赚赚长期活动
 	jd_ddworld.js			#东东世界
 	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
@@ -580,7 +580,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_pigPet.js			#金融养猪
-	jd_sign_graphics1.js		#京东签到翻牌
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 EOF
@@ -754,7 +753,6 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_jdzz.js 			#京东赚赚长期活动
 	jd_ms.js 			#京东秒秒币 一个号大概60
 	jd_sgmh.js 			#闪购盲盒长期活动
 	jd_speed_redpocke.js		#极速版红包
