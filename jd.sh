@@ -228,6 +228,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
+	jd_gold_creator.js		#金榜创造营
 	jd_speed_redpocke.js		#极速版红包
 	jd_live_redrain.js		#红包雨
 	jd_syj.js			#赚京豆
@@ -522,6 +523,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_syj.js 			#赚京豆
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_gold_sign.js			#京东金榜
+	jd_gold_creator.js		#金榜创造营
 	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
 	jd_qqxing.js			#QQ星
