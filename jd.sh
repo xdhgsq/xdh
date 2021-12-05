@@ -702,7 +702,7 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_syj.js 			#赚京豆
 	jd_qqxing.js			#QQ星
 	jd_joy_park.js			#汪汪乐园养joy
-	jd_joy_park_task.js			#汪汪乐园
+	jd_joy_park_task.js		#汪汪乐园
 EOF
 	echo -e "$green run_03$start_script_time $white"
 
