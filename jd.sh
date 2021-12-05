@@ -229,7 +229,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
 	jd_speed_redpocke.js		#极速版红包
-	jd_sign_graphics1.js		#京东签到翻牌
 	jd_live_redrain.js		#红包雨
 	jd_syj.js			#赚京豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
@@ -445,6 +444,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_sign_graphics1.js		#京东签到翻牌
 	jd_jdzz.js			#京东赚赚长期活动
 	gua_opencard70.js		#开卡70
 	gua_opencard71.js		#开卡71联合开卡
@@ -580,7 +580,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_pigPet.js			#金融养猪
-	jd_sign_graphics1.js		#京东签到翻牌
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 EOF
