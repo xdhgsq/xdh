@@ -237,6 +237,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_nzmh.js			#女装盲盒
 	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
+	jd_jdzz.js			#京东赚赚
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -446,7 +447,6 @@ EOF
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
 	jd_sign_graphics1.js		#京东签到翻牌
-	jd_jdzz.js			#京东赚赚长期活动
 	gua_opencard70.js		#开卡70
 	gua_opencard71.js		#开卡71联合开卡
 EOF
@@ -469,7 +469,6 @@ done
 	#index_js
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
-	rm -rf $dir_file_js/jd_jdzz.js*
 	additional_settings
 	concurrent_js_update
 	source /etc/profile
@@ -528,6 +527,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_dpqd.js			#店铺签到
 	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
+	jd_jdzz.js			#京东赚赚
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
