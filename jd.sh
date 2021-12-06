@@ -832,7 +832,7 @@ file_num=$(ls $ccr_js_file | wc -l)
 					break
 				else
 					if [ "$ps_speed" -gt "$ck_num" ];then
-						if [ "$ps_speed" == "0" ];then
+						if [ ${num} -gt ${file_num} ];then
 							echo -e "$green所有账号已经跑完了，停止脚本$white"
 							break
 						else
