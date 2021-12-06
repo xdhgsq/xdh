@@ -528,7 +528,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_gold_creator.js		#金榜创造营
 	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
-	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -587,6 +586,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
+	jd_qqxing.js			#QQ星
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
@@ -716,7 +716,6 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_health.js			#健康社区
 	jd_mohe.js			#5G超级盲盒
 	jd_syj.js 			#赚京豆
-	jd_qqxing.js			#QQ星
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
@@ -750,6 +749,7 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_dwapp.js			#积分换话费
 	jd_mf.js			#集魔方
 	jd_ttpt.js			#天天拼图
+	jd_qqxing.js			#QQ星
 EOF
 	echo -e "$green run_06_18$start_script_time $white"
 
