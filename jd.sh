@@ -606,8 +606,19 @@ EOF
 }
 
 run_020() {
+cat >/tmp/jd_tmp/run_020 <<EOF
+	#空.js
+EOF
 	echo -e "$green run_020$start_script_time $white"
-	echo "run_020暂时没有东西"
+
+	for i in `cat /tmp/jd_tmp/run_020 | grep -v "#.*js" | awk '{print $1}'`
+	do
+		num=$(python $dir_file/jd_random.py 100,1)
+		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
+		sleep $num
+		$node $dir_file_js/$i
+		$run_sleep
+	done
 	echo -e "$green run_020$stop_script_time $white"
 }
 
