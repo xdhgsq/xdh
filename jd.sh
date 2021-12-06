@@ -238,6 +238,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
 	#jd_jdzz.js			#京东赚赚
+	jd_sxLottery.js			#京东生鲜每日抽奖
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -549,6 +550,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
 	jd_cfd.js 			#财富岛新版
+	jd_sxLottery.js			#京东生鲜每日抽奖
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
