@@ -175,6 +175,7 @@ async function cfd() {
     await getTakeAggrPage('helpdraw')
 
     console.log('')
+
     //卖贝壳
      await $.wait(2000)
      await querystorageroom('1')

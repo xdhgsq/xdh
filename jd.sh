@@ -517,7 +517,6 @@ ccr_run() {
 #这里不会并发
 #这里有的就不要加到concurrent_js_run_07,会导致跑多次
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_split.js			#金榜年终奖
 	jd_connoisseur.js		#内容鉴赏官
 	jd_ddworld.js			#东东世界
 	jd_jxlhb.js			#京喜领红包
@@ -552,7 +551,9 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
 	jd_cfd.js 			#财富岛新版
+	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_sxLottery.js			#京东生鲜每日抽奖
+	jd_split.js			#金榜年终奖
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -593,6 +594,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_qqxing.js			#QQ星
 	jd_lxLottery.js			#京东我的理想家
+	jd_split.js			#金榜年终奖
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
@@ -637,6 +639,7 @@ cat >/tmp/jd_tmp/run_030 <<EOF
 	long_half_redrain.js		#半点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	jd_cfd.js 			#财富岛新版
+	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 EOF
 	echo -e "$green run_030$start_script_time $white"
 
