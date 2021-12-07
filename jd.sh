@@ -517,6 +517,7 @@ ccr_run() {
 #这里不会并发
 #这里有的就不要加到concurrent_js_run_07,会导致跑多次
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_split.js			#金榜年终奖
 	jd_connoisseur.js		#内容鉴赏官
 	jd_ddworld.js			#东东世界
 	jd_jxlhb.js			#京喜领红包
