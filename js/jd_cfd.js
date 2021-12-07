@@ -176,8 +176,8 @@ async function cfd() {
 
     console.log('')
     //卖贝壳
-    // await $.wait(2000)
-    // await querystorageroom('1')
+     await $.wait(2000)
+     await querystorageroom('1')
 
     //升级建筑
     await $.wait(2000)
