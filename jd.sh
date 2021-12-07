@@ -84,10 +84,8 @@ export guaopencard_addSku_All="true"
 export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
-export FS_LEVEL="card开卡+加购"
-
 task() {
-	cron_version="3.81"
+	cron_version="3.82"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -116,6 +114,7 @@ cat >>/etc/crontabs/root <<EOF
 5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 10-20/5 10,12 * * * $node $dir_file_js/jd_live.js	>/tmp/jd_live.log #京东直播#100#
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
+0 8 * * 0 $node $dir_file_js/jd_jr_draw.js >/tmp/jd_jr_draw.log　#京东金融 每周一领取一次权益活动#100#
 0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
 0 0 * * * $python3 $dir_file/git_clone/curtinlv_script/getFollowGifts/jd_getFollowGift.py >/tmp/jd_getFollowGift.log #关注有礼#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
@@ -239,6 +238,8 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_lottery_drew.js		#一分钱抽奖
 	#jd_jdzz.js			#京东赚赚
 	jd_sxLottery.js			#京东生鲜每日抽奖
+	jd_lxLottery.js			#京东我的理想家
+	jd_jr_draw.js			#京东金融 每周领取一次权益活动
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -430,6 +431,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_split.js			#金榜年终奖
 	jd_dpqd.js			#店铺签到v
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_health.js			#健康社区
@@ -567,6 +569,8 @@ EOF
 run_0() {
 #过期京豆兑换为喜豆变量
 export exjxbeans="true"
+#jd_lxLottery.js京东我的理想家,开卡加购
+export FS_LEVEL="card"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
@@ -587,6 +591,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_qqxing.js			#QQ星
+	jd_lxLottery.js			#京东我的理想家
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
