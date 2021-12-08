@@ -272,6 +272,7 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_market_lottery.js 		#幸运大转盘
 	jd_health_collect.js		#健康社区-收能量
 	jd_superMarket.js		#东东超市
+	jd_mf.js 			#集魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -449,7 +450,6 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_mf.js			#集魔方
 	jd_cfd.js
 	jd_sign_graphics1.js		#京东签到翻牌
 	gua_opencard70.js		#开卡70
@@ -554,6 +554,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_split.js			#金榜年终奖
+	jd_mf.js 			#集魔方
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -758,6 +759,7 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_ttpt.js			#天天拼图
 	jd_qqxing.js			#QQ星
 	jd_split.js			#金榜年终奖
+	jd_mf.js 			#集魔方
 EOF
 	echo -e "$green run_06_18$start_script_time $white"
 
