@@ -553,6 +553,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_cfd.js 			#财富岛新版
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_sxLottery.js			#京东生鲜每日抽奖
+	jd_split.js			#金榜年终奖
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -727,7 +728,6 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
-	jd_split.js			#金榜年终奖
 EOF
 	echo -e "$green run_03$start_script_time $white"
 
@@ -759,6 +759,7 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_mf.js			#集魔方
 	jd_ttpt.js			#天天拼图
 	jd_qqxing.js			#QQ星
+	jd_split.js			#金榜年终奖
 EOF
 	echo -e "$green run_06_18$start_script_time $white"
 
