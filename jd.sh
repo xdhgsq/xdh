@@ -1377,7 +1377,8 @@ checktool() {
 
 getcookie() {
 	#彻底完成感谢echowxsy大力支持
-	echo ""
+	echo "此功能暂停使用，请用sh \$jd addcookie添加cookie "
+	exit 0
 	echo -e "$yellow 温馨提示，如果你已经有cookie，不想扫码直接添加，可以用$green sh \$jd addcookie$white 增加cookie $green sh \$jd delcookie$white 删除cookie"
 	$node $dir_file_js/getJDCookie.js && addcookie && addcookie_wait
 }
@@ -1459,6 +1460,7 @@ addcookie() {
 
 	fi
 	del_expired_cookie
+	addcookie_wait
 }
 
 addcookie_replace(){
@@ -1501,7 +1503,7 @@ addcookie_wait(){
 		echo "请稍等。。。"
 		sleep 1
 		clear
-		getcookie
+		addcookie
 	elif [ "$cookie_continue" == "2" ];then
 		echo "退出脚本。。。"
 		exit 0
@@ -1518,11 +1520,12 @@ del_expired_cookie() {
 	do
 		jd_cookie=$(grep "$i" $openwrt_script_config/jdCookie.js | awk -F "pt_pin=" '{print $2}' | awk -F ";" '{print $1}')
 		if [ ! $jd_cookie ];then
-			echo -e "$red$i$white在$openwrt_script_config/jdCookie.js找不到"
+			#echo -e "$red$i$white在$openwrt_script_config/jdCookie.js找不到"
+			echo "" >/dev/null 2>&1
 		else
 			if [ "$jd_cookie" == "$i" ];then
-				echo -e "$green$i$white在$openwrt_script_config/jdCookie.js正常存在"
-				echo ""
+				#echo -e "$green$i$white在$openwrt_script_config/jdCookie.js正常存在"
+				echo "" >/dev/null 2>&1
 			else
 				sed -i "/$i/d" $openwrt_script_config/check_cookie.txt
 			fi
@@ -2151,7 +2154,7 @@ help() {
 	echo ""
 	echo -e "$yellow JS脚本活动列表：$green $dir_file/git_clone/lxk0301_back/README.md $white"
 	echo -e "$yellow 浏览器获取京东cookie教程：$green $dir_file/git_clone/lxk0301_back/backUp/GetJdCookie.md $white"
-	echo -e "$yellow 脚本获取京东cookie：$green sh \$jd getcookie $white(已经残废了用不了)"
+	echo -e "$yellow 获取到cookie填入脚本：$green sh \$jd addcookie $white"
 	echo ""
 	echo -e "$red 注意：$white请停掉你之前运行的其他jd脚本，然后把$green JS脚本活动列表$white的活动全部手动点开一次，不知活动入口的，$dir_file_js/你要的js脚本里有写"
 	echo ""
