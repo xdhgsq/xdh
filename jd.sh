@@ -515,7 +515,6 @@ update_script() {
 
 ccr_run() {
 #这里不会并发
-#这里有的就不要加到concurrent_js_run_07,会导致跑多次
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_connoisseur.js		#内容鉴赏官
 	jd_ddworld.js			#东东世界
@@ -1285,7 +1284,6 @@ concurrent_js_if() {
 				case "$action2" in
 				run_07)
 					action="$action2"
-					ccr_run
 					concurrent_js && if_ps
 					concurrent_js_run_07 && if_ps
 					concurrent_js_clean
@@ -1295,7 +1293,6 @@ concurrent_js_if() {
 		;;
 		run_07)
 			action="$action1"
-			ccr_run
 			concurrent_js && if_ps
 			concurrent_js_run_07 && if_ps
 			concurrent_js_clean
