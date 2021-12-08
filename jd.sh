@@ -685,6 +685,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_big_winner.js		#翻翻乐
 	jd_live_redrain.js		#红包雨
+	jd_mofang_ex.js			#魔方兑换
 EOF
 	echo -e "$green run_01$start_script_time $white"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
