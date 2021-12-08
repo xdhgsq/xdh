@@ -6,6 +6,11 @@
 */
 
 const $ = new Env('财富大陆');
+const {Md5} = require('ts-md5');
+const http = require('http');
+const https = require('https');
+const urlLib = require("url");
+
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 // const notify = $.isNode() ? require('./sendNotify') : '';
 CryptoScripts()
@@ -84,6 +89,7 @@ async function run() {
     if($.HomeInfo){
       $.InviteList.push($.HomeInfo.strMyShareId)
       console.log(`等级:${$.HomeInfo.dwLandLvl} 当前金币:${$.HomeInfo.ddwCoinBalance} 当前财富:${$.HomeInfo.ddwRichBalance} 助力码:${$.HomeInfo.strMyShareId}`)
+      await makeShareCodes(`${$.HomeInfo.strMyShareId}`)
     }
     if($.LeadInfo && $.LeadInfo.dwLeadType == 2){
       await $.wait(2000)
@@ -92,17 +98,62 @@ async function run() {
       await GetHomePageInfo()
       await $.wait(1000)
     }
-     // 捡垃圾
+    // 寻宝
+    await XBDetail()
+    // 加速卡
+    await GetProp()
+    // 故事会
+    //await StoryInfo()
+    // 建筑升级
+    await buildList()
+    // 签到 邀请奖励
+    await sign()
+    // 签到-小程序
+    await signs()
+    // 捡垃圾
     await pickshell(1)
-
-     // 撸珍珠
+    // 热气球接客
+    // await service(serviceNum)
+    // 倒垃圾
+    await RubbishOper()
+    // 导游
+    await Guide()
+    // 撸珍珠
     await Pearl()
+    // 牛牛任务
+    await ActTask()
+    // 日常任务、成就任务
+    await UserTask()
 
   }
   catch (e) {
     console.log(e);
   }
 }
+
+async function makeShareCodes(code) {
+
+  return new Promise(async (resolve, reject) => {
+    let pin = $.cookie.match(/pt_pin=([^;]*)/)[1]
+    console.log(`cookie的名称是 ${pin}`)
+    pin = Md5.hashStr(pin)
+	  console.log(`cookie的名称的md5是 ${pin}`)
+     http.get(`http://cfd.212618.xyz/cfd.php?type=save&pin=${pin}&sharecode=${code}`, function (res) {
+      res.setEncoding('utf8');
+      res.on('data', function (chunk) {
+        console.log('chunk:' + chunk)
+        let jsonDecodeData = JSON.parse(chunk);
+        if(jsonDecodeData.status == 1){
+          console.log('提交成功');
+          resolve()
+        }else{
+          reject('访问助力池出错')
+        }
+      });
+     })
+  })
+}
+
 async function GetHomePageInfo() {
   let e = getJxAppToken()
   let additional= `&strPgtimestamp=${e.strPgtimestamp}&strPhoneID=${e.strPhoneID}&strPgUUNum=${e.strPgUUNum}&ddwTaskId=&strShareId=&strMarkList=guider_step%2Ccollect_coin_auth%2Cguider_medal%2Cguider_over_flag%2Cbuild_food_full%2Cbuild_sea_full%2Cbuild_shop_full%2Cbuild_fun_full%2Cmedal_guider_show%2Cguide_guider_show%2Cguide_receive_vistor%2Cdaily_task%2Cguider_daily_task%2Ccfd_has_show_selef_point`
@@ -330,7 +381,7 @@ async function StoryInfo(){
 async function buildList(){
   try{
     await $.wait(2000)
-    console.log(`\n升级房屋、收集金币`)
+    console.log(`\n升级房屋、收集金币\n(升级：需要当前金币大于升级金币的3.5倍)`)
     if($.buildList){
       for(let i in $.buildList){
         let item = $.buildList[i]
@@ -356,7 +407,7 @@ async function buildList(){
           if(item.dwLvl == 0){
             await taskGet(`user/createbuilding`, stk, additional)
           }else{
-            if(GetBuildInfo){
+            if(GetBuildInfo && GetBuildInfo.ddwNextLvlCostCoin * 3.5 < parseInt($.HomeInfo.ddwCoinBalance,10)){
               additional = `&strBuildIndex=${GetBuildInfo.strBuildIndex}&ddwCostCoin=${GetBuildInfo.ddwNextLvlCostCoin}`
               stk = `_cfd_t,bizCode,ddwCostCoin,dwEnv,ptag,source,strBuildIndex,strZone`
               let update = await taskGet(`user/BuildLvlUp`, stk, additional)

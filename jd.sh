@@ -241,6 +241,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_lxLottery.js			#京东我的理想家
 	jd_jr_draw.js			#京东金融 每周领取一次权益活动
+	jd_mofang_ex.js			#魔方兑换
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -450,6 +451,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_cfd.js
 	jd_sign_graphics1.js		#京东签到翻牌
 	gua_opencard70.js		#开卡70
 	gua_opencard71.js		#开卡71联合开卡
@@ -531,6 +533,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
 	jd_lottery_drew.js		#一分钱抽奖
+	jd_mofang_ex.js			#魔方兑换
+	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -550,8 +554,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_mf.js			#集魔方
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
-	jd_cfd.js 			#财富岛新版
-	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_split.js			#金榜年终奖
 EOF
@@ -638,6 +640,7 @@ cat >/tmp/jd_tmp/run_030 <<EOF
 	jd_health_collect.js		#健康社区-收能量
 	long_half_redrain.js		#半点红包雨
 	jd_dreamFactory.js 		#京喜工厂
+	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "$green run_030$start_script_time $white"
 
@@ -839,7 +842,6 @@ EOF
 }
 
 run_cfd() {
-	$node $dir_file_js/jd_cfd.js 			#财富岛新版
 	$node $dir_file_js/gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 }
 
@@ -2696,7 +2698,7 @@ del_if() {
 	else
 		js_name="京喜财富岛"
 		jd_num="$jx_ddcfd"
-		js_file="jd_cfd.js"
+		js_file="gua_wealth_island.js"
 		del_js
 	fi
 }
