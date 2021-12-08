@@ -45,7 +45,7 @@ $.shareCodes = [];
 let cookiesArr = [], cookie = '', token = '';
 let UA, UAInfo = {};
 let nowTimes;
-const randomCount = $.isNode() ? 20 : 3;
+const randomCount = 0;
 $.appId = 10032;
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
