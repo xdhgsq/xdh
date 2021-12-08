@@ -1462,7 +1462,7 @@ addcookie() {
 }
 
 addcookie_replace(){
-	if [ `cat $openwrt_script_config/jdCookie.js | grep "$pt_pin" | wc -l` == "1" ];then
+	if [ `cat $openwrt_script_config/jdCookie.js | grep "$pt_pin;" | wc -l` == "1" ];then
 		echo -e "$green检测到 $yellow${pt_pin}$white 已经存在，开始更新cookie。。$white\n"
 		sleep 2
 		old_pt=$(cat $openwrt_script_config/jdCookie.js | grep "$pt_pin" | sed -e "s/',//g" -e "s/'//g")
