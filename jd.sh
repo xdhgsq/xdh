@@ -262,7 +262,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_connoisseur.js		#内容鉴赏官
 	jd_ddworld.js			#东东世界
 	jd_live.js			#京东直播
-	jd_mf.js			#集魔方
 	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js		#摇京豆
@@ -451,6 +450,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_mf.js			#集魔方
 	jd_cfd.js
 	jd_sign_graphics1.js		#京东签到翻牌
 	gua_opencard70.js		#开卡70
@@ -551,7 +551,6 @@ concurrent_js_run_07() {
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_pigPet.js			#金融养猪
-	jd_mf.js			#集魔方
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
 	jd_sxLottery.js			#京东生鲜每日抽奖
@@ -757,7 +756,6 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_superMarket.js 		#东东超市,6点 18点多加两场用于收金币
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
-	jd_mf.js			#集魔方
 	jd_ttpt.js			#天天拼图
 	jd_qqxing.js			#QQ星
 	jd_split.js			#金榜年终奖
