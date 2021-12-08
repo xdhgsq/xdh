@@ -532,7 +532,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
 	jd_lottery_drew.js		#一分钱抽奖
-	jd_mofang_ex.js			#魔方兑换
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -596,6 +595,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_qqxing.js			#QQ星
 	jd_lxLottery.js			#京东我的理想家
 	jd_split.js			#金榜年终奖
+	jd_mofang_ex.js			#魔方兑换
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
