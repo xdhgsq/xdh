@@ -99,7 +99,7 @@ async function run() {
       await $.wait(1000)
     }
     // 寻宝
-    await XBDetail()
+    //await XBDetail()
     // 加速卡
     await GetProp()
     // 故事会
