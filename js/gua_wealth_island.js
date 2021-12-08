@@ -97,9 +97,6 @@ async function run() {
 
      // 撸珍珠
     await Pearl()
- 
-    // 故事会
-    await StoryInfo()
 
   }
   catch (e) {
