@@ -432,6 +432,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
 	jd_dpqd.js			#店铺签到v
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
@@ -533,6 +534,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_dpqd.js			#店铺签到
 	jd_lottery_drew.js		#一分钱抽奖
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
+	jd_tyt.js			#极速版赚金币推一推
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
