@@ -21,7 +21,7 @@ if ($.isNode()) {
   cookiesArr = [$.getdata("CookieJD"), $.getdata("CookieJD2"), ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
 }
 rebateCodes = $.isNode() ? (process.env.gua_redEnvelope_rebateCodes ? process.env.gua_redEnvelope_rebateCodes : `${rebateCodes}`) : ($.getdata('gua_redEnvelope_rebateCodes') ? $.getdata('gua_redEnvelope_rebateCodes') : `${rebateCodes}`);
-let codeLsit = ['vdLXWGs']
+let codeLsit = ['vLLFfcE']
 if(rebateCodes){
   codeLsit = ['']
   codeLsit.push(rebateCodes)
