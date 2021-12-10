@@ -452,6 +452,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_redEnvelope.js               #暖暖红包
 	jd_cfd.js
 	jd_sign_graphics1.js		#京东签到翻牌
 	gua_opencard70.js		#开卡70
