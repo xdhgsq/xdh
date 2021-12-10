@@ -273,6 +273,7 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_health_collect.js		#健康社区-收能量
 	jd_superMarket.js		#东东超市
 	jd_mf.js 			#集魔方
+	jd_redEnvelope.js		#暖暖红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -535,6 +536,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_lottery_drew.js		#一分钱抽奖
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_tyt.js			#极速版赚金币推一推
+	jd_redEnvelope.js		#暖暖红包
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -596,7 +598,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_qqxing.js			#QQ星
 	jd_lxLottery.js			#京东我的理想家
-	jd_split.js			#金榜年终奖
 	jd_mofang_ex.js			#魔方兑换
 EOF
 	echo -e "$green run_0$start_script_time $white"
@@ -731,6 +732,7 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
+	jd_split.js			#金榜年终奖
 EOF
 	echo -e "$green run_03$start_script_time $white"
 
@@ -761,7 +763,6 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_dwapp.js			#积分换话费
 	jd_ttpt.js			#天天拼图
 	jd_qqxing.js			#QQ星
-	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
 EOF
 	echo -e "$green run_06_18$start_script_time $white"
