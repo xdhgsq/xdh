@@ -273,7 +273,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_health_collect.js		#健康社区-收能量
 	jd_superMarket.js		#东东超市
 	jd_mf.js 			#集魔方
-	jd_redEnvelope.js		#暖暖红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -433,6 +432,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	gua_redEnvelope.js		#暖暖红包
 	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
 	jd_dpqd.js			#店铺签到v
@@ -536,7 +536,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_lottery_drew.js		#一分钱抽奖
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_tyt.js			#极速版赚金币推一推
-	jd_redEnvelope.js		#暖暖红包
+	gua_redEnvelope.js		#暖暖红包
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
