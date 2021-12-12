@@ -564,6 +564,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
+	gua_UnknownTask9.js		#发现好货
 	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
@@ -798,7 +799,6 @@ EOF
 run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
-	gua_UnknownTask9.js		#发现好货
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_ms.js 			#京东秒秒币 一个号大概60
