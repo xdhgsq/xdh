@@ -288,9 +288,17 @@ smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
+	gua_UnknownTask9.js		#发现好货
 	gua_opencard74.js		#开卡74
 	gua_opencard75.js		#开卡75
 	gua_opencard76.js		#开卡76
+	gua_opencard77.js		#开卡77
+	gua_opencard78.js		#开卡78
+	gua_opencard79.js		#开卡79
+	gua_opencard80.js		#开卡80
+	gua_opencard81.js		#开卡81
+	gua_opencard82.js		#开卡82
+	gua_opencard83.js		#开卡83
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -556,6 +564,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
+	gua_UnknownTask9.js		#发现好货
 	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
@@ -664,6 +673,13 @@ cat >/tmp/jd_tmp/opencard <<EOF
 	gua_opencard74.js		#开卡74
 	gua_opencard75.js		#开卡75
 	gua_opencard76.js		#开卡76
+	gua_opencard77.js		#开卡77
+	gua_opencard78.js		#开卡78
+	gua_opencard79.js		#开卡79
+	gua_opencard80.js		#开卡80
+	gua_opencard81.js		#开卡81
+	gua_opencard82.js		#开卡82
+	gua_opencard83.js		#开卡83
 EOF
 
 	echo -e "$green opencard$start_script_time $white"
