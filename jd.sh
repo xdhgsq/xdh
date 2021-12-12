@@ -288,9 +288,17 @@ smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
+	gua_UnknownTask9.js		#发现好货
 	gua_opencard74.js		#开卡74
 	gua_opencard75.js		#开卡75
 	gua_opencard76.js		#开卡76
+	gua_opencard77.js		#开卡77
+	gua_opencard78.js		#开卡78
+	gua_opencard79.js		#开卡79
+	gua_opencard80.js		#开卡80
+	gua_opencard81.js		#开卡81
+	gua_opencard82.js		#开卡82
+	gua_opencard83.js		#开卡83
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -664,6 +672,13 @@ cat >/tmp/jd_tmp/opencard <<EOF
 	gua_opencard74.js		#开卡74
 	gua_opencard75.js		#开卡75
 	gua_opencard76.js		#开卡76
+	gua_opencard77.js		#开卡77
+	gua_opencard78.js		#开卡78
+	gua_opencard79.js		#开卡79
+	gua_opencard80.js		#开卡80
+	gua_opencard81.js		#开卡81
+	gua_opencard82.js		#开卡82
+	gua_opencard83.js		#开卡83
 EOF
 
 	echo -e "$green opencard$start_script_time $white"
@@ -783,6 +798,7 @@ EOF
 run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
+	gua_UnknownTask9.js		#发现好货
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_ms.js 			#京东秒秒币 一个号大概60
