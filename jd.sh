@@ -241,6 +241,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_lxLottery.js			#京东我的理想家
 	jd_jr_draw.js			#京东金融 每周领取一次权益活动
 	jd_mofang_ex.js			#魔方兑换
+	jd_gyp.js			#京东工业品
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -799,6 +800,7 @@ EOF
 run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
+	jd_gyp.js			#京东工业品
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_ms.js 			#京东秒秒币 一个号大概60
