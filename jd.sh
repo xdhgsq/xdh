@@ -229,8 +229,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_gold_sign.js 		#京东金榜
 	jd_gold_creator.js		#金榜创造营
 	jd_speed_redpocke.js		#极速版红包
-	jd_live_redrain.js		#红包雨
-	jd_syj.js			#赚京豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_price.js		        #价保脚本
 	jd_nzmh.js			#女装盲盒
@@ -290,11 +288,6 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
 	gua_UnknownTask9.js		#发现好货
-	gua_opencard74.js		#开卡74
-	gua_opencard75.js		#开卡75
-	gua_opencard76.js		#开卡76
-	gua_opencard77.js		#开卡77
-	gua_opencard78.js		#开卡78
 	gua_opencard79.js		#开卡79
 	gua_opencard80.js		#开卡80
 	gua_opencard81.js		#开卡81
@@ -441,7 +434,6 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	gua_redEnvelope.js		#暖暖红包
 	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
 	jd_dpqd.js			#店铺签到v
@@ -461,11 +453,14 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_redEnvelope.js               #暖暖红包
-	jd_cfd.js
-	jd_sign_graphics1.js		#京东签到翻牌
-	gua_opencard70.js		#开卡70
-	gua_opencard71.js		#开卡71联合开卡
+	gua_opencard74.js		#开卡74
+	gua_opencard75.js		#开卡75
+	gua_opencard76.js		#开卡76
+	gua_opencard77.js		#开卡77
+	gua_opencard78.js		#开卡78
+	gua_redEnvelope.js		#暖暖红包
+	jd_live_redrain.js		#红包雨
+	jd_syj.js			#赚京豆
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -537,11 +532,9 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	jd_superBrand.js		#特务Ｚ
-	jd_syj.js 			#赚京豆
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
-	jd_syj.js			#赚京豆
 	jd_dpqd.js			#店铺签到
 	jd_lottery_drew.js		#一分钱抽奖
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
@@ -705,7 +698,6 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_big_winner.js		#翻翻乐
-	jd_live_redrain.js		#红包雨
 	jd_mofang_ex.js			#魔方兑换
 EOF
 	echo -e "$green run_01$start_script_time $white"
@@ -746,7 +738,6 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
 	jd_health.js			#健康社区
 	jd_mohe.js			#5G超级盲盒
-	jd_syj.js 			#赚京豆
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
