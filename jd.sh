@@ -532,7 +532,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	jd_superBrand.js		#特务Ｚ
-	jd_angryKoi.js			#愤怒的锦鲤
 	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
 	jd_dpqd.js			#店铺签到
@@ -561,6 +560,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
+	jd_angryKoi.js			#愤怒的锦鲤
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
