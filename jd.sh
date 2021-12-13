@@ -645,7 +645,6 @@ cat >/tmp/jd_tmp/run_030 <<EOF
 	jd_jxmc.js			#京喜牧场
 	jd_health_collect.js		#健康社区-收能量
 	long_half_redrain.js		#半点红包雨
-	jd_dreamFactory.js 		#京喜工厂
 EOF
 	echo -e "$green run_030$start_script_time $white"
 
@@ -1603,7 +1602,7 @@ check_cooike() {
 	Current_date=$(date +%Y-%m-%d)
 	Current_date_m=$(echo $Current_date | awk -F "-" '{print $2}')
 	if [ "$Current_date_m" == "12"  ];then
-		Expiration_date="01"
+		Expiration_date=$(date +%Y-01-%d)
 	else
 		m=$(expr $Current_date_m + 1)
 		Expiration_date=$(date +%Y-$m-%d)
