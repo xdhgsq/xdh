@@ -537,7 +537,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_gold_creator.js		#金榜创造营
 	jd_dpqd.js			#店铺签到
 	jd_lottery_drew.js		#一分钱抽奖
-	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_tyt.js			#极速版赚金币推一推
 	gua_redEnvelope.js		#暖暖红包
 EOF
@@ -603,6 +602,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_qqxing.js			#QQ星
 	jd_lxLottery.js			#京东我的理想家
 	jd_mofang_ex.js			#魔方兑换
+	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
@@ -646,7 +646,6 @@ cat >/tmp/jd_tmp/run_030 <<EOF
 	jd_health_collect.js		#健康社区-收能量
 	long_half_redrain.js		#半点红包雨
 	jd_dreamFactory.js 		#京喜工厂
-	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "$green run_030$start_script_time $white"
 
@@ -742,6 +741,7 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
 	jd_split.js			#金榜年终奖
+	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "$green run_03$start_script_time $white"
 
