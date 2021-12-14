@@ -1985,6 +1985,11 @@ backnas() {
 	echo -e "$green>> 删除完成$white"
 	sleep 5
 
+	echo -e "$green>> 复制/etc/profile到$back_file_patch/JD_Script/profile$white"
+	cp /etc/profile $back_file_patch/JD_Script/profile
+	echo "复制完成"
+	sleep 5
+
 	echo -e "$green>> 开始打包文件$white"
 	tar -zcvf /tmp/$back_file_name $back_file_patch
 	sleep 5
