@@ -240,6 +240,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_jr_draw.js			#京东金融 每周领取一次权益活动
 	jd_mofang_ex.js			#魔方兑换
 	jd_gyp.js			#京东工业品
+	jd_jfcz.js			#见缝插针
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -607,6 +608,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_lxLottery.js			#京东我的理想家
 	jd_mofang_ex.js			#魔方兑换
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
+	jd_jfcz.js			#见缝插针
 EOF
 	echo -e "$green run_0$start_script_time $white"
 
