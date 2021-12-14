@@ -483,6 +483,10 @@ done
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
 	rm -rf $dir_file_js/jd_jdzz.js*
+	
+	#删除之前的黑名单
+	rm　-rf $openwrt_script_config/Script_blacklist.txt
+
 	additional_settings
 	concurrent_js_update
 	source /etc/profile
@@ -2054,77 +2058,6 @@ port='22'
 EOF
 }
 
-script_black() {
-	#不是很完美，但也能用，后面再想想办法，grep无法处理$node 这种这样我无法判断是否禁用了，只能删除掉一了百了
-	black_version="黑名单版本1.2"
-	#判断所在文件夹
-	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
-		script_black_file="$openwrt_script_config/Script_blacklist.txt"
-		if [ ! -f "$script_black_file" ]; then
-			script_black_Description
-		fi
-		#script_black用于升级以后恢复链接
-		if [ ! -f "$dir_file/config/Script_blacklist.txt" ]; then
-			ln -s $script_black_file $dir_file/config/Script_blacklist.txt
-		fi
-	else
-		script_black_file="$dir_file/config/Script_blacklist.txt"
-		if [ ! -f "$script_black_file" ]; then
-			script_black_Description
-		fi
-	fi
-
-	if_script_black=$(grep "$black_version" $script_black_file | wc -l)
-	if [  $if_script_black == "0" ];then
-		echo "更新一下黑名单"
-		rm -rf $dir_file/config/Script_blacklist.txt
-		sed -i '/*/d' $script_black_file >/dev/null 2>&1
-		sed -i '/jd_ceshi/d' $script_black_file >/dev/null 2>&1
-		sed -i "s/ //g"  $script_black_file >/dev/null 2>&1
-		echo "" >> $script_black_file >/dev/null 2>&1
-		ln -s $script_black_file $dir_file/config/Script_blacklist.txt
-		script_black_Description
-	fi
-
-	script_list=$(cat $script_black_file | sed  "/*/d"  | sed "/jd_ceshi/d" | sed "s/ //g" | awk '{print $1}')
-	if [ ! $script_list ];then
-		echo -e "$green 黑名单没有任何需要禁用的脚本，不做任何处理$white"
-	else
-		for i in `echo "$script_list"`
-		do
-			if [ `grep "dir_file_js\/$i" $dir_file/jd.sh  | wc -l` -gt 0 ];then
-				echo "开始删除关于$i脚本的代码，后面需要的话看黑名单描述处理"
-				sed -i "/$i/d" $dir_file/jd.sh
-			else
-				echo "黑名单脚本已经全部禁用了"
-			fi
-		done
-	fi
-	clear
-}
-
-cd $dir_file && git remote -v | awk -F "/JD_Script"  '{print $1}' | awk -F "github.com/" '{print $2}' | sort -u >/tmp/github.txt
-
-script_black_Description() {
-cat >> $script_black_file <<EOF
-******************************不要删使用说明，$black_version*********************************************************************
-*
-*这是脚本黑名单功能，作用就是你跑脚本黑活动了，你只需要把脚本名字放底下，跑脚本的时候（全部账号）就不会跑这个脚本了
-*但你可以通过node  脚本名字来单独跑（只是不会自动跑了而已）
-*PS：（彻底解开的办法就是删除这里的脚本名称，然后更新脚本）
-*例子
-*
-* 	jd_ceshi1.js #禁用的脚本1
-* 	jd_ceshi2.js #禁用的脚本2
-*
-*按这样排列下去（一行一个脚本名字）
-*每个脚本应的文件可以用 sh \$jd script_name                    #显示所有JS脚本名称与作用
-*
-*
-***********************要禁用的脚本不要写这里面，不要删除这里的任何字符，也不要动里面的，往下面写随便你********************************
-EOF
-}
-
 stop_script() {
 	echo -e "$green 删掉定时任务，这样就不会定时运行脚本了$white"
 	task_delete
@@ -2163,7 +2096,6 @@ help() {
 	echo -e "$green  $openwrt_script_config/sendNotify.js $white 在此脚本内填写推送服务的KEY，可以不填"
 	echo -e "$green  $openwrt_script_config/USER_AGENTS.js $white 京东UA文件可以自定义也可以默认"
 	echo -e "$green  $openwrt_script_config/JS_USER_AGENTS.js $white 京东极速版UA文件可以自定义也可以默认"
-	echo -e "$green  $openwrt_script_config/Script_blacklist.txt $white 脚本黑名单，用法去看这个文件"
 	echo ""
 	echo -e "$yellow JS脚本活动列表：$green $dir_file/git_clone/lxk0301_back/README.md $white"
 	echo -e "$yellow 浏览器获取京东cookie教程：$green $dir_file/git_clone/lxk0301_back/backUp/GetJdCookie.md $white"
@@ -2641,6 +2573,15 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 }
 
 del_if() {
+	#脚本黑名单
+	if [ ! $script_black ];then
+		echo "脚本黑名单没有东西"
+	else
+		jd_num="black"
+		del_js
+		echo ""
+	fi
+
 	#不跑东东农场
 	if [ ! $jd_ddfruit ];then
 		echo "没有要删除的东东农场文件"
@@ -2649,6 +2590,7 @@ del_if() {
 		jd_num="$jd_ddfruit"
 		js_file="jd_fruit.js"
 		del_js
+		echo ""
 	fi
 
 	#不跑东东萌宠
@@ -2659,6 +2601,7 @@ del_if() {
 		jd_num="$jd_ddpet"
 		js_file="jd_pet.js"
 		del_js
+		echo ""
 	fi
 
 	#不跑宠汪汪
@@ -2669,6 +2612,7 @@ del_if() {
 		jd_num="$jd_ddjoy"
 		js_file="jd_joy.js"
 		del_js
+		echo ""
 	fi
 
 	#不跑种豆得豆
@@ -2679,6 +2623,7 @@ del_if() {
 		jd_num="$jd_ddplan"
 		js_file="jd_plantBean.js"
 		del_js
+		echo ""
 	fi
 
 	#不跑京喜工厂
@@ -2689,6 +2634,7 @@ del_if() {
 		jd_num="$jx_dddr"
 		js_file="jd_dreamFactory.js"
 		del_js
+		echo ""
 	fi
 
 	#不跑京喜牧场
@@ -2699,6 +2645,7 @@ del_if() {
 		jd_num="$jx_ddmc"
 		js_file="jd_jxmc.js"
 		del_js
+		echo ""
 	fi
 
 	#不跑京喜财富岛
@@ -2709,6 +2656,7 @@ del_if() {
 		jd_num="$jx_ddcfd"
 		js_file="gua_wealth_island.js"
 		del_js
+		echo ""
 	fi
 }
 
@@ -2721,40 +2669,79 @@ del_js() {
 		case "$i" in
 			1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|101|102|103|104|105|106|107|108|109|110|111|112|113|114|115|116|117|118|119|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138|139|140|141|142|143|144|145|146|147|148|149|150|151|152|153|154|155|156|157|158|159|160|161|162|163|164|165|166|167|168|169|170|171|172|173|174|175|176|177|178|179|180|181|182|183|184|185|186|187|188|189|190|191|192|193|194|195|196|197|198|199|200)
 				#先支持删除200以内
+				echo -e "******************${yellow}不跑${js_name}${white}******************"
 				jx_file=$(ls $ccr_js_file/js_$i | grep "$js_file"  | wc -l)
 				if [ "$jx_file" == "1" ];then
-					echo "开始删除并发文件js_$i的$js_name文件"
+					echo -e "${yellow}开始删除并发文件${white}js_$i的${green}${js_name}${white}文件"
 					rm -rf $ccr_js_file/js_$i/$js_file
 				else
-					echo "并发文件js_$i的$js_name文件已经删除了"
+					echo -e "${yellow}并发文件${white}js_$i的${green}${js_name}${white}文件已经删除了"
 				fi
+				echo -e "*********${yellow}${js_name}${white}全部删除完毕，不会跑了*********"
 			;;
 			all)
+				echo -e "******************${yellow}不跑${js_name}${white}******************"
 				for i in `ls $ccr_js_file`
 				do
 					jx_file=$(ls $ccr_js_file/$i | grep "$js_file"  | wc -l)
 					if [ "$jx_file" == "1" ];then
-						echo "开始删除并发文件js_$i的$js_name文件"
+						echo -e "${yellow}开始删除并发文件${white}js_$i的${green}${js_name}${white}文件"
 						rm -rf $ccr_js_file/$i/$js_file
 					else
-						echo "并发文件$i的$js_name文件已经删除了"
+						echo -e "${yellow}并发文件${white}$i的${green}${js_name}${white}文件已经删除了"
 					fi
 				done
 				#顺便删除一下js文件的脚本，做到真得不跑了
 				rm -rf $dir_file_js/$js_file
+				echo -e "*********${yellow}${js_name}${white}全部删除完毕，不会跑了*********"
+			;;
+			black)
+				
+				js_name="脚本黑名单"
+				js_file=$(echo "$script_black" | sed "s/@/\n/g")
+				echo -e "******************开始删除${yellow}${js_name}${white}里的脚本******************"
+				#删除并发文件里的脚本
+				for i in `ls $ccr_js_file`
+				do
+					for js_script in `echo $js_file`
+					do
+						jx_file=$(ls $ccr_js_file/$i | grep "$js_script"  | wc -l)
+						if [ "$jx_file" == "1" ];then
+							echo -e "${yellow}${js_name}${white}开始删除并发文件js_$i的${green}${js_script}${white}文件"
+							rm -rf $ccr_js_file/$i/$js_script
+						else
+							echo -e "${yellow}${js_name}${white}检测到并发文件$i的${green}${js_script}${white}文件已经删除了"
+						fi	
+					done
+				done
+				
+				#删除js文件夹中的脚本
+				for js_script in `echo $js_file`
+				do
+					jx_file=$(ls $jd_file_js | grep "$js_script"  | wc -l)
+					if [ "$jx_file" == "1" ];then
+						echo -e "${yellow}${js_name}${white}开始删除JS文件夹里的${green}${js_script}${white}文件"
+						rm -rf $jd_file_js/$js_script
+					else
+						echo -e "${yellow}${js_name}${white}检测到JS文件夹里的${green}${js_script}${white}文件已经删除了"
+					fi	
+				done
+				echo -e "******************${yellow}${js_name}${white}里的脚本全部删除完毕******************"
 			;;
 			*)
 				jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
 				if [ ! $jx_site ];then
 					echo "填写的用户名找不到，不删除$js_name文件"
 				else
+					echo -e "******************${yellow}不跑${js_name}${white}******************"
 					jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$js_file"  | wc -l)
 					if [ "$jx_file" == "1" ];then
-						echo "开始删除并发文件js_$jx_site的$js_name文件"
+						echo -e "${yellow}开始删除并发文件${white}js_$jx_site的${green}${js_name}${white}文件"
 						rm -rf $ccr_js_file/js_$jx_site/$js_file
 					else
-						echo "并发文件js_$jx_site的$js_name文件已经删除了"
+						echo -e "${yellow}并发文件${white}js_$jx_site的${green}${js_name}${white}文件已经删除了"
 					fi
+					echo -e "*********${yellow}${js_name}${white}全部删除完毕，不会跑了*********"
 				fi
 			;;
 		esac
@@ -3006,8 +2993,6 @@ system_variable() {
 	#农场萌宠关闭通知
 	close_notification
 
-	script_black
-
 	#删除并发的文件
 	del_if
 }
@@ -3098,7 +3083,7 @@ ss_if() {
 }
 
 jd_openwrt_config() {
-	jd_openwrt_config_version="1.7"
+	jd_openwrt_config_version="1.8"
 	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
 		jd_openwrt_config="$openwrt_script_config/jd_openwrt_script_config.txt"
 		if [ ! -f "$jd_openwrt_config" ]; then
@@ -3146,6 +3131,10 @@ jd_openwrt_config() {
 
 	#不跑京喜财富岛
 	jx_ddcfd=$(grep "jx_ddcfd" $jd_openwrt_config | awk -F "'" '{print $2}')
+
+	#脚本黑名单
+	script_black=$(grep "script_black" $jd_openwrt_config | awk -F "'" '{print $2}')
+	
 	
 
 	jd_sharecode_fr=$(grep "jd_sharecode_fr" $jd_openwrt_config | awk -F "'" '{print $2}')
@@ -3156,7 +3145,7 @@ jd_openwrt_config() {
 
 jd_openwrt_config_description() {
 cat > $jd_openwrt_config <<EOF
-*****************jd_openwrt_config $jd_openwrt_config_version**************
+####**************jd_openwrt_config $jd_openwrt_config_version***********####
 
 这里主要定义一些脚本的个性化操作，如果你不需要微调，那么保持默认不理他就行了
 
@@ -3164,7 +3153,10 @@ cat > $jd_openwrt_config <<EOF
 
 修改完参数如何生效：sh \$jd update && sh \$jd
 
-*******************************************************
+####*********************************************************************####
+
+
+******************并发开关，推送与一些脚本设置*************************************
 #是否启用账号并发功能（多账号考虑打开，黑了不管） yes开启 默认no
 concurrent='no'
 
@@ -3177,7 +3169,32 @@ push_if='1'
 (push_if填写为3，这里就必须要填，不然无法推送，不为3,可以不填)
 weixin2=''
 
-******************----------------------------------*******************************
+#农场不浇水换豆 false关闭 true打开
+jd_fruit='false'
+
+#宠汪汪积分兑换500豆子，(350积分兑换20豆子，8000积分兑换500豆子要求等级16级，16000积分兑换1000京豆16级以后不能兑换)
+jd_joy_reward='500'
+
+
+#宠汪汪喂食(更多参数自己去看js脚本描述)
+jd_joy_feedPets='80'
+
+
+#宠汪汪不给好友喂食 false不喂食 true喂食
+jd_joy_steal='false'
+
+#取消店铺200个(觉得太多你可以自己调整)
+jd_unsubscribe='200'
+
+**********************************************************************************
+
+
+
+******************----------指定一些脚本不跑和黑名单---------------*******************************
+
+#脚本黑名单,默认空全跑，指定格式 脚本1.js@脚本2.js@脚本3.js，这样子三个脚本就不跑了，指的是所有账号都不跑这个脚本
+script_black=''
+
 #指定账号不跑东东农场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
 jd_ddfruit=''
 
@@ -3199,26 +3216,10 @@ jx_ddmc=''
 #指定账号不跑京喜财富岛，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
 jx_ddcfd=''
 
-******************----------------------------------*******************************
-
-#农场不浇水换豆 false关闭 true打开
-jd_fruit='false'
-
-#宠汪汪积分兑换500豆子，(350积分兑换20豆子，8000积分兑换500豆子要求等级16级，16000积分兑换1000京豆16级以后不能兑换)
-jd_joy_reward='500'
+******************----------------------------------------------------****************************
 
 
-#宠汪汪喂食(更多参数自己去看js脚本描述)
-jd_joy_feedPets='80'
-
-
-#宠汪汪不给好友喂食 false不喂食 true喂食
-jd_joy_steal='false'
-
-#取消店铺200个(觉得太多你可以自己调整)
-jd_unsubscribe='200'
-
-*******************************************************
+*****+++++**************自定义本地助力****************+++++*****
 自定义助力（优先助力这里面的，有多的助力作者）
 sh \$jd jd_sharecode                   #查询京东所有助力码
 
@@ -3234,7 +3235,9 @@ jd_sharecode_pb=''
 #京喜工厂（助力码1@助力码2）
 jd_sharecode_df=''
 
-------------------------------------------------------------------------------------------------------------
+*****+++++*********************************************+++++*****
+
++++++++++++++++++++++++++++++++京东试用参数设置++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #京东试用 true开启  默认false(更多详细内容请查看/usr/share/jd_openwrt_script/JD_Script/js/jd_try.js)
 JD_TRY="false"
 
@@ -3257,7 +3260,7 @@ JD_TRY_APPLYNUMFILTER="10000"
 JD_TRY_TRIALPRICE="10"
 
 #这里的变量都可以自己修改，按自己的想法来
-------------------------------------------------------------------------------------------------------------
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 EOF
 }
 
@@ -3271,7 +3274,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_black|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|run_jd_joy_reward|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd)
+		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|run_jd_joy_reward|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd)
 		$action1
 		;;
 		kill_ccr)
@@ -3290,7 +3293,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_black|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|run_jd_joy_reward|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd)
+		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|run_jd_joy_reward|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd)
 		$action2
 		;;
 		kill_ccr)
