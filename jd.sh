@@ -427,6 +427,7 @@ done
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
+	wget https://raw.githubusercontent.com/shufflewzc/faker3/main/jd_fcwb_help.js -O $dir_file_js/jd_fcwb_help.js	#发财挖宝助力
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -568,6 +569,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
 	jd_angryKoi.js			#愤怒的锦鲤
+	jd_fcwb_help.js			#发财挖宝助力
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
