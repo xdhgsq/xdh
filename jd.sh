@@ -436,6 +436,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_evaluation.js		#自动评价JS版
 	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
 	jd_dpqd.js			#店铺签到v
