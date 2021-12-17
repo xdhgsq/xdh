@@ -72,7 +72,7 @@ let commentImgList = [
             await getOrderList(3,1,10)
             if(goodsList && goodsList.length){
                 for(let item of goodsList){
-                    await $.wait(1000)
+                    await $.wait(2000)
                     let cName = item["cname"];
                     if (cName ==="评价晒单"){
                         console.log(`******开始评价******`);
@@ -141,7 +141,7 @@ function getOrderList(orderType,startPage,pageSize){
                         }
                         if(data.totalDeal <= pageSize+1 && startPage < 10){
                             console.log('查询下一页 startPage ！',startPage+1);
-                            await $.wait(1000)
+                            await $.wait(4000)
                             await  getOrderList(orderType,startPage + 1,pageSize)
                         }
                     }else {
