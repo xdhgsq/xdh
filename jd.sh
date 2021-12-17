@@ -224,7 +224,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
 	jd_superBrand.js		#特务Ｚ
-	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
 	jd_gold_creator.js		#金榜创造营
@@ -290,8 +289,6 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
 	gua_UnknownTask9.js		#发现好货
-	gua_opencard79.js		#开卡79
-	gua_opencard80.js		#开卡80
 	gua_opencard81.js		#开卡81
 	gua_opencard82.js		#开卡82
 	gua_opencard83.js		#开卡83
@@ -458,14 +455,9 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	gua_opencard74.js		#开卡74
-	gua_opencard75.js		#开卡75
-	gua_opencard76.js		#开卡76
-	gua_opencard77.js		#开卡77
-	gua_opencard78.js		#开卡78
-	gua_redEnvelope.js		#暖暖红包
-	jd_live_redrain.js		#红包雨
-	jd_syj.js			#赚京豆
+	jd_dt.js			#答题领金豆
+	gua_opencard79.js		#开卡79
+	gua_opencard80.js		#开卡80
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -605,7 +597,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_unsubscribe.js 		#取关店铺，没时间要求
 	jd_ljd_xh.js			#领京豆
 	jd_fanli.js			#京东饭粒
-	jd_dt.js			#答题领金豆
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
@@ -674,13 +665,6 @@ EOF
 
 opencard() {
 cat >/tmp/jd_tmp/opencard <<EOF
-	gua_opencard74.js		#开卡74
-	gua_opencard75.js		#开卡75
-	gua_opencard76.js		#开卡76
-	gua_opencard77.js		#开卡77
-	gua_opencard78.js		#开卡78
-	gua_opencard79.js		#开卡79
-	gua_opencard80.js		#开卡80
 	gua_opencard81.js		#开卡81
 	gua_opencard82.js		#开卡82
 	gua_opencard83.js		#开卡83
