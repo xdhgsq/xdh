@@ -437,6 +437,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_jchsign.js			#京车会签到
 	jd_evaluation.js		#自动评价JS版
 	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
@@ -570,6 +571,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_mf.js 			#集魔方
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_fcwb_help.js			#发财挖宝助力
+	jd_jchsign.js			#京车会签到
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
