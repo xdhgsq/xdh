@@ -240,6 +240,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_mofang_ex.js			#魔方兑换
 	jd_gyp.js			#京东工业品
 	jd_jfcz.js			#见缝插针
+	jd_xqscjd.js			#写情书抽京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -539,6 +540,11 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_lottery_drew.js		#一分钱抽奖
 	jd_tyt.js			#极速版赚金币推一推
 	jx_sign_xd.js			#京喜签到喜豆
+	jd_xqscjd.js			#写情书抽京豆
+	gua_UnknownTask9.js		#发现好货
+	jd_sxLottery.js			#京东生鲜每日抽奖
+	jd_split.js			#金榜年终奖
+	jd_mf.js 			#集魔方
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -557,10 +563,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_price.js		        #价保脚本
 	jd_joy_park_task.js		#汪汪乐园
-	gua_UnknownTask9.js		#发现好货
-	jd_sxLottery.js			#京东生鲜每日抽奖
-	jd_split.js			#金榜年终奖
-	jd_mf.js 			#集魔方
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_jchsign.js			#京车会签到
