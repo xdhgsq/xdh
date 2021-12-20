@@ -483,7 +483,6 @@ done
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
-	rm -rf $dir_file_js/jd_jdzz.js*
 	
 	#删除之前的黑名单
 	rm　-rf $openwrt_script_config/Script_blacklist.txt
