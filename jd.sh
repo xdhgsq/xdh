@@ -534,7 +534,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
-	jx_sign.js			#京喜签到
+	#jx_sign.js			#京喜签到
+	jx_sign_mb.js			#京喜签到(测试版本，带助力池)
 	jd_superBrand.js		#特务Ｚ
 	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
@@ -545,6 +546,10 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	gua_UnknownTask9.js		#发现好货
 	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
+	jd_fcwb_help.js			#发财挖宝助力
+	jd_jchsign.js			#京车会签到
+	jd_joy_park_task.js		#汪汪乐园
+	jd_pigPet.js			#金融养猪
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -560,12 +565,8 @@ concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
-	jd_pigPet.js			#金融养猪
 	jd_price.js		        #价保脚本
-	jd_joy_park_task.js		#汪汪乐园
 	jd_angryKoi.js			#愤怒的锦鲤
-	jd_fcwb_help.js			#发财挖宝助力
-	jd_jchsign.js			#京车会签到
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
