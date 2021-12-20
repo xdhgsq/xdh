@@ -289,6 +289,9 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard81.js		#开卡81
 	gua_opencard82.js		#开卡82
 	gua_opencard83.js		#开卡83
+	gua_opencard84.js		#开卡84
+	gua_opencard85.js		#开卡85
+	gua_opencard86.js		#开卡86
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
