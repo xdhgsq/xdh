@@ -233,14 +233,11 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_nzmh.js			#女装盲盒
 	jd_qqxing.js			#QQ星
 	jd_lottery_drew.js		#一分钱抽奖
-	#jd_jdzz.js			#京东赚赚
-	jd_sxLottery.js			#京东生鲜每日抽奖
+	jd_jdzz.js			#京东赚赚
 	jd_lxLottery.js			#京东我的理想家
 	jd_jr_draw.js			#京东金融 每周领取一次权益活动
 	jd_mofang_ex.js			#魔方兑换
-	jd_gyp.js			#京东工业品
 	jd_jfcz.js			#见缝插针
-	jd_xqscjd.js			#写情书抽京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -287,7 +284,6 @@ done
 #smiek2221
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
-	jd_joy_steal.js			#宠汪汪偷好友积分与狗粮
 	gua_MMdou.js                    #赚京豆MM豆
 	gua_UnknownTask9.js		#发现好货
 	gua_opencard81.js		#开卡81
@@ -456,6 +452,10 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_joy_steal.js 		#可偷好友积分，零点开始，六点再偷一波狗粮
+	jd_xqscjd.js			#写情书抽京豆
+	jd_sxLottery.js
+	jd_gyp.js			#京东工业品
 	jd_dt.js			#答题领金豆
 	gua_opencard79.js		#开卡79
 	gua_opencard80.js		#开卡80
@@ -540,9 +540,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_lottery_drew.js		#一分钱抽奖
 	jd_tyt.js			#极速版赚金币推一推
 	jx_sign_xd.js			#京喜签到喜豆
-	jd_xqscjd.js			#写情书抽京豆
 	gua_UnknownTask9.js		#发现好货
-	jd_sxLottery.js			#京东生鲜每日抽奖
 	jd_split.js			#金榜年终奖
 	jd_mf.js 			#集魔方
 EOF
@@ -763,7 +761,6 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
-	#jd_joy_steal.js 		#可偷好友积分，零点开始，六点再偷一波狗粮
 	jd_superMarket.js 		#东东超市,6点 18点多加两场用于收金币
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
@@ -788,7 +785,6 @@ EOF
 run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
-	jd_gyp.js			#京东工业品
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_ms.js 			#京东秒秒币 一个号大概60
@@ -2545,7 +2541,7 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
 	jdzzcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_jdzz.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
-		#sed -i "$jdzzcode_rows a \ '$new_jdzz_set', " $dir_file_js/jd_jdzz.js
+		sed -i "$jdzzcode_rows a \ '$new_jdzz_set', " $dir_file_js/jd_jdzz.js
 		js_amount=$(($js_amount - 1))
 	done
 
