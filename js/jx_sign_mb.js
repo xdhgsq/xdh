@@ -29,6 +29,8 @@ cron "20 1,8 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/sync/
   }(), function () { function r() { for (var t = this._S, r = this._i, e = this._j, i = 0, n = 0; n < 4; n++) { r = (r + 1) % 256, e = (e + t[r]) % 256; var o = t[r]; t[r] = t[e], t[e] = o, i |= t[(t[r] + t[e]) % 256] << 24 - 8 * n } return this._i = r, this._j = e, i } var e = t, i = e.lib, n = i.StreamCipher, o = e.algo, s = o.RC4 = n.extend({ _doReset: function () { for (var t = this._key, r = t.words, e = t.sigBytes, i = this._S = [], n = 0; n < 256; n++)i[n] = n; for (var n = 0, o = 0; n < 256; n++) { var s = n % e, a = r[s >>> 2] >>> 24 - s % 4 * 8 & 255; o = (o + i[n] + a) % 256; var c = i[n]; i[n] = i[o], i[o] = c } this._i = this._j = 0 }, _doProcessBlock: function (t, e) { t[e] ^= r.call(this) }, keySize: 8, ivSize: 0 }); e.RC4 = n._createHelper(s); var a = o.RC4Drop = s.extend({ cfg: s.cfg.extend({ drop: 192 }), _doReset: function () { s._doReset.call(this); for (var t = this.cfg.drop; t > 0; t--)r.call(this) } }); e.RC4Drop = n._createHelper(a) }(), t.mode.CTRGladman = function () { function r(t) { if (255 === (t >> 24 & 255)) { var r = t >> 16 & 255, e = t >> 8 & 255, i = 255 & t; 255 === r ? (r = 0, 255 === e ? (e = 0, 255 === i ? i = 0 : ++i) : ++e) : ++r, t = 0, t += r << 16, t += e << 8, t += i } else t += 1 << 24; return t } function e(t) { return 0 === (t[0] = r(t[0])) && (t[1] = r(t[1])), t } var i = t.lib.BlockCipherMode.extend(), n = i.Encryptor = i.extend({ processBlock: function (t, r) { var i = this._cipher, n = i.blockSize, o = this._iv, s = this._counter; o && (s = this._counter = o.slice(0), this._iv = void 0), e(s); var a = s.slice(0); i.encryptBlock(a, 0); for (var c = 0; c < n; c++)t[r + c] ^= a[c] } }); return i.Decryptor = n, i }(), function () { function r() { for (var t = this._X, r = this._C, e = 0; e < 8; e++)a[e] = r[e]; r[0] = r[0] + 1295307597 + this._b | 0, r[1] = r[1] + 3545052371 + (r[0] >>> 0 < a[0] >>> 0 ? 1 : 0) | 0, r[2] = r[2] + 886263092 + (r[1] >>> 0 < a[1] >>> 0 ? 1 : 0) | 0, r[3] = r[3] + 1295307597 + (r[2] >>> 0 < a[2] >>> 0 ? 1 : 0) | 0, r[4] = r[4] + 3545052371 + (r[3] >>> 0 < a[3] >>> 0 ? 1 : 0) | 0, r[5] = r[5] + 886263092 + (r[4] >>> 0 < a[4] >>> 0 ? 1 : 0) | 0, r[6] = r[6] + 1295307597 + (r[5] >>> 0 < a[5] >>> 0 ? 1 : 0) | 0, r[7] = r[7] + 3545052371 + (r[6] >>> 0 < a[6] >>> 0 ? 1 : 0) | 0, this._b = r[7] >>> 0 < a[7] >>> 0 ? 1 : 0; for (var e = 0; e < 8; e++) { var i = t[e] + r[e], n = 65535 & i, o = i >>> 16, s = ((n * n >>> 17) + n * o >>> 15) + o * o, h = ((4294901760 & i) * i | 0) + ((65535 & i) * i | 0); c[e] = s ^ h } t[0] = c[0] + (c[7] << 16 | c[7] >>> 16) + (c[6] << 16 | c[6] >>> 16) | 0, t[1] = c[1] + (c[0] << 8 | c[0] >>> 24) + c[7] | 0, t[2] = c[2] + (c[1] << 16 | c[1] >>> 16) + (c[0] << 16 | c[0] >>> 16) | 0, t[3] = c[3] + (c[2] << 8 | c[2] >>> 24) + c[1] | 0, t[4] = c[4] + (c[3] << 16 | c[3] >>> 16) + (c[2] << 16 | c[2] >>> 16) | 0, t[5] = c[5] + (c[4] << 8 | c[4] >>> 24) + c[3] | 0, t[6] = c[6] + (c[5] << 16 | c[5] >>> 16) + (c[4] << 16 | c[4] >>> 16) | 0, t[7] = c[7] + (c[6] << 8 | c[6] >>> 24) + c[5] | 0 } var e = t, i = e.lib, n = i.StreamCipher, o = e.algo, s = [], a = [], c = [], h = o.Rabbit = n.extend({ _doReset: function () { for (var t = this._key.words, e = this.cfg.iv, i = 0; i < 4; i++)t[i] = 16711935 & (t[i] << 8 | t[i] >>> 24) | 4278255360 & (t[i] << 24 | t[i] >>> 8); var n = this._X = [t[0], t[3] << 16 | t[2] >>> 16, t[1], t[0] << 16 | t[3] >>> 16, t[2], t[1] << 16 | t[0] >>> 16, t[3], t[2] << 16 | t[1] >>> 16], o = this._C = [t[2] << 16 | t[2] >>> 16, 4294901760 & t[0] | 65535 & t[1], t[3] << 16 | t[3] >>> 16, 4294901760 & t[1] | 65535 & t[2], t[0] << 16 | t[0] >>> 16, 4294901760 & t[2] | 65535 & t[3], t[1] << 16 | t[1] >>> 16, 4294901760 & t[3] | 65535 & t[0]]; this._b = 0; for (var i = 0; i < 4; i++)r.call(this); for (var i = 0; i < 8; i++)o[i] ^= n[i + 4 & 7]; if (e) { var s = e.words, a = s[0], c = s[1], h = 16711935 & (a << 8 | a >>> 24) | 4278255360 & (a << 24 | a >>> 8), l = 16711935 & (c << 8 | c >>> 24) | 4278255360 & (c << 24 | c >>> 8), f = h >>> 16 | 4294901760 & l, u = l << 16 | 65535 & h; o[0] ^= h, o[1] ^= f, o[2] ^= l, o[3] ^= u, o[4] ^= h, o[5] ^= f, o[6] ^= l, o[7] ^= u; for (var i = 0; i < 4; i++)r.call(this) } }, _doProcessBlock: function (t, e) { var i = this._X; r.call(this), s[0] = i[0] ^ i[5] >>> 16 ^ i[3] << 16, s[1] = i[2] ^ i[7] >>> 16 ^ i[5] << 16, s[2] = i[4] ^ i[1] >>> 16 ^ i[7] << 16, s[3] = i[6] ^ i[3] >>> 16 ^ i[1] << 16; for (var n = 0; n < 4; n++)s[n] = 16711935 & (s[n] << 8 | s[n] >>> 24) | 4278255360 & (s[n] << 24 | s[n] >>> 8), t[e + n] ^= s[n] }, blockSize: 4, ivSize: 2 }); e.Rabbit = n._createHelper(h) }(), t.mode.CTR = function () { var r = t.lib.BlockCipherMode.extend(), e = r.Encryptor = r.extend({ processBlock: function (t, r) { var e = this._cipher, i = e.blockSize, n = this._iv, o = this._counter; n && (o = this._counter = n.slice(0), this._iv = void 0); var s = o.slice(0); e.encryptBlock(s, 0), o[i - 1] = o[i - 1] + 1 | 0; for (var a = 0; a < i; a++)t[r + a] ^= s[a] } }); return r.Decryptor = e, r }(), function () { function r() { for (var t = this._X, r = this._C, e = 0; e < 8; e++)a[e] = r[e]; r[0] = r[0] + 1295307597 + this._b | 0, r[1] = r[1] + 3545052371 + (r[0] >>> 0 < a[0] >>> 0 ? 1 : 0) | 0, r[2] = r[2] + 886263092 + (r[1] >>> 0 < a[1] >>> 0 ? 1 : 0) | 0, r[3] = r[3] + 1295307597 + (r[2] >>> 0 < a[2] >>> 0 ? 1 : 0) | 0, r[4] = r[4] + 3545052371 + (r[3] >>> 0 < a[3] >>> 0 ? 1 : 0) | 0, r[5] = r[5] + 886263092 + (r[4] >>> 0 < a[4] >>> 0 ? 1 : 0) | 0, r[6] = r[6] + 1295307597 + (r[5] >>> 0 < a[5] >>> 0 ? 1 : 0) | 0, r[7] = r[7] + 3545052371 + (r[6] >>> 0 < a[6] >>> 0 ? 1 : 0) | 0, this._b = r[7] >>> 0 < a[7] >>> 0 ? 1 : 0; for (var e = 0; e < 8; e++) { var i = t[e] + r[e], n = 65535 & i, o = i >>> 16, s = ((n * n >>> 17) + n * o >>> 15) + o * o, h = ((4294901760 & i) * i | 0) + ((65535 & i) * i | 0); c[e] = s ^ h } t[0] = c[0] + (c[7] << 16 | c[7] >>> 16) + (c[6] << 16 | c[6] >>> 16) | 0, t[1] = c[1] + (c[0] << 8 | c[0] >>> 24) + c[7] | 0, t[2] = c[2] + (c[1] << 16 | c[1] >>> 16) + (c[0] << 16 | c[0] >>> 16) | 0, t[3] = c[3] + (c[2] << 8 | c[2] >>> 24) + c[1] | 0, t[4] = c[4] + (c[3] << 16 | c[3] >>> 16) + (c[2] << 16 | c[2] >>> 16) | 0, t[5] = c[5] + (c[4] << 8 | c[4] >>> 24) + c[3] | 0, t[6] = c[6] + (c[5] << 16 | c[5] >>> 16) + (c[4] << 16 | c[4] >>> 16) | 0, t[7] = c[7] + (c[6] << 8 | c[6] >>> 24) + c[5] | 0 } var e = t, i = e.lib, n = i.StreamCipher, o = e.algo, s = [], a = [], c = [], h = o.RabbitLegacy = n.extend({ _doReset: function () { var t = this._key.words, e = this.cfg.iv, i = this._X = [t[0], t[3] << 16 | t[2] >>> 16, t[1], t[0] << 16 | t[3] >>> 16, t[2], t[1] << 16 | t[0] >>> 16, t[3], t[2] << 16 | t[1] >>> 16], n = this._C = [t[2] << 16 | t[2] >>> 16, 4294901760 & t[0] | 65535 & t[1], t[3] << 16 | t[3] >>> 16, 4294901760 & t[1] | 65535 & t[2], t[0] << 16 | t[0] >>> 16, 4294901760 & t[2] | 65535 & t[3], t[1] << 16 | t[1] >>> 16, 4294901760 & t[3] | 65535 & t[0]]; this._b = 0; for (var o = 0; o < 4; o++)r.call(this); for (var o = 0; o < 8; o++)n[o] ^= i[o + 4 & 7]; if (e) { var s = e.words, a = s[0], c = s[1], h = 16711935 & (a << 8 | a >>> 24) | 4278255360 & (a << 24 | a >>> 8), l = 16711935 & (c << 8 | c >>> 24) | 4278255360 & (c << 24 | c >>> 8), f = h >>> 16 | 4294901760 & l, u = l << 16 | 65535 & h; n[0] ^= h, n[1] ^= f, n[2] ^= l, n[3] ^= u, n[4] ^= h, n[5] ^= f, n[6] ^= l, n[7] ^= u; for (var o = 0; o < 4; o++)r.call(this) } }, _doProcessBlock: function (t, e) { var i = this._X; r.call(this), s[0] = i[0] ^ i[5] >>> 16 ^ i[3] << 16, s[1] = i[2] ^ i[7] >>> 16 ^ i[5] << 16, s[2] = i[4] ^ i[1] >>> 16 ^ i[7] << 16, s[3] = i[6] ^ i[3] >>> 16 ^ i[1] << 16; for (var n = 0; n < 4; n++)s[n] = 16711935 & (s[n] << 8 | s[n] >>> 24) | 4278255360 & (s[n] << 24 | s[n] >>> 8), t[e + n] ^= s[n] }, blockSize: 4, ivSize: 2 }); e.RabbitLegacy = n._createHelper(h) }(), t.pad.ZeroPadding = { pad: function (t, r) { var e = 4 * r; t.clamp(), t.sigBytes += e - (t.sigBytes % e || e) }, unpad: function (t) { for (var r = t.words, e = t.sigBytes - 1; !(r[e >>> 2] >>> 24 - e % 4 * 8 & 255);)e--; t.sigBytes = e + 1 } }, t
 });
 
+
+
 const $ = new Env('京喜签到');
 const {Md5} = require('ts-md5');
 const http = require('http');
@@ -46,6 +48,10 @@ let UA, UAInfo = {}, isLoginInfo = {};
 $.shareCodes = [];
 $.blackInfo = {}
 $.appId = 10028;
+
+
+
+
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -65,7 +71,7 @@ if ($.isNode()) {
   }
   //获取所有内部助力信息
   for (let i = 0; i < cookiesArr.length; i++) {
-    //console.log(`当前运行到了用户名为 ${cookiesArr[i]}`);
+    console.log(`当前运行到了用户名为 ${cookiesArr[i]}`);
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
@@ -80,12 +86,10 @@ if ($.isNode()) {
           isLoginInfo[$.UserName] = $.isLogin
         }
       }
-      if (i === 0) console.log(`\n正在收集助力码请等待\n`)
-      if (!isLoginInfo[$.UserName]) continue
-      await signhb(1)
-      await $.wait(500)
+      getShareCode();
     }
   }
+
   //获取所有外部助力信息s
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
@@ -118,46 +122,13 @@ if ($.isNode()) {
         continue
       }
       UA = UAInfo[$.UserName]
+      await signhb(1)
+      await $.wait(2000)
+
+
       await signhb(2)
       await $.wait(2000)
-     //助力2021
-     // $.sharecode = getShareCode();
-     // if($.sharecode.length){
-     //   for (let j = 0; j < $.sharecode.length; j++) {
-     //       console.log(`\n 开始互助 ${$.sharecode[j]} \n`)
-     //       await helpSignhb($.sharecode[j])
-     //       await $.wait(2000)
-     //     }
-     // }
-      if ($.canHelp) {
-        $.shareCodes = getShareCode();
-        if ($.shareCodes && $.shareCodes.length) {
-          console.log(`\n开始内部互助\n`)
-          for (let j = 0; j < $.shareCodes.length; j++) {
-            // if ($.shareCodes[j].num == $.domax) {
-            //   $.shareCodes.splice(j, 1)
-            //   j--
-            //   continue
-            // }
-            // if ($.shareCodes[j].use === $.UserName) {
-            //   console.log(`不能助力自己`)
-            //   continue
-            // }
-            // console.log(`账号 ${$.UserName} 去助力的互助码 ${$.shareCodes[j].smp}`)
-            // if ($.shareCodes[j].max) {
-            //   console.log(`您的好友助力已满`)
-            //   continue
-            // }
-            
-            await helpSignhb($.shareCodes[j])
-            await $.wait(2000)
-            // if (!$.black) $.shareCodes[j].num++
-            // break
-          }
-        }
-      } else {
-        console.log(`今日已签到，无法助力好友啦~`)
-      }
+
       if (!$.black) {
         await helpSignhb()
         if ($.commonlist && $.commonlist.length) {
@@ -198,30 +169,19 @@ function signhb(type = 1) {
           console.log(JSON.stringify(err));
           console.log(`${$.name} query签到 API请求失败，请检查网路重试`);
         } else {
-
-            data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1])
-            //console.log(data)
+          data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1])
+            console.log(data)
             const {
-              smp,
-              commontask,
-              sharetask: { domax, helppic, status },
-              signlist = []
+              smp
             } = data
-            $.domax = domax
-            let helpNum = 0
-            if (helppic) helpNum = helppic.split(";").length - 1
+            // $.domax = domax
+            // let helpNum = 0
+            // if (helppic) helpNum = helppic.split(";").length - 1
             switch (type) {
               case 1:
-              //status === 1
+              let status = true;
                 if (status) {
-                  let max = false
-                  if (helpNum == domax) max = true
-                  $.shareCodes.push({
-                    'use': $.UserName,
-                    'smp': smp,
-                    'num': helpNum || 0,
-                    'max': max
-                  })
+
                  makeShareCodes(`${smp}`)
 
                 console.log(`您的名字是 ${$.UserName} 您的助力码是 ${smp}`)
@@ -229,25 +189,9 @@ function signhb(type = 1) {
                 break
 
               case 2:
-                for (let key of Object.keys(signlist)) {
-                  let vo = signlist[key]
-                  if (vo.istoday === 1) {
-                    if (vo.status === 1 && data.todaysign === 1) {
-                      console.log(`今日已签到`)
-                      $.canHelp = false
-                    } else {
-                      console.log(`今日未签到`)
-                    }
-                  }
-                }
+
                 console.log(`【签到互助码】${smp}`)
                 
-                if (helpNum) console.log(`已有${helpNum}人助力`)
-                for (let i = 0; i < commontask.length; i++) {
-                  if (commontask[i].task && commontask[i].status != 2) {
-                    $.commonlist.push(commontask[i].task)
-                  }
-                }
                 console.log(`可开启宝箱${data.baoxiang_left}个`)
                 $.bxNum.push({
                   'bxNum': data.baoxiang_left
@@ -276,21 +220,7 @@ function helpSignhb(smp = '') {
           console.log(JSON.stringify(err))
           console.log(`${$.name} query助力 API请求失败，请检查网路重试`)
         } else {
-          data = JSON.parse(data.match(new RegExp(/jsonpCBK.?\((.*);*/))[1])
-          const {
-            signlist = []
-          } = data
-          for (let key of Object.keys(signlist)) {
-            let vo = signlist[key]
-            if (vo.istoday === 1) {
-              if (vo.status === 1 && data.todaysign === 1) {
-                // console.log(`今日已签到`)
-              } else {
-                console.log(`此账号已黑`)
-                $.black = true
-              }
-            }
-          }
+
         }
       } catch (e) {
         $.logErr(e, resp);
@@ -352,13 +282,8 @@ function bxdraw() {
 }
 
  function makeShareCodes(code) {
-    // return new Promise(async (resolve, reject) => {
-      // let pin = cookie.match(/pt_pin=([^;]*)/)[1]
       let pin = ''
-      console.log(`cookie的名称是 ${$.UserName}`)
       pin = Md5.hashStr($.UserName)
-      console.log(`cookie的名称的md5是 ${pin}`)
-      console.log(`您的助力码是 ${code}`)
        http.get(`http://cfd.212618.xyz/jxsign.php?type=save&pin=${pin}&sharecode=${code}`, function (res) {
         res.setEncoding('utf8');
         res.on('data', function (chunk) {
@@ -373,7 +298,6 @@ function bxdraw() {
           }
         });
        })
-    // })
   }
 
 async function getShareCode () {
@@ -384,40 +308,16 @@ async function getShareCode () {
       if(resultsX == '') {
         resultsX = await getAuthorShareCode("http://cfd.212618.xyz/jxsign.php")
       }
-      $.InviteLists = resultsX.data;
-      console.log(`获取助力码成功: ${$.InviteLists}`)
+    $.InviteLists = resultsX.data;
     }
-  
-  return $.InviteLists;
-  //   for (let i = 0; i < cookiesArr.length; i++) {
-  //     $.cookie = cookiesArr[i];
-  //     $.canHelp = true;
-  //     $.UserName = decodeURIComponent($.cookie.match(/pt_pin=([^; ]+)(?=;?)/) && $.cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
-  //     $.index = i + 1;
-  //     if ($.InviteLists && $.InviteLists.length) console.log(`\n******开始【邀请好友助力】*********\n`);
-  //     console.log(`助力个数为:${$.InviteLists.length}`);
-  // 
-  //     for (let j = 0; j < $.InviteLists.length ; j++) {
-  //       console.log(`j: ${j}`);
-  //       $.inviteId = $.InviteLists[j];
-  //       console.log(`${$.UserName} 助力 ${$.inviteId}`);
-  //       let res = await taskGet(`story/helpbystage`, '_cfd_t,bizCode,dwEnv,ptag,source,strShareId,strZone', `&strShareId=${$.inviteId}`)
-  //       console.log("===================================")
-  //       console.log(res)
-  //       console.log("===================================")
-  //       if(res && res.iRet == 0){
-  //         console.log(`助力成功: 获得${res.Data && res.Data.GuestPrizeInfo && res.Data.GuestPrizeInfo.strPrizeName || ''}`)
-  //       }
-  //       if(res.sErrMsg.indexOf('助力次数达到上限') > -1 || res.iRet === 2232 || res.sErrMsg.indexOf('助力失败') > -1 || res == null){
-  //           break
-  //       }else{
-  //          console.log(JSON.stringify(res))
-  //        }
-  // 
-  //       await $.wait(1000);
-  //     }
-  //   }
-    
+    if($.InviteLists && $.InviteLists.length){
+      for (let j = 0; j < $.InviteLists.length ; j++) {
+        $.inviteId = $.InviteLists[j];
+        helpSignhb($.inviteId) 
+        await $.wait(1000);
+     }
+    }
+
   }
   
  async function getAuthorShareCode(url) {
@@ -643,8 +543,7 @@ async function requestAlgo() {
           console.log(`request_algo 签名参数API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            // console.log(data);
-            data = JSON.parse(data);
+             data = JSON.parse(data);
             if (data['status'] === 200) {
               $.token = data.data.result.tk;
               let enCryptMethodJDString = data.data.result.algo;
