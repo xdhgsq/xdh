@@ -238,6 +238,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_jr_draw.js			#京东金融 每周领取一次权益活动
 	jd_mofang_ex.js			#魔方兑换
 	jd_jfcz.js			#见缝插针
+	jd_jmf.js 			#集魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -269,7 +270,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_market_lottery.js 		#幸运大转盘
 	jd_health_collect.js		#健康社区-收能量
 	jd_superMarket.js		#东东超市
-	#jd_mf.js 			#集魔方
 	jx_sign_xd.js			#京喜签到喜豆
 EOF
 
@@ -545,7 +545,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jx_sign_xd.js			#京喜签到喜豆
 	gua_UnknownTask9.js		#发现好货
 	jd_split.js			#金榜年终奖
-	jd_mf.js 			#集魔方
+	#jd_mf.js 			#集魔方
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_jchsign.js			#京车会签到
 	jd_joy_park_task.js		#汪汪乐园
@@ -768,7 +768,7 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_dwapp.js			#积分换话费
 	jd_ttpt.js			#天天拼图
 	jd_qqxing.js			#QQ星
-	jd_mf.js 			#集魔方
+	#jd_mf.js 			#集魔方
 EOF
 	echo -e "$green run_06_18$start_script_time $white"
 
