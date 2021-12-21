@@ -269,7 +269,7 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_market_lottery.js 		#幸运大转盘
 	jd_health_collect.js		#健康社区-收能量
 	jd_superMarket.js		#东东超市
-	jd_mf.js 			#集魔方
+	#jd_mf.js 			#集魔方
 	jx_sign_xd.js			#京喜签到喜豆
 EOF
 
