@@ -596,7 +596,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_nzmh.js			#女装盲盒
 	jd_market_lottery.js 		#幸运大转盘
 	jd_jin_tie_xh.js  		#领金贴
-	jd_dreamFactory.js 		#京喜工厂
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_sign_graphics.js		#京东签到图形验证
 	jd_ccSign.js			#领券中心签到
