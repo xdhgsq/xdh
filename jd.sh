@@ -537,8 +537,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
-	#jx_sign.js			#京喜签到
-	jx_sign_mb.js			#京喜签到(测试版本，带助力池)
+	jx_sign.js			#京喜签到
+	#jx_sign_mb.js			#京喜签到(测试版本，带助力池)
 	jd_superBrand.js		#特务Ｚ
 	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
