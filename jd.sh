@@ -606,7 +606,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_0 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -628,7 +628,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_020 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -648,7 +648,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_030 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -690,7 +690,7 @@ EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -708,7 +708,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_02 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -763,7 +763,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_06_18 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -791,7 +791,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -809,7 +809,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_08_12_16 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -829,7 +829,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_10_15_20 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 30,1)
+		num=$(python $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -1235,11 +1235,12 @@ kill_ccr() {
 }
 
 if_ps() {
-	sleep 20
+	#set -x
+	sleep 30
 	rm -rf /tmp/jd_tmp/ps_$action.log
-	for i in `cat /tmp/jd_tmp/$action| grep -v "#.*js" | awk '{print $1}'`
+	for i in `cat /tmp/jd_tmp/$action | grep -v "#.*js" | awk '{print $1}'`
 	do
-		js_num=$(ps -ww | grep $i　| grep -v grep | awk '{print $1}' | wc -l)
+		js_num=$(ps -ww | grep "$i"| grep -v grep | wc -l)
 		echo "$i $js_num进程" >> /tmp/jd_tmp/ps_$action.log
 	done
 
@@ -1252,8 +1253,8 @@ if_ps() {
 		num=$(( $num + 1))
 	done
 
-	num1="20"
-	echo -e "${green}>> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(40秒)，后再检测一下${white}"
+	num1="5"
+	echo -e "${green}>> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(30秒)，后再检测一下${white}"
 	echo -ne "\r"
 	sleep $num1
 
@@ -1262,7 +1263,7 @@ if_ps() {
 		echo -e "${yellow}>>并发程序已经结束${white}"
 	else
 		sleep $num1
-		echo -ne ">> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(40秒)，后再检测一下${white}"
+		echo -ne ">> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(30秒)，后再检测一下${white}"
 		echo -ne "\r"
 		if_ps
 	fi
