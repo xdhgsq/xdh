@@ -1235,7 +1235,6 @@ kill_ccr() {
 }
 
 if_ps() {
-	set -x
 	sleep 20
 	rm -rf /tmp/jd_tmp/ps_$action.log
 	for i in `cat /tmp/jd_tmp/$action| grep -v "#.*js" | awk '{print $1}'`
