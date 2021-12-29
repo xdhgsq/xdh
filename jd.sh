@@ -264,6 +264,7 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_superMarket.js		#东东超市
 	jx_sign_xd.js			#京喜签到喜豆
 	jd_joy.js			#宠汪汪（现在火爆）
+	jd_mf.js			#京东魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -544,6 +545,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_jchsign.js			#京车会签到
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
+	jd_mf.js			#京东魔方
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
