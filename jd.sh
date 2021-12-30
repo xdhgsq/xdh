@@ -232,6 +232,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_jdzz.js			#京东赚赚
 	jd_lxLottery.js			#京东我的理想家
 	jd_jfcz.js			#见缝插针
+	jd_m_sign.js			#京东通天塔
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -546,6 +547,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
 	jd_mf.js			#京东魔方
+	jd_m_sign.js			#京东通天塔
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
