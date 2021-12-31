@@ -31,7 +31,7 @@ fi
 ccr_js_file="$dir_file/ccr_js"
 run_sleep=$(sleep 1)
 
-version="2.2"
+version="2.3"
 cron_file="/etc/crontabs/root"
 node="/usr/bin/node"
 tsnode="/usr/bin/ts-node"
