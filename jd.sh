@@ -287,6 +287,7 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard84.js		#开卡84
 	gua_opencard85.js		#开卡85
 	gua_opencard86s.js		#开卡86
+	gua_UnknownTask5.js
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -553,6 +554,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
+	gua_UnknownTask5.js
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
