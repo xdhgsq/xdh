@@ -271,7 +271,6 @@ done
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_UnknownTask9.js		#发现好货
 	gua_opencard84.js		#开卡84
 	gua_opencard85.js		#开卡85
 	gua_opencard86s.js		#开卡86
@@ -440,6 +439,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	gua_UnknownTask9.js		#发现好货
 	jd_cleancart.js			#清空购物车（默认不执行）
 	jd_jdfactory.js 		#东东工厂，不是京喜工厂
 	jd_market_lottery.js 		#幸运大转盘
@@ -531,7 +531,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	#jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jx_sign_xd.js			#京喜签到喜豆
-	gua_UnknownTask9.js		#发现好货
 	jd_split.js			#金榜年终奖
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_jchsign.js			#京车会签到
@@ -971,7 +970,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python $jd_file/ccr_js/js_1/$i &
