@@ -216,7 +216,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_big_winner.js		#翻翻乐
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
-	jd_superBrand.js		#特务Ｚ
 	jd_jump.js			#跳跳乐瓜分京豆脚本
 	jd_gold_sign.js 		#京东金榜
 	jd_gold_creator.js		#金榜创造营
@@ -438,6 +437,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_superBrand.js		#特务Ｚ
 	gua_opencard84.js		#开卡84
 	gua_UnknownTask9.js		#发现好货
 	jd_cleancart.js			#清空购物车（默认不执行）
@@ -525,7 +525,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	#jx_sign_mb.js			#京喜签到(测试版本，带助力池)
-	jd_superBrand.js		#特务Ｚ
 	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
 	#jd_dpqd.js			#店铺签到
@@ -773,7 +772,6 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
-	jd_superBrand.js		#特务Ｚ
 	jx_sign.js			#京喜签到
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
@@ -970,7 +968,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python $jd_file/ccr_js/js_1/$i &
@@ -980,6 +978,7 @@ Tjs()	{
 		echo -e "${green}>>>${yellow}$i${green}执行完成，回车测试下一个${white}"
 		read a
 	done
+
 }
 
 jx() {
