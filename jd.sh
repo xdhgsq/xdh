@@ -961,7 +961,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|jx_products_detail.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python $jd_file/ccr_js/js_1/$i &
@@ -2824,7 +2824,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite
+	npm install -g audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal
 	npm install --save axios
 
 	#安装python模块
