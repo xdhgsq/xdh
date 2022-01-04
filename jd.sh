@@ -208,8 +208,6 @@ sleep 5
 zero205_url="https://raw.githubusercontent.com/zero205/JD_tencent_scf/main"
 cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	sign_graphics_validate.js
-	jd_sign_graphics.js		#京东签到图形验证
-	JDJRValidator_Smiek.js
 	jd_bean_sign.js			#京东多合一签到
 	JDSignValidator.js		#京东多合一签到依赖1
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
@@ -228,13 +226,10 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_price.js		        #价保脚本
 	jd_nzmh.js			#女装盲盒
-	jd_qqxing.js			#QQ星
 	jd_jdzz.js			#京东赚赚
 	jd_lxLottery.js			#京东我的理想家
-	jd_jfcz.js			#见缝插针
 	jd_m_sign.js			#京东通天塔
 	jd_ddworld_exchange.js		#东东世界兑换
-	jd_wxCollectionActivity.js	#加购物车抽奖
 	jd_nh_sign.js			#年货签到
 EOF
 
@@ -254,7 +249,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_ccSign.js			#领券中心签到
 	jd_cash.js			#签到领现金，每日2毛～5毛长期
 	jd_connoisseur.js		#内容鉴赏官
-	jd_ddworld.js			#东东世界
 	jd_live.js			#京东直播
 	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
@@ -267,8 +261,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_health_collect.js		#健康社区-收能量
 	jd_superMarket.js		#东东超市
 	jx_sign_xd.js			#京喜签到喜豆
-	jd_joy.js			#宠汪汪（现在火爆）
-	jd_mf.js			#京东魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -452,17 +444,15 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_mf.js			#京东魔方
+	jd_joy.js			#宠汪汪（现在火爆）
+	jd_ddworld.js			#东东世界
+	JDJRValidator_Smiek.js
+	jd_jfcz.js			#见缝插针
+	jd_wxCollectionActivity.js	#加购物车抽奖
+	jd_qqxing.js			#QQ星
+	jd_sign_graphics.js		#京东签到图形验证
 	jd_lottery_drew.js
-	jd_mofang_ex.js		#魔方兑换
-	jd_jr_draw.js
-	jd_cfd_fresh.js
-	gua_opencard72.js
-	gua_opencard73.js
-	gua_opencard81.js		#开卡81
-	gua_opencard82.js		#开卡82
-	gua_opencard87js
-	jd_ttpt.js			#天天拼图
-	jd_jmf.js			#集魔方
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -531,7 +521,6 @@ ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_connoisseur.js		#内容鉴赏官
-	jd_ddworld.js			#东东世界
 	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
@@ -545,12 +534,10 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jx_sign_xd.js			#京喜签到喜豆
 	gua_UnknownTask9.js		#发现好货
 	jd_split.js			#金榜年终奖
-	#jd_mf.js 			#集魔方
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_jchsign.js			#京车会签到
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
-	jd_mf.js			#京东魔方
 	jd_m_sign.js			#京东通天塔
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
@@ -599,7 +586,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_market_lottery.js 		#幸运大转盘
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
-	jd_sign_graphics.js		#京东签到图形验证
 	jd_ccSign.js			#领券中心签到
 	jd_unsubscribe.js 		#取关店铺，没时间要求
 	jd_ljd_xh.js			#领京豆
@@ -608,11 +594,8 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_qqxing.js			#QQ星
 	jd_lxLottery.js			#京东我的理想家
 	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
-	jd_jfcz.js			#见缝插针
-	jd_wxCollectionActivity.js	#加购物车抽奖
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -714,7 +697,7 @@ EOF
 
 run_02() {
 cat >/tmp/jd_tmp/run_02 <<EOF
-	#jd_joy.js			#宠汪汪（现在火爆）
+	#空.js
 EOF
 	echo -e "${green} run_02$start_script_time ${white}"
 
@@ -768,8 +751,6 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_superMarket.js 		#东东超市,6点 18点多加两场用于收金币
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
-	jd_qqxing.js			#QQ星
-	#jd_mf.js 			#集魔方
 EOF
 	echo -e "${green} run_06_18$start_script_time ${white}"
 
@@ -2211,8 +2192,8 @@ additional_settings() {
 	sed -i "s/.\/utils\/JDJRValidator_Pure/.\/JDJRValidator_Pure/g" $dir_file_js/jd_joy_reward_Mod.js
 	sed -i "s/joyRewardName = 0/joyRewardName = $jd_joy_reward/g" $dir_file_js/jd_joy_reward_Mod.js
 
-	sed -i "s/\/JDJRValidator_Pure/.\/JDJRValidator_Pure/g"　$dir_file_js/jd_joy.js
-	sed -i "s/.\/utils//g" $dir_file_js/jd_joy.js
+	#sed -i "s/\/JDJRValidator_Pure/.\/JDJRValidator_Pure/g"　$dir_file_js/jd_joy.js
+	#sed -i "s/.\/utils//g" $dir_file_js/jd_joy.js
 
 
 
