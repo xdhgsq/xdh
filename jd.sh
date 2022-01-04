@@ -713,7 +713,7 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_mohe.js			#5G超级盲盒
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
-	jd_jdzz.js			#京东赚赚
+	#jd_jdzz.js			#京东赚赚
 	jd_split.js			#金榜年终奖
 	gua_wealth_island.js		#京东财富岛
 EOF
