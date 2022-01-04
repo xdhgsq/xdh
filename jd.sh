@@ -2842,6 +2842,7 @@ npm_install() {
 	echo -e "${green} 开始安装npm模块${white}"
 	#安装js模块
 	cd $openwrt_script
+	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
 	npm install -g audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite
 	npm install --save axios
