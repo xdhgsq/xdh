@@ -415,7 +415,6 @@ done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_tyt.js			#极速版赚金币推一推
-	jd_split.js			#金榜年终奖
 	#jd_dpqd.js			#店铺签到v
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_health.js			#健康社区
@@ -433,6 +432,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_split.js			#金榜年终奖
 	jd_evaluation.js		#自动评价JS版
 	jd_jchsign.js			#京车会签到
 	jd_gold_sign.js			#京东金榜
@@ -529,7 +529,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	#jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jx_sign_xd.js			#京喜签到喜豆
-	jd_split.js			#金榜年终奖
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
@@ -713,7 +712,6 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	#jd_jdzz.js			#京东赚赚
-	jd_split.js			#金榜年终奖
 	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "${green} run_03$start_script_time ${white}"
