@@ -191,7 +191,6 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_car.js			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_speed.js			#天天加速
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
-	jd_cleancart.js			#清空购物车（默认不执行）
 	jd_unsubscribe.js		#取关京东店铺和商品
 EOF
 
@@ -441,6 +440,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_cleancart.js			#清空购物车（默认不执行）
 	jd_jdfactory.js 		#东东工厂，不是京喜工厂
 	jd_market_lottery.js 		#幸运大转盘
 	jd_mf.js			#京东魔方
@@ -971,7 +971,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python $jd_file/ccr_js/js_1/$i &
