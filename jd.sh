@@ -424,7 +424,7 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_evaluation.js		#自动评价JS版
 	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
-	jd_dpqd.js			#店铺签到v
+	#jd_dpqd.js			#店铺签到v
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_health.js			#健康社区
 	jd_sgmh.js			#闪购盲盒长期活动
@@ -528,7 +528,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrand.js		#特务Ｚ
 	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
-	jd_dpqd.js			#店铺签到
+	#jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jx_sign_xd.js			#京喜签到喜豆
 	gua_UnknownTask9.js		#发现好货
