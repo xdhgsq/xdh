@@ -584,7 +584,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_lxLottery.js			#京东我的理想家
-	gua_wealth_island.js		#财富岛(用于捡贝壳合成珍珠)
 	jd_mohe.js			#5G超级盲盒
 	jd_club_lottery.js 		#摇京豆，没时间要求
 EOF
@@ -670,6 +669,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_big_winner.js		#翻翻乐
 	jd_dreamFactory.js 		#京喜工厂
+	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
@@ -710,7 +710,6 @@ cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	#jd_jdzz.js			#京东赚赚
-	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "${green} run_03$start_script_time ${white}"
 
