@@ -271,7 +271,6 @@ done
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard84.js		#开卡84
 	gua_opencard85.js		#开卡85
 	gua_opencard86s.js		#开卡86
 	gua_UnknownTask5.js
@@ -439,6 +438,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	gua_opencard84.js		#开卡84
 	gua_UnknownTask9.js		#发现好货
 	jd_cleancart.js			#清空购物车（默认不执行）
 	jd_jdfactory.js 		#东东工厂，不是京喜工厂
