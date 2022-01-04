@@ -414,7 +414,6 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	jd_jchsign.js			#京车会签到
 	jd_evaluation.js		#自动评价JS版
 	jd_tyt.js			#极速版赚金币推一推
 	jd_split.js			#金榜年终奖
@@ -435,6 +434,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_jchsign.js			#京车会签到
 	jd_gold_sign.js			#京东金榜
 	jd_jump.js			#跳跳乐瓜分脚本
 	jd_superBrand.js		#特务Ｚ
@@ -531,7 +531,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jx_sign_xd.js			#京喜签到喜豆
 	jd_split.js			#金榜年终奖
 	jd_fcwb_help.js			#发财挖宝助力
-	jd_jchsign.js			#京车会签到
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
 	jd_m_sign.js			#京东通天塔
