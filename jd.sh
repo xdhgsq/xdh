@@ -417,7 +417,6 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
-	jd_health.js			#健康社区
 	jd_sgmh.js			#闪购盲盒长期活动
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
@@ -432,6 +431,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_health.js			#健康社区
 	jd_split.js			#金榜年终奖
 	jd_evaluation.js		#自动评价JS版
 	jd_jchsign.js			#京车会签到
@@ -707,7 +707,6 @@ run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
-	jd_health.js			#健康社区
 	jd_mohe.js			#5G超级盲盒
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
@@ -2535,24 +2534,6 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 	jdzzcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_jdzz.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
 		#sed -i "$jdzzcode_rows a \ '$new_jdzz_set', " $dir_file_js/jd_jdzz.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	#健康社区
-	new_health="T0225KkcRxoZ9AfVdB7wxvRcIQCjVfnoaW5kRrbA@T0225KkcRUhP9FCEKR79xaZYcgCjVfnoaW5kRrbA@T0205KkcH0RYsTOkY2iC8I10CjVfnoaW5kRrbA@T0205KkcJEZAjD2vYGGG4Ip0CjVfnoaW5kRrbA"
-	test_health="T019vPVyQRke_EnWJxj1nfECjVfnoaW5kRrbA@T0225KkcRBYbo1fXKUv2k_5ccQCjVfnoaW5kRrbA@T0225KkcRh0ZoVfQchP9wvQJdwCjVfnoaW5kRrbA@T0205KkcPGhhswmWX2e03YBbCjVfnoaW5kRrbA@T0225KkcRBwdp1CEI0v8l_9ZdwCjVfnoaW5kRrbA"
-
-	Javon_20201224_health="T023uvp2RBcY_VHKKBn3k_MMdNwCjVfnoaW5kRrbA"
-
-	random_health="$test_health"
-	random="$random_health"
-	random_array
-	new_health_set="$new_health@$Javon_20201224_health@$random_set"
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	healthcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_health.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$healthcode_rows a \ '$new_health_set', " $dir_file_js/jd_health.js
 		js_amount=$(($js_amount - 1))
 	done
 
