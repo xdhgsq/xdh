@@ -740,6 +740,7 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
 	jd_ccSign.js			#领券中心签到
+	jd_sgmh.js 			#闪购盲盒长期活动
 EOF
 	echo -e "${green} run_06_18$start_script_time ${white}"
 
@@ -760,7 +761,6 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_ms.js 			#京东秒秒币 一个号大概60
-	jd_sgmh.js 			#闪购盲盒长期活动
 	jd_speed_redpocke.js		#极速版红包
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_jin_tie_xh.js  		#领金贴
