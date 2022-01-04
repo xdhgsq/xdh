@@ -216,7 +216,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_big_winner.js		#翻翻乐
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
-	jd_gold_sign.js 		#京东金榜
 	jd_gold_creator.js		#金榜创造营
 	jd_speed_redpocke.js		#极速版红包
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
@@ -436,6 +435,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_gold_sign.js			#京东金榜
 	jd_jump.js			#跳跳乐瓜分脚本
 	jd_superBrand.js		#特务Ｚ
 	gua_opencard84.js		#开卡84
@@ -525,7 +525,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	#jx_sign_mb.js			#京喜签到(测试版本，带助力池)
-	jd_gold_sign.js			#京东金榜
 	jd_gold_creator.js		#金榜创造营
 	#jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
