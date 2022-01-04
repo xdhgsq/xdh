@@ -420,7 +420,6 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_sgmh.js			#闪购盲盒长期活动
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
-	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_OpenCard.py 			#开卡程序
 	jd_getFollowGift.py 		#关注有礼
@@ -431,6 +430,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_jxlhb.js			#京喜领88红包
 	jd_health.js			#健康社区
 	jd_split.js			#金榜年终奖
 	jd_evaluation.js		#自动评价JS版
@@ -520,7 +520,6 @@ ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_connoisseur.js		#内容鉴赏官
-	jd_jxlhb.js			#京喜领红包
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
