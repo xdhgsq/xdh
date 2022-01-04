@@ -271,6 +271,7 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard85.js		#开卡85
 	gua_opencard86s.js		#开卡86
 	gua_UnknownTask5.js
+	jd_sign_graphics.js		#京东签到图形验证
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -450,7 +451,6 @@ cat >/tmp/del_js.txt <<EOF
 	jd_jfcz.js			#见缝插针
 	jd_wxCollectionActivity.js	#加购物车抽奖
 	jd_qqxing.js			#QQ星
-	jd_sign_graphics.js		#京东签到图形验证
 	jd_lottery_drew.js
 EOF
 
