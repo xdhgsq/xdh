@@ -415,7 +415,7 @@ done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_tyt.js			#极速版赚金币推一推
-	#jd_dpqd.js			#店铺签到v
+	jd_dpqd.js			#店铺签到
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_health.js			#健康社区
 	jd_sgmh.js			#闪购盲盒长期活动
@@ -526,7 +526,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jx_sign.js			#京喜签到
 	#jx_sign_mb.js			#京喜签到(测试版本，带助力池)
 	jd_gold_creator.js		#金榜创造营
-	#jd_dpqd.js			#店铺签到
+	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jx_sign_xd.js			#京喜签到喜豆
 	jd_fcwb_help.js			#发财挖宝助力
