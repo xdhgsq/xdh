@@ -547,6 +547,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_price.js		        #价保脚本
 	jd_angryKoi.js			#愤怒的锦鲤
+	jd_zhanianshou.js		#炸年兽(需要手动点开活动，不然火爆)
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
