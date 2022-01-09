@@ -415,6 +415,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	gua_city.js			#城城分现金
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
@@ -519,6 +520,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	gua_city.js			#城城分现金
 	jd_connoisseur.js		#内容鉴赏官
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
