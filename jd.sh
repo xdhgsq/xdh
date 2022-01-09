@@ -268,8 +268,15 @@ done
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard85.js		#开卡85
-	gua_opencard86s.js		#开卡86
+	gua_opencard92.js		#开卡92
+	gua_opencard93.js		#开卡93
+	gua_opencard94.js		#开卡94
+	gua_opencard95.js		#开卡95
+	gua_opencard96.js		#开卡96
+	gua_opencard97.js		#开卡97
+	gua_opencard98.js		#开卡98
+	gua_opencard99.js		#开卡99
+	gua_opencard100.js		#开卡100
 	gua_UnknownTask5.js
 	jd_sign_graphics.js		#京东签到图形验证
 EOF
@@ -432,27 +439,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_jxlhb.js			#京喜领88红包
-	jd_health.js			#健康社区
-	jd_split.js			#金榜年终奖
-	jd_evaluation.js		#自动评价JS版
-	jd_jchsign.js			#京车会签到
-	jd_gold_sign.js			#京东金榜
-	jd_jump.js			#跳跳乐瓜分脚本
-	jd_superBrand.js		#特务Ｚ
-	gua_opencard84.js		#开卡84
-	gua_UnknownTask9.js		#发现好货
-	jd_cleancart.js			#清空购物车（默认不执行）
-	jd_jdfactory.js 		#东东工厂，不是京喜工厂
-	jd_market_lottery.js 		#幸运大转盘
-	jd_mf.js			#京东魔方
-	jd_joy.js			#宠汪汪（现在火爆）
-	jd_ddworld.js			#东东世界
-	JDJRValidator_Smiek.js
-	jd_jfcz.js			#见缝插针
-	jd_wxCollectionActivity.js	#加购物车抽奖
-	jd_qqxing.js			#QQ星
-	jd_lottery_drew.js
+	gua_opencard85.js		#开卡85
+	gua_opencard86s.js		#开卡86
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
