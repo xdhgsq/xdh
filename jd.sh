@@ -213,7 +213,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_joy_park_task.js		#汪汪乐园
 	jd_joy_park.js			#汪汪乐园养joy
-	jd_big_winner.js		#翻翻乐
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
 	jd_gold_creator.js		#金榜创造营
@@ -277,7 +276,6 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard98.js		#开卡98
 	gua_opencard99.js		#开卡99
 	gua_opencard100.js		#开卡100
-	gua_UnknownTask5.js
 	jd_sign_graphics.js		#京东签到图形验证
 EOF
 
@@ -439,6 +437,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	gua_UnknownTask5.js
+	jd_big_winner.js		#翻翻乐
 	gua_opencard85.js		#开卡85
 	gua_opencard86s.js		#开卡86
 EOF
@@ -524,7 +524,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
-	gua_UnknownTask5.js
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -657,7 +656,6 @@ run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	raw_main_jd_super_redrain.js	#整点红包雨
-	jd_big_winner.js		#翻翻乐
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
 EOF
