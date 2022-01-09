@@ -1849,7 +1849,7 @@ that_day() {
 }
 
 backnas() {
-	date_time=$(date +%Y-%m-%d-%H:%M | sed "s/:/_/")
+	date_time=$(date +%Y-%m-%d-%H_%M)
 	back_file_name="script_${date_time}.tar.gz"
 	#判断所在文件夹
 	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
@@ -1874,6 +1874,10 @@ backnas() {
 		echo "backnas计划任务设置完成"
 	fi
 	clear
+
+
+	#ssh 连接不需要填yes
+	sed -i "s/#   StrictHostKeyChecking ask/StrictHostKeyChecking no/g" /etc/ssh/ssh_config
 
 	#判断依赖
 	sshpass_if=$(opkg list-installed | grep 'sshpass' |awk '{print $1}')
@@ -1973,10 +1977,6 @@ backnas() {
 	echo -e "${green}>> 开始打包文件${white}"
 	tar -zcvf /tmp/$back_file_name $back_file_patch
 	sleep 5
-
-	echo -e "${green}>> 开始恢复ccr_js文件夹${white}"
-	update
-	echo "${green}>>  恢复完成${white}"
 
 	clear
 	echo -e "${green}>> 开始上传文件 ${white}"
