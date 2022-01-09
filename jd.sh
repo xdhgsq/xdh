@@ -294,6 +294,7 @@ cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
 	jd_pigPet.js			#金融养猪
+	jd_tw.js			#特务Ｚ
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -524,6 +525,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
+	jd_tw.js			#特务Ｚ
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
