@@ -353,6 +353,7 @@ done
 cdle_carry_url="https://raw.githubusercontent.com/cdle/carry/main"
 cat >$dir_file/config/tmp/cdle_carry_url.txt <<EOF
 	jd_angryKoi.js		#愤怒的锦鲤
+	jd_zhanianshou.js	#炸年兽
 EOF
 
 for script_name in `cat $dir_file/config/tmp/cdle_carry_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -526,6 +527,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
 	jd_tw.js			#特务Ｚ
+	jd_zhanianshou.js		#炸年兽
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
