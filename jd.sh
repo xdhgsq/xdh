@@ -353,7 +353,6 @@ done
 cdle_carry_url="https://raw.githubusercontent.com/cdle/carry/main"
 cat >$dir_file/config/tmp/cdle_carry_url.txt <<EOF
 	jd_angryKoi.js		#愤怒的锦鲤
-	jd_zhanianshou.js	#炸年兽
 EOF
 
 for script_name in `cat $dir_file/config/tmp/cdle_carry_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -422,6 +421,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_zhanianshou.js		#炸年兽(需要手动点开活动，不然火爆)
 	gua_city.js			#城城分现金
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
@@ -511,6 +511,7 @@ ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	gua_city.js			#城城分现金
+	jd_zhanianshou.js		#炸年兽(需要手动点开活动，不然火爆)
 	jd_connoisseur.js		#内容鉴赏官
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
@@ -527,7 +528,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
 	jd_tw.js			#特务Ｚ
-	jd_zhanianshou.js		#炸年兽
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
