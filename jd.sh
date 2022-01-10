@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 task() {
-	cron_version="3.89"
+	cron_version="3.90"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -117,7 +117,6 @@ cat >>/etc/crontabs/root <<EOF
 0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
 0 0,8,20,22 * * * $node $dir_file_js/gua_nhjRed.js >/tmp/gua_nhjRed.log #年货红红包有返利#100#
 0 0,8,20 * * * $node $dir_file_js/jd_tw.js >/tmp/jd_tw.log #特务Ｚ#100#
-0 0 * * * $python3 $dir_file/git_clone/curtinlv_script/getFollowGifts/jd_getFollowGift.py >/tmp/jd_getFollowGift.log #关注有礼#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
 59 23 * * 0,1,2,5,6 sleep 57 && $dir_file/jd.sh run_jd_cash >/tmp/jd_cash_exchange.log	#签到领现金兑换#100#
 59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
@@ -434,7 +433,6 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	Evaluation.py 			#自动评价
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_OpenCard.py 			#开卡程序
-	jd_getFollowGift.py 		#关注有礼
 	jd_check_cookie.js		#检测cookie是否存活（暂时不能看到还有几天到期）
 	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
 	jx_products_detail.js		#京喜工厂商品列表详情
@@ -442,6 +440,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_getFollowGift.py             #关注有礼
 	gua_UnknownTask5.js
 	jd_big_winner.js		#翻翻乐
 	gua_opencard85.js		#开卡85
@@ -913,13 +912,6 @@ curtinlv_script_setup() {
 	if [ ! -L "$dir_file_js/OpenCardConfig.ini" ]; then
 		rm -rf $dir_file_js/OpenCardConfig.ini
 		ln -s $dir_file/git_clone/curtinlv_script/OpenCard/OpenCardConfig.ini $dir_file_js/OpenCardConfig.ini
-	fi
-
-	#关注有礼
-	cat $openwrt_script_config/js_cookie.txt > $dir_file/git_clone/curtinlv_script/getFollowGifts/JDCookies.txt
-	if [ ! -L "$dir_file_js/jd_getFollowGift.py" ]; then
-		rm -rf $dir_file_js/jd_getFollowGift.py
-		ln -s $dir_file/git_clone/curtinlv_script/getFollowGifts/jd_getFollowGift.py  $dir_file_js/jd_getFollowGift.py
 	fi
 
 	#软连接
