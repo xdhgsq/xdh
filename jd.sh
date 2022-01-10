@@ -267,7 +267,6 @@ done
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard92.js		#开卡92
 	gua_opencard93.js		#开卡93
 	gua_opencard94.js		#开卡94
 	gua_opencard95.js		#开卡95
@@ -421,6 +420,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	gua_opencard92.js		#开卡92
 	gua_nhjRed.js			#年货红红包有返利
 	jd_zhanianshou.js		#炸年兽(需要手动点开活动，不然火爆)
 	gua_city.js			#城城分现金
