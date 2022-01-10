@@ -864,16 +864,6 @@ EOF
 	done
 }
 
-run_jd_joy_reward() {
-	jd_joy_reward_num="3"
-	while [[ ${jd_joy_reward_num} -gt 0 ]]; do
-		$node $dir_file_js/jd_joy_reward_Mod.js  &
-		sleep 2
-		jd_joy_reward_num=$(($jd_joy_reward_num - 1))
-	done
-}
-
-
 run_jd_blueCoin() {
 cat >/tmp/jd_tmp/run_jd_blueCoin <<EOF
 	jd_blueCoin.py	#东东超市兑换
@@ -2184,8 +2174,6 @@ additional_settings() {
 
 	#宠汪汪路径修改
 	sed -i "s/..\/USER_AGENTS.js/.\/USER_AGENTS.js/g" $dir_file_js/JDJRValidator_Pure.js
-	sed -i "s/.\/utils\/JDJRValidator_Pure/.\/JDJRValidator_Pure/g" $dir_file_js/jd_joy_reward_Mod.js
-	sed -i "s/joyRewardName = 0/joyRewardName = $jd_joy_reward/g" $dir_file_js/jd_joy_reward_Mod.js
 
 	#sed -i "s/\/JDJRValidator_Pure/.\/JDJRValidator_Pure/g"　$dir_file_js/jd_joy.js
 	#sed -i "s/.\/utils//g" $dir_file_js/jd_joy.js
@@ -3237,7 +3225,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|run_jd_joy_reward|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
+		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
 		$action1
 		;;
 		kill_ccr)
@@ -3256,7 +3244,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|run_jd_joy_reward|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
+		system_variable|update|update_script|task|jx|additional_settings|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
 		$action2
 		;;
 		kill_ccr)
