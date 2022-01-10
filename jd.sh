@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 task() {
-	cron_version="3.87"
+	cron_version="3.88"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -115,6 +115,7 @@ cat >>/etc/crontabs/root <<EOF
 10-20/5 10,12 * * * $node $dir_file_js/jd_live.js	>/tmp/jd_live.log #京东直播#100#
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
 0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
+0 0,8,20,22 * * * $node $dir_file_js/gua_nhjRed.js >/tmp/gua_nhjRed.log #年货红红包有返利#100#
 0 0 * * * $python3 $dir_file/git_clone/curtinlv_script/getFollowGifts/jd_getFollowGift.py >/tmp/jd_getFollowGift.log #关注有礼#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
 59 23 * * 0,1,2,5,6 sleep 57 && $dir_file/jd.sh run_jd_cash >/tmp/jd_cash_exchange.log	#签到领现金兑换#100#
@@ -529,7 +530,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
 	jd_tw.js			#特务Ｚ
-	gua_nhjRed.js			#年货红红包有返利
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -544,6 +544,7 @@ EOF
 concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	gua_city.js			#城城分现金
 	jd_dreamFactory.js 		#京喜工厂
 	jd_price.js		        #价保脚本
 	jd_angryKoi.js			#愤怒的锦鲤
