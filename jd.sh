@@ -441,7 +441,6 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_getFollowGift.py             #关注有礼
 	gua_UnknownTask5.js
 	jd_big_winner.js		#翻翻乐
 	gua_opencard85.js		#开卡85
