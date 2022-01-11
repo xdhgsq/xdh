@@ -423,6 +423,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	gua_dayday_ysq.js		#天天压岁钱，不要外传
 	gua_opencard92.js		#开卡92
 	gua_nhjRed.js			#年货红红包有返利
 	jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
@@ -529,6 +530,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
+	gua_dayday_ysq.js		#天天压岁钱，不要外传
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
