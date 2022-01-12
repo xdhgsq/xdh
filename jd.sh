@@ -213,7 +213,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_try.js 			#京东试用（默认不启用）
 	jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_joy_park_task.js		#汪汪乐园
-	jd_joy_park.js			#汪汪乐园养joy
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
 	jd_gold_creator.js		#金榜创造营
@@ -222,9 +221,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_price.js		        #价保脚本
 	jd_nzmh.js			#女装盲盒
 	jd_jdzz.js			#京东赚赚
-	jd_lxLottery.js			#京东我的理想家
 	jd_m_sign.js			#京东通天塔
-	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
 EOF
 
@@ -250,7 +247,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_club_lottery.js		#摇京豆
 	jd_shop.js			#进店领豆
 	jd_kd.js			#京东快递签到 一天运行一次即可
-	jd_ms.js			#京东秒秒币
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	#jd_superMarket.js		#东东超市
 	jx_sign_xd.js			#京喜签到喜豆
@@ -443,6 +439,10 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_ms.js 			#京东秒秒币 一个号大概60
+	jd_joy_park.js			#汪汪乐园养joy
+	jd_ddworld_exchange.js		#东东世界兑换
+	jd_lxLottery.js			#京东我的理想家
 	gua_UnknownTask5.js
 	jd_big_winner.js		#翻翻乐
 	gua_opencard85.js		#开卡85
@@ -528,7 +528,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
 	jd_m_sign.js			#京东通天塔
-	jd_ddworld_exchange.js		#东东世界兑换
 	jd_nh_sign.js			#年货签到
 	gua_dayday_ysq.js		#天天压岁钱，不要外传
 EOF
@@ -566,8 +565,6 @@ EOF
 run_0() {
 #过期京豆兑换为喜豆变量
 export exjxbeans="true"
-#jd_lxLottery.js京东我的理想家,开卡加购
-export FS_LEVEL="card"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	#jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
@@ -581,7 +578,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_lxLottery.js			#京东我的理想家
 	jd_mohe.js			#5G超级盲盒
 	jd_club_lottery.js 		#摇京豆，没时间要求
 EOF
@@ -704,7 +700,6 @@ run_03() {
 cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
 	jd_mohe.js			#5G超级盲盒
-	jd_joy_park.js			#汪汪乐园养joy
 	jd_joy_park_task.js		#汪汪乐园
 	#jd_jdzz.js			#京东赚赚
 EOF
@@ -755,7 +750,6 @@ run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_ms.js 			#京东秒秒币 一个号大概60
 	jd_speed_redpocke.js		#极速版红包
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_jin_tie_xh.js  		#领金贴
