@@ -514,7 +514,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	gua_city.js			#城城分现金
+	#gua_city.js			#城城分现金
 	jd_connoisseur.js		#内容鉴赏官
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
@@ -544,7 +544,7 @@ EOF
 concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	gua_city.js			#城城分现金
+	#gua_city.js			#城城分现金
 	jd_dreamFactory.js 		#京喜工厂
 	jd_price.js		        #价保脚本
 	jd_angryKoi.js			#愤怒的锦鲤
