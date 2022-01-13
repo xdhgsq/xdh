@@ -237,7 +237,6 @@ done
 #Aaron
 Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
 cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
-	jd_mohe.js			#5G超级盲盒
 	jd_ccSign.js			#领券中心签到
 	jd_cash.js			#签到领现金，每日2毛～5毛长期
 	jd_connoisseur.js		#内容鉴赏官
@@ -439,6 +438,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_mohe.js			#5G超级盲盒
 	jd_ms.js 			#京东秒秒币 一个号大概60
 	jd_joy_park.js			#汪汪乐园养joy
 	jd_ddworld_exchange.js		#东东世界兑换
@@ -578,7 +578,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_mohe.js			#5G超级盲盒
 	jd_club_lottery.js 		#摇京豆，没时间要求
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
@@ -699,7 +698,6 @@ run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
-	jd_mohe.js			#5G超级盲盒
 	jd_joy_park_task.js		#汪汪乐园
 	#jd_jdzz.js			#京东赚赚
 EOF
