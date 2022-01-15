@@ -223,6 +223,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_jdzz.js			#京东赚赚
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
+	jd_babel_sign.js		#通天塔签到
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -530,6 +531,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
 	gua_dayday_ysq.js		#天天压岁钱，不要外传
+	jd_babel_sign.js		#通天塔签到
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
