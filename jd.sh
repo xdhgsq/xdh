@@ -411,6 +411,8 @@ done
 
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
 
+	 wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
+
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
 for i in `ls  $dir_file/config/tmp`
@@ -550,6 +552,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_price.js		        #价保脚本
 	jd_angryKoi.js			#愤怒的锦鲤
+	jd_mhyyl.js 			#萌虎摇摇乐
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -581,6 +584,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_mhyyl.js 			#萌虎摇摇乐
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
