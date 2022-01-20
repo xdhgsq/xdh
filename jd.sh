@@ -411,7 +411,8 @@ done
 
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
 
-	 wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
+	wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
+	wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_travel.js -O $dir_file_js/jd_travel.js #炸年兽
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -424,7 +425,6 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	gua_dayday_ysq.js		#天天压岁钱，不要外传
 	gua_opencard92.js		#开卡92
 	gua_nhjRed.js			#年货红红包有返利
-	jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
 	gua_city.js			#城城分现金
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
@@ -571,7 +571,7 @@ run_0() {
 #过期京豆兑换为喜豆变量
 export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
-	#jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
+	jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_sgmh.js 			#闪购盲盒长期活动
@@ -607,6 +607,7 @@ EOF
 run_020() {
 cat >/tmp/jd_tmp/run_020 <<EOF
 	#空.js
+	jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
 EOF
 	echo -e "${green} run_020$start_script_time ${white}"
 
@@ -668,6 +669,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
+	jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
