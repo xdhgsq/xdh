@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 task() {
-	cron_version="3.94"
+	cron_version="3.95"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -116,7 +116,7 @@ cat >>/etc/crontabs/root <<EOF
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
 0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
 0 0,8,20,22 * * * $node $dir_file_js/gua_nhjRed.js >/tmp/gua_nhjRed.log #年货红红包有返利#100#
-#0 3-23 * * * $node $dir_file_js/jd_travel.js >/tmp/jd_travel.log #炸年兽(需要手动点开活动，不然火爆)#100#
+0 3-23 * * * $node $dir_file_js/jd_travel.js >/tmp/jd_travel.log #炸年兽(需要手动点开活动，不然火爆)#100#
 0 0,8,15,20 * * * $node $dir_file_js/jd_tw.js >/tmp/jd_tw.log #特务Ｚ#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
 59 23 * * 0,1,2,5,6 sleep 57 && $dir_file/jd.sh run_jd_cash >/tmp/jd_cash_exchange.log	#签到领现金兑换#100#
@@ -270,8 +270,6 @@ cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_opencard96.js		#开卡96
 	gua_opencard97.js		#开卡97
 	gua_opencard98.js		#开卡98
-	gua_opencard99.js		#开卡99
-	gua_opencard100.js		#开卡100
 	jd_sign_graphics.js		#京东签到图形验证
 EOF
 
@@ -441,15 +439,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_mohe.js			#5G超级盲盒
-	jd_ms.js 			#京东秒秒币 一个号大概60
-	jd_joy_park.js			#汪汪乐园养joy
-	jd_ddworld_exchange.js		#东东世界兑换
-	jd_lxLottery.js			#京东我的理想家
-	gua_UnknownTask5.js
-	jd_big_winner.js		#翻翻乐
-	gua_opencard85.js		#开卡85
-	gua_opencard86s.js		#开卡86
+	gua_opencard99.js		#开卡99
+	gua_opencard100.js		#开卡100
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -669,7 +660,6 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
-	jd_travel.js			#炸年兽(需要手动点开活动，不然火爆)
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
