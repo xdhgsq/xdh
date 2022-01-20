@@ -250,7 +250,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_kd.js			#京东快递签到 一天运行一次即可
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	#jd_superMarket.js		#东东超市
-	jx_sign_xd.js			#京喜签到喜豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -518,7 +517,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_gold_creator.js		#金榜创造营
 	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
-	jx_sign_xd.js			#京喜签到喜豆
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_joy_park_task.js		#汪汪乐园
 	jd_pigPet.js			#金融养猪
