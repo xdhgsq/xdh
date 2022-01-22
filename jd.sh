@@ -519,7 +519,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_tyt.js			#极速版赚金币推一推
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_joy_park_task.js		#汪汪乐园
-	jd_pigPet.js			#金融养猪
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
 	gua_dayday_ysq.js		#天天压岁钱，不要外传
@@ -570,7 +569,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_ljd_xh.js			#领京豆
 	jd_fanli.js			#京东饭粒
-	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_club_lottery.js 		#摇京豆，没时间要求
