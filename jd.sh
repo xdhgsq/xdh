@@ -225,6 +225,8 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
 	jd_babel_sign.js		#通天塔签到
+	jd_xmf.js			#京东小魔方
+	jd_ms.js			#秒秒币
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -749,6 +751,8 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
 	jx_sign.js			#京喜签到
+	jd_xmf.js			#京东小魔方
+	jd_ms.js			#秒秒币
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
 
