@@ -421,7 +421,6 @@ done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
 	gua_dayday_ysq.js		#天天压岁钱，不要外传
-	gua_opencard92.js		#开卡92
 	gua_nhjRed.js			#年货红红包有返利
 	gua_city.js			#城城分现金
 	jd_tyt.js			#极速版赚金币推一推
@@ -439,6 +438,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	gua_opencard92.js		#开卡92
 	gua_opencard99.js		#开卡99
 	gua_opencard100.js		#开卡100
 EOF
