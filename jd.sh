@@ -223,6 +223,8 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
 	jd_babel_sign.js		#通天塔签到
+	jd_xmf.js			#京东小魔方
+	jd_ms.js			#秒秒币
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -517,7 +519,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_tyt.js			#极速版赚金币推一推
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_joy_park_task.js		#汪汪乐园
-	jd_pigPet.js			#金融养猪
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
 	gua_dayday_ysq.js		#天天压岁钱，不要外传
@@ -567,7 +568,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_ljd_xh.js			#领京豆
 	jd_fanli.js			#京东饭粒
-	jd_pigPet.js			#金融养猪
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_club_lottery.js 		#摇京豆，没时间要求
@@ -747,6 +747,8 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
 	jx_sign.js			#京喜签到
+	jd_xmf.js			#京东小魔方
+	jd_ms.js			#秒秒币
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
 
