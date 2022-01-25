@@ -287,7 +287,6 @@ yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
-	jd_pigPet.js			#金融养猪
 	jd_tw.js			#特务Ｚ
 EOF
 
