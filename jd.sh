@@ -249,7 +249,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_shop.js			#进店领豆
 	jd_kd.js			#京东快递签到 一天运行一次即可
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
-	#jd_superMarket.js		#东东超市
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -401,13 +400,11 @@ done
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_cookie.py -O $dir_file_js/jd_cookie.py
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/msg.py -O $dir_file_js/msg.py
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/sendNotify.py -O $dir_file_js/sendNotify.py
+	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	wget https://raw.githubusercontent.com/shufflewzc/faker3/main/jd_fcwb_help.js -O $dir_file_js/jd_fcwb_help.js	#发财挖宝助力
-
-	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
-
 	wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
 
 #将所有文本汇总
@@ -418,13 +415,11 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	gua_dayday_ysq.js		#天天压岁钱，不要外传
+	gua_dayday_ysq.js		#天天压岁钱
 	gua_nhjRed.js			#年货红红包有返利
-	gua_city.js			#城城分现金
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
-	jd_sgmh.js			#闪购盲盒长期活动
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
 	jd_jxmc_hb.js 			#京喜牧场助力
@@ -436,7 +431,6 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_travel.js 			#炸年兽
 	gua_opencard92.js		#开卡92
 	gua_opencard99.js		#开卡99
 	gua_opencard100.js		#开卡100
@@ -507,7 +501,6 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	#gua_city.js			#城城分现金
 	jd_connoisseur.js		#内容鉴赏官
 	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
@@ -520,7 +513,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_m_sign.js			#京东通天塔
 	jd_nh_sign.js			#年货签到
-	gua_dayday_ysq.js		#天天压岁钱，不要外传
+	gua_dayday_ysq.js		#天天压岁钱
 	jd_babel_sign.js		#通天塔签到
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -536,7 +529,6 @@ EOF
 concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	#gua_city.js			#城城分现金
 	jd_dreamFactory.js 		#京喜工厂
 	jd_price.js		        #价保脚本
 	jd_angryKoi.js			#愤怒的锦鲤
@@ -561,7 +553,6 @@ export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
-	jd_sgmh.js 			#闪购盲盒长期活动
 	jd_nzmh.js			#女装盲盒
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
@@ -716,11 +707,9 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
-	#jd_superMarket.js 		#东东超市,6点 18点多加两场用于收金币
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
 	jd_ccSign.js			#领券中心签到
-	jd_sgmh.js 			#闪购盲盒长期活动
 EOF
 	echo -e "${green} run_06_18$start_script_time ${white}"
 
@@ -765,7 +754,7 @@ EOF
 
 run_08_12_16() {
 cat >/tmp/jd_tmp/run_08_12_16 <<EOF
-	#jd_syj.js 			#赚京豆
+	#空.js
 EOF
 	echo -e "${green} run_08_12_16$start_script_time ${white}"
 
@@ -783,7 +772,6 @@ EOF
 
 run_10_15_20() {
 cat >/tmp/jd_tmp/run_10_15_20 <<EOF
-	#jd_superMarket.js 		#东东超市,0 10 15 20四场补货加劵
 	jd_speed_redpocke.js		#极速版红包
 EOF
 
@@ -2463,30 +2451,6 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 	cashcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_cash.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
 		sed -i "$cashcode_rows a \ $new_jdcash_set " $dir_file_js/jd_cash.js
-		js_amount=$(($js_amount - 1))
-	done
-
-
-	
-	#闪购盲盒
-	new_jdsgmh="T0225KkcRxoZ9AfVdB7wxvRcIQCjVWmIaW5kRrbA@T0225KkcRUhP9FCEKR79xaZYcgCjVWmIaW5kRrbA@T0205KkcH0RYsTOkY2iC8I10CjVWmIaW5kRrbA@T0205KkcJEZAjD2vYGGG4Ip0CjVWmIaW5kRrbA@T019vPVyQRke_EnWJxj1nfECjVQmoaT5kRrbA@T0225KkcRBYbo1fXKUv2k_5ccQCjVQmoaT5kRrbA@T0225KkcRh0ZoVfQchP9wvQJdwCjVQmoaT5kRrbA@T0205KkcJnlwogCDQ2G84qtICjVQmoaT5kRrbA"
-	zuoyou_20190516_jdsgmh="T0064r90RQCjVQmoaT5kRrbA@T0089r43CBsZCjVQmoaT5kRrbA@T0225KkcR00boFzRKEvzlvYCcACjVQmoaT5kRrbA@T00847wgARocCjVQmoaT5kRrbA@T0205KkcI0h7jSWqZE2c7ZBiCjVQmoaT5kRrbA@T0205KkcP1xuqTGMVEWVxbdwCjVQmoaT5kRrbA@T0205KkcKGhOnDStWma-8qlNCjVQmoaT5kRrbA@T0205KkcN0Z-nxGQUXig7p5pCjVQmoaT5kRrbA@T0205KkcN3dRjT69WmCdy5R3CjVQmoaT5kRrbA@T0205KkcM1ZsnCKmQ16y56V7CjVQmoaT5kRrbA@T0144qQkFUBOsgG4fQCjVQmoaT5kRrbA@T0225KkcR0scpgDUdBnxkaEPcgCjVQmoaT5kRrbA@T0205KkcOUt-tA2xfVuXyo9RCjVQmoaT5kRrbA@T019-akMAUNKozyMcl6e_L8CjVQmoaT5kRrbA@T0127KQtF1dc8lbXCjVQmoaT5kRrbA@T0155rQ3EUBOtA2Ifk0CjVQmoaT5kRrbA@T0225KkcRRtL_VeBckj1xaYNfACjVQmoaT5kRrbA@T0225KkcRB8d9FLRKU6nkPQOdwCjVQmoaT5kRrbA@T0225KkcRRgZ_FPWKU_2k_dYJwCjVQmoaT5kRrbA@T0225KkcREoQ_VffcxulkfUNJgCjVQmoaT5kRrbA@T0225KkcREpN8FCEIxmgnKYCJwCjVQmoaT5kRrbA@T0205KkcFFZkixyvUWmHx655CjVQmoaT5kRrbA@T0225KkcRx8bo1LfcR6lwvBfIQCjVQmoaT5kRrbA@T023a3PDlaO-I_Z19blMQkyzdDwCjVQmoaT5kRrbA@T015v_hzRxwd8lfSIR0CjVQmoaT5kRrbA@T0225KkcRBsY81zXckj3kqUJJQCjVQmoaT5kRrbA"
-	jidiyangguang_20190516_jdsgmh="T0225KkcR0wdpFCGcRvwxv4JcgCjVWmIaW5kRrbA@T0225KkcRBpK8lbeIxr8wfRcdwCjVWmIaW5kRrbA"
-	chiyu_jdsgmh="T0117aUqCVsc91UCjVWmIaW5kRrbA"
-	Javon_20201224_jdsgmh="T023uvp2RBcY_VHKKBn3k_MMdNwCjVQmoaT5kRrbA"
-	Jhone_Potte_20200824_jdsgmh="T0225KkcRhsepFbSIhulk6ELIQCjVWmIaW5kRrbA@T0225KkcRk0QplaEIRigwaYPJQCjVWmIaW5kRrbA"
-	jidiyangguang_20190516_jdsgmh="T0225KkcRBpK8lbeIxr8wfRcdwCjVQmoaT5kRrbA@T0225KkcR0wdpFCGcRvwxv4JcgCjVQmoaT5kRrbA"
-	chiyu_jdsgmh="T0117aUqCVsc91UCjVQmoaT5kRrbA"
-	
-	ashou_20210516_jdsgmh="T018v_V1RRgf_VPSJhyb1ACjVQmoaT5kRrbA@T012a0DkmLenrwOACjVQmoaT5kRrbA@T0225KkcRRtN8wCBdUimlqVbJwCjVQmoaT5kRrbA@T0225KkcRkoboVKEJRr3xvINdQCjVQmoaT5kRrbA@T014_aIzGEdFoAGJdwCjVQmoaT5kRrbA@T0225KkcRhpI8VfXcR79wqVcIACjVQmoaT5kRrbA@T0225KkcRk1P8VTSdUmixvUIfQCjVQmoaT5kRrbA@T011-acrCh8Q_VECjVQmoaT5kRrbA"
-	dreamer_20200524_jdsgmh="T018v_VwRB4Z_VbUIhqb1ACjVQmoaT5kRrbA@T0225KkcRRsd_QCCKBjzl_NfdwCjVQmoaT5kRrbA@T0225KkcR0xKpgHeIRKnlvEDcwCjVQmoaT5kRrbA@T0225KkcREtN8VeFJx_3wKEOcACjVQmoaT5kRrbA@T0169KUsBU1BsArXJxvzCjVQmoaT5kRrbA"
-	
-	new_jdsgmh_set="$new_jdsgmh@$zuoyou_20190516_jdsgmh@$jidiyangguang_20190516_jdsgmh@$chiyu_jdsgmh@$Javon_20201224_jdsgmh@$xo_20201229_jdsgmh@$Jhone_Potte_20200824_jdsgmh@$jidiyangguang_20190516_jdsgmh@$chiyu_jdsgmh@$ashou_20210516_jdsgmh@$dreamer_20200524_jdsgmh"
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	sgmhcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_sgmh.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$sgmhcode_rows a \ '$new_jdsgmh_set', " $dir_file_js/jd_sgmh.js
 		js_amount=$(($js_amount - 1))
 	done
 
