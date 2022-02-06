@@ -463,6 +463,10 @@ done
 	concurrent_js_update
 	source /etc/profile
 	echo -e "${green} update$stop_script_time ${white}"
+	if [ `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` -gt "1"];then
+		echo -e "${yellow}此次下载失败的脚本有以下：${white}"
+		cat $dir_file/config/tmp/wget_eeror.txt
+	fi
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 
 }
@@ -481,6 +485,7 @@ update_if() {
 				if [ $eeror_num -ge 5 ];then
 					echo ">> ${yellow}$script_name${white}下载$eeror_num次都失败，跳过这个下载"
 					num=$(expr $num - 1)
+					echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
 				else
 					echo -e ">> ${yellow}$script_name${white}下载失败,尝试第$eeror_num次下载"
 					eeror_num=$(expr $eeror_num + 1)
