@@ -249,8 +249,8 @@ EOF
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	url="$Aaron_url"
-	wget $Aaron_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $Aaron_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 done
 
 
@@ -266,8 +266,8 @@ for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js"
 do
 {
 	url="$smiek2221_url"
-	wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 }&
 done
 
@@ -283,8 +283,8 @@ for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*
 do
 {
 	url="$yuannian1112_url"
-	wget $yuannian1112_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $yuannian1112_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 }&
 done
 
@@ -385,7 +385,7 @@ done
 
 	wget https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_products_detail.js -O $dir_file_js/jx_products_detail.js #京喜工厂商品列表详情
 	wget https://raw.githubusercontent.com/shufflewzc/faker3/0bc2fef31fbb3a39de0c2613fdb66d3ae2e7d48a/jd_jxmc_hb.js -O $dir_file_js/jd_jxmc_hb.js #京喜牧场助力
-	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
+	#wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
 	
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_cookie.py -O $dir_file_js/jd_cookie.py
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/msg.py -O $dir_file_js/msg.py
@@ -395,7 +395,7 @@ done
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	wget https://raw.githubusercontent.com/shufflewzc/faker3/main/jd_fcwb_help.js -O $dir_file_js/jd_fcwb_help.js	#发财挖宝助力
-	wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
+	#wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
