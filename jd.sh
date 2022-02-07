@@ -215,13 +215,9 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_nnfls.js			#牛牛福利
 	jd_fanli.js			#京东饭粒
 	jd_gold_creator.js		#金榜创造营
-	jd_speed_redpocke.js		#极速版红包
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_price.js		        #价保脚本
-	jd_nzmh.js			#女装盲盒
 	jd_jdzz.js			#京东赚赚
 	jd_m_sign.js			#京东通天塔
-	jd_nh_sign.js			#年货签到
 	jd_babel_sign.js		#通天塔签到
 	jd_xmf.js			#京东小魔方
 	jd_ms.js			#秒秒币
@@ -263,12 +259,7 @@ done
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
-	gua_opencard93.js		#开卡93
-	gua_opencard94.js		#开卡94
-	gua_opencard95.js		#开卡95
 	gua_opencard96.js		#开卡96
-	gua_opencard97.js		#开卡97
-	gua_opencard98.js		#开卡98
 	jd_sign_graphics.js		#京东签到图形验证
 EOF
 
@@ -431,9 +422,15 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	gua_opencard92.js		#开卡92
-	gua_opencard99.js		#开卡99
-	gua_opencard100.js		#开卡100
+	gua_opencard93.js		#开卡93
+	gua_opencard94.js		#开卡94
+	gua_opencard95.js		#开卡95
+	gua_opencard97.js		#开卡97
+	gua_opencard98.js		#开卡98
+	jd_price.js		        #价保脚本
+	jd_nh_sign.js			#年货签到
+	jd_nzmh.js			#女装盲盒
+	jd_speed_redpocke.js		#极速版红包
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -482,12 +479,12 @@ update_if() {
 			if [ $? -eq 0 ]; then
 				num=$(expr $num - 1)
 			else
-				if [ $eeror_num -ge 5 ];then
+				if [ $eeror_num -ge 3 ];then
 					echo ">> ${yellow}$script_name${white}下载$eeror_num次都失败，跳过这个下载"
 					num=$(expr $num - 1)
 					echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
 				else
-					echo -e ">> ${yellow}$script_name${white}下载失败,尝试第$eeror_num次下载"
+					echo -e ">> ${yellow}$script_name${white}下载失败,开始尝试第$eeror_num次下载，3次下载失败就不再重试。"
 					eeror_num=$(expr $eeror_num + 1)
 				fi
 			fi
@@ -517,7 +514,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fcwb_help.js			#发财挖宝助力
 	jd_joy_park_task.js		#汪汪乐园
 	jd_m_sign.js			#京东通天塔
-	jd_nh_sign.js			#年货签到
 	gua_dayday_ysq.js		#天天压岁钱
 	jd_babel_sign.js		#通天塔签到
 EOF
@@ -535,7 +531,6 @@ concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
-	jd_price.js		        #价保脚本
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_mhyyl.js 			#萌虎摇摇乐
 EOF
@@ -558,7 +553,6 @@ export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
-	jd_nzmh.js			#女装盲盒
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_ljd_xh.js			#领京豆
@@ -734,7 +728,6 @@ run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_speed_redpocke.js		#极速版红包
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
@@ -777,7 +770,7 @@ EOF
 
 run_10_15_20() {
 cat >/tmp/jd_tmp/run_10_15_20 <<EOF
-	jd_speed_redpocke.js		#极速版红包
+	#空.js
 EOF
 
 	echo -e "${green} run_10_15_20$start_script_time ${white}"
