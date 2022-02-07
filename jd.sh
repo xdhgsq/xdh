@@ -463,7 +463,7 @@ done
 	concurrent_js_update
 	source /etc/profile
 	echo -e "${green} update$stop_script_time ${white}"
-	if [ `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` -gt "1"];then
+	if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` == "0"];then
 		echo -e "${yellow}此次下载失败的脚本有以下：${white}"
 		cat $dir_file/config/tmp/wget_eeror.txt
 	fi
