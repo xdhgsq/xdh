@@ -226,8 +226,8 @@ for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" |
 do
 {
 	url="$zero205_url"
-	wget $zero205_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $zero205_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 }&
 done
 
@@ -299,8 +299,8 @@ EOF
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	url="$star261_url"
-	wget $star261_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $star261_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 done
 
 #X1a0He
