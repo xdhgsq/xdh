@@ -394,7 +394,6 @@ done
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
-	wget https://raw.githubusercontent.com/shufflewzc/faker3/main/jd_fcwb_help.js -O $dir_file_js/jd_fcwb_help.js	#发财挖宝助力
 	#wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
 
 #将所有文本汇总
@@ -420,6 +419,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_fcwb_help.js			#发财挖宝助力
 	gua_nhjRed.js
 	gua_opencard93.js		#开卡93
 	gua_opencard94.js		#开卡94
@@ -510,7 +510,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_gold_creator.js		#金榜创造营
 	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
-	jd_fcwb_help.js			#发财挖宝助力
 	jd_joy_park_task.js		#汪汪乐园
 	jd_m_sign.js			#京东通天塔
 	gua_dayday_ysq.js		#天天压岁钱
