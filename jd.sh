@@ -2555,6 +2555,7 @@ del_if() {
 		del_js
 		echo ""
 	fi
+	clear
 }
 
 
