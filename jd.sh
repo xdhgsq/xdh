@@ -2186,6 +2186,8 @@ xiaodengzi_random_20190516_fr="e004a4244e244863b14d7210f8513113@f69821dde34540d3
 	
 jidiyangguang_20190516_fr="3e6f0b7a2d054331a0b5b956f36645a9@304b39f17d6c4dac87933882d4dec6bc"
 
+baipiaoguai_fr="456e5601548642a5a9bcc86a54085154@61f21ef708c948568854ec50c3627085@72dd4d3e2245472986f729953c5be146@13be2ecb23344d86ada656a3d8a6cf92@3f67b8f4a53641ad992c2f0584cdf46d"
+
 	if [ ! $jd_sharecode_fr ];then
 		echo "东东农场本地助力码为空"
 		new_fruit1="$ITdesk_fr"
@@ -2194,7 +2196,7 @@ jidiyangguang_20190516_fr="3e6f0b7a2d054331a0b5b956f36645a9@304b39f17d6c4dac8793
 		new_fruit1="$jd_sharecode_fr@$ITdesk_fr"
 	fi
 
-	random_fruit="$ITdesk_random_fr@$zuoyou_20190516_random_fr@$Javon_random_fr@$xiaodengzi_random_20190516_fr"
+	random_fruit="$ITdesk_random_fr@$zuoyou_20190516_random_fr@$Javon_random_fr@$xiaodengzi_random_20190516_fr@$baipiaoguai_fr"
 	random="$random_fruit"
 	random_array
 	new_fruit_set="'$new_fruit1@$zuoyou_20190516_fr@$Javon_20201224_fr@$jidiyangguang_20190516_fr@$ashou_20210516_fr@$xiaodengzi_20190516_fr@$xiaobandeng_fr@$chiyu_fr@$random_set',"
@@ -2235,6 +2237,7 @@ xiaodengzi_20190516_pet="MTE1NDUwMTI0MDAwMDAwMDM5NTc4ODQz@MTAxODExNDYxMTEwMDAwMD
 
 jidiyangguang_20190516_pet="MTE1NDQ5OTUwMDAwMDAwMzk2NTY2MTk=@MTE1NDQ5MzYwMDAwMDAwMzk2NTY2MTE="
 
+baipiaoguai_pet="MTE1NDQ5OTUwMDAwMDAwNDUyNzA4NDc=@MTEzMzI0OTE0NTAwMDAwMDA0NTIxOTk3MQ==@MTEyNjE4NjQ2MDAwMDAwMDQ4MTI4MjE3@MTEzMzE5ODE0NDAwMDAwMDA0OTYyMzYwNQ==@MTEyNzEzMjc0MDAwMDAwMDUzNjg2MTE5"
 
 	if [ ! $jd_sharecode_pet ];then
 		echo "萌宠本地助力码为空"
@@ -2244,7 +2247,7 @@ jidiyangguang_20190516_pet="MTE1NDQ5OTUwMDAwMDAwMzk2NTY2MTk=@MTE1NDQ5MzYwMDAwMDA
 		new_pet="$jd_sharecode_pet@$ITdesk_pet"
 	fi
 
-	random_pet="$ITdesk_random_pet@$zuoyou_20190516_random_pet@$Javon_random_pet"
+	random_pet="$ITdesk_random_pet@$zuoyou_20190516_random_pet@$Javon_random_pet@$baipiaoguai_pet"
 	random="$random_pet"
 	random_array
 	new_pet_set="'$new_pet@$zuoyou_20190516_pet@$Javon_20201224_pet@$jidiyangguang_20190516_pet@$Jhone_Potte_20200824_pet@$chiyu_pet@$ashou_20210516_pet@$xiaodengzi_20190516_pet@$random_set',"
@@ -2283,6 +2286,8 @@ xiaodengzi_20190516_pb="kcpj4m5kmd4sfdp7ilsvvtkdvu@4npkonnsy7xi32mpzw3ekc36hh7fe
 	
 jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3smz2qmjorpg6ldw5otnabrmlei"
 
+baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x6cosobnqtyrbvaa@66nvo67oyxpycucmbw7emjhuj6xfe3d3ellmesq@h3cggkcy6agkgtvxoy76nn63ki7ans4blqb54vq@f5pavyxxlph5okvnqdbkpotqnauxqj6nyl5hm5a"
+
 	if [ ! $jd_sharecode_pb ];then
 		echo "种豆本地助力码为空"
 		new_plantBean1="$ITdesk_pb"
@@ -2290,7 +2295,7 @@ jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3
 		echo "开始添加种豆本地助力码"
 		new_plantBean1="$jd_sharecode_pb@$ITdesk_pb"
 	fi
-	random_plantBean="$ITdesk_random_pb@$zuoyou_20190516_random_pb@$Javon_random_pb"
+	random_plantBean="$ITdesk_random_pb@$zuoyou_20190516_random_pb@$Javon_random_pb@$baipiaoguai_pb"
 	random="$random_plantBean"
 	random_array
 	new_plantBean_set="'$new_plantBean1@$zuoyou_20190516_pb@$Javon_20201224_pb@$jidiyangguang_20190516_pb@$chiyu_pb@$ashou_20210516_pb@$random_set',"
