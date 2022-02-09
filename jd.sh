@@ -191,6 +191,12 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_speed.js			#天天加速
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	jd_unsubscribe.js		#取关京东店铺和商品
+	jdPetShareCodes.js
+	jdJxncShareCodes.js
+	jdFruitShareCodes.js
+	jdFactoryShareCodes.js
+	jdPlantBeanShareCodes.js
+	jdDreamFactoryShareCodes.js
 EOF
 
 for script_name in `cat $dir_file/config/tmp/lxk0301_script.txt | grep -v "#.*js" | awk '{print $1}'`
