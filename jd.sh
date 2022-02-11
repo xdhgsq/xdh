@@ -250,13 +250,15 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_shop.js			#进店领豆
 	jd_kd.js			#京东快递签到 一天运行一次即可
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
+	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
+	jd_plantBean.js			#种豆得豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	url="$Aaron_url"
-	#wget $Aaron_url/$script_name -O $dir_file_js/$script_name
-	#update_if
+	wget $Aaron_url/$script_name -O $dir_file_js/$script_name
+	update_if
 done
 
 
@@ -272,15 +274,14 @@ for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js"
 do
 {
 	url="$smiek2221_url"
-	#wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
-	#update_if
+	wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
+	update_if
 }&
 done
 
 #yuannian1112
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
-	jd_plantBean.js			#种豆得豆
 	jd_dwapp.js			#积分换话费
 	jd_tw.js			#特务Ｚ
 EOF
@@ -413,7 +414,6 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	gua_dayday_ysq.js		#天天压岁钱
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
-	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
 	#jd_jxmc_hb.js 			#京喜牧场助力
@@ -528,7 +528,7 @@ EOF
 		$run_sleep
 	}&
 	done
-	$python3  $openwrt_script/JD_Script/js/jd_zjd.py
+	#$python3  $openwrt_script/JD_Script/js/jd_zjd.py
 }
 
 concurrent_js_run_07() {
