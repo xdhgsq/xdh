@@ -401,6 +401,7 @@ done
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	#wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
+	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_xinruimz.js -O $dir_file_js/jd_xinruimz.js #颜究种植园(需要手动选择种植小样)
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -648,6 +649,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
+	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
