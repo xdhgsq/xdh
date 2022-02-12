@@ -402,6 +402,7 @@ done
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	#wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
 	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_xinruimz.js -O $dir_file_js/jd_xinruimz.js #颜究种植园(需要手动选择种植小样)
+	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_wq_wxsign.js -O $dir_file_js/jd_wq_wxsign.js #微信签到领红包
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -521,6 +522,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_m_sign.js			#京东通天塔
 	gua_dayday_ysq.js		#天天压岁钱
 	jd_babel_sign.js		#通天塔签到
+	jd_wq_wxsign.js 		#微信签到领红包
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
