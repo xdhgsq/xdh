@@ -583,15 +583,6 @@ EOF
 		$run_sleep
 	done
 	echo -e "${green} run_020$stop_script_time ${white}"
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
-	export plant_cookie=$(seq 1 $js_amount | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
-
-	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:s
-pace:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
-
-
-	$python  $dir_file_js/jd_health_plant.py		#京东健康社区-种植园
 }
 
 run_030() {
@@ -780,6 +771,18 @@ EOF
 	done
 	$python  $dir_file_js/jd_getFollowGift.py #关注有礼
 	echo -e "${green} run_10_15_20$stop_script_time ${white}"
+}
+
+test() {
+	js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
+	export plant_cookie=$(seq 1 $js_amount | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+
+	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:s
+pace:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+
+
+	$python  $dir_file_js/jd_health_plant.py		#京东健康社区-种植园
+
 }
 
 run_jsqd(){
@@ -3166,7 +3169,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
+		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -3185,7 +3188,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
+		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
