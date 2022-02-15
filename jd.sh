@@ -288,6 +288,21 @@ do
 }&
 done
 
+#asd920
+asd920_url="https://raw.githubusercontent.com/asd920/Auto/main"
+cat >$dir_file/config/tmp/asd920_url.txt <<EOF
+	jd_EsportsManager.js 		#东东电竞经理
+EOF
+
+for script_name in `cat $dir_file/config/tmp/asd920_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	url="$asd920_url"
+	wget $asd920_url/$script_name -O $dir_file_js/$script_name
+	update_if
+}&
+done
+
 #yuannian1112
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
@@ -500,6 +515,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_EsportsManager.js 		#东东电竞经理
 	jd_connoisseur.js		#内容鉴赏官
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
@@ -650,7 +666,7 @@ EOF
 
 run_02() {
 cat >/tmp/jd_tmp/run_02 <<EOF
-	#空.js
+	jd_EsportsManager.js 		#东东电竞经理
 EOF
 	echo -e "${green} run_02$start_script_time ${white}"
 
