@@ -277,6 +277,7 @@ cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	jd_xinruimz.js 			#颜究种植园(需要手动选择种植小样)
 	jd_wq_wxsign.js 		#微信签到领红包
 	jd_health_plant.py		#京东健康社区-种植园
+	jd_syj.js			#赚京豆-瓜分京豆脚本
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -513,8 +514,12 @@ update_script() {
 }
 
 ccr_run() {
+#赚京豆-瓜分京豆脚本变量
+export JD_SYJ=true
+
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_syj.js			#赚京豆-瓜分京豆脚本
 	jd_EsportsManager.js 		#东东电竞经理
 	jd_connoisseur.js		#内容鉴赏官
 	jd_nnfls.js			#牛牛福利
