@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 task() {
-	cron_version="4.00"
+	cron_version="4.01"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -116,7 +116,6 @@ cat >>/etc/crontabs/root <<EOF
 0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
 0 0,8,15,20 * * * $node $dir_file_js/jd_tw.js >/tmp/jd_tw.log #特务Ｚ#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
-59 23 * * 0,1,2,5,6 sleep 57 && $dir_file/jd.sh run_jd_cash >/tmp/jd_cash_exchange.log	#签到领现金兑换#100#
 59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
 59 */1 * * * $dir_file/jd.sh jd_time >/tmp/jd_time.log	#同步京东时间#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
@@ -186,7 +185,6 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
-	jd_car.js			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_speed.js			#天天加速
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	jd_unsubscribe.js		#取关京东店铺和商品
@@ -310,7 +308,6 @@ done
 #X1a0He
 X1a0He_url="https://raw.githubusercontent.com/X1a0He/jd_scripts_fixed/main"
 cat >$dir_file/config/tmp/X1a0He_url.txt <<EOF
-	jd_car_exchange_xh.js		#京东汽车兑换
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ljd_xh.js			#领京豆
 EOF
@@ -424,6 +421,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_live.js			#京东直播
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 EOF
@@ -552,7 +550,6 @@ run_0() {
 #过期京豆兑换为喜豆变量
 export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
-	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_ljd_xh.js			#领京豆
@@ -823,18 +820,6 @@ file_num=$(ls $ccr_js_file | wc -l)
 			echo -e "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个"
 		fi
 		num=$(($num + 1))
-	done
-}
-
-run_jd_cash() {
-cat >/tmp/jd_tmp/run_jd_cash <<EOF
-	jd_car_exchange_xh.js #京东汽车兑换
-EOF
-	jd_cash_num="5"
-	while [[ ${jd_cash_num} -gt 0 ]]; do
-		$node $dir_file_js/jd_car_exchange_xh.js &
-		sleep 2
-		jd_cash_num=$(($jd_cash_num - 1))
 	done
 }
 
@@ -3182,7 +3167,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
+		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
 		$action1
 		;;
 		kill_ccr)
@@ -3201,7 +3186,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_cash|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
+		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs)
 		$action2
 		;;
 		kill_ccr)
