@@ -780,6 +780,9 @@ test() {
 
 	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 
+	charge_num=$(for i in `seq 1 $js_amount`;do echo "101908";done )
+	export charge_targe_id=$(echo "$charge_num" | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+
 
 	$python3 $dir_file_js/jd_health_plant.py
 
