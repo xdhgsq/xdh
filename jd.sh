@@ -2129,6 +2129,7 @@ additional_settings() {
 		sed -i 's/helpAu = true/helpAu = false/g' $dir_file_js/$i
 		#Aaron
 		sed -i 's/master\/shareCodes/12345/g' $dir_file_js/$i
+		sed -i "s/transfer.nz.lu\/jxmc/1234/g" $dir_file_js/$i
 		#Cdle
 		sed -i 's/jdsharecode.xyz/12345.xyz/g' $dir_file_js/$i
 		#Zero
@@ -2137,6 +2138,7 @@ additional_settings() {
 		sed -i 's/lukelucky6\/code/12345/g' $dir_file_js/$i
 		#Smiek
 		sed -i 's/jd.smiek.tk/jd.12345.tk/g' $dir_file_js/$i
+
 	}&
 	done
 	wait
