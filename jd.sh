@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 task() {
-	cron_version="4.01"
+	cron_version="4.02"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -114,7 +114,6 @@ cat >>/etc/crontabs/root <<EOF
 5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
 0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
-0 0,8,15,20 * * * $node $dir_file_js/jd_tw.js >/tmp/jd_tw.log #特务Ｚ#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
 59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
 59 */1 * * * $dir_file/jd.sh jd_time >/tmp/jd_time.log	#同步京东时间#100#
@@ -277,7 +276,6 @@ done
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
 	jd_dwapp.js			#积分换话费
-	jd_tw.js			#特务Ｚ
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -419,6 +417,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_tw.js			#特务Ｚ
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
 	jd_ljd_xh.js			#领京豆
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
@@ -895,7 +894,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|jx_products_detail.js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|jx_products_detail.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python $jd_file/ccr_js/js_1/$i &
