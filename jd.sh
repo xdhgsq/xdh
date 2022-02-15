@@ -185,7 +185,6 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
-	jd_speed.js			#天天加速
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	jd_unsubscribe.js		#取关京东店铺和商品
 	jdPetShareCodes.js
@@ -420,6 +419,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
 	jd_ljd_xh.js			#领京豆
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_live.js			#京东直播
@@ -676,7 +676,6 @@ EOF
 run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
-	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
 	jd_joy_park_task.js		#汪汪乐园
 	#jd_jdzz.js			#京东赚赚
 EOF
