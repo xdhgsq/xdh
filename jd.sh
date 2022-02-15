@@ -271,6 +271,22 @@ do
 }&
 done
 
+#okyyds
+okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
+cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
+	jd_xinruimz.js 			#颜究种植园(需要手动选择种植小样)
+	jd_wq_wxsign.js 		#微信签到领红包
+EOF
+
+for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	url="$okyyds_url"
+	wget $okyyds_url/$script_name -O $dir_file_js/$script_name
+	update_if
+}&
+done
+
 #yuannian1112
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
@@ -366,18 +382,6 @@ do
 	#update_if
 done
 
-#Tsukasa007
-Tsukasa007_url="https://raw.githubusercontent.com/Tsukasa007/my_script/master"
-cat >$dir_file/config/tmp/Tsukasa007_url.txt <<EOF
-	#空.js
-EOF
-
-for script_name in `cat $dir_file/config/tmp/Tsukasa007_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$Tsukasa007_url"
-	#wget $Tsukasa007_url/$script_name -O $dir_file_js/$script_name
-	#update_if
-done
 
 	wget https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_products_detail.js -O $dir_file_js/jx_products_detail.js #京喜工厂商品列表详情
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
@@ -389,9 +393,6 @@ done
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
-
-	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_xinruimz.js -O $dir_file_js/jd_xinruimz.js #颜究种植园(需要手动选择种植小样)
-	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_wq_wxsign.js -O $dir_file_js/jd_wq_wxsign.js #微信签到领红包
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
