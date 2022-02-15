@@ -276,6 +276,7 @@ okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	jd_xinruimz.js 			#颜究种植园(需要手动选择种植小样)
 	jd_wq_wxsign.js 		#微信签到领红包
+	jd_health_plant.py		#京东健康社区-种植园
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -582,6 +583,15 @@ EOF
 		$run_sleep
 	done
 	echo -e "${green} run_020$stop_script_time ${white}"
+
+	js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
+	export plant_cookie=$(seq 1 $js_amount | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+
+	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:s
+pace:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+
+
+	$python  $dir_file_js/jd_health_plant.py		#京东健康社区-种植园
 }
 
 run_030() {
