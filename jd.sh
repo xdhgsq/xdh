@@ -402,7 +402,6 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	gua_dayday_ysq.js		#天天压岁钱
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
 	jd_goodMorning.js		#早起福利
@@ -509,7 +508,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jd_joy_park_task.js		#汪汪乐园
-	gua_dayday_ysq.js		#天天压岁钱
 	jd_babel_sign.js		#通天塔签到
 	jd_wq_wxsign.js 		#微信签到领红包
 EOF
