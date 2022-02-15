@@ -293,6 +293,7 @@ done
 asd920_url="https://raw.githubusercontent.com/asd920/Auto/main"
 cat >$dir_file/config/tmp/asd920_url.txt <<EOF
 	jd_EsportsManager.js 		#东东电竞经理
+	jd_HappyNewYear_Shares.js	#2022欢度元宵
 EOF
 
 for script_name in `cat $dir_file/config/tmp/asd920_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -419,7 +420,6 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	jd_HappyNewYear_Shares.js	#欢度元宵
 	jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
