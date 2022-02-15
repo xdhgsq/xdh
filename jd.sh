@@ -697,6 +697,7 @@ EOF
 
 run_06_18() {
 cat >/tmp/jd_tmp/run_06_18 <<EOF
+	jd_xmf.js			#京东小魔方
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
@@ -725,7 +726,6 @@ cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
 	jx_sign.js			#京喜签到
-	jd_xmf.js			#京东小魔方
 	jd_ms.js			#秒秒币
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
