@@ -774,13 +774,14 @@ EOF
 }
 
 test() {
+	#京东健康社区-种植园
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
 	export plant_cookie=$(seq 1 $js_amount | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 
 	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 
 
-	$python  $dir_file_js/jd_health_plant.py		#京东健康社区-种植园
+	$python $dir_file_js/jd_health_plant.py
 
 }
 
