@@ -380,7 +380,6 @@ do
 done
 
 	wget https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_products_detail.js -O $dir_file_js/jx_products_detail.js #京喜工厂商品列表详情
-	#wget https://raw.githubusercontent.com/shufflewzc/faker3/0bc2fef31fbb3a39de0c2613fdb66d3ae2e7d48a/jd_jxmc_hb.js -O $dir_file_js/jd_jxmc_hb.js #京喜牧场助力
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
 	
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_cookie.py -O $dir_file_js/jd_cookie.py
@@ -390,7 +389,7 @@ done
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
-	#wget https://raw.githubusercontent.com/mmnvnmm/omo/master/jd_mhyyl.js -O $dir_file_js/jd_mhyyl.js #萌虎摇摇乐
+
 	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_xinruimz.js -O $dir_file_js/jd_xinruimz.js #颜究种植园(需要手动选择种植小样)
 	wget https://raw.githubusercontent.com/okyyds/yyds/master/jd_wq_wxsign.js -O $dir_file_js/jd_wq_wxsign.js #微信签到领红包
 
@@ -402,11 +401,11 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
 	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
-	#jd_jxmc_hb.js 			#京喜牧场助力
 	jd_OpenCard.py 			#开卡程序
 	jd_check_cookie.js		#检测cookie是否存活（暂时不能看到还有几天到期）
 	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
@@ -500,10 +499,8 @@ ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_connoisseur.js		#内容鉴赏官
-	jd_jxmc_hb.js 			#京喜牧场助力
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
-	#jx_sign_mb.js			#京喜签到(测试版本，带助力池)
 	jd_gold_creator.js		#金榜创造营
 	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
@@ -526,7 +523,6 @@ concurrent_js_run_07() {
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_angryKoi.js			#愤怒的锦鲤
-	jd_mhyyl.js 			#萌虎摇摇乐
 	jd_club_lottery.js 		#摇京豆，没时间要求
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
@@ -551,7 +547,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_fanli.js			#京东饭粒
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_mhyyl.js 			#萌虎摇摇乐
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
