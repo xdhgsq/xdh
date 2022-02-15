@@ -309,7 +309,6 @@ done
 X1a0He_url="https://raw.githubusercontent.com/X1a0He/jd_scripts_fixed/main"
 cat >$dir_file/config/tmp/X1a0He_url.txt <<EOF
 	jd_jin_tie_xh.js  		#领金贴
-	jd_ljd_xh.js			#领京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/X1a0He_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -421,6 +420,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_ljd_xh.js			#领京豆
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
 	jd_live.js			#京东直播
 	jd_cash.js 			#签到领现金，每日2毛～5毛长期
@@ -552,7 +552,6 @@ export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
-	jd_ljd_xh.js			#领京豆
 	jd_fanli.js			#京东饭粒
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
