@@ -533,6 +533,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_mhyyl.js 			#萌虎摇摇乐
+	jd_club_lottery.js 		#摇京豆，没时间要求
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -727,7 +728,6 @@ EOF
 run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
-	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
