@@ -769,7 +769,7 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	$python  $dir_file_js/jd_getFollowGift.py #关注有礼
+	$python3  $dir_file_js/jd_getFollowGift.py #关注有礼
 	echo -e "${green} run_10_15_20$stop_script_time ${white}"
 }
 
@@ -781,7 +781,7 @@ test() {
 	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 
 
-	$python $dir_file_js/jd_health_plant.py
+	$python3 $dir_file_js/jd_health_plant.py
 
 }
 
@@ -902,7 +902,7 @@ Tjs()	{
 	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|jx_products_detail.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
-			$python $jd_file/ccr_js/js_1/$i &
+			$python3 $jd_file/ccr_js/js_1/$i &
 		else
 			$node $jd_file/ccr_js/js_1/$i &
 		fi
