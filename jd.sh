@@ -241,7 +241,7 @@ done
 Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
 cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_ccSign.js			#领券中心签到
-	jd_cash.js			#签到领现金，每日2毛～5毛长期
+	#jd_cash.js			#签到领现金，每日2毛～5毛长期
 	jd_connoisseur.js		#内容鉴赏官
 	jd_live.js			#京东直播
 	jd_jxmc.js			#京喜牧场
@@ -426,18 +426,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	gua_opencard96.js		#开卡96
-	jd_fcwb_help.js			#发财挖宝助力
-	gua_nhjRed.js
-	gua_opencard93.js		#开卡93
-	gua_opencard94.js		#开卡94
-	gua_opencard95.js		#开卡95
-	gua_opencard97.js		#开卡97
-	gua_opencard98.js		#开卡98
-	jd_price.js		        #价保脚本
-	jd_nh_sign.js			#年货签到
-	jd_nzmh.js			#女装盲盒
-	jd_speed_redpocke.js		#极速版红包
+	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -564,7 +553,6 @@ run_0() {
 export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
-	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_ljd_xh.js			#领京豆
@@ -741,7 +729,6 @@ run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_cash.js 			#签到领现金，每日2毛～5毛长期
 	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
@@ -2443,7 +2430,7 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 		fi
 		echo "京东试用计划任务不导入"
 	fi
-
+:<<'COMMENT'
 	#签到领现金
 	new_jdcash="eU9Ya-iyZ68kpWrRmXBFgw@eU9YEJLQI4h1kiqNogJA@eU9YabrkZ_h1-GrcmiJB0A@eU9YM7bzIptVshyjrwlt@eU9YCLTrH5VesRWnvw5t@eU9YC6nQAZhYoiqgtw9x@eU9YCLXXPrhnhCiQlCRg@P2nGgK6JgLtCqJBeQJ0f27XXLQwYAFHrKmA2siZTuj8=@JuMHWNtZt4Ny_0ltvG6Ipg==@IRM2beu1b-En9mzUwnU@eU9YaOSwMP8m-D_XzHpF0w@eU9Yau-yMv8ho2fcnXAQ1Q@eU9YCovbMahykhWdvS9R@JxwyaOWzbvk7-W3WzHcV1mw"
 	zuoyou_20190516_jdcash="f1kwaQ@a1hzJOmy@eU9Ya7-wM_Qg-T_SyXIb0g@flpkLei3@eU9YD7rQHo1btTm9shR7@eU9YE67FOpl9hTG0mjNp@eU9YBJrlD5xcixKfrS1U@eU9YG7TVDLlhgAyBsRpw@eU9YG4X6HpZMixS8lBBu@eU9YH6THD4pXkiqTuCFi"
@@ -2468,6 +2455,7 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 		sed -i "$cashcode_rows a \ $new_jdcash_set " $dir_file_js/jd_cash.js
 		js_amount=$(($js_amount - 1))
 	done
+COMMENT
 
 	#京东赚赚长期活动
 	new_jdzz="AUWE5mKmQzGYKXGT8j38cwA@AUWE5mvvGzDFbAWTxjC0Ykw@AUWE5wPfRiVJ7SxKOuQY0@S5KkcJEZAjD2vYGGG4Ip0@S5KkcREsZ_QXWIx31wKJZcA@S5KkcRUwe81LRIR_3xaNedw@Suvp2RBcY_VHKKBn3k_MMdNw@SvPVyQRke_EnWJxj1nfE@S5KkcRBYbo1fXKUv2k_5ccQ@S5KkcRh0ZoVfQchP9wvQJdw@S5KkcJnlwogCDQ2G84qtI"
