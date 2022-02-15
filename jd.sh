@@ -461,16 +461,21 @@ done
 	rm -rf $dir_file_js/*.py.*
 	
 	#删除之前的黑名单
-	rm　-rf $openwrt_script_config/Script_blacklist.txt
+	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
+		rm　-rf $openwrt_script_config/Script_blacklist.txt
+	fi
 
 	additional_settings
 	concurrent_js_update
 	source /etc/profile
 	echo -e "${green} update$stop_script_time ${white}"
-	if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` == "0" ];then
-		echo -e "${yellow}此次下载失败的脚本有以下：${white}"
-		cat $dir_file/config/tmp/wget_eeror.txt
+	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
+		if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` == "0" ];then
+			echo -e "${yellow}此次下载失败的脚本有以下：${white}"
+			cat $dir_file/config/tmp/wget_eeror.txt
+		fi
 	fi
+
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 
 }
