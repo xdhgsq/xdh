@@ -217,7 +217,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_gold_creator.js		#金榜创造营
 	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_jdzz.js			#京东赚赚
-	jd_m_sign.js			#京东通天塔
 	jd_babel_sign.js		#通天塔签到
 	jd_xmf.js			#京东小魔方
 	jd_ms.js			#秒秒币
@@ -417,6 +416,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_m_sign.js			#京东通天塔
 	jd_tw.js			#特务Ｚ
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
 	jd_ljd_xh.js			#领京豆
@@ -509,7 +509,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jd_joy_park_task.js		#汪汪乐园
-	jd_m_sign.js			#京东通天塔
 	gua_dayday_ysq.js		#天天压岁钱
 	jd_babel_sign.js		#通天塔签到
 	jd_wq_wxsign.js 		#微信签到领红包
