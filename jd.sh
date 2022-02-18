@@ -181,7 +181,7 @@ rm -rf $dir_file/config/tmp/*
 
 #lxk0301_back
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
-	jd_fruit.js			#东东农场
+	#jd_fruit.js			#东东农场
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
@@ -326,14 +326,15 @@ done
 #star261
 star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
-	jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
+	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
+	jd_productZ4Brand.js		#特务Z
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	url="$star261_url"
-	#wget $star261_url/$script_name -O $dir_file_js/$script_name
-	#update_if
+	wget $star261_url/$script_name -O $dir_file_js/$script_name
+	update_if
 done
 
 #X1a0He
@@ -533,6 +534,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_babel_sign.js		#通天塔签到
 	jd_wq_wxsign.js 		#微信签到领红包
+	jd_productZ4Brand.js		#特务Z
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -550,6 +552,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_productZ4Brand.js		#特务Z
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -718,7 +721,7 @@ EOF
 run_06_18() {
 cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
-	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	#jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
@@ -2784,7 +2787,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws
+	npm install -g audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1
 	npm install --save axios
 
 	#安装python模块
