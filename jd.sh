@@ -278,6 +278,8 @@ cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	jd_wq_wxsign.js 		#微信签到领红包
 	jd_health_plant.py		#京东健康社区-种植园
 	jd_syj.js			#赚京豆-瓜分京豆脚本
+	gua_cleancart_ddo.js		#清空购物车(需要设置)
+	jd_computer.js			#电脑配件ID任务
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -293,7 +295,6 @@ done
 asd920_url="https://raw.githubusercontent.com/asd920/Auto/main"
 cat >$dir_file/config/tmp/asd920_url.txt <<EOF
 	jd_EsportsManager.js 		#东东电竞经理
-	jd_HappyNewYear_Shares.js	#2022欢度元宵
 EOF
 
 for script_name in `cat $dir_file/config/tmp/asd920_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -433,6 +434,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_HappyNewYear_Shares.js	#欢度元宵
 	jd_m_sign.js			#京东通天塔
 	jd_tw.js			#特务Ｚ
 	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
@@ -520,8 +522,7 @@ export JD_SYJ=true
 
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	#jd_HappyNewYear_Shares.js	#欢度元宵
-	#jd_syj.js			#赚京豆-瓜分京豆脚本
+	jd_syj.js			#赚京豆-瓜分京豆脚本
 	jd_EsportsManager.js 		#东东电竞经理
 	jd_connoisseur.js		#内容鉴赏官
 	jd_nnfls.js			#牛牛福利
@@ -572,6 +573,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_fanli.js			#京东饭粒
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_computer.js			#电脑配件ID任务
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -737,12 +739,18 @@ EOF
 }
 
 run_07() {
+#清空购物车的变量
+export JD_CART="true"
+export gua_cleancart_Run="true"
+#export gua_cleancart_products="*@&@所有账号清空"(这条默认不启用，自己写，然后扔到全局变量)
+export gua_cleancart_SignUrl="https://api.jds.codes/jd/sign"
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
 	jx_sign.js			#京喜签到
+	gua_cleancart_ddo.js		#清空购物车
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
 
