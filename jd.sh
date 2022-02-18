@@ -279,6 +279,7 @@ cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	jd_health_plant.py		#京东健康社区-种植园
 	jd_syj.js			#赚京豆-瓜分京豆脚本
 	gua_cleancart_ddo.js		#清空购物车(需要设置)
+	jd_computer.js			#电脑配件ID任务
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -572,6 +573,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_fanli.js			#京东饭粒
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_computer.js			#电脑配件ID任务
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
