@@ -181,7 +181,7 @@ rm -rf $dir_file/config/tmp/*
 
 #lxk0301_back
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
-	jd_fruit.js			#东东农场
+	#jd_fruit.js			#东东农场
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
@@ -721,7 +721,7 @@ EOF
 run_06_18() {
 cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
-	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	#jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
