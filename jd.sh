@@ -181,7 +181,7 @@ rm -rf $dir_file/config/tmp/*
 
 #lxk0301_back
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
-	#jd_fruit.js			#东东农场
+	jd_fruit.js			#东东农场
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
@@ -535,6 +535,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_babel_sign.js		#通天塔签到
 	jd_wq_wxsign.js 		#微信签到领红包
 	jd_productZ4Brand.js		#特务Z
+	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
