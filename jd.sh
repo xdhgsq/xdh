@@ -1373,7 +1373,7 @@ getcookie() {
 
 addcookie() {
 	
-	if [ `cat /tmp/getcookie.txt | wc -l` == "1" -o `cat /tmp/webaddcookie.txt | wc -l` == "1" ];then
+	if [ `cat /tmp/getcookie.txt | wc -l` == "1" ];then
 		clear
 		you_cookie=$(cat /tmp/getcookie.txt)
 		if [[ -z $you_cookie ]]; then
@@ -1450,7 +1450,7 @@ addcookie() {
 	fi
 	del_expired_cookie
 
-	if [ `cat /tmp/webaddcookie.txt | wc -l` == "1"  ];then
+	if [ `cat /tmp/getcookie.txt  | wc -l` == "1"  ];then
 		echo ""
 	else
 		addcookie_wait
@@ -1488,7 +1488,7 @@ addcookie_replace(){
 	check_cooike
 	sed -n  '1p' $openwrt_script_config/check_cookie.txt
 	grep "$pt_pin" $openwrt_script_config/check_cookie.txt
-	#rm -rf /tmp/getcookie.txt
+	rm -rf /tmp/getcookie.txt
 }
 
 addcookie_wait(){
