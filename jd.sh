@@ -558,6 +558,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_productZ4Brand.js		#特务Z
+	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
