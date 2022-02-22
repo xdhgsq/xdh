@@ -462,7 +462,7 @@ done
 	fi
 	chmod 755 $dir_file_js/*
 	kill_index
-	index_js
+	#index_js
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
