@@ -1,6 +1,4 @@
-const util = require('util');
 const child_process = require('child_process');
-const exec = util.promisify(child_process.exec);
 const fs = require('fs');
 const express = require('express');
 const got = require('got');
