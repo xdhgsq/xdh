@@ -200,7 +200,7 @@ app.post('/checkCode', async function (request, response) {
         ';';
       console.log(`你的cookie为:`, cookie)
       
-      await child_process.exec(`sh /usr/share/jd_openwrt_script/JD_Script/jd.sh addcookie concurrent_js_update`, function(err, sto) {
+      await child_process.exec(`echo "${cookie}" > /tmp/webaddcookie.txt && sh /usr/share/jd_openwrt_script/JD_Script/jd.sh addcookie concurrent_js_update`, function(err, sto) {
 	console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
       });
       response.send({
