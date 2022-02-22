@@ -1488,7 +1488,7 @@ addcookie_replace(){
 	check_cooike
 	sed -n  '1p' $openwrt_script_config/check_cookie.txt
 	grep "$pt_pin" $openwrt_script_config/check_cookie.txt
-	rm -rf /tmp/getcookie.txt
+	#rm -rf /tmp/getcookie.txt
 }
 
 addcookie_wait(){
