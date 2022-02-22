@@ -1452,9 +1452,12 @@ addcookie() {
 
 	if [ `cat /tmp/getcookie.txt  | wc -l` == "1"  ];then
 		echo ""
+		rm -rf /tmp/getcookie.txt
 	else
+		rm -rf /tmp/getcookie.txt
 		addcookie_wait
 	fi
+
 	
 }
 
@@ -1473,9 +1476,9 @@ addcookie_replace(){
 		cookie_quantity=$( cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l)
 		i=$(expr $cookie_quantity + 5)
 		if [ $i == "5" ];then
-			sed -i "5a \  'pt_pin=${pt_pin};pt_key=${pt_key};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
+			sed -i "5a \  'pt_key=${pt_key};pt_pin=${pt_pin};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
 		else
-			sed -i "$i a\  'pt_pin=${pt_pin};pt_key=${pt_key};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
+			sed -i "$i a\  'pt_key=${pt_key};pt_pin=${pt_pin};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
 		fi
 		echo -e "\n已将新cookie：${green}${you_cookie}${white}\n\n插入到${yellow}$openwrt_script_config/jdCookie.js${white} 第$i行\n"
 		cookie_quantity1=$( cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l)
@@ -1488,7 +1491,6 @@ addcookie_replace(){
 	check_cooike
 	sed -n  '1p' $openwrt_script_config/check_cookie.txt
 	grep "$pt_pin" $openwrt_script_config/check_cookie.txt
-	#rm -rf /tmp/getcookie.txt
 }
 
 addcookie_wait(){
