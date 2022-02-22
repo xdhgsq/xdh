@@ -466,6 +466,7 @@ done
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
+	rm -rf $openwrt_script_config/check_cookie.txt
 	
 	#删除之前的黑名单
 	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
@@ -1513,9 +1514,9 @@ addcookie_wait(){
 
 del_expired_cookie() {
 	echo -e "${green}整理一下check_cookie.txt,删掉一些过期的信息${white}"
-	for i in `cat $openwrt_script_config/check_cookie.txt | awk '{print $2}'| grep -v "Cookie"`
+	for i in `cat $openwrt_script_config/check_cookie.txt | awk '{print $1}'| grep -v "Cookie"`
 	do
-		jd_cookie=$(grep "$i" $openwrt_script_config/jdCookie.js | awk -F "pt_pin=" '{print $2}' | awk -F ";" '{print $1}')
+		jd_cookie=$(grep "$i" $openwrt_script_config/jdCookie.js | awk -F "pt_pin=" '{print $2}' | awk -F ";" '{print $1}' | sed '/^\s*$/d' | grep -v "(.+?)")
 		if [ ! $jd_cookie ];then
 			#echo -e "$red$i${white}在$openwrt_script_config/jdCookie.js找不到"
 			echo "" >/dev/null 2>&1
