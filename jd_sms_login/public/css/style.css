@@ -1,0 +1,41 @@
+
+.margin-top-bottom {
+  margin: 15px;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  width: 100%;
+  text-align: left;
+}
+.form-group {
+  margin: 0 auto;
+  width: 18.75rem;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 20rem;
+  margin: 0 auto;
+  padding-top: 50px;
+}
+
+.content input {
+  margin: 5px;
+}
+
+#urlselect {
+  width: 10rem;
+  margin: 0 auto;
+}
+
+.header {
+  margin: 0 auto;
+}
+
+#info {
+  font-size: 15px;
+}
+

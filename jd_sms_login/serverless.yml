@@ -1,0 +1,23 @@
+component: express
+name: jd_sms_login
+app: jd_sms_login
+
+inputs:
+  src:
+    src: ./
+  region: ap-guangzhou
+  runtime: Nodejs12.16
+  functionName: jd_sms_login
+  functionConf:
+    timeout: 10
+    environment:
+      variables:
+        QYWX_KEY: ''
+        QYWX_AM: ''
+        UPDATE_API: ''
+  entryFile: index.js
+  apigatewayConf:
+    protocols:
+      - http
+      - https
+    environment: release

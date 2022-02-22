@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.2",
+    "crypto": "^1.0.1",
+    "express": "^4.17.3",
+    "got": "^11.8.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "serverless": "^3.2.1"
+  },
+  "name": "jd_sms_login",
+  "version": "0.0.1",
+  "description": "Copy from https://t.me/cheese2024",
+  "main": "index.js",
+  "repository": "",
+  "author": "Echowxsy <echowxsy@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "sls deploy",
+    "start": "node index.js"
+  }
+}

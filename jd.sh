@@ -461,8 +461,8 @@ done
 		update
 	fi
 	chmod 755 $dir_file_js/*
-	#kill_index
-	#index_js
+	kill_index
+	index_js
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
@@ -2924,8 +2924,8 @@ system_variable() {
 
 	jd_openwrt_config
 
-	#index_js
-	index_num="${yellow} 8.网页扫码功能已关闭，没人修暂时就这样了${white}"
+	index_js
+	#index_num="${yellow} 8.网页获取CK功能已关闭，没人修暂时就这样了${white}"
 
 	#农场萌宠关闭通知
 	close_notification
@@ -2939,14 +2939,14 @@ index_js() {
 	openwrt_ip=$(ubus call network.interface.lan status | grep address  | grep -oE '([0-9]{1,3}.){3}[0-9]{1,3}')
 	index_if=$(ps -ww | grep "index.js" | grep -v grep | wc -l)
 	if [ $index_if == "1" ];then
-		index_num="${yellow} 8.网页扫码功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
+		index_num="${yellow} 8.网页获取CK功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
 	else
-		echo -e "${green}启动网页扫码功能${white}"
-		node $dir_file/cookies_web/index.js &
+		echo -e "${green}启动网页获取CK功能${white}"
+		node $dir_file/jd_sms_login/index.js &
 		if [ $? -eq 0 ]; then
-			index_num="${yellow} 8.网页扫码功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
+			index_num="${yellow} 8.网页获取CK功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
 		else
-			index_num="${yellow} 8.网页扫码功能启动失败，请手动执行看下问题　node $dir_file/cookies_web/index.js${white}"
+			index_num="${yellow} 8.网页获取CK功能启动失败，请手动执行看下问题　node $dir_file/cookies_web/index.js${white}"
 		fi
 	fi
 }
@@ -2955,7 +2955,7 @@ kill_index() {
 	index_if=$(ps -ww | grep "index.js" | grep -v grep | awk '{print $1}')
 	for i in `echo $index_if`
 	do
-		echo "终止网页扫码功能，重新执行sh \$jd 就可以恢复"
+		echo "终止网页获取CK功能，重新执行sh \$jd 就可以恢复"
 		kill -9 $i
 	done
 }
