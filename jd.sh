@@ -1373,7 +1373,7 @@ getcookie() {
 
 addcookie() {
 	
-	if [ `cat /tmp/getcookie.txt | wc -l` == "1"  ];then
+	if [ `cat /tmp/getcookie.txt | wc -l` == "1" -o `cat /tmp/webaddcookie.txt | wc -l` == "1" ];then
 		clear
 		you_cookie=$(cat /tmp/getcookie.txt)
 		if [[ -z $you_cookie ]]; then
@@ -1449,7 +1449,13 @@ addcookie() {
 
 	fi
 	del_expired_cookie
-	addcookie_wait
+
+	if [ `cat /tmp/webaddcookie.txt | wc -l` == "1"  ];then
+		echo ""
+	else
+		addcookie_wait
+	fi
+	
 }
 
 addcookie_replace(){

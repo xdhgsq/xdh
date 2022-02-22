@@ -198,15 +198,11 @@ app.post('/checkCode', async function (request, response) {
         ';pt_pin=' +
         encodeURIComponent(data.data.pt_pin) +
         ';';
-      //console.log(`你的cookie为:`, cookie)
-      fs.writeFileSync('/tmp/getcookie.txt', cookie);
-      await exec(`sh jd.sh addcookie`, { cwd: "/usr/share/jd_openwrt_script/JD_Script" }, function(err, sto) {console.log(sto);});
-      //await exec(`sh jd.sh concurrent_js_update`, { cwd: "/usr/share/jd_openwrt_script/JD_Script" });
+      console.log(`你的cookie为:`, cookie)
       
-      //child_process.exec(`sh /usr/share/jd_openwrt_script/JD_Script/jd.sh addcookie && sh /usr/share/jd_openwrt_script/JD_Script/jd.sh concurrent_js_update`, function(err, sto) {
-	//console.log(err); 
-	//console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
-      //});
+      await child_process.exec(`sh /usr/share/jd_openwrt_script/JD_Script/jd.sh addcookie concurrent_js_update`, function(err, sto) {
+	console.log(sto);//sto才是真正的输出，要不要打印到控制台，由你自己啊
+      });
       response.send({
         ok: true,
         msg: '获取ck成功',
@@ -229,11 +225,15 @@ const sleep = (ms) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 // 本地运行开启以下
 const PORT = 6789;
 app.listen(PORT, () => {
   console.log(`应用正在监听 ${PORT} 端口!`);
 });
 
+
+
 // 云函数运行开启以下
 module.exports = app;
+
