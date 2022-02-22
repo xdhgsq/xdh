@@ -1580,10 +1580,10 @@ delcookie() {
 check_cooike() {
 #将cookie获取时间导入文本
 	if [ ! -f $openwrt_script_config/check_cookie.txt  ];then
-		echo "备注      Cookie             添加时间      预计到期时间(不保证百分百准确)" > $openwrt_script_config/check_cookie.txt
+		echo "Cookie      添加时间      预计到期时间(不保证百分百准确)      备注" > $openwrt_script_config/check_cookie.txt
 	fi
 	sed -i "/添加时间/d" $openwrt_script_config/check_cookie.txt
-	sed -i "1i\备注      Cookie             添加时间      预计到期时间(不保证百分百准确)" $openwrt_script_config/check_cookie.txt
+	sed -i "1i\Cookie      添加时间      预计到期时间(不保证百分百准确)      备注" $openwrt_script_config/check_cookie.txt
 	Current_date=$(date +%Y-%m-%d)
 	Current_date_m=$(echo $Current_date | awk -F "-" '{print $2}')
 	if [ "$Current_date_m" == "12"  ];then
@@ -1595,7 +1595,7 @@ check_cooike() {
 	fi
 	sed -i "/$pt_pin/d" $openwrt_script_config/check_cookie.txt
 	remark=$(grep "$pt_pin" $openwrt_script_config/jdCookie.js | awk -F "," '{print $2$3}'|sed "s/\/\///g")
-	echo "$remark      $pt_pin   $Current_date      $Expiration_date" >> $openwrt_script_config/check_cookie.txt
+	echo "$pt_pin     $Current_date      $Expiration_date     $remark" >> $openwrt_script_config/check_cookie.txt
 }
 
 check_cookie_push() {
