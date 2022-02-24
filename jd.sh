@@ -415,6 +415,7 @@ done
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
+	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_price.js -O $dir_file_js/jd_price.js #京东价保
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -560,6 +561,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_productZ4Brand.js		#特务Z
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	jd_price.js 			#京东价保
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
