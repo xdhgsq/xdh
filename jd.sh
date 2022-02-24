@@ -887,6 +887,7 @@ EOF
 
 zcbh() {
 	zcbh_token=$(cat /usr/share/jd_openwrt_script/script_config/sendNotify_ccwav.js | grep "let WP_APP_TOKEN_ONE" | awk -F "\"" '{print $2}')
+	export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
 	export WP_APP_TOKEN_ONE="$zcbh_token"
 	cd $dir_file_js
 	$node jd_bean_change_ccwav.js
