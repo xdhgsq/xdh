@@ -245,6 +245,7 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_plantBean.js			#种豆得豆
+	jd_sendBeans.js			#来客有礼
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -329,7 +330,6 @@ cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_productZ4Brand.js		#特务Z
 	jd_fan.js			#粉丝互动
-	jd_xiaolongfan.js		#晓龙一次性活动。概率蚊子腿豆子
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -445,6 +445,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_xiaolongfan.js		#晓龙一次性活动。概率蚊子腿豆子
 	jd_HappyNewYear_Shares.js	#欢度元宵
 	jd_m_sign.js			#京东通天塔
 	jd_tw.js			#特务Ｚ
@@ -548,7 +549,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_productZ4Brand.js		#特务Z
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_fan.js			#粉丝互动
-	jd_xiaolongfan.js		#晓龙一次性活动。概率蚊子腿豆子
+	jd_sendBeans.js			#来客有礼
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
