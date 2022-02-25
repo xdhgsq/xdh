@@ -417,6 +417,10 @@ done
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_price.js -O $dir_file_js/jd_price.js #京东价保
 
+	wget https://gitee.com/SuperManito/scripts/raw/master/jd_wxCollectionActivity.js -O $dir_file_js/jd_wxCollectionActivity.js #加购物车抽奖
+	wget https://raw.githubusercontent.com/KingRan/KR/main/jd_cjzdgf.js -O $dir_file_js/jd_cjzdgf.js #CJ组队瓜分京豆
+
+
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
 for i in `ls  $dir_file/config/tmp`
@@ -425,6 +429,9 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_cjzdgf.js 			#CJ组队瓜分京豆
+	jd_wxCollectionActivity.js 	#加购物车抽奖
+	jd_price.js 			#京东价保
 	jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
