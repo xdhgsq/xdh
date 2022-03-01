@@ -246,6 +246,7 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_plantBean.js			#种豆得豆
 	jd_sendBeans.js			#来客有礼
+	jd_jxlhb.js			#惊喜领红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -570,6 +571,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_productZ4Brand.js		#特务Z
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_price.js 			#京东价保
+	jd_jxlhb.js			#惊喜领红包
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
