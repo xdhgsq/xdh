@@ -293,6 +293,28 @@ do
 }&
 done
 
+#KingRan
+KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
+cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_cjzdgf.js			#CJ组队瓜分京豆
+	jd_zdjr.js			#组队瓜分
+	jd_29_8.js			#极速版抢29-8优惠券
+	jd_5_2.js			#极速版抢5-2优惠券
+	jd_opencardL84.js
+	jd_opencardL85.js
+	jd_opencardL86.js
+	jd_opencardL87.js
+	jd_opencardL88.js
+	jd_opencardL89.js
+EOF
+
+for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+	url="$KingRan_url"
+	wget $KingRan_url/$script_name -O $dir_file_js/$script_name
+	update_if
+done
+
 #asd920
 asd920_url="https://raw.githubusercontent.com/asd920/Auto/main"
 cat >$dir_file/config/tmp/asd920_url.txt <<EOF
@@ -379,32 +401,6 @@ do
 	update_if
 done
 
-#Ariszy
-Ariszy_url="https://raw.githubusercontent.com/Ariszy/Private-Script/master/JD"
-cat >$dir_file/config/tmp/Ariszy_url.txt <<EOF
-	#zy_jxdzz.js		#京喜大作战
-EOF
-
-for script_name in `cat $dir_file/config/tmp/Ariszy_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$Ariszy_url"
-	#wget $Ariszy_url/$script_name -O $dir_file_js/$script_name
-	#update_if
-done
-
-#Wenmoux
-Wenmoux_url="https://raw.githubusercontent.com/Wenmoux/scripts/wen/jd"
-cat >$dir_file/config/tmp/Wenmoux_url.txt <<EOF
-	jd_ddnc_farmpark.js		#东东乐园 Wenmoux脚本
-EOF
-
-for script_name in `cat $dir_file/config/tmp/Wenmoux_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$Wenmoux_url"
-	#wget $Wenmoux_url/$script_name -O $dir_file_js/$script_name
-	#update_if
-done
-
 
 	wget https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_products_detail.js -O $dir_file_js/jx_products_detail.js #京喜工厂商品列表详情
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
@@ -417,8 +413,6 @@ done
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_price.js -O $dir_file_js/jd_price.js #京东价保
-
-	wget https://raw.githubusercontent.com/KingRan/KR/main/jd_cjzdgf.js -O $dir_file_js/jd_cjzdgf.js #CJ组队瓜分京豆
 
 
 #将所有文本汇总
@@ -571,6 +565,8 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_price.js 			#京东价保
 	jd_jxlhb.js			#惊喜领红包
+	jd_29_8.js			#极速版抢29-8优惠券
+	jd_5_2.js			#极速版抢5-2优惠券
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
