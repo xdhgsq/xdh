@@ -84,6 +84,9 @@ export guaopencard_addSku_All="true"
 export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
+#资产变化，不推送以下内容变化
+export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
+
 task() {
 	cron_version="4.02"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
@@ -892,7 +895,6 @@ EOF
 
 zcbh() {
 	zcbh_token=$(cat /usr/share/jd_openwrt_script/script_config/sendNotify_ccwav.js | grep "let WP_APP_TOKEN_ONE" | awk -F "\"" '{print $2}')
-	export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
 	export WP_APP_TOKEN_ONE="$zcbh_token"
 	cd $dir_file_js
 	$node jd_bean_change_ccwav.js
