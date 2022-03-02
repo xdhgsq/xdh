@@ -303,6 +303,8 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_zdjr.js			#组队瓜分
 	jd_29_8.js			#极速版抢29-8优惠券
 	jd_5_2.js			#极速版抢5-2优惠券
+	jd_nzmh.js			#女装盲盒
+	jd_EsportsManager.js 		#东东电竞经理
 	jd_opencardL84.js
 	jd_opencardL85.js
 	jd_opencardL86.js
@@ -316,21 +318,6 @@ do
 	url="$KingRan_url"
 	wget $KingRan_url/$script_name -O $dir_file_js/$script_name
 	update_if
-done
-
-#asd920
-asd920_url="https://raw.githubusercontent.com/asd920/Auto/main"
-cat >$dir_file/config/tmp/asd920_url.txt <<EOF
-	jd_EsportsManager.js 		#东东电竞经理
-EOF
-
-for script_name in `cat $dir_file/config/tmp/asd920_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$asd920_url"
-	wget $asd920_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
 done
 
 #yuannian1112
@@ -547,6 +534,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_fan.js			#粉丝互动
 	jd_sendBeans.js			#来客有礼
+	jd_nzmh.js			#女装盲盒
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
