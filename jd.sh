@@ -535,7 +535,6 @@ export JD_SYJ=true
 
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_syj.js			#赚京豆-瓜分京豆脚本
 	jd_EsportsManager.js 		#东东电竞经理
 	jd_connoisseur.js		#内容鉴赏官
 	jd_nnfls.js			#牛牛福利
@@ -560,6 +559,10 @@ EOF
 		$run_sleep
 	}&
 	done
+
+	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆-瓜分京豆脚本
+	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆-瓜分京豆脚本
+	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆-瓜分京豆脚本
 	#$python3  $openwrt_script/JD_Script/js/jd_zjd.py
 }
 
