@@ -403,7 +403,7 @@ done
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_price.js -O $dir_file_js/jd_price.js #京东价保
-
+	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_plusdraw.js -O $dir_file_js/jd_plusdraw.js #PLUS转盘抽豆
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -535,6 +535,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fan.js			#粉丝互动
 	jd_sendBeans.js			#来客有礼
 	jd_nzmh.js			#女装盲盒
+	jd_plusdraw.js			#PLUS转盘抽豆
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
