@@ -276,6 +276,23 @@ do
 }&
 done
 
+#6dylan6
+github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
+cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_price.js			#京东价保
+	jd_plusdraw.js			#PLUS转盘抽豆
+	jd_wdz.js			#微定制瓜分京豆
+EOF
+
+for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	url="$github_6dylan6_url_url"
+	wget $github_6dylan6_url_url/$script_name -O $dir_file_js/$script_name
+	update_if
+}&
+done
+
 #okyyds
 okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
@@ -402,8 +419,7 @@ done
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
-	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_price.js -O $dir_file_js/jd_price.js #京东价保
-	wget https://raw.githubusercontent.com/6dylan6/jdpro/main/jd_plusdraw.js -O $dir_file_js/jd_plusdraw.js #PLUS转盘抽豆
+
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
