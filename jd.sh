@@ -299,7 +299,6 @@ cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	jd_xinruimz.js 			#颜究种植园(需要手动选择种植小样)
 	jd_wq_wxsign.js 		#微信签到领红包
 	jd_health_plant.py		#京东健康社区-种植园
-	jd_syj.js			#赚京豆-瓜分京豆脚本
 	gua_cleancart_ddo.js		#清空购物车(需要设置)
 	jd_computer.js			#电脑配件ID任务
 EOF
@@ -322,7 +321,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_5_2.js			#极速版抢5-2优惠券
 	jd_nzmh.js			#女装盲盒
 	jd_EsportsManager.js 		#东东电竞经理
-	jd_opencardL84.js
 	jd_opencardL85.js
 	jd_opencardL86.js
 	jd_opencardL87.js
@@ -445,15 +443,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_xiaolongfan.js		#晓龙一次性活动。概率蚊子腿豆子
-	jd_HappyNewYear_Shares.js	#欢度元宵
-	jd_m_sign.js			#京东通天塔
-	jd_tw.js			#特务Ｚ
-	jd_speed.js 			#天天加速 3小时运行一次，打卡时间间隔是6小时
-	jd_ljd_xh.js			#领京豆
-	jd_car.js 			#京东汽车，签到满500赛点可兑换500京豆，一天运行一次即可
-	jd_live.js			#京东直播
-	jd_cash.js 			#签到领现金，每日2毛～5毛长期
+	jd_syj.js
+	jd_opencardL84.js
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -559,11 +550,6 @@ EOF
 		$run_sleep
 	}&
 	done
-
-	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆-瓜分京豆脚本
-	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆-瓜分京豆脚本
-	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆-瓜分京豆脚本
-	#$python3  $openwrt_script/JD_Script/js/jd_zjd.py
 }
 
 concurrent_js_run_07() {
