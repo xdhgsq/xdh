@@ -321,6 +321,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_5_2.js			#极速版抢5-2优惠券
 	jd_nzmh.js			#女装盲盒
 	jd_EsportsManager.js 		#东东电竞经理
+	jd_ghnsjd.js			#个护女神价到抽奖机活
 	jd_opencardL85.js
 	jd_opencardL86.js
 	jd_opencardL87.js
@@ -356,7 +357,6 @@ done
 star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
-	jd_productZ4Brand.js		#特务Z
 	jd_fan.js			#粉丝互动
 EOF
 
@@ -443,6 +443,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_productZ4Brand.js		#特务Z
 	jd_syj.js
 	jd_opencardL84.js
 EOF
@@ -536,7 +537,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_babel_sign.js		#通天塔签到
 	jd_wq_wxsign.js 		#微信签到领红包
-	jd_productZ4Brand.js		#特务Z
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_fan.js			#粉丝互动
 	jd_sendBeans.js			#来客有礼
@@ -550,6 +550,9 @@ EOF
 		$run_sleep
 	}&
 	done
+
+	$node $openwrt_script/JD_Script/js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴
+	$node $openwrt_script/JD_Script/js/jd_jxlhb.js #惊喜领红包
 }
 
 concurrent_js_run_07() {
@@ -558,10 +561,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_productZ4Brand.js		#特务Z
-	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_price.js 			#京东价保
-	jd_jxlhb.js			#惊喜领红包
 	jd_29_8.js			#极速版抢29-8优惠券
 	jd_5_2.js			#极速版抢5-2优惠券
 EOF
@@ -588,6 +588,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_computer.js			#电脑配件ID任务
+	jd_ghnsjd.js			#个护女神价到抽奖机活
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
