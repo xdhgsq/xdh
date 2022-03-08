@@ -427,6 +427,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_zjd.js			#赚京豆
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
 	jd_price.js 			#京东价保
@@ -710,6 +711,7 @@ run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park_task.js		#汪汪乐园
+	jd_zjd.js			#赚京豆
 	#jd_jdzz.js			#京东赚赚
 EOF
 	echo -e "${green} run_03$start_script_time ${white}"
