@@ -427,6 +427,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_zjd.js			#赚京豆
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
