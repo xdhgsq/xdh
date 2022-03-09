@@ -538,7 +538,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_babel_sign.js		#通天塔签到
 	jd_wq_wxsign.js 		#微信签到领红包
-	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_fan.js			#粉丝互动
 	jd_sendBeans.js			#来客有礼
 	jd_nzmh.js			#女装盲盒
@@ -552,6 +551,7 @@ EOF
 	}&
 	done
 
+	sleep 3600
 	$node $openwrt_script/JD_Script/js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴
 	$node $openwrt_script/JD_Script/js/jd_jxlhb.js #惊喜领红包
 }
@@ -735,7 +735,7 @@ EOF
 run_06_18() {
 cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
-	#jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
