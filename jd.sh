@@ -581,13 +581,10 @@ EOF
 
 
 run_0() {
-#过期京豆兑换为喜豆变量
-export exjxbeans="true"
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_fanli.js			#京东饭粒
-	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_computer.js			#电脑配件ID任务
 	jd_ghnsjd.js			#个护女神价到抽奖机活
@@ -734,7 +731,10 @@ EOF
 
 
 run_06_18() {
+#过期京豆兑换为喜豆变量
+export exjxbeans="true"
 cat >/tmp/jd_tmp/run_06_18 <<EOF
+	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
 	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
