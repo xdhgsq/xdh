@@ -322,6 +322,9 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_nzmh.js			#女装盲盒
 	jd_EsportsManager.js 		#东东电竞经理
 	jd_ghnsjd.js			#个护女神价到抽奖机活
+	jd_mpdzcar.js			#头文字Ｊ
+	jd_mpdzcar_game.js		#头文字Ｊ游戏
+	jd_mpdzcar_help.js		#头文字Ｊ助力
 	jd_opencardL85.js
 	jd_opencardL86.js
 	jd_opencardL87.js
@@ -553,8 +556,11 @@ EOF
 	done
 
 	sleep 3600
-	$node $openwrt_script/JD_Script/js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴
-	$node $openwrt_script/JD_Script/js/jd_jxlhb.js #惊喜领红包
+	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
+	$node $openwrt_script/JD_Script/js/jd_jxlhb.js & #惊喜领红包
+	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
+	$node $openwrt_script/JD_Script/js/jd_mpdzcar_game.js		#头文字Ｊ游戏
+	$node $openwrt_script/JD_Script/js/jd_mpdzcar_help.js		#头文字Ｊ助力
 }
 
 concurrent_js_run_07() {
