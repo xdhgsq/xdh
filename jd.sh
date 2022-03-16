@@ -293,7 +293,6 @@ done
 #okyyds
 okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
-	jd_xinruimz.js 			#颜究种植园(需要手动选择种植小样)
 	jd_wq_wxsign.js 		#微信签到领红包
 	jd_health_plant.py		#京东健康社区-种植园
 	gua_cleancart_ddo.js		#清空购物车(需要设置)
@@ -316,10 +315,12 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_zdjr.js			#组队瓜分
 	jd_29_8.js			#极速版抢29-8优惠券
 	jd_5_2.js			#极速版抢5-2优惠券
+	jd_19_6.js			#极速版抢19-6优惠券
 	jd_nzmh.js			#女装盲盒
 	jd_mpdzcar.js			#头文字Ｊ
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
+	jd_fanli.js			#京东饭粒
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -438,6 +439,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
 	jd_ghnsjd.js			#个护女神价到抽奖机活
 	jd_opencardL85.js
 	jd_opencardL86.js
@@ -541,6 +543,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fan.js			#粉丝互动
 	jd_nzmh.js			#女装盲盒
 	jd_plusdraw.js			#PLUS转盘抽豆
+	jd_fanli.js			#京东饭粒
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -565,8 +568,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	＃jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
-	jd_29_8.js			#极速版抢29-8优惠券
-	jd_5_2.js			#极速版抢5-2优惠券
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -671,7 +672,9 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
-	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
+	jd_29_8.js			#极速版抢29-8优惠券
+	jd_5_2.js			#极速版抢5-2优惠券
+	jd_19_6.js			#极速版抢19-6优惠券
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
