@@ -280,6 +280,8 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_price.js			#京东价保
 	jd_plusdraw.js			#PLUS转盘抽豆
 	jd_wdz.js			#微定制瓜分京豆
+	jd_kws.js 			#科沃斯联合活动抽奖机
+	jd_jmofang.js			#京东集魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -322,6 +324,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
 	jd_fanli.js			#京东饭粒
+	jd_xtc.js			#小天才联合活动抽奖机
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -353,6 +356,7 @@ star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
+	jd_yiligf.js			#一次性脚本，蚊子腿
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -441,16 +445,6 @@ EOF
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
 	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
-	jd_ghnsjd.js			#个护女神价到抽奖机活
-	jd_opencardL85.js
-	jd_opencardL86.js
-	jd_opencardL87.js
-	jd_opencardL88.js
-	jd_opencardL89.js
-	jd_EsportsManager.js 		#东东电竞经理
-	jd_sendBeans.js			#来客有礼
-	jd_shop.js 			#进店领豆，早点领，一天也可以执行两次以上
-	jd_fanli.js
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -546,6 +540,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plusdraw.js			#PLUS转盘抽豆
 	jd_fanli.js			#京东饭粒
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
+	jd_yiligf.js			#一次性脚本，蚊子腿
+	jd_jmofang.js			#京东集魔方
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -590,6 +586,8 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_computer.js			#电脑配件ID任务
+	jd_xtc.js			#小天才联合活动抽奖机
+	jd_kws.js 			#科沃斯联合活动抽奖机
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
