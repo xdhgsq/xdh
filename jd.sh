@@ -357,7 +357,6 @@ star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
-	jd_yiligf.js			#一次性脚本，蚊子腿
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -445,6 +444,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_yiligf.js			#一次性脚本，蚊子腿
 	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
 EOF
 
@@ -541,7 +541,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plusdraw.js			#PLUS转盘抽豆
 	jd_fanli.js			#京东饭粒
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
-	jd_yiligf.js			#一次性脚本，蚊子腿
 	jd_jmofang.js			#京东集魔方
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 EOF
