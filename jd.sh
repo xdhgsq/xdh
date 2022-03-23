@@ -282,6 +282,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_wdz.js			#微定制瓜分京豆
 	jd_kws.js 			#科沃斯联合活动抽奖机
 	jd_jmofang.js			#京东集魔方
+	jd_syj.js			#赚京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -558,6 +559,9 @@ EOF
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_game.js		#头文字Ｊ游戏
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_help.js		#头文字Ｊ助力
+	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆
+	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆
+	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆
 }
 
 concurrent_js_run_07() {
