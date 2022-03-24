@@ -358,6 +358,7 @@ star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
+	jd_productZ4Brand.js		#特务Z
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -544,6 +545,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
 	jd_jmofang.js			#京东集魔方
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
+	jd_productZ4Brand.js		#特务Z
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -571,6 +573,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	＃jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
+	jd_productZ4Brand.js		#特务Z
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
