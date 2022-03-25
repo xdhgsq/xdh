@@ -278,10 +278,7 @@ done
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_price.js			#京东价保
-	jd_plusdraw.js			#PLUS转盘抽豆
 	jd_wdz.js			#微定制瓜分京豆
-	jd_kws.js 			#科沃斯联合活动抽奖机
-	jd_jmofang.js			#京东集魔方
 	jd_syj.js			#赚京豆
 EOF
 
@@ -325,7 +322,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
 	jd_fanli.js			#京东饭粒
-	jd_xtc.js			#小天才联合活动抽奖机
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 EOF
 
@@ -446,6 +442,10 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_kws.js 			#科沃斯联合活动抽奖机
+	jd_jmofang.js			#京东集魔方
+	jd_plusdraw.js			#PLUS转盘抽豆
+	jd_xtc.js			#小天才联合活动抽奖机
 	jd_yiligf.js			#一次性脚本，蚊子腿
 	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
 EOF
@@ -540,10 +540,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_wq_wxsign.js 		#微信签到领红包
 	jd_fan.js			#粉丝互动
 	jd_nzmh.js			#女装盲盒
-	jd_plusdraw.js			#PLUS转盘抽豆
 	jd_fanli.js			#京东饭粒
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
-	jd_jmofang.js			#京东集魔方
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 	jd_productZ4Brand.js		#特务Z
 EOF
@@ -594,8 +592,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_computer.js			#电脑配件ID任务
-	jd_xtc.js			#小天才联合活动抽奖机
-	jd_kws.js 			#科沃斯联合活动抽奖机
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
