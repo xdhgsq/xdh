@@ -279,7 +279,6 @@ github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_price.js			#京东价保
 	jd_wdz.js			#微定制瓜分京豆
-	jd_syj.js			#赚京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -294,18 +293,15 @@ done
 #okyyds
 okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
-	jd_wq_wxsign.js 		#微信签到领红包
-	jd_health_plant.py		#京东健康社区-种植园
-	gua_cleancart_ddo.js		#清空购物车(需要设置)
-	jd_computer.js			#电脑配件ID任务
+	#空.js
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 {
 	url="$okyyds_url"
-	wget $okyyds_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $okyyds_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 }&
 done
 
@@ -444,12 +440,11 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_kws.js 			#科沃斯联合活动抽奖机
-	jd_jmofang.js			#京东集魔方
-	jd_plusdraw.js			#PLUS转盘抽豆
-	jd_xtc.js			#小天才联合活动抽奖机
-	jd_yiligf.js			#一次性脚本，蚊子腿
-	jd_xinruimz.js			#颜究种植园(需要手动选择种植小样)
+	jd_syj.js			#赚京豆
+	jd_health_plant.py
+	jd_wq_wxsign.js 		#微信签到领红包
+	gua_cleancart_ddo.js		#清空购物车(需要设置)
+	jd_computer.js			#电脑配件ID任务
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -539,7 +534,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_tyt.js			#极速版赚金币推一推
 	jd_joy_park_task.js		#汪汪乐园
 	jd_babel_sign.js		#通天塔签到
-	jd_wq_wxsign.js 		#微信签到领红包
 	jd_fan.js			#粉丝互动
 	jd_nzmh.js			#女装盲盒
 	jd_fanli.js			#京东饭粒
@@ -561,9 +555,6 @@ EOF
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_game.js		#头文字Ｊ游戏
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_help.js		#头文字Ｊ助力
-	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆
-	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆
-	$node $openwrt_script/JD_Script/js/jd_syj.js			#赚京豆
 }
 
 concurrent_js_run_07() {
@@ -593,7 +584,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_computer.js			#电脑配件ID任务
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -764,18 +754,12 @@ EOF
 }
 
 run_07() {
-#清空购物车的变量
-export JD_CART="true"
-export gua_cleancart_Run="true"
-#export gua_cleancart_products="*@&@所有账号清空"(这条默认不启用，自己写，然后扔到全局变量)
-export gua_cleancart_SignUrl="https://api.jds.codes/jd/sign"
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
 	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
 	jx_sign.js			#京喜签到
-	gua_cleancart_ddo.js		#清空购物车
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
 
@@ -827,21 +811,6 @@ EOF
 	done
 	$python3  $dir_file_js/jd_getFollowGift.py #关注有礼
 	echo -e "${green} run_10_15_20$stop_script_time ${white}"
-}
-
-test() {
-	#京东健康社区-种植园
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
-	export plant_cookie=$(seq 1 $js_amount | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
-
-	export JD_COOKIE=$(cat $openwrt_script_config/js_cookie.txt | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
-
-	charge_num=$(for i in `seq 1 $js_amount`;do echo "101908";done )
-	export charge_targe_id=$(echo "$charge_num" | sed "s/$/\&/g" | sed ':t;N;s/\n//;b t' | sed "s/&$//")
-
-
-	$python3 $dir_file_js/jd_health_plant.py
-
 }
 
 run_jsqd(){
