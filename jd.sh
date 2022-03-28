@@ -323,6 +323,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mpdzcar_help.js		#头文字Ｊ助力
 	jd_fanli.js			#京东饭粒
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
+	jd_anjia.js			#组队分豆-安佳（加密脚本）
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
