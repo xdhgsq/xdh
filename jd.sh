@@ -531,7 +531,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	jd_gold_creator.js		#金榜创造营
-	jd_dpqd.js			#店铺签到
 	jd_tyt.js			#极速版赚金币推一推
 	jd_joy_park_task.js		#汪汪乐园
 	jd_babel_sign.js		#通天塔签到
@@ -583,6 +582,7 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
+        jd_dpqd.js			#店铺签到
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
