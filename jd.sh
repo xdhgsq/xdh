@@ -321,6 +321,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 	jd_anjia.js			#组队分豆-安佳（加密脚本慎用）
 	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
+	jd_cash.js			#签到领现金，每日2毛～5毛
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -540,6 +541,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 	jd_productZ4Brand.js		#特务Z
+	jd_cash.js			#签到领现金，每日2毛～5毛
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
