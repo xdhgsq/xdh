@@ -279,6 +279,7 @@ github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_price.js			#京东价保
 	jd_wdz.js			#微定制瓜分京豆
+	jd_speed_signred.js		#京东极速版签到红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -537,6 +538,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 	jd_productZ4Brand.js		#特务Z
 	jd_cash.js			#签到领现金，每日2毛～5毛
+	jd_speed_signred.js		#京东极速版签到红包
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -562,6 +564,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
+	jd_speed_signred.js		#京东极速版签到红包
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
