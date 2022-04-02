@@ -310,9 +310,7 @@ KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
-	jd_29_8.js			#极速版抢29-8优惠券
 	jd_5_2.js			#极速版抢5-2优惠券
-	jd_19_6.js			#极速版抢19-6优惠券
 	jd_nzmh.js			#女装盲盒
 	jd_mpdzcar.js			#头文字Ｊ
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
@@ -322,6 +320,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_anjia.js			#组队分豆-安佳（加密脚本慎用）
 	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
 	jd_cash.js			#签到领现金，每日2毛～5毛
+	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -441,11 +440,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_syj.js			#赚京豆
-	jd_health_plant.py
-	jd_wq_wxsign.js 		#微信签到领红包
-	gua_cleancart_ddo.js		#清空购物车(需要设置)
-	jd_computer.js			#电脑配件ID任务
+	jd_29_8.js			#极速版抢29-8优惠券
+	jd_19_6.js			#极速版抢19-6优惠券
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -586,6 +582,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -670,9 +667,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
-	jd_29_8.js			#极速版抢29-8优惠券
 	jd_5_2.js			#极速版抢5-2优惠券
-	jd_19_6.js			#极速版抢19-6优惠券
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
@@ -1252,7 +1247,7 @@ concurrent_js_if() {
 		case "$action1" in
 		run_0)
 			action="$action1"
-			ccr_run
+			ccr_run &
 			concurrent_js && if_ps
 			if [ ! $action2 ];then
 				if_ps
@@ -1293,11 +1288,11 @@ concurrent_js_if() {
 	else
 		case "$action1" in
 			run_0)
-			ccr_run
+			ccr_run &
 			$action1
 			;;
 			run_07)
-			ccr_run
+			ccr_run &
 			$action1
 			concurrent_js_run_07
 			;;
@@ -1311,11 +1306,11 @@ concurrent_js_if() {
 		else
 			case "$action2" in
 			run_0)
-			ccr_run
+			ccr_run &
 			$action2
 			;;
 			run_07)
-			ccr_run
+			ccr_run &
 			$action2
 			concurrent_js_run_07
 			;;
