@@ -387,8 +387,8 @@ EOF
 for script_name in `cat $dir_file/config/tmp/ccwav_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	url="$ccwav_url"
-	wget $ccwav_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	#wget $ccwav_url/$script_name -O $dir_file_js/$script_name
+	#update_if
 done
 
 #cdle_carry
@@ -414,7 +414,7 @@ done
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
-	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
+	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 
 
 #将所有文本汇总
@@ -430,6 +430,7 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
 	jd_price.js 			#京东价保
+	jd_bean_change.js		#资产变化强化版by-ccwav
 	jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
@@ -2502,7 +2503,7 @@ COMMENT
 	done
 
 	#资产变化强化版by-ccwav
-	sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
+	#sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
 }
 
 del_if() {
