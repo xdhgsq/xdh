@@ -356,6 +356,7 @@ cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
 	jd_productZ4Brand.js		#特务Z
+	jd_ksd.js			#卡萨帝
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -414,6 +415,7 @@ done
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
+	wget https://raw.githubusercontent.com/asd920/Auto/main/jd_jxzzl.js -O $dir_file_js/jd_jxzzl.js #京享周周乐
 	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 
 
@@ -425,6 +427,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_jxzzl.js 			#京享周周乐
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_zjd.js			#赚京豆
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
@@ -543,6 +546,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_carnivalcity_help.js 	#京东手机狂欢城助力
+	jd_ksd.js			#卡萨帝
+	jd_jxzzl.js 			#京享周周乐
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
