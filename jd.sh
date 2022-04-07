@@ -187,6 +187,7 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
+	jd_plantBean.js			#种豆得豆
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	jd_unsubscribe.js		#取关京东店铺和商品
 	jdPetShareCodes.js
@@ -245,7 +246,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_kd.js			#京东快递签到 一天运行一次即可
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
-	jd_plantBean.js			#种豆得豆
 	jd_jxlhb.js			#惊喜领红包
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
 EOF
