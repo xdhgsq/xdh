@@ -316,12 +316,9 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mpdzcar.js			#头文字Ｊ
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
-	jd_fanli.js			#京东饭粒
-	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 	jd_anjia.js			#组队分豆-安佳（加密脚本慎用）
 	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
 	jd_cash.js			#签到领现金，每日2毛～5毛
-	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
 	jd_carnivalcity.js		#京东手机狂欢城活动
 	jd_carnivalcity_help.js 	#京东手机狂欢城助力
 EOF
@@ -447,6 +444,9 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
+	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
+	jd_fanli.js			#京东饭粒
 	jd_29_8.js			#极速版抢29-8优惠券
 	jd_19_6.js			#极速版抢19-6优惠券
 EOF
@@ -539,9 +539,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_babel_sign.js		#通天塔签到
 	jd_fan.js			#粉丝互动
 	jd_nzmh.js			#女装盲盒
-	jd_fanli.js			#京东饭粒
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
-	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
 	jd_productZ4Brand.js		#特务Z
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_speed_signred.js		#京东极速版签到红包
@@ -594,7 +592,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
 	jd_carnivalcity.js		#京东手机狂欢城活动
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
