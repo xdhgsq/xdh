@@ -353,7 +353,6 @@ cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
 	jd_productZ4Brand.js		#特务Z
-	jd_ksd.js			#卡萨帝
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -443,12 +442,9 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_ksd.js			#卡萨帝
 	jd_zjd.js			#赚京豆
 	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
-	jd_daily_lottery.js		#小鸽有礼 - 每日抽奖
-	jd_fanli.js			#京东饭粒
-	jd_29_8.js			#极速版抢29-8优惠券
-	jd_19_6.js			#极速版抢19-6优惠券
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -541,7 +537,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_carnivalcity_help.js 	#京东手机狂欢城助力
-	jd_ksd.js			#卡萨帝
 	jd_jxzzl.js 			#京享周周乐
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
