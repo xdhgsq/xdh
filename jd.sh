@@ -350,6 +350,7 @@ done
 #star261
 star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
+	jd_april.js			#早鸟派对,活动口令
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
 	jd_productZ4Brand.js		#特务Z
@@ -580,6 +581,7 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
+	jd_april.js			#早鸟派对,活动口令
 	jd_dpqd.js			#店铺签到
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
