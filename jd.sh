@@ -316,7 +316,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mpdzcar.js			#头文字Ｊ
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
-	jd_anjia.js			#组队分豆-安佳（加密脚本慎用）
 	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_carnivalcity.js		#京东手机狂欢城活动
@@ -443,6 +442,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_anjia.js			#组队分豆-安佳（加密脚本慎用）
 	jd_ksd.js			#卡萨帝
 	jd_zjd.js			#赚京豆
 	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
