@@ -557,7 +557,7 @@ EOF
 	done
 
 	sleep 3600
-	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
+	#$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 	$node $openwrt_script/JD_Script/js/jd_jxlhb.js & #惊喜领红包
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_game.js		#头文字Ｊ游戏
@@ -742,7 +742,7 @@ run_06_18() {
 export exjxbeans="true"
 cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
-	jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	#jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
