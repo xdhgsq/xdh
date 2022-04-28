@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 #资产变化，不推送以下内容变化
-export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
+export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪&东东农场"
 
 task() {
 	cron_version="4.03"
