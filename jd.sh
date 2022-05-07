@@ -283,6 +283,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
+	jd_motherDay.js			#蚊子腿活动，一天跑2次
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -553,6 +554,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_superBrandStar.js		#特务之明星送好礼
+	jd_motherDay.js			#蚊子腿活动，一天跑2次
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -568,6 +570,7 @@ EOF
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_game.js		#头文字Ｊ游戏
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_help.js		#头文字Ｊ助力
+	$node $openwrt_script/JD_Script/js/jd_motherDay.js			#蚊子腿活动，一天跑2次
 }
 
 concurrent_js_run_07() {
