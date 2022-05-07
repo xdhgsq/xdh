@@ -325,6 +325,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_xtclh.js			#4月小天才联合活动
 	jd_zmhwlh.js			#4月桌面好物联合活动
 	jd_desire.js			#集魔方
+	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -547,6 +548,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_xtclh.js			#4月小天才联合活动
 	jd_zmhwlh.js			#4月桌面好物联合活动
 	jd_desire.js			#集魔方
+	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
