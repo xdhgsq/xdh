@@ -88,7 +88,7 @@ export guaopencard_draw="true"
 export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
 
 task() {
-	cron_version="4.03"
+	cron_version="4.04"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -121,6 +121,7 @@ cat >>/etc/crontabs/root <<EOF
 59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
 59 */1 * * * $dir_file/jd.sh jd_time >/tmp/jd_time.log	#同步京东时间#100#
 0 */1 * * * $node $dir_file_js/jd_super_redrain.js >/tmp/jd_super_redrain.log #整点京豆雨#100#
+40 0-20/4 * * * $node $dir_file_js/jd_fc_winner.js >/tmp/jd_fc_winner.log #发财大赢家之翻翻乐#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
@@ -285,6 +286,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_motherDay.js			#蚊子腿活动，一天跑2次
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_fc_winner.js			#发财大赢家之翻翻乐
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
