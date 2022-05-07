@@ -282,6 +282,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_wdz.js			#微定制瓜分京豆
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
+	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -549,6 +550,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_zmhwlh.js			#4月桌面好物联合活动
 	jd_desire.js			#集魔方
 	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
+	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
