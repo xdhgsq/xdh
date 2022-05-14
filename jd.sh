@@ -332,6 +332,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_desire.js			#集魔方
 	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
 	jd_superBrandStar.js		#特务之明星送好礼
+	jd_61etjcj.js			#5.12-5.20六一儿童节联合抽奖机活动
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -559,6 +560,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_motherDay.js			#蚊子腿活动，一天跑2次
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_61etjcj.js			#5.12-5.20六一儿童节联合抽奖机活动
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -587,6 +589,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_productZ4Brand.js		#特务Z
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_desire.js			#集魔方
+	jd_61etjcj.js			#5.12-5.20六一儿童节联合抽奖机活动
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
