@@ -88,7 +88,7 @@ export guaopencard_draw="true"
 export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
 
 task() {
-	cron_version="4.04"
+	cron_version="4.05"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -121,7 +121,6 @@ cat >>/etc/crontabs/root <<EOF
 59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
 59 */1 * * * $dir_file/jd.sh jd_time >/tmp/jd_time.log	#同步京东时间#100#
 0 */1 * * * $node $dir_file_js/jd_super_redrain.js >/tmp/jd_super_redrain.log #整点京豆雨#100#
-40 0-20/4 * * * $node $dir_file_js/jd_fc_winner.js >/tmp/jd_fc_winner.log #发财大赢家之翻翻乐#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
@@ -284,9 +283,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
-	jd_motherDay.js			#蚊子腿活动，一天跑2次
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_fc_winner.js			#发财大赢家之翻翻乐
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -318,19 +315,10 @@ KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
-	jd_5_2.js			#极速版抢5-2优惠券
-	jd_nzmh.js			#女装盲盒
 	jd_mpdzcar.js			#头文字Ｊ
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
-	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
 	jd_cash.js			#签到领现金，每日2毛～5毛
-	jd_carnivalcity.js		#京东手机狂欢城活动
-	jd_carnivalcity_help.js 	#京东手机狂欢城助力
-	jd_xtclh.js			#4月小天才联合活动
-	jd_zmhwlh.js			#4月桌面好物联合活动
-	jd_desire.js			#集魔方
-	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_520mzcj.js			#520美妆抽奖机活动
@@ -364,7 +352,6 @@ done
 #star261
 star261_url="https://raw.githubusercontent.com/star261/jd/main/scripts"
 cat >$dir_file/config/tmp/star261_url.txt <<EOF
-	jd_april.js			#早鸟派对,活动口令
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
 	jd_productZ4Brand.js		#特务Z
@@ -457,10 +444,18 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_anjia.js			#组队分豆-安佳（加密脚本慎用）
-	jd_ksd.js			#卡萨帝
-	jd_zjd.js			#赚京豆
-	jd_wjcj.js			#4月母婴宝贝趴-文具分会场
+	jd_april.js			#早鸟派对,活动口令
+	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
+	jd_desire.js			#集魔方
+	jd_zmhwlh.js			#4月桌面好物联合活动
+	jd_xtclh.js			#4月小天才联合活动
+	jd_carnivalcity.js		#京东手机狂欢城活动
+	jd_carnivalcity_help.js 	#京东手机狂欢城助力
+	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
+	jd_nzmh.js			#女装盲盒
+	jd_5_2.js			#极速版抢5-2优惠券
+	jd_fc_winner.js
+	jd_motherDay.js			#蚊子腿活动，一天跑2次
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -547,21 +542,14 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_babel_sign.js		#通天塔签到
 	jd_fan.js			#粉丝互动
-	jd_nzmh.js			#女装盲盒
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
 	jd_productZ4Brand.js		#特务Z
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_carnivalcity_help.js 	#京东手机狂欢城助力
 	jd_jxzzl.js 			#京享周周乐
-	jd_xtclh.js			#4月小天才联合活动
-	jd_zmhwlh.js			#4月桌面好物联合活动
-	jd_desire.js			#集魔方
-	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
-	jd_motherDay.js			#蚊子腿活动，一天跑2次
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_qqxing.js			#星系牧场
@@ -580,7 +568,6 @@ EOF
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_game.js		#头文字Ｊ游戏
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar_help.js		#头文字Ｊ助力
-	$node $openwrt_script/JD_Script/js/jd_motherDay.js			#蚊子腿活动，一天跑2次
 }
 
 concurrent_js_run_07() {
@@ -592,7 +579,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_desire.js			#集魔方
 	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_qqxing.js			#星系牧场
 	jd_superBrandStar.js		#特务之明星送好礼
@@ -613,12 +599,10 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
-	jd_april.js			#早鸟派对,活动口令
 	jd_dpqd.js			#店铺签到
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_carnivalcity.js		#京东手机狂欢城活动
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -703,7 +687,6 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
-	jd_5_2.js			#极速版抢5-2优惠券
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
