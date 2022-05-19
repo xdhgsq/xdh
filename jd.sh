@@ -592,6 +592,7 @@ EOF
 	}&
 	done
 	wait
+$node $openwrt_script/JD_Script/js/jd_fruit.js & 
 	$node $openwrt_script/JD_Script/js/jd_bean_change.js 	#资产变动强化版
 	checklog #检测log日志是否有错误并推送
 }
