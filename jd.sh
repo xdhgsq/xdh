@@ -246,7 +246,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_club_lottery.js		#摇京豆
 	jd_kd.js			#京东快递签到 一天运行一次即可
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
-	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	jd_jxlhb.js			#惊喜领红包
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
 EOF
@@ -321,7 +320,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
-	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_qqxing.js			#星系牧场
 	jd_19E.js			#热爱奇旅
 EOF
@@ -445,18 +443,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_april.js			#早鸟派对,活动口令
-	jd_opencardL131.js		#5.5-6.20【金领冠】航天活动
-	jd_desire.js			#集魔方
-	jd_zmhwlh.js			#4月桌面好物联合活动
-	jd_xtclh.js			#4月小天才联合活动
-	jd_carnivalcity.js		#京东手机狂欢城活动
-	jd_carnivalcity_help.js 	#京东手机狂欢城助力
-	jd_mengniu.js			#组队分豆-蒙牛（加密脚本慎用）
-	jd_nzmh.js			#女装盲盒
-	jd_5_2.js			#极速版抢5-2优惠券
-	jd_fc_winner.js
-	jd_motherDay.js			#蚊子腿活动，一天跑2次
+	jd_520mzcj.js			#520美妆抽奖机活动
+	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -552,7 +540,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_qqxing.js			#星系牧场
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -580,7 +567,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_qqxing.js			#星系牧场
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
@@ -747,10 +733,7 @@ EOF
 
 
 run_06_18() {
-#过期京豆兑换为喜豆变量
-export exjxbeans="true"
 cat >/tmp/jd_tmp/run_06_18 <<EOF
-	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 	#jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_goodMorning.js		#早起福利
