@@ -690,6 +690,8 @@ EOF
 }
 
 run_02() {
+#19E变量
+export JD_19E="true"
 cat >/tmp/jd_tmp/run_02 <<EOF
 	#空.js
 EOF
