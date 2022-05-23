@@ -323,6 +323,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_superBrandJK.js		#特务集卡
 	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_qqxing.js			#星系牧场
+	jd_19E.js			#热爱奇旅
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -717,6 +718,7 @@ EOF
 		$run_sleep
 	done
 
+	$node $openwrt_script/JD_Script/js/jd_19E.js			#热爱奇旅
 	echo -e "${green} run_02$stop_script_time ${white}"
 }
 
