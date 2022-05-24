@@ -711,7 +711,7 @@ EOF
 	done
 
 	$node $openwrt_script/JD_Script/js/jd_19E.js			#热爱奇旅
-	$node $openwrt_script/JD_Script/js/jd_19E_help.js			#热爱奇旅互助
+	#$node $openwrt_script/JD_Script/js/jd_19E_help.js			#热爱奇旅互助
 	echo -e "${green} run_02$stop_script_time ${white}"
 }
 
