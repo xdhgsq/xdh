@@ -321,7 +321,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_qqxing.js			#星系牧场
-	jd_19E.js			#热爱奇旅
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -424,6 +423,9 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_19E.js			#热爱奇旅
+	jd_19E_help.js			#热爱奇旅互助
+	jd_19EPZ_help.js		#热爱奇旅膨胀
 	jd_jxzzl.js 			#京享周周乐
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
@@ -707,6 +709,7 @@ EOF
 	done
 
 	$node $openwrt_script/JD_Script/js/jd_19E.js			#热爱奇旅
+	$node $openwrt_script/JD_Script/js/jd_19E_help.js			#热爱奇旅互助
 	echo -e "${green} run_02$stop_script_time ${white}"
 }
 
