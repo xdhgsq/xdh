@@ -85,7 +85,7 @@ export guaopencardRun_All="true"
 export guaopencard_draw="true"
 
 #资产变化，不推送以下内容变化
-export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪"
+export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 
 task() {
 	cron_version="4.05"
@@ -283,6 +283,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_super_redrain.js		#整点京豆雨
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_jmofang.js			#京东集魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -353,6 +354,7 @@ cat >$dir_file/config/tmp/star261_url.txt <<EOF
 	#jd_dreamFactory_tuan.js 	#京喜开团　star261脚本
 	jd_fan.js			#粉丝互动
 	jd_productZ4Brand.js		#特务Z
+	jd_618dfw.js			#618大富翁
 EOF
 
 for script_name in `cat $dir_file/config/tmp/star261_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -543,6 +545,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_qqxing.js			#星系牧场
+	jd_618dfw.js			#618大富翁
+	jd_jmofang.js			#京东集魔方
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -552,7 +556,7 @@ EOF
 	}&
 	done
 
-	sleep 3600
+	sleep 1200
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 	$node $openwrt_script/JD_Script/js/jd_jxlhb.js & #惊喜领红包
 	$node $openwrt_script/JD_Script/js/jd_mpdzcar.js			#头文字Ｊ
@@ -564,7 +568,7 @@ concurrent_js_run_07() {
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
-	＃jd_angryKoi.js			#愤怒的锦鲤
+	＃jd_angryKoi.js		#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
