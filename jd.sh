@@ -413,7 +413,6 @@ done
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
 
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
-	wget https://raw.githubusercontent.com/asd920/Auto/main/jd_jxzzl.js -O $dir_file_js/jd_jxzzl.js #京享周周乐
 	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 
 
@@ -428,7 +427,6 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_19E.js			#热爱奇旅
 	jd_19E_help.js			#热爱奇旅互助
 	jd_19EPZ_help.js		#热爱奇旅膨胀
-	jd_jxzzl.js 			#京享周周乐
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
@@ -447,6 +445,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_jxzzl.js 			#京享周周乐
 	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
 EOF
@@ -539,7 +538,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_productZ4Brand.js		#特务Z
 	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_jxzzl.js 			#京享周周乐
 	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
