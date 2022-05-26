@@ -1,7 +1,3 @@
-if (process.env.JD_19E != "true") {
-    console.log('\n默认不运行,设置变量export JD_19E="true"来运行\n')
-    return
-}
 /*
 
 建议手动先点开一次
