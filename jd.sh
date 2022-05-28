@@ -464,7 +464,7 @@ done
 		update
 	fi
 	chmod 755 $dir_file_js/*
-	kill_index
+	#kill_index
 	#index_js
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
@@ -583,7 +583,7 @@ EOF
 	}&
 	done
 	wait
-$node $openwrt_script/JD_Script/js/jd_fruit.js & 
+	$node $openwrt_script/JD_Script/js/jd_fruit.js & 
 	$node $openwrt_script/JD_Script/js/jd_bean_change.js 	#资产变动强化版
 	checklog #检测log日志是否有错误并推送
 }
@@ -731,7 +731,7 @@ EOF
 	}&
 	done
 	wait
-	
+
 	#极速版签到
 	run_jsqd
 
@@ -1210,7 +1210,7 @@ if_ps() {
 	num="1"
 	while [ $file_num -ge $num ];do
 		row_data=$(sed -n "$num p" /tmp/jd_tmp/ps_$action.log | awk '{print $2}' | sed "s/进程//g")
-		process_num=$(( $process_num + $row_data ))	
+		process_num=$(( $process_num + $row_data ))
 		num=$(( $num + 1))
 	done
 
@@ -2642,10 +2642,10 @@ del_js() {
 							rm -rf $ccr_js_file/$i/$js_script
 						else
 							echo -e "${yellow}${js_name}${white}检测到并发文件$i的${green}${js_script}${white}文件已经删除了"
-						fi	
+						fi
 					done
 				done
-				
+
 				#删除js文件夹中的脚本
 				for js_script in `echo $js_file`
 				do
@@ -2655,7 +2655,7 @@ del_js() {
 						rm -rf $jd_file_js/$js_script
 					else
 						echo -e "${yellow}${js_name}${white}检测到JS文件夹里的${green}${js_script}${white}文件已经删除了"
-					fi	
+					fi
 				done
 				echo -e "******************${yellow}${js_name}${white}里的脚本全部删除完毕******************"
 			;;
@@ -3042,7 +3042,7 @@ jd_openwrt_config() {
 	jd_unsubscribe=$(grep "jd_unsubscribe" $jd_openwrt_config | awk -F "'" '{print $2}')
 	push_if=$(grep "push_if" $jd_openwrt_config | awk -F "'" '{print $2}')
 	weixin2=$(grep "weixin2" $jd_openwrt_config | awk -F "'" '{print $2}')
-	
+
 	#不跑东东农场
 	jd_ddfruit=$(grep "jd_ddfruit" $jd_openwrt_config | awk -F "'" '{print $2}')
 
@@ -3066,8 +3066,6 @@ jd_openwrt_config() {
 
 	#脚本黑名单
 	script_black=$(grep "script_black" $jd_openwrt_config | awk -F "'" '{print $2}')
-	
-	
 
 	jd_sharecode_fr=$(grep "jd_sharecode_fr" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_sharecode_pet=$(grep "jd_sharecode_pet" $jd_openwrt_config | awk -F "'" '{print $2}')
