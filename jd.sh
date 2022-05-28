@@ -2919,8 +2919,8 @@ system_variable() {
 
 	jd_openwrt_config
 
-	index_js
-	#index_num="${yellow} 8.网页获取CK功能已关闭，没人修暂时就这样了${white}"
+	#index_js
+	index_num="${yellow} 8.网页获取CK功能已关闭，没人修暂时就这样了${white}"
 
 	#农场萌宠关闭通知
 	close_notification
