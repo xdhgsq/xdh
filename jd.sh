@@ -424,6 +424,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	gua_nhjRed.js			#年货节红包
 	jd_19E.js			#热爱奇旅(２０２２０５２８异常)
 	jd_19E_friends.js		#热爱奇旅升级
 	jd_19E_help.js			#热爱奇旅互助
@@ -596,6 +597,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	gua_nhjRed.js			#年货节红包
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
