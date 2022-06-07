@@ -559,8 +559,10 @@ EOF
 
 	sleep 1200
 	#京喜免费领变量
-	export first="false"
-	export launchid=a64e3f7047d07f9511021521d1d6a53a
+	if [ "$launchid" == ""];then
+		export first="false"
+		export launchid="a64e3f7047d07f9511021521d1d6a53a"
+	fi
 	$node  $openwrt_script/JD_Script/js/jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 	$node $openwrt_script/JD_Script/js/jd_jxlhb.js & #惊喜领红包
