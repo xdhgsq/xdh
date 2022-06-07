@@ -322,7 +322,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_qqxing.js			#星系牧场
-	jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -425,6 +424,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
 	gua_nhjRed.js			#年货节红包
 	jd_19E.js			#热爱奇旅(２０２２０５２８异常)
 	jd_19E_friends.js		#热爱奇旅升级
