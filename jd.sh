@@ -422,10 +422,6 @@ done
 cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
 	gua_nhjRed.js			#年货节红包
-	jd_19E.js			#热爱奇旅(２０２２０５２８异常)
-	jd_19E_friends.js		#热爱奇旅升级
-	jd_19E_help.js			#热爱奇旅互助
-	jd_19EPZ_help.js		#热爱奇旅膨胀
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
@@ -701,8 +697,6 @@ EOF
 }
 
 run_02() {
-#19E变量
-export JD_19E="true"
 cat >/tmp/jd_tmp/run_02 <<EOF
 	#空.js
 EOF
@@ -716,9 +710,6 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-
-	$node $openwrt_script/JD_Script/js/jd_19E_friends.js		#热爱奇旅升级
-	#$node $openwrt_script/JD_Script/js/jd_19E_help.js			#热爱奇旅互助
 	echo -e "${green} run_02$stop_script_time ${white}"
 }
 
