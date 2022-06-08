@@ -559,7 +559,7 @@ EOF
 
 	sleep 1200
 	#京喜免费领变量
-	if [ "$launchid" == ""];then
+	if [ "$launchid" == "" ];then
 		export first="false"
 		export launchid="a64e3f7047d07f9511021521d1d6a53a"
 	fi
