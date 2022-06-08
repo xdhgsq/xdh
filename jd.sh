@@ -239,7 +239,6 @@ done
 Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
 cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jd_ccSign.js			#领券中心签到
-	#jd_cash.js			#签到领现金，每日2毛～5毛长期
 	jd_connoisseur.js		#内容鉴赏官
 	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
@@ -281,9 +280,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_wdz.js			#微定制瓜分京豆
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
-	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_jmofang.js			#京东集魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -318,7 +315,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mpdzcar.js			#头文字Ｊ
 	jd_mpdzcar_game.js		#头文字Ｊ游戏
 	jd_mpdzcar_help.js		#头文字Ｊ助力
-	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_qqxing.js			#星系牧场
@@ -448,6 +444,9 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_cash.js			#签到领现金，每日2毛～5毛
+	jd_jmofang.js			#京东集魔方
+	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_jxzzl.js 			#京享周周乐
 	jd_520mzcj.js			#520美妆抽奖机活动
 	jd_exchangejxbeans.js		#过期京豆兑换为喜豆
@@ -539,15 +538,12 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fan.js			#粉丝互动
 	jd_bean_home.js			#领京豆额外奖励&抢京豆
 	jd_productZ4Brand.js		#特务Z
-	jd_cash.js			#签到领现金，每日2毛～5毛
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_zxqyxd.js			#5.1-5.31 植选轻饮小店
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_qqxing.js			#星系牧场
 	jd_618dfw.js			#618大富翁
-	jd_jmofang.js			#京东集魔方
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -560,8 +556,9 @@ EOF
 	sleep 1200
 	#京喜免费领变量
 	if [ "$launchid" == "" ];then
-		export first="false"
-		export launchid="a64e3f7047d07f9511021521d1d6a53a"
+		echo ""		
+		#export first="false"
+		#export launchid="a64e3f7047d07f9511021521d1d6a53a"
 	fi
 	$node  $openwrt_script/JD_Script/js/jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
