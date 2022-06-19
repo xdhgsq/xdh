@@ -418,7 +418,6 @@ done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
-	gua_nhjRed.js			#年货节红包
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
@@ -588,7 +587,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	gua_nhjRed.js			#年货节红包
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
