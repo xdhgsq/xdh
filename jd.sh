@@ -547,7 +547,7 @@ EOF
 	if [ "$launchid" == "" ];then
 		echo ""		
 		export first="false"
-		export launchid="9353e87cce405a093a75fb969d5aac95"
+		export launchid="1177da281193920b5ccba3c4ef3bd767"
 	fi
 	#$node  $openwrt_script/JD_Script/js/jd_jxmfl.js			#京喜免费领（请自行替换为自己的变量）
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
