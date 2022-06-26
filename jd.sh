@@ -315,6 +315,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_qqxing.js			#星系牧场
+	jd_jxmfl.js			#京喜免费领
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -417,7 +418,6 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
@@ -546,10 +546,10 @@ EOF
 	#京喜免费领变量
 	if [ "$launchid" == "" ];then
 		echo ""		
-		#export first="false"
-		#export launchid="a64e3f7047d07f9511021521d1d6a53a"
+		export first="false"
+		export launchid="9353e87cce405a093a75fb969d5aac95"
 	fi
-	#$node  $openwrt_script/JD_Script/js/jd_jxmfljp.js			#京喜免费领（请自行替换为自己的变量）
+	#$node  $openwrt_script/JD_Script/js/jd_jxmfl.js			#京喜免费领（请自行替换为自己的变量）
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 	$node $openwrt_script/JD_Script/js/jd_jxlhb.js & #惊喜领红包
 }
