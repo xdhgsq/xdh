@@ -87,6 +87,9 @@ export guaopencard_draw="true"
 #资产变化，不推送以下内容变化
 export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 
+#农场开启存水模式
+export DO_TEN_WATER_AGAIN="false"
+
 task() {
 	cron_version="4.06"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
