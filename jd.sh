@@ -300,6 +300,9 @@ cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	#空.js
 	jd_mpdz6-isv.js			#八月联合营销
 	jd_xs_zzl.js			#京享周周乐
+	jd_wx_centerDraw.js		#M老虎机抽奖
+	magic.js			#M老虎机抽奖依赖
+	magic.json			#M老虎机抽奖依赖
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -578,6 +581,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_wx_centerDraw.js		#M老虎机抽奖
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
