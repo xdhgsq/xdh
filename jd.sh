@@ -324,6 +324,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_tanwei.js			#探味奇遇记
 	jd_gold_sign.js			#京东金榜
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
+	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -522,6 +523,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_gold_sign.js			京东金榜
 	jd_mpdz6-isv.js			#八月联合营销
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
+	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
