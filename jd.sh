@@ -328,6 +328,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_gold_sign.js			#京东金榜
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
 	jd_xl.js			#8.19-8.29 骁龙超级品牌日
+	jd_teamXAY.js			#组队分豆-新安怡 [jd_teamXAY.js]
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -2769,7 +2770,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2
+	npm install -g ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2
 	npm install --save axios
 
 	#安装python模块
