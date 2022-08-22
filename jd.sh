@@ -212,53 +212,6 @@ done
 
 sleep 5
 
-#zero205
-zero205_url="https://raw.githubusercontent.com/zero205/JD_tencent_scf/main"
-cat >$dir_file/config/tmp/zero205_url.txt <<EOF
-	sign_graphics_validate.js
-	jd_bean_sign.js			#京东多合一签到
-	JDSignValidator.js		#京东多合一签到依赖1
-	JDJRValidator_Aaron.js		#京东多合一签到依赖2
-	jd_try.js 			#京东试用（默认不启用）
-	jd_get_share_code.js		#获取jd所有助力码脚本
-	jd_joy_park_task.js		#汪汪乐园
-	jd_nnfls.js			#牛牛福利
-	jd_gold_creator.js		#金榜创造营
-	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_jdzz.js			#京东赚赚
-	jd_babel_sign.js		#通天塔签到
-	jd_xmf.js			#京东小魔方
-	jd_ms.js			#秒秒币
-EOF
-
-for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$zero205_url"
-	wget $zero205_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
-
-#Aaron
-Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
-cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
-	jd_ccSign.js			#领券中心签到
-	jd_jxmc.js			#京喜牧场
-	jx_sign.js			#京喜签到
-	jd_club_lottery.js		#摇京豆
-	jd_kd.js			#京东快递签到 一天运行一次即可
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
-EOF
-
-for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$Aaron_url"
-	wget $Aaron_url/$script_name -O $dir_file_js/$script_name
-	update_if
-done
-
-
 #smiek2221
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
@@ -271,25 +224,6 @@ do
 {
 	url="$smiek2221_url"
 	wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
-
-#6dylan6
-github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
-cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	jd_price.js			#京东价保
-	jd_wdz.js			#微定制瓜分京豆
-	jd_speed_signred.js		#京东极速版签到红包
-	jd_super_redrain.js		#整点京豆雨
-	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-EOF
-
-for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$github_6dylan6_url_url"
-	wget $github_6dylan6_url_url/$script_name -O $dir_file_js/$script_name
 	update_if
 }&
 done
@@ -328,7 +262,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_gold_sign.js			#京东金榜
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
 	jd_xl.js			#8.19-8.29 骁龙超级品牌日
-	jd_teamXAY.js			#组队分豆-新安怡 [jd_teamXAY.js]
+	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -336,6 +270,71 @@ do
 	url="$KingRan_url"
 	wget $KingRan_url/$script_name -O $dir_file_js/$script_name
 	update_if
+done
+
+#Aaron
+Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
+cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
+	jd_ccSign.js			#领券中心签到
+	jd_jxmc.js			#京喜牧场
+	jx_sign.js			#京喜签到
+	jd_club_lottery.js		#摇京豆
+	jd_kd.js			#京东快递签到 一天运行一次即可
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
+EOF
+
+for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+	url="$Aaron_url"
+	wget $Aaron_url/$script_name -O $dir_file_js/$script_name
+	update_if
+done
+
+#zero205
+zero205_url="https://raw.githubusercontent.com/zero205/JD_tencent_scf/main"
+cat >$dir_file/config/tmp/zero205_url.txt <<EOF
+	sign_graphics_validate.js
+	jd_bean_sign.js			#京东多合一签到
+	JDSignValidator.js		#京东多合一签到依赖1
+	JDJRValidator_Aaron.js		#京东多合一签到依赖2
+	jd_try.js 			#京东试用（默认不启用）
+	jd_get_share_code.js		#获取jd所有助力码脚本
+	jd_joy_park_task.js		#汪汪乐园
+	jd_nnfls.js			#牛牛福利
+	jd_gold_creator.js		#金榜创造营
+	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
+	jd_jdzz.js			#京东赚赚
+	jd_babel_sign.js		#通天塔签到
+	jd_xmf.js			#京东小魔方
+	jd_ms.js			#秒秒币
+EOF
+
+for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	url="$zero205_url"
+	wget $zero205_url/$script_name -O $dir_file_js/$script_name
+	update_if
+}&
+done
+
+#6dylan6
+github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
+cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_price.js			#京东价保
+	jd_wdz.js			#微定制瓜分京豆
+	jd_speed_signred.js		#京东极速版签到红包
+	jd_super_redrain.js		#整点京豆雨
+	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+EOF
+
+for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	url="$github_6dylan6_url_url"
+	wget $github_6dylan6_url_url/$script_name -O $dir_file_js/$script_name
+	update_if
+}&
 done
 
 #yuannian1112
@@ -431,6 +430,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_teamXAY.js			#组队分豆-新安怡 [jd_teamXAY.js]
 	jd_fan.js			#粉丝互动
 	jd_productZ4Brand.js		#特务Z
 EOF
@@ -511,6 +511,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	jd_gold_creator.js		#金榜创造营
