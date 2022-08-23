@@ -191,6 +191,7 @@ rm -rf $dir_file/config/tmp/*
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
 	jd_fruit_help.js		#东东农场只浇水不做任务
+	jd_fruit_help_plus.js		#东东农场只浇水不做任务(使用快速浇水卡)
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_plantBean.js			#种豆得豆
