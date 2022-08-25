@@ -227,7 +227,6 @@ sleep 5
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
-	jd_sign_graphics.js		#京东签到图形验证
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -243,7 +242,6 @@ done
 okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	#空.js
-	jd_mpdz6-isv.js			#八月联合营销
 	jd_xs_zzl.js			#京享周周乐
 	jd_wx_centerDraw.js		#M老虎机抽奖
 	magic.js			#M老虎机抽奖依赖
@@ -266,10 +264,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_zdjr.js			#组队瓜分
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
-	jd_qqxing.js			#星系牧场
-	jd_jxmfl.js			#京喜免费领
-	jd_supermh.js			#京东超级盲盒
-	jd_tanwei.js			#探味奇遇记
 	jd_gold_sign.js			#京东金榜
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
 	jd_xl.js			#8.19-8.29 骁龙超级品牌日
@@ -279,9 +273,8 @@ EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
-	url="$KingRan_url"
-	wget $KingRan_url/$script_name -O $dir_file_js/$script_name
-	update_if
+	echo -e "${yellow} copy ${green}$script_name${white}"
+	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
 done
 
 #Aaron
@@ -334,7 +327,6 @@ done
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_price.js			#京东价保
-	jd_wdz.js			#微定制瓜分京豆
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
@@ -442,9 +434,13 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_teamXAY.js			#组队分豆-新安怡 [jd_teamXAY.js]
-	jd_fan.js			#粉丝互动
-	jd_productZ4Brand.js		#特务Z
+	jd_wdz.js			#微定制瓜分京豆
+	jd_tanwei.js			探味奇遇记
+	jd_supermh.js			#京东超级盲盒
+	jd_jxmfl.js
+	jd_qqxing.js			#星系牧场
+	jd_sign_graphics.js		#京东签到图形验证
+	jd_mpdz6-isv.js			#八月联合营销
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -535,11 +531,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_qqxing.js			#星系牧场
-	jd_supermh.js			#京东超级盲盒
-	jd_tanwei.js			探味奇遇记
 	jd_gold_sign.js			京东金榜
-	jd_mpdz6-isv.js			#八月联合营销
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
 	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 EOF
@@ -552,13 +544,6 @@ EOF
 	done
 
 	sleep 1200
-	#京喜免费领变量
-	if [ "$launchid" == "" ];then
-		echo ""		
-		export first="false"
-		export launchid="1177da281193920b5ccba3c4ef3bd767"
-		#$node  $openwrt_script/JD_Script/js/jd_jxmfl.js			#京喜免费领（请自行替换为自己的变量）
-	fi
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 }
 
@@ -571,10 +556,8 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_qqxing.js			#星系牧场
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
-	jd_supermh.js			#京东超级盲盒
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
