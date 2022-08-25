@@ -184,10 +184,10 @@ update() {
 		echo ""
 		git clone https://github.com/KingRan/KR.git $dir_file/git_clone/KingRan_script
 	else
-		cd $dir_file/git_clone/curtinlv_script
+		cd $dir_file/git_clone/KingRan_script
 		git fetch --all
 		git reset --hard origin/main
-		cp $dir_file/git_clone/curtinlv_script/function $dir_file_js/function
+		cp -r $dir_file/git_clone/KingRan_script/function $dir_file_js/function
 	fi
 
 	echo -e "${green} update$start_script_time ${white}"
