@@ -180,6 +180,16 @@ update() {
 		curtinlv_script_setup
 	fi
 
+	if [ ! -d $dir_file/git_clone/KingRan_script ];then
+		echo ""
+		git clone https://github.com/KingRan/KR.git $dir_file/git_clone/KingRan_script
+	else
+		cd $dir_file/git_clone/curtinlv_script
+		git fetch --all
+		git reset --hard origin/main
+		cp $dir_file/git_clone/curtinlv_script/function $dir_file_js/function
+	fi
+
 	echo -e "${green} update$start_script_time ${white}"
 	echo -e "${green}开始下载JS脚本，请稍等${white}"
 #cat script_name.txt | awk '{print length, $0}' | sort -rn | sed 's/^[0-9]\+ //'按照文件名长度降序：
@@ -264,6 +274,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
 	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
+	jd_supermarket.js		#京东超市游戏
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -512,6 +523,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_supermarket.js		#京东超市游戏
 	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
