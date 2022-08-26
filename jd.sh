@@ -262,6 +262,7 @@ KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
+	jd_try.js 			#京东试用（默认不启用）
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_gold_sign.js			#京东金榜
@@ -302,7 +303,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_bean_sign.js			#京东多合一签到
 	JDSignValidator.js		#京东多合一签到依赖1
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
-	jd_try.js 			#京东试用（默认不启用）
 	jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_joy_park_task.js		#汪汪乐园
 	jd_nnfls.js			#牛牛福利
