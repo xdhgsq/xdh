@@ -227,6 +227,7 @@ sleep 5
 smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
+	gua_cleancart.js		#清空购物车
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -548,6 +549,15 @@ EOF
 }
 
 concurrent_js_run_07() {
+#清空购物车变量
+export gua_cleancart_Run="true"
+export gua_cleancart_SignUrl="https://jd.smiek.tk/jdcleancatr_21102717" # 算法url
+if [ -z $gua_cleancart_products ];then
+	echo ""
+else
+	export gua_cleancart_products="*@&@"
+fi
+
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
@@ -558,6 +568,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
+	gua_cleancart.js		#清空购物车
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
