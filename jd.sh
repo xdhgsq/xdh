@@ -271,6 +271,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 	jd_supermarket.js		#京东超市游戏
+	jd_supermh.js			#京东超级盲盒
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -569,6 +570,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	gua_cleancart.js		#清空购物车
+	jd_supermh.js			#京东超级盲盒
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
