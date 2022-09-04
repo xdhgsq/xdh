@@ -272,6 +272,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 	jd_supermarket.js		#京东超市游戏
 	jd_supermh.js			#京东超级盲盒
+	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -521,6 +522,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 	jd_supermarket.js		#京东超市游戏
 	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 	jd_nnfls.js			#牛牛福利
