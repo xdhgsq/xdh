@@ -221,6 +221,27 @@ do
 	cp  $dir_file/git_clone/lxk0301_back/$script_name  $dir_file_js/$script_name
 done
 
+
+#KingRan
+KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
+cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_cjzdgf.js			#CJ组队瓜分京豆
+	jd_zdjr.js			#组队瓜分
+	jd_try.js 			#京东试用（默认不启用）
+	jd_superBrandStar.js		#特务之明星送好礼
+	jd_superBrandJK.js		#特务集卡
+	jd_gold_sign.js			#京东金榜
+	jd_supermarket.js		#京东超市游戏
+	jd_supermh.js			#京东超级盲盒
+	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
+EOF
+
+for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+	echo -e "${yellow} copy ${green}$script_name${white}"
+	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
+done
+
 sleep 5
 
 #smiek2221
@@ -256,29 +277,6 @@ do
 	wget $okyyds_url/$script_name -O $dir_file_js/$script_name
 	update_if
 }&
-done
-
-#KingRan
-KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
-cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_cjzdgf.js			#CJ组队瓜分京豆
-	jd_zdjr.js			#组队瓜分
-	jd_try.js 			#京东试用（默认不启用）
-	jd_superBrandStar.js		#特务之明星送好礼
-	jd_superBrandJK.js		#特务集卡
-	jd_gold_sign.js			#京东金榜
-	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
-	jd_xl.js			#8.19-8.29 骁龙超级品牌日
-	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
-	jd_supermarket.js		#京东超市游戏
-	jd_supermh.js			#京东超级盲盒
-	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
-EOF
-
-for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	echo -e "${yellow} copy ${green}$script_name${white}"
-	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
 done
 
 #Aaron
@@ -437,13 +435,9 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_wdz.js			#微定制瓜分京豆
-	jd_tanwei.js			探味奇遇记
-	jd_supermh.js			#京东超级盲盒
-	jd_jxmfl.js
-	jd_qqxing.js			#星系牧场
-	jd_sign_graphics.js		#京东签到图形验证
-	jd_mpdz6-isv.js			#八月联合营销
+	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
+	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
+	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -524,7 +518,6 @@ ccr_run() {
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 	jd_supermarket.js		#京东超市游戏
-	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
 	jd_gold_creator.js		#金榜创造营
@@ -536,8 +529,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_gold_sign.js			京东金榜
-	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
-	jd_xl.js			#8.19-8.29 骁龙超级品牌日
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
