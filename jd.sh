@@ -345,7 +345,7 @@ done
 #yuannian1112
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
 cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
-	jd_dwapp.js			#积分换话费
+	#jd_dwapp.js			#积分换话费
 EOF
 
 for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
