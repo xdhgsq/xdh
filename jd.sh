@@ -331,6 +331,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_zjd.js			#赚京豆
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -578,6 +579,10 @@ EOF
 	
 	sleep 600
 	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
+	
+	$node $openwrt_script/JD_Script/js/jd_zjd.js #赚京豆
+	$node $openwrt_script/JD_Script/js/jd_zjd.js #赚京豆
+	$node $openwrt_script/JD_Script/js/jd_zjd.js #赚京豆
 }
 
 
