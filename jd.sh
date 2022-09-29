@@ -236,6 +236,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_supermh.js			#京东超级盲盒
 	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 	jd_TreasureRank.js		#排行榜-宝藏榜
+	jd_live.js			#京东直播
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -681,6 +682,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
+	jd_live.js			#京东直播
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
