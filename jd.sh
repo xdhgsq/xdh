@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.10"
+	cron_version="4.11"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -119,7 +119,6 @@ cat >>/etc/crontabs/root <<EOF
 00 10 */7 * * $dir_file/jd.sh check_cookie_push >/tmp/check_cookie_push.log 2>&1 #每个7天推送cookie相关信息#100#
 5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
-0 */4 * * * $node $dir_file_js/jd_dreamFactory_tuan.js	>/tmp/jd_dreamFactory_tuan.log	#京喜开团#100#
 0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
 59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
 #59 */1 * * * $dir_file/jd.sh jd_time >/tmp/jd_time.log	#同步京东时间#100#
@@ -231,9 +230,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_try.js 			#京东试用（默认不启用）
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
-	jd_gold_sign.js			#京东金榜
 	jd_supermarket.js		#京东超市游戏
-	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_live.js			#京东直播
 EOF
@@ -399,8 +396,6 @@ do
 	update_if
 done
 
-
-	wget https://raw.githubusercontent.com/whyour/hundun/master/quanx/jx_products_detail.js -O $dir_file_js/jx_products_detail.js #京喜工厂商品列表详情
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
 	
 	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_cookie.py -O $dir_file_js/jd_cookie.py
@@ -433,17 +428,12 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_OpenCard.py 			#开卡程序
 	jd_check_cookie.js		#检测cookie是否存活（暂时不能看到还有几天到期）
 	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
-	jx_products_detail.js		#京喜工厂商品列表详情
 EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_zjd.js
-	jd_hwj_sb.js
-	jd_supermh.js
-	jd_ysldwb.js			#8.21-8.31 雅诗兰黛会员节挖宝
-	jd_yjAce.js			#8.15-8.24 一加 Ace Pro 最稳王牌
-	jd_xl.js			#8.19-8.29 骁龙超级品牌日
+	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
+	jd_gold_sign.js
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -522,7 +512,6 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 	jd_supermarket.js		#京东超市游戏
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
@@ -534,7 +523,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandStar.js		#特务之明星送好礼
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_gold_sign.js			京东金榜
 	jd_TreasureRank.js		#排行榜-宝藏榜
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -923,7 +911,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|jd_dreamFactory_tuan.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|jx_products_detail.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
@@ -934,12 +922,6 @@ Tjs()	{
 		read a
 	done
 
-}
-
-jx() {
-	echo -e "${green} 查询京喜商品生产所用时间$start_script_time ${white}"
-	$node $dir_file_js/jx_products_detail.js
-	echo -e "${green} 查询完成$stop_script_time ${white}"
 }
 
 jd_sharecode() {
@@ -2080,8 +2062,6 @@ help() {
 	echo ""
 	echo -e "${green}  sh \$jd opencard ${white}  			#开卡(默认不执行，你可以执行这句跑)"
 	echo ""
-	echo -e "${green}  sh \$jd jx ${white} 				#查询京喜商品生产使用时间"
-	echo ""
 	echo -e "${green}  sh \$jd jd_sharecode ${white} 			#查询京东所有助力码"
 	echo ""
 	echo -e "${green}  sh \$jd checklog ${white}  			#检测log日志是否有错误并推送"
@@ -2376,10 +2356,6 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 		sed -i "$dfcode_rows a \ $new_dreamFactory_set " $dir_file_js/jdDreamFactoryShareCodes.js
 		js_amount=$(($js_amount - 1))
 	done
-
-
-	#京喜开团
-	sed -i "s/helpFlag = true/helpFlag = false/g" $dir_file_js/jd_dreamFactory_tuan.js
 
 
 	#京东试用
@@ -3199,7 +3175,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -3218,7 +3194,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jx|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
