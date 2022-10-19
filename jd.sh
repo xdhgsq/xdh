@@ -525,7 +525,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
-	gua_xbh.js			#京东新百货大楼
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -685,7 +684,7 @@ EOF
 
 run_02() {
 cat >/tmp/jd_tmp/run_02 <<EOF
-	#空.js
+	gua_xbh.js			#京东新百货大楼
 EOF
 	echo -e "${green} run_02$start_script_time ${white}"
 
