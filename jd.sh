@@ -416,6 +416,7 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
+	jd_cxxb.js			#双十一活动
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
@@ -513,6 +514,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_cxxb.js			#双十一活动
 	jd_supermarket.js		#京东超市游戏
 	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
@@ -550,6 +552,7 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_cxxb.js			#双十一活动
 	jd_dreamFactory.js 		#京喜工厂
 	＃jd_angryKoi.js		#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
