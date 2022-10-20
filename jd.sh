@@ -602,6 +602,7 @@ EOF
 	run_10_15_20
 	run_030
 	run_01
+	ccr_run
 	echo -e "${green} run_0$stop_script_time ${white}"
 }
 
@@ -767,6 +768,7 @@ EOF
 		$run_sleep
 	done
 	echo -e "${green} run_07$stop_script_time ${white}"
+	concurrent_js_run_07
 }
 
 
