@@ -602,7 +602,6 @@ EOF
 	run_10_15_20
 	run_030
 	run_01
-	ccr_run
 	echo -e "${green} run_0$stop_script_time ${white}"
 }
 
@@ -768,7 +767,6 @@ EOF
 		$run_sleep
 	done
 	echo -e "${green} run_07$stop_script_time ${white}"
-	concurrent_js_run_07
 }
 
 
@@ -1235,16 +1233,18 @@ concurrent_js_if() {
 		run_0)
 			action="$action1"
 			ccr_run &
-			concurrent_js && if_ps
+			concurrent_js
+			wait
 			if [ ! $action2 ];then
-				if_ps
 				concurrent_js_clean
 			else
 				case "$action2" in
 				run_07)
 					action="$action2"
-					concurrent_js && if_ps
-					concurrent_js_run_07 && if_ps
+					concurrent_js
+					wait
+					concurrent_js_run_07
+					wait
 					concurrent_js_clean
 				;;
 				esac
@@ -1252,8 +1252,10 @@ concurrent_js_if() {
 		;;
 		run_07)
 			action="$action1"
-			concurrent_js && if_ps
-			concurrent_js_run_07 && if_ps
+			concurrent_js
+			wait
+			concurrent_js_run_07
+			wait
 			concurrent_js_clean
 		;;
 		run_03)
@@ -1262,13 +1264,13 @@ concurrent_js_if() {
 		run_030)
 			action="$action1"
 			concurrent_js
-			if_ps
+			wait
 			concurrent_js_clean
 		;;
 		run_01|run_02|opencard|run_08_12_16|run_020|run_10_15_20|run_06_18)
 			action="$action1"
 			concurrent_js
-			if_ps
+			wait
 			concurrent_js_clean
 		;;
 		esac
