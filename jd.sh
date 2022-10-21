@@ -536,8 +536,8 @@ EOF
 	}&
 	done
 
-	sleep 1200
-	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
+	#sleep 1200
+	#$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 }
 
 concurrent_js_run_07() {
@@ -554,7 +554,7 @@ fi
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_cxxb.js			#双十一活动
 	jd_dreamFactory.js 		#京喜工厂
-	＃jd_angryKoi.js		#愤怒的锦鲤
+	#jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
@@ -574,8 +574,8 @@ EOF
 	$node $openwrt_script/JD_Script/js/jd_bean_change.js 	#资产变动强化版
 	checklog #检测log日志是否有错误并推送
 	
-	sleep 600
-	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
+	#sleep 600
+	#$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 }
 
 
