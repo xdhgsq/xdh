@@ -228,8 +228,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
-	jd_superBrandStar.js		#特务之明星送好礼
-	jd_superBrandJK.js		#特务集卡
 	jd_supermarket.js		#京东超市游戏
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_live.js			#京东直播
@@ -265,9 +263,6 @@ okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	#空.js
 	jd_xs_zzl.js			#京享周周乐
-	jd_wx_centerDraw.js		#M老虎机抽奖
-	magic.js			#M老虎机抽奖依赖
-	magic.json			#M老虎机抽奖依赖
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -282,7 +277,6 @@ done
 #Aaron
 Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
 cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
-	jd_ccSign.js			#领券中心签到
 	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js		#摇京豆
@@ -306,11 +300,7 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
 	jd_get_share_code.js		#获取jd所有助力码脚本
 	jd_joy_park_task.js		#汪汪乐园
-	jd_nnfls.js			#牛牛福利
-	jd_gold_creator.js		#金榜创造营
-	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_jdzz.js			#京东赚赚
-	jd_babel_sign.js		#通天塔签到
 	jd_xmf.js			#京东小魔方
 	jd_ms.js			#秒秒币
 EOF
@@ -358,19 +348,6 @@ do
 }&
 done
 
-#X1a0He
-X1a0He_url="https://raw.githubusercontent.com/X1a0He/jd_scripts_fixed/main"
-cat >$dir_file/config/tmp/X1a0He_url.txt <<EOF
-	jd_jin_tie_xh.js  		#领金贴
-EOF
-
-for script_name in `cat $dir_file/config/tmp/X1a0He_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$X1a0He_url"
-	wget $X1a0He_url/$script_name -O $dir_file_js/$script_name
-	update_if
-done
-
 #ccwav
 ccwav_url="https://raw.githubusercontent.com/ccwav/QLScript2/main"
 cat >$dir_file/config/tmp/ccwav_url.txt <<EOF
@@ -384,18 +361,6 @@ do
 	#update_if
 done
 
-#cdle_carry
-cdle_carry_url="https://raw.githubusercontent.com/cdle/carry/main"
-cat >$dir_file/config/tmp/cdle_carry_url.txt <<EOF
-	jd_angryKoi.js		#愤怒的锦鲤
-EOF
-
-for script_name in `cat $dir_file/config/tmp/cdle_carry_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$cdle_carry_url"
-	wget $cdle_carry_url/$script_name -O $dir_file_js/$script_name
-	update_if
-done
 
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
 	
@@ -434,8 +399,20 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_babel_sign.js		#通天塔签到
+	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
+	jd_gold_creator.js		#金榜创造营
+	jd_nnfls.js			#牛牛福利
+	magic.js			#M老虎机抽奖依赖
+	magic.json			#M老虎机抽奖依赖
+	jd_wx_centerDraw.js		#M老虎机抽奖
+	jd_angryKoi.js
+	jd_jin_tie_xh.js  		#领金贴
+	jd_superBrandJK.js		#特务集卡
+	jd_ccSign.js			#领券中心签到
 	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
 	jd_gold_sign.js
+	jd_superBrandStar.js		#特务之明星送好礼
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -516,15 +493,10 @@ ccr_run() {
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_cxxb.js			#双十一活动
 	jd_supermarket.js		#京东超市游戏
-	jd_nnfls.js			#牛牛福利
 	jx_sign.js			#京喜签到
-	jd_gold_creator.js		#金榜创造营
 	jd_tyt.js			#极速版赚金币推一推
 	jd_joy_park_task.js		#汪汪乐园
-	jd_babel_sign.js		#通天塔签到
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_superBrandStar.js		#特务之明星送好礼
-	jd_superBrandJK.js		#特务集卡
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
 EOF
@@ -554,13 +526,11 @@ fi
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_cxxb.js			#双十一活动
 	jd_dreamFactory.js 		#京喜工厂
-	#jd_angryKoi.js			#愤怒的锦鲤
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_superBrandStar.js		#特务之明星送好礼
-	jd_superBrandJK.js		#特务集卡
+	jx_sign.js			#京喜签到
 	gua_cleancart.js		#清空购物车
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
@@ -582,10 +552,8 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dpqd.js			#店铺签到
-	jd_jin_tie_xh.js  		#领金贴
 	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_wx_centerDraw.js		#M老虎机抽奖
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -665,7 +633,6 @@ EOF
 
 run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
-	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
@@ -732,7 +699,6 @@ cat >/tmp/jd_tmp/run_06_18 <<EOF
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
-	jd_ccSign.js			#领券中心签到
 EOF
 	echo -e "${green} run_06_18$start_script_time ${white}"
 
@@ -751,10 +717,8 @@ EOF
 run_07() {
 cat >/tmp/jd_tmp/run_07 <<EOF
 	jd_kd.js 			#京东快递签到 一天运行一次即可
-	jd_jin_tie_xh.js  		#领金贴
 	jd_unsubscribe.js 		#取关店铺，没时间要求
         gua_MMdou.js                    #赚京豆MM豆
-	jx_sign.js			#京喜签到
 EOF
 	echo -e "${green} run_07$start_script_time ${white}"
 
@@ -915,7 +879,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}'`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}'`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
