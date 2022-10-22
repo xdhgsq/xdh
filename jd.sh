@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.11"
+	cron_version="4.12"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -126,6 +126,7 @@ cat >>/etc/crontabs/root <<EOF
 2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
+1 8 * * * $node $dir_file_js/jd_cxxb_new.js >/tmp/jd_cxxb_new.log　#双十一活动
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 ###########100##########请将其他定时任务放到底下###############
@@ -225,6 +226,7 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_dfw.js			#穿行寻宝 大富翁刷金币
 	jd_couponspace.js		#卷民空间站分红包
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
@@ -318,6 +320,8 @@ done
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_cxxb_new.js			#双十一活动
+	jd_plus2bean.js                 #plus专属礼
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
 	jd_speed_signred.js		#京东极速版签到红包
@@ -382,7 +386,6 @@ do
 done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
-	jd_cxxb.js			#双十一活动
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_cjzdgf.js 			#CJ组队瓜分京豆
 	jd_wxCollectionActivity.js 	#加购物车抽奖
@@ -492,7 +495,8 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_cxxb.js			#双十一活动
+	jd_plus2bean.js                 #plus专属礼
+	jd_cxxb_new.js			#双十一活动
 	jd_supermarket.js		#京东超市游戏
 	jx_sign.js			#京喜签到
 	jd_tyt.js			#极速版赚金币推一推
@@ -525,7 +529,6 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_cxxb.js			#双十一活动
 	jd_dreamFactory.js 		#京喜工厂
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
@@ -639,6 +642,7 @@ cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
 	jd_live.js			#京东直播
+	jd_dfw.js			#穿行寻宝 大富翁刷金币
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
