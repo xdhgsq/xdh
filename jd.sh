@@ -96,7 +96,7 @@ if [ ! "$JD_221111Red_rebateCode" ];then
 fi
 
 task() {
-	cron_version="4.14"
+	cron_version="4.15"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -130,7 +130,7 @@ cat >>/etc/crontabs/root <<EOF
 0 */1 * * * $node $dir_file_js/jd_super_redrain.js >/tmp/jd_super_redrain.log #整点京豆雨#100#
 2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次
-0 0,9 * * * $node $dir_file_js/gua_221111_Red.js >/tmp/gua_221111_Red.log #双十一#100#
+0 0,3,7 * * * $node $dir_file_js/gua_221111_Red.js >/tmp/gua_221111_Red.log #双十一#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
