@@ -21,7 +21,7 @@ export JD_221111Red_redTimes="0"
 
 */
 
-let rebateCodes = ''; // 返利变量
+let rebateCodes = 'kIUSGS9'; // 返利变量
 let rebatePin = ''; // 助力pin变量
 let redTimes = 0 // 领取次数
 
