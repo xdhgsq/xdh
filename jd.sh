@@ -92,7 +92,7 @@ export DO_TEN_WATER_AGAIN="false"
 
 #双十一返利
 if [ ! "$JD_221111Red_rebateCode" ];then
-	JD_221111Red_rebateCode="kIUSGS9"
+	export JD_221111Red_rebateCode="kIUSGS9"
 fi
 
 task() {
