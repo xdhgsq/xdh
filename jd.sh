@@ -583,7 +583,7 @@ EOF
 
 run_020() {
 cat >/tmp/jd_tmp/run_020 <<EOF
-	#空.js
+	gua_superRedBagDraw.js
 EOF
 	echo -e "${green} run_020$start_script_time ${white}"
 
