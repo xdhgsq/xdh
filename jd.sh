@@ -206,8 +206,10 @@ rm -rf $dir_file/config/tmp/*
 #lxk0301_back
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
-	jd_fruit_help.js		#东东农场只浇水不做任务
-	jd_fruit_help_plus.js		#东东农场只浇水不做任务(使用快速浇水卡)
+	jd_fruit_help.js		#东东农场助力
+	jd_fruit_watering.js		#东东农场普通浇水10g(默认不运行)
+	jd_fruit_watering_plus.js	#东东农场使用快速浇水卡100g,前提你有那么多快速浇水卡(默认不运行)
+	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_plantBean.js			#种豆得豆
@@ -509,6 +511,9 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_couponspace.js		#卷民空间站分红包
+	jd_fruit_help.js		#东东农场助力
+	jd_fruit_friend.js		#东东农场好友删减奖励
+	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -517,8 +522,6 @@ EOF
 		$run_sleep
 	}&
 	done
-	wait
-	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 }
 
 concurrent_js_run_07() {
@@ -540,6 +543,9 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jx_sign.js			#京喜签到
 	gua_cleancart.js		#清空购物车
+	jd_fruit_help.js		#东东农场助力
+	jd_fruit_friend.js		#东东农场好友删减奖励
+	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -551,9 +557,6 @@ EOF
 	wait
 	$node $openwrt_script/JD_Script/js/jd_bean_change.js 	#资产变动强化版
 	checklog #检测log日志是否有错误并推送
-	
-	
-	$node $openwrt_script/JD_Script/js/jd_fruit.js & #东东水果，6-9点 11-14点 17-21点可以领水滴
 }
 
 
@@ -2180,9 +2183,9 @@ baipiaoguai_fr="456e5601548642a5a9bcc86a54085154@61f21ef708c948568854ec50c362708
 	new_fruit_set="'$new_fruit1@$zuoyou_20190516_fr@$Javon_20201224_fr@$jidiyangguang_20190516_fr@$ashou_20210516_fr@$xiaodengzi_20190516_fr@$xiaobandeng_fr@$chiyu_fr@$random_set',"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	fr_rows=$(grep -n "shareCodes =" $dir_file_js/jd_fruit.js | awk -F ":" '{print $1}')
+	fr_rows=$(grep -n "shareCodes =" $dir_file_js/jd_fruit_help.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$fr_rows a \ $new_fruit_set " $dir_file_js/jd_fruit.js
+		sed -i "$fr_rows a \ $new_fruit_set " $dir_file_js/jd_fruit_help.js
 		js_amount=$(($js_amount - 1))
 	done
 
