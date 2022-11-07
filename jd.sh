@@ -2231,7 +2231,7 @@ baipiaoguai_pet="MTE1NDQ5OTUwMDAwMDAwNDUyNzA4NDc=@MTEzMzI0OTE0NTAwMDAwMDA0NTIxOT
 	random_pet="$ITdesk_random_pet@$zuoyou_20190516_random_pet@$Javon_random_pet@$baipiaoguai_pet"
 	random="$random_pet"
 	random_array
-	new_pet_set="'$new_pet@$zuoyou_20190516_pet@$Javon_20201224_pet@$jidiyangguang_20190516_pet@$Jhone_Potte_20200824_pet@$chiyu_pet@$ashou_20210516_pet@$xiaodengzi_20190516_pet@$random_set',"
+	new_pet_set="'$new_pet@$chiyu_pet@$zuoyou_20190516_pet@$Javon_20201224_pet@$jidiyangguang_20190516_pet@$Jhone_Potte_20200824_pet@$ashou_20210516_pet@$xiaodengzi_20190516_pet@$random_set',"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
 	pet_rows=$(grep -n "shareCodes =" $dir_file_js/jd_pet.js | awk -F ":" '{print $1}')
