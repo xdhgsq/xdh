@@ -213,6 +213,7 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_plantBean.js			#种豆得豆
+	jd_plantBean_help.js		#种豆得豆助力
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	jd_unsubscribe.js		#取关京东店铺和商品
 	jdPetShareCodes.js
@@ -514,6 +515,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	jd_plantBean_help.js		#种豆得豆助力
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -546,6 +548,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	jd_plantBean_help.js		#种豆得豆助力
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -2282,10 +2285,9 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 	new_plantBean_set="'$new_plantBean1@$zuoyou_20190516_pb@$Javon_20201224_pb@$jidiyangguang_20190516_pb@$chiyu_pb@$ashou_20210516_pb@$random_set',"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	sed -i "s/shareCodes = \[/shareCodes = \[\n/g" $dir_file_js/jd_plantBean.js
-	pb_rows=$(grep -n "shareCodes =" $dir_file_js/jd_plantBean.js | awk -F ":" '{print $1}')
+	pb_rows=$(grep -n "shareCodes =" $dir_file_js/jd_plantBean_help.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$pb_rows a \ $new_plantBean_set " $dir_file_js/jd_plantBean.js
+		sed -i "$pb_rows a \ $new_plantBean_set " $dir_file_js/jd_plantBean_help.js
 		js_amount=$(($js_amount - 1))
 	done
 
