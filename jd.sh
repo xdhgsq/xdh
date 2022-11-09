@@ -313,7 +313,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
 	jd_xmf.js			#京东小魔方
-	jd_ms.js			#秒秒币
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -334,6 +333,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_super_redrain.js		#整点京豆雨
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_ms.js			#秒秒币
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -502,6 +502,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
 	jd_cxxb.js			#双十一活动
 	jd_supermarket.js		#京东超市游戏
@@ -538,6 +539,7 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_ms.js			#秒秒币
 	jd_dreamFactory.js 		#京喜工厂
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
@@ -753,7 +755,6 @@ EOF
 run_08_12_16() {
 cat >/tmp/jd_tmp/run_08_12_16 <<EOF
 	jd_xmf.js			#京东小魔方
-	jd_ms.js			#秒秒币
 EOF
 	echo -e "${green} run_08_12_16$start_script_time ${white}"
 
