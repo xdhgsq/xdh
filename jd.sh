@@ -90,13 +90,8 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 #农场开启存水模式
 export DO_TEN_WATER_AGAIN="false"
 
-#双十一返利
-if [ ! "$JD_221111Red_rebateCode" ];then
-	export JD_221111Red_rebateCode="kIUSGS9"
-fi
-
 task() {
-	cron_version="4.15"
+	cron_version="4.16"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		task_delete
@@ -130,7 +125,6 @@ cat >>/etc/crontabs/root <<EOF
 0 */1 * * * $node $dir_file_js/jd_super_redrain.js >/tmp/jd_super_redrain.log #整点京豆雨#100#
 2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次
-0 0,3,7 * * * $node $dir_file_js/gua_221111_Red.js >/tmp/gua_221111_Red.log #双十一#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
@@ -234,8 +228,6 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_dfw.js			#穿行寻宝 大富翁刷金币
-	jd_couponspace.js		#卷民空间站分红包
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
@@ -257,7 +249,6 @@ smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
 cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
 	gua_MMdou.js                    #赚京豆MM豆
 	gua_cleancart.js		#清空购物车
-	gua_xbh.js			#京东新百货大楼
 EOF
 
 for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -410,20 +401,10 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_babel_sign.js		#通天塔签到
-	jd_cfd_pearl_ex.js 		#财富岛珍珠兑换
-	jd_gold_creator.js		#金榜创造营
-	jd_nnfls.js			#牛牛福利
-	magic.js			#M老虎机抽奖依赖
-	magic.json			#M老虎机抽奖依赖
-	jd_wx_centerDraw.js		#M老虎机抽奖
-	jd_angryKoi.js
-	jd_jin_tie_xh.js  		#领金贴
-	jd_superBrandJK.js		#特务集卡
-	jd_ccSign.js			#领券中心签到
-	jd_mnyyn.js			#9.1-9.29 云养牛，免费赢好礼
-	jd_gold_sign.js
-	jd_superBrandStar.js		#特务之明星送好礼
+	gua_xbh.js			#京东新百货大楼
+	jd_cxxb.js
+	jd_dfw.js			#穿行寻宝 大富翁刷金币
+	jd_couponspace.js		#卷民空间站分红包
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -504,7 +485,6 @@ ccr_run() {
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
-	jd_cxxb.js			#双十一活动
 	jd_supermarket.js		#京东超市游戏
 	jx_sign.js			#京喜签到
 	jd_tyt.js			#极速版赚金币推一推
@@ -512,7 +492,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
-	jd_couponspace.js		#卷民空间站分红包
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
@@ -649,13 +628,11 @@ EOF
 
 run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
-	jd_cxxb.js			#双十一活动
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
 	jd_live.js			#京东直播
-	jd_dfw.js			#穿行寻宝 大富翁刷金币
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
@@ -672,7 +649,7 @@ EOF
 
 run_02() {
 cat >/tmp/jd_tmp/run_02 <<EOF
-	gua_xbh.js			#京东新百货大楼
+	#空.js
 EOF
 	echo -e "${green} run_02$start_script_time ${white}"
 
