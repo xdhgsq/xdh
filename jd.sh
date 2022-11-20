@@ -2866,14 +2866,19 @@ system_variable() {
 }
 
 pj() {
+	pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk-F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 	if [ -f $dir_file/js/pinjia-amd64 ];then
-		pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk-F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
-		export JD_COOKIE="pj_ck"
+		clear
+		echo -e "$green开始进行评价$white"
+		export JD_COOKIE="$pj_ck"
 		$dir_file/js/pinjia-amd64
 	else
+		clear
+		echo -e "$yellow没有发现评价程序开始下载$white"
 		wget https://raw.githubusercontent.com/chendianwu0828/jd_pinjia/main/pinjia-amd64 -O $dir_file/js/pinjia-amd64
 		chmod +x $dir_file/js/pinjia-amd64
 		export JD_COOKIE="pj_ck"
+		echo -e "$green开始进行评价$white"
 		$dir_file/js/pinjia-amd64
 	fi
 }
