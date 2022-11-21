@@ -190,6 +190,16 @@ update() {
 		cp -r $dir_file/git_clone/KingRan_script/function $dir_file_js
 	fi
 
+	if [ ! -d $dir_file/git_clone/6dylan6_script ];then
+		echo ""
+		git clone https://github.com/6dylan6/jdpro.git $dir_file/git_clone/6dylan6_script
+	else
+		cd $dir_file/git_clone/6dylan6_script
+		git fetch --all
+		git reset --hard origin/main
+		cp -r $dir_file/git_clone/6dylan6_script/function $dir_file_js
+	fi
+
 	echo -e "${green} update$start_script_time ${white}"
 	echo -e "${green}开始下载JS脚本，请稍等${white}"
 #cat script_name.txt | awk '{print length, $0}' | sort -rn | sed 's/^[0-9]\+ //'按照文件名长度降序：
@@ -228,6 +238,9 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
+	jd_huodong.js		`	#京东活动抽奖
+	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
@@ -240,6 +253,27 @@ for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" |
 do
 	echo -e "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
+done
+
+#6dylan6
+github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
+cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
+	jd_plus2bean.js                 #plus专属礼
+	jd_vipgrowth.js			#京享值任务领豆，每周一次
+	jd_price.js			#京东价保
+	jd_speed_signred.js		#京东极速版签到红包
+	jd_super_redrain.js		#整点京豆雨
+	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_ms.js			#秒秒币
+EOF
+
+for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	echo -e "${yellow} copy ${green}$script_name${white}"
+	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
+}&
 done
 
 sleep 5
@@ -315,26 +349,7 @@ do
 }&
 done
 
-#6dylan6
-github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
-cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	jd_plus2bean.js                 #plus专属礼
-	jd_vipgrowth.js			#京享值任务领豆，每周一次
-	jd_price.js			#京东价保
-	jd_speed_signred.js		#京东极速版签到红包
-	jd_super_redrain.js		#整点京豆雨
-	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_ms.js			#秒秒币
-EOF
 
-for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$github_6dylan6_url_url"
-	wget $github_6dylan6_url_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
 
 #yuannian1112
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
@@ -483,6 +498,9 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
+	jd_huodong.js		`	#京东活动抽奖
+	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
 	jd_supermarket.js		#京东超市游戏
