@@ -239,7 +239,7 @@ done
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
-	jd_huodong.js		`	#京东活动抽奖
+	jd_huodong.js			#京东活动抽奖
 	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
@@ -499,7 +499,7 @@ ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
-	jd_huodong.js		`	#京东活动抽奖
+	jd_huodong.js			#京东活动抽奖
 	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
