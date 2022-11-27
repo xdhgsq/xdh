@@ -190,6 +190,16 @@ update() {
 		cp -r $dir_file/git_clone/KingRan_script/function $dir_file_js
 	fi
 
+	if [ ! -d $dir_file/git_clone/6dylan6_script ];then
+		echo ""
+		git clone https://github.com/6dylan6/jdpro.git $dir_file/git_clone/6dylan6_script
+	else
+		cd $dir_file/git_clone/6dylan6_script
+		git fetch --all
+		git reset --hard origin/main
+		cp -r $dir_file/git_clone/6dylan6_script/function $dir_file_js
+	fi
+
 	echo -e "${green} update$start_script_time ${white}"
 	echo -e "${green}开始下载JS脚本，请稍等${white}"
 #cat script_name.txt | awk '{print length, $0}' | sort -rn | sed 's/^[0-9]\+ //'按照文件名长度降序：
@@ -228,6 +238,9 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
+	jd_huodong.js			#京东活动抽奖
+	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
@@ -240,6 +253,27 @@ for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" |
 do
 	echo -e "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
+done
+
+#6dylan6
+github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
+cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
+	jd_plus2bean.js                 #plus专属礼
+	jd_vipgrowth.js			#京享值任务领豆，每周一次
+	jd_price.js			#京东价保
+	jd_speed_signred.js		#京东极速版签到红包
+	jd_super_redrain.js		#整点京豆雨
+	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
+	jd_ms.js			#秒秒币
+EOF
+
+for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
+do
+{
+	echo -e "${yellow} copy ${green}$script_name${white}"
+	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
+}&
 done
 
 sleep 5
@@ -315,26 +349,7 @@ do
 }&
 done
 
-#6dylan6
-github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
-cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	jd_plus2bean.js                 #plus专属礼
-	jd_vipgrowth.js			#京享值任务领豆，每周一次
-	jd_price.js			#京东价保
-	jd_speed_signred.js		#京东极速版签到红包
-	jd_super_redrain.js		#整点京豆雨
-	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_ms.js			#秒秒币
-EOF
 
-for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$github_6dylan6_url_url"
-	wget $github_6dylan6_url_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
 
 #yuannian1112
 yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
@@ -483,6 +498,9 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
+	jd_huodong.js			#京东活动抽奖
+	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
 	jd_supermarket.js		#京东超市游戏
@@ -2865,6 +2883,25 @@ system_variable() {
 	del_if
 }
 
+pj() {
+	pj_ck_num=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt |wc -l)
+	pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk -F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+	if [ -f $dir_file/js/pinjia-amd64 ];then
+		clear
+		echo -e "$green开始进行评价,你一共有$pj_ck_num个账号$white"
+		export JD_COOKIE="$pj_ck"
+		$dir_file/js/pinjia-amd64
+	else
+		clear
+		echo -e "$yellow没有发现评价程序开始下载$white"
+		wget https://raw.githubusercontent.com/chendianwu0828/jd_pinjia/main/pinjia-amd64 -O $dir_file/js/pinjia-amd64
+		chmod +x $dir_file/js/pinjia-amd64
+		export JD_COOKIE="pj_ck"
+		echo -e "$green开始进行评价,你一共有$pj_ck_num个账号$white"
+		$dir_file/js/pinjia-amd64
+	fi
+}
+
 index_js() {
 #后台默认运行index.js
 	openwrt_ip=$(ubus call network.interface.lan status | grep address  | grep -oE '([0-9]{1,3}.){3}[0-9]{1,3}')
@@ -3140,7 +3177,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -3159,7 +3196,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
