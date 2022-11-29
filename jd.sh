@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.19"
+	cron_version="4.20"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -117,6 +117,7 @@ cat >>/etc/crontabs/root <<EOF
 40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
+0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴#100#
 45 6 * * * $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
 2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐#100#
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
@@ -682,7 +683,6 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	$node $dir_file/js/jd_fruit.js & 			#东东水果，6-9点 11-14点 17-21点可以领水滴 
 	echo -e "${green} run_06_18$stop_script_time ${white}"
 }
 
