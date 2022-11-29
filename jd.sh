@@ -91,11 +91,12 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.18"
+	cron_version="4.19"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
 		sed -i '/京享值任务领豆，每周一次/d' /etc/crontabs/root >/dev/null 2>&1
+		sed -i '/jd_19E_help.log/d' /etc/crontabs/root >/dev/null 2>&1
 		
 		task_delete
 		task_add
