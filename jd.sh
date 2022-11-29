@@ -111,27 +111,20 @@ cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 0 2-23/1 * * * $dir_file/jd.sh run_01 >/tmp/jd_run_01.log 2>&1 #种豆得豆收瓶子#100#
-0 2-23/2 * * * $dir_file/jd.sh run_02 >/tmp/jd_run_02.log 2>&1 #摇钱树#100#
-*/30 2-23 * * * $dir_file/jd.sh run_030 >/tmp/jd_run_030.log 2>&1 #两个工厂#100#
+*/30 2-23 * * * $dir_file/jd.sh run_030 >/tmp/jd_run_030.log 2>&1 #京喜牧场#100#
 10 2-22/3 * * * $dir_file/jd.sh run_03 >/tmp/jd_run_03.log 2>&1 #天天加速 3小时运行一次，打卡时间间隔是6小时#100#
 40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
-35 10,15,20 * * * $dir_file/jd.sh run_10_15_20 >/tmp/jd_run_10_15_20.log 2>&1 #不是很重要的，错开运行#100#
-10 8,12,16 * * * $dir_file/jd.sh run_08_12_16 >/tmp/jd_run_08_12_16.log 2>&1 #宠汪汪兑换礼品#100#
-20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
-00 10 */7 * * $dir_file/jd.sh check_cookie_push >/tmp/check_cookie_push.log 2>&1 #每个7天推送cookie相关信息#100#
-5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
-0 8,15 * * * $python3 $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py  >/tmp/jd_OpenCard.log #开卡程序#100#
-59 23 * * * sleep 50 && $dir_file/jd.sh run_jd_blueCoin >/tmp/jd_jd_blueCoin.log	#京东超市兑换#100#
-#59 */1 * * * $dir_file/jd.sh jd_time >/tmp/jd_time.log	#同步京东时间#100#
 45 6 * * * $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
-0 */1 * * * $node $dir_file_js/jd_super_redrain.js >/tmp/jd_super_redrain.log #整点京豆雨#100#
 2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐#100#
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
+0 10 */7 * * $dir_file/jd.sh check_cookie_push >/tmp/check_cookie_push.log 2>&1 #每个7天推送cookie相关信息#100#
+20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
+5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 ###########100##########请将其他定时任务放到底下###############
 #**********这里是backnas定时任务#100#******************************#
 45 12,19 * * * $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #每4个小时备份一次script,如果没有填写参数不会运行#100#
@@ -173,16 +166,7 @@ update() {
 		git reset --hard origin/main
 	fi
 
-	if [ ! -d $dir_file/git_clone/curtinlv_script ];then
-		echo ""
-		git clone https://github.com/curtinlv/JD-Script.git $dir_file/git_clone/curtinlv_script
-		curtinlv_script_setup
-	else
-		cd $dir_file/git_clone/curtinlv_script
-		git fetch --all
-		git reset --hard origin/main
-		curtinlv_script_setup
-	fi
+	rm -rf $dir_file/git_clone/curtinlv_script
 
 	if [ ! -d $dir_file/git_clone/KingRan_script ];then
 		echo ""
@@ -251,6 +235,10 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_supermarket.js		#京东超市游戏
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_live.js			#京东直播
+	jd_jxmc.js			#京喜牧场
+	jd_joy_park_task.js		#汪汪乐园
+	jd_jdzz.js			#京东赚赚
+	jd_dwapp.js			#积分换话费
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -267,7 +255,6 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
 	jd_speed_signred.js		#京东极速版签到红包
-	jd_super_redrain.js		#整点京豆雨
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_ms.js			#秒秒币
 EOF
@@ -317,7 +304,6 @@ done
 #Aaron
 Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
 cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
-	jd_jxmc.js			#京喜牧场
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js		#摇京豆
 	jd_kd.js			#京东快递签到 一天运行一次即可
@@ -339,9 +325,6 @@ cat >$dir_file/config/tmp/zero205_url.txt <<EOF
 	JDSignValidator.js		#京东多合一签到依赖1
 	JDJRValidator_Aaron.js		#京东多合一签到依赖2
 	jd_get_share_code.js		#获取jd所有助力码脚本
-	jd_joy_park_task.js		#汪汪乐园
-	jd_jdzz.js			#京东赚赚
-	jd_xmf.js			#京东小魔方
 EOF
 
 for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -350,23 +333,6 @@ do
 	url="$zero205_url"
 	wget $zero205_url/$script_name -O $dir_file_js/$script_name
 	update_if
-}&
-done
-
-
-
-#yuannian1112
-yuannian1112_url="https://raw.githubusercontent.com/yuannian1112/jd_scripts/main"
-cat >$dir_file/config/tmp/yuannian1112_url.txt <<EOF
-	#jd_dwapp.js			#积分换话费
-EOF
-
-for script_name in `cat $dir_file/config/tmp/yuannian1112_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$yuannian1112_url"
-	#wget $yuannian1112_url/$script_name -O $dir_file_js/$script_name
-	#update_if
 }&
 done
 
@@ -385,12 +351,6 @@ done
 
 
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
-	
-	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_cookie.py -O $dir_file_js/jd_cookie.py
-	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/msg.py -O $dir_file_js/msg.py
-	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/sendNotify.py -O $dir_file_js/sendNotify.py
-	wget https://raw.githubusercontent.com/curtinlv/JD-Script/main/jd_getFollowGift.py -O $dir_file_js/jd_getFollowGift.py #关注有礼
-
 	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
 	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 
@@ -411,19 +371,15 @@ cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
-	jd_goodMorning.js		#早起福利
 	Evaluation.py 			#自动评价
-	jd_OpenCard.py 			#开卡程序
 	jd_check_cookie.js		#检测cookie是否存活（暂时不能看到还有几天到期）
 	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
 EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	gua_xbh.js			#京东新百货大楼
-	jd_cxxb.js
-	jd_dfw.js			#穿行寻宝 大富翁刷金币
-	jd_couponspace.js		#卷民空间站分红包
+	raw_main_jd_super_redrain.js
+	jd_super_redrain.js		#整点京豆雨
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -582,9 +538,7 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	run_08_12_16
 	run_06_18
-	run_10_15_20
 	run_030
 	run_01
 	echo -e "${green} run_0$stop_script_time ${white}"
@@ -592,7 +546,7 @@ EOF
 
 run_020() {
 cat >/tmp/jd_tmp/run_020 <<EOF
-	gua_superRedBagDraw.js
+	#gua_superRedBagDraw.js
 EOF
 	echo -e "${green} run_020$start_script_time ${white}"
 
@@ -610,7 +564,6 @@ EOF
 run_030() {
 cat >/tmp/jd_tmp/run_030 <<EOF
 	jd_jxmc.js			#京喜牧场
-	long_half_redrain.js		#半点红包雨
 EOF
 	echo -e "${green} run_030$start_script_time ${white}"
 
@@ -651,7 +604,6 @@ EOF
 run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
-	raw_main_jd_super_redrain.js	#整点红包雨
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
 	jd_live.js			#京东直播
@@ -690,7 +642,7 @@ run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
 	jd_joy_park_task.js		#汪汪乐园
-	#jd_jdzz.js			#京东赚赚
+	jd_jdzz.js			#京东赚赚
 EOF
 	echo -e "${green} run_03$start_script_time ${white}"
 
@@ -712,9 +664,7 @@ EOF
 
 run_06_18() {
 cat >/tmp/jd_tmp/run_06_18 <<EOF
-	#jd_fruit.js 			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_pet.js 			#东东萌宠，跟手机商城同一时间
-	jd_goodMorning.js		#早起福利
 	jd_dwapp.js			#积分换话费
 EOF
 	echo -e "${green} run_06_18$start_script_time ${white}"
@@ -727,7 +677,7 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-
+	$node $dir_file/js/jd_fruit.js & 			#东东水果，6-9点 11-14点 17-21点可以领水滴 
 	echo -e "${green} run_06_18$stop_script_time ${white}"
 }
 
@@ -753,7 +703,7 @@ EOF
 
 run_08_12_16() {
 cat >/tmp/jd_tmp/run_08_12_16 <<EOF
-	jd_xmf.js			#京东小魔方
+	#空.js
 EOF
 	echo -e "${green} run_08_12_16$start_script_time ${white}"
 
@@ -784,7 +734,6 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	$python3  $dir_file_js/jd_getFollowGift.py #关注有礼
 	echo -e "${green} run_10_15_20$stop_script_time ${white}"
 }
 
@@ -828,63 +777,11 @@ file_num=$(ls $ccr_js_file | wc -l)
 	done
 }
 
-run_jd_blueCoin() {
-cat >/tmp/jd_tmp/run_jd_blueCoin <<EOF
-	jd_blueCoin.py	#东东超市兑换
-EOF
-	jd_blueCoin_num="5"
-	while [[ ${jd_blueCoin_num} -gt 0 ]]; do
-		$python3 $dir_file_js/jd_blueCoin.py &
-		sleep 1
-		jd_blueCoin_num=$(($jd_blueCoin_num - 1))
-	done
-}
-
-
-
 zcbh() {
 	zcbh_token=$(cat /usr/share/jd_openwrt_script/script_config/sendNotify_ccwav.js | grep "let WP_APP_TOKEN_ONE" | awk -F "\"" '{print $2}')
 	export WP_APP_TOKEN_ONE="$zcbh_token"
 	cd $dir_file_js
 	$node jd_bean_change_ccwav.js
-}
-
-
-
-curtinlv_script_setup() {
-	#开卡
-	curtinlv_cookie=$(cat $openwrt_script_config/jdCookie.js | grep "pt_key" | grep -v "pt_key=xxx" | awk -F "'," '{print $1}' | sed "s/'//g" | sed "s/$/\&/" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//" )
-	sed -i "/JD_COOKIE = ''/d" $dir_file/git_clone/curtinlv_script/OpenCard/OpenCardConfig.ini
-	sed -i "3a \JD_COOKIE = '$curtinlv_cookie'" $dir_file/git_clone/curtinlv_script/OpenCard/OpenCardConfig.ini
-	sed -i "s/sleepNum = 0/sleepNum = 0.5/g" $dir_file/git_clone/curtinlv_script/OpenCard/OpenCardConfig.ini
-	sed -i "s/openCardBean = 5/openCardBean = 20/g" $dir_file/git_clone/curtinlv_script/OpenCard/OpenCardConfig.ini
-	if [ ! -L "$dir_file_js/jd_OpenCard.py" ]; then
-		rm -rf $dir_file_js/jd_OpenCard.py
-		ln -s $dir_file/git_clone/curtinlv_script/OpenCard/jd_OpenCard.py $dir_file_js/jd_OpenCard.py
-	fi
-
-	if [ ! -L "$dir_file_js/OpenCardConfig.ini" ]; then
-		rm -rf $dir_file_js/OpenCardConfig.ini
-		ln -s $dir_file/git_clone/curtinlv_script/OpenCard/OpenCardConfig.ini $dir_file_js/OpenCardConfig.ini
-	fi
-
-	#软连接
-	if [ ! -L "$dir_file_js/JDCookies.txt" ]; then
-		rm -rf $dir_file_js/JDCookies.txt
-		ln -s $dir_file/git_clone/curtinlv_script/JDCookies.txt  $dir_file_js/JDCookies.txt
-	fi
-
-	#东东超市商品兑换
-	if [ ! -L "$dir_file_js/jd_blueCoin.py" ]; then
-		rm -rf $dir_file_js/jd_blueCoin.py
-		ln -s $dir_file/git_clone/curtinlv_script/jd_blueCoin.py  $dir_file_js/jd_blueCoin.py
-	fi
-
-	#安佳牛奶
-	if [ ! -L "$dir_file_js/jd_kk_aj.py" ]; then
-		rm -rf $dir_file_js/jd_kk_aj.py
-		ln -s $dir_file/git_clone/curtinlv_script/jd_kk_aj.py  $dir_file_js/jd_kk_aj.py
-	fi
 }
 
 script_name() {
@@ -3181,7 +3078,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -3200,7 +3097,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|run_jd_blueCoin|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
