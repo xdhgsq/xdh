@@ -200,8 +200,6 @@ rm -rf $dir_file/config/tmp/*
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
 	jd_fruit_help.js		#东东农场助力
-	jd_fruit_watering.js		#东东农场普通浇水10g(默认不运行)
-	jd_fruit_watering_plus.js	#东东农场使用快速浇水卡100g,前提你有那么多快速浇水卡(默认不运行)
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
@@ -240,6 +238,9 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
 	jd_dwapp.js			#积分换话费
+	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
+	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
+	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -258,6 +259,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_ms.js			#秒秒币
+	jd_comment.js			#自动评价带图
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -475,6 +477,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
+	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
+	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -509,6 +513,8 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
+	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
+	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
