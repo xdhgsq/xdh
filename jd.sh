@@ -585,28 +585,6 @@ EOF
 	echo -e "${green} run_030$stop_script_time ${white}"
 }
 
-opencard() {
-cat >/tmp/jd_tmp/opencard <<EOF
-	#空.js
-EOF
-
-	echo -e "${green} opencard$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/opencard | grep -v "#.*js" | awk '{print $1}'`
-	do
-	{
-		num=$(python $dir_file/jd_random.py 2000,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		
-		$node $dir_file_js/$i
-	}&
-	done
-	wait
-
-	echo -e "${green} opencard$stop_script_time ${white}"
-}
-
 run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
@@ -1149,7 +1127,7 @@ concurrent_js_if() {
 			wait
 			concurrent_js_clean
 		;;
-		run_01|run_02|opencard|run_08_12_16|run_020|run_10_15_20|run_06_18)
+		run_01|run_02|run_08_12_16|run_020|run_10_15_20|run_06_18)
 			action="$action1"
 			concurrent_js
 			wait
@@ -1167,7 +1145,7 @@ concurrent_js_if() {
 			$action1
 			concurrent_js_run_07
 			;;
-			run_01|run_06_18|run_10_15_20|run_03|run_02|opencard|run_08_12_16|run_07|run_030|run_020)
+			run_01|run_06_18|run_10_15_20|run_03|run_02|run_08_12_16|run_07|run_030|run_020)
 			$action1
 			;;
 		esac
@@ -1185,7 +1163,7 @@ concurrent_js_if() {
 			$action2
 			concurrent_js_run_07
 			;;
-			run_01|run_06_18|run_10_15_20|run_03|run_02|opencard|run_08_12_16|run_07|run_020)
+			run_01|run_06_18|run_10_15_20|run_03|run_02|run_08_12_16|run_07|run_020)
 			$action2
 			;;
 		esac
@@ -1946,11 +1924,15 @@ help() {
 	echo ""
 	echo -e "${yellow}个别脚本有以下："
 	echo ""
+	echo -e "${green}  sh \$jd wskey ${white}  				#调用wskey转换"
+	echo ""
+	echo -e "${green}  sh \$jd checkjs ${white}  				#调用checkjs监控上游脚本更新"
+	echo ""
+	echo -e "${green}  sh \$jd checkjs_tg ${white}  			#调用checkjs监控tg频道变量（需要docker容器）"
+	echo ""
 	echo -e "${green}  sh \$jd npm_install ${white}  			#安装 npm 模块"
 	echo ""
 	echo -e "${green}  sh \$jd zcbh ${white}				#资产变化一对一"
-	echo ""
-	echo -e "${green}  sh \$jd opencard ${white}  			#开卡(默认不执行，你可以执行这句跑)"
 	echo ""
 	echo -e "${green}  sh \$jd jd_sharecode ${white} 			#查询京东所有助力码"
 	echo ""
@@ -2789,6 +2771,41 @@ system_variable() {
 	del_if
 }
 
+wskey() {
+	if [ -z "$wskey" ];then
+		echo -e "${red}wskey脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh${white}　是否存在"
+		echo "如果存在,请重启路由使全局变量生效"
+		echo "如果不存在请去https://github.com/xdhgsq/wskey_convert.git下载"
+	else
+		sh $wskey
+	fi
+
+}
+
+checkjs() {
+	if [ -z "$checkjs" ];then
+		echo -e "${red}checkjs脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/Checkjs/checkjs.sh${white}　是否存在"
+		echo "如果存在,请重启路由使全局变量生效"
+		echo "如果不存在请去https://github.com/ITdesk01/Checkjs.git下载"
+	else
+		sh $checkjs
+	fi
+
+}
+
+checkjs_tg() {
+	if [ -z "$checkjs" ];then
+		echo -e "${red}checkjs脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/Checkjs/checkjs.sh${white}　是否存在"
+		echo "如果存在,请重启路由使全局变量生效"
+		echo "如果不存在请去https://github.com/ITdesk01/Checkjs.git下载"
+	else
+		sh $checkjs tg
+	fi
+
+}
+
+
+
 pj() {
 	pj_ck_num=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt |wc -l)
 	pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk -F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
@@ -3080,10 +3097,10 @@ if [[ -z $action1 ]]; then
 	help
 else
 	case "$action1" in
-		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
+		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -3099,10 +3116,10 @@ else
 		echo ""
 	else
 		case "$action2" in
-		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|opencard|run_08_12_16|run_07|run_030|run_020)
+		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
