@@ -260,6 +260,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_ms.js			#秒秒币
 	jd_comment.js			#自动评价带图
+	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -478,6 +479,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
 	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
+	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -514,6 +516,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
 	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
+	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
