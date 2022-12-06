@@ -1,6 +1,7 @@
-# JD_Script 简单说明（2021.11.24编辑，by：ITdesk）
+# JD_Script 简单说明（2022.12.06编辑，by：ITdesk）
 ##  1.目录结构
-/usr/share/jd_openwrt_script/JD_Script/                     #JD_Script仓库
+###  JD_Script仓库目录说明
+/usr/share/jd_openwrt_script/JD_Script/                    
 
           |-- ccr_js                        # 并发文件夹，开启需要到jd_openwrt_script_config.txt
           |-- config                        # 没啥大用（之前单独安装留下的，但不能删）
@@ -20,9 +21,16 @@
           |-- README.md                 
           |-- Explain.md                    # 说明文档
     
+ ### JD_Script配置文件存放
+/usr/share/jd_openwrt_script/script_config/                 
 
-/usr/share/jd_openwrt_script/script_config/                  #JD_Script配置文件存放
-   
+          |-- wskey                         # wskey转换文件夹
+              ||   -- js                    # wskey js脚本文件夹
+              || --  jdCookie.js
+              || --  jd_wskey.js            # 旧js转换脚本
+              || --  wskey.py               # 新的py转换脚本（默认）
+              ||   -- wskey.sh              # wkey转换shell脚本
+          
           |-- jd_openwrt_script_config.txt  # 重要的配置文件
           |-- jdCookie.js                   # cookie填写到此
           |-- sendNotify.js                 # node推送脚本（用于填写推送key）
@@ -37,12 +45,25 @@
           | 
           |-- JS_USER_AGENTS.js             # JS_UA文件
           |-- USER_AGENTS.js                # UA文件
-    
-/usr/share/jd_openwrt_script/node_modules node模块存放的文件夹
+
+### 监控脚本目录
+/usr/share/jd_openwrt_script/Checkjs  
+
+          |-- tg                                 # 存放tg监控信息
+          |-- checkjs.sh                         # 监控脚本
+          
+### node模块存放的文件夹       
+/usr/share/jd_openwrt_script/node_modules 
 
 
 ##  2.可用命令
           sh $jd run_0  run_07                  #运行全部脚本(除个别脚本不运行）
+          
+          sh $jd wskey                          #用wskey转换
+           
+          sh $jd checkjs                        #用checkjs监控上游脚本更新
+            
+          sh $jd checkjs_tg                     #调用checkjs监控tg频道变量（需要docker容器）
 
           sh $jd npm_install                    #安装 npm 模块
 
@@ -72,22 +93,28 @@
     
     如果不喜欢这样，你也可以直接 cd $jd_file/js,然后用 node 脚本名字.js
     
-##  3.cookie，推送填写位置
-1.cookie填写
+##  3.cookie，推送填写位置（ck优先级wskey>ck,wskey存活时间久,ck只有一个月，抓到wskey以后用wskey转换脚本，转换为ck即可使用）
+1.wskey填写
+
+   /usr/share/jd_openwrt_script/script_config/wskey/jdwskey.txt  将抓到wskey填写在这里
+   
+   sh $jd wskey  测试是否能否转换完成
+   
+2.cookie填写
 
     /usr/share/jd_openwrt_script/script_config/jdCookie.js  在此脚本内填写JD Cookie 脚本内有说明
-    
-2.推送填写
+       
+3.推送填写
 
     /usr/share/jd_openwrt_script/script_config/sendNotify.js  在此脚本内填写推送服务的KEY，可以不填
    
-3.UA文件自定义
+4.UA文件自定义
 
     /usr/share/jd_openwrt_script/script_config/USER_AGENTS.js  京东UA文件可以自定义也可以默认
   
     /usr/share/jd_openwrt_script/script_config/JS_USER_AGENTS.js  京东极速版UA文件可以自定义也可以默认
     
-4.资产变化一对一填写
+5.资产变化一对一填写
 
     1.先网页搞定WxPusher，详细教程有人写了，不知道是幸运还是不幸: https://www.kejiwanjia.com/jiaocheng/27909.html
     2.更新到最新脚本
@@ -97,6 +124,57 @@
     6.sh $jd zcbh #测试
 
     定时任务我已经设置好，每天早上十点推送，不喜欢可以复制单独推
+
+6.checkjs监控脚本变量（写到全局变量/etc/profile）
+
+          #是否自动跑新增的脚本(默认no，跑yes)(也可以用export script_if="yes"写到全局变量)
+          script_if="yes"
+
+          #脚本名判断(* 代表无论新增什么脚本都跑，你可以这里填关键字用，隔开，如填opencard,gua  这样脚本含有这两个字符的就会开始跑)
+          script_ifname="gua_opencard,jd_opencard"
+
+          #脚本下载到那个路径并执行
+          script_dir="/usr/share/jd_openwrt_script/script_config/zdiy"
+
+          #脚本在那个时间自动跑(* 代表所有时间 7-18 代表7点到18点有符合的脚本更新就跑 7,9 代表7点 9点才会自己跑)
+          script_date="*"
+
+
+          #tg监控频道变量(也可以用export tg_if="yes"写到全局变量)
+          tg_if="no"
+
+          #tg_api(必填，不然无法启动监控，获取地址参考https://www.jianshu.com/p/3d047c7516cf')(也可以用export tg_api_id=""写到全局变量)
+          tg_api_id=""
+
+          #tg_hash(必填，不然无法启动监控，获取地址参考https://www.jianshu.com/p/3d047c7516cf')(也可以用export tg_api_hash=""写到全局变量)
+          tg_api_hash=""
+
+7.wskey全局变量（可选，可以不理）
+
+          #使用那种进行转换wskey（py js）
+          wskey_program="py" (默认)
+
+          #是否再wskey转换失败的时候删除jdcookie.js里的失效ｃｋ（会打乱你的排序，wskey恢复以后会自己添加）
+          ck_del="no"　(默认)
+
+          #wskey白名单，用于转换失效但不删jdcookie.js里的ｃｋ（格式：pin1@pin2）
+          wskey_ck_white=""　(默认为空)
+          
+8.其他全局变量，按需取
+
+          #开卡变量
+          export guaopencard_All="true"
+          export guaopencard_addSku_All="true"
+          export guaopencardRun_All="true"
+          export guaopencard_draw="true"
+
+          #清空购物车变量
+          export gua_cleancart_Run="true"
+          export gua_cleancart_SignUrl="https://jd.smiek.tk/jdcleancatr_21102717"
+          export gua_cleancart_products="*@&@"
+
+          
+
 
 ## 4.新手常见疑问
 
