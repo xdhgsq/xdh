@@ -241,6 +241,8 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
 	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
+	jd_nzjcj.js			#年终奖补贴抽奖
+	jd_nzjbtzl.js 			#年终奖补贴助力
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -480,6 +482,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
 	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
+	jd_nzjcj.js			#年终奖补贴抽奖
+	jd_nzjbtzl.js 			#年终奖补贴助力
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -517,6 +521,8 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
 	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
+	jd_nzjcj.js			#年终奖补贴抽奖
+	jd_nzjbtzl.js 			#年终奖补贴助力
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
