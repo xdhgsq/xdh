@@ -351,14 +351,13 @@ EOF
 for script_name in `cat $dir_file/config/tmp/ccwav_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	url="$ccwav_url"
-	#wget $ccwav_url/$script_name -O $dir_file_js/$script_name
-	#update_if
+	wget $ccwav_url/$script_name -O $dir_file_js/$script_name
+	update_if
 done
 
 
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
-	wget https://raw.githubusercontent.com/qiu-lzsnmb/jd_lzsnmb/jd/Evaluation.py -O $dir_file_js/Evaluation.py #自动评价
-	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
+	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 
 
 #将所有文本汇总
@@ -370,14 +369,7 @@ done
 
 cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
-	jd_cjzdgf.js 			#CJ组队瓜分京豆
-	jd_wxCollectionActivity.js 	#加购物车抽奖
-	jd_price.js 			#京东价保
-	jd_bean_change.js		#资产变化强化版by-ccwav
-	jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
-	jd_tyt.js			#极速版赚金币推一推
 	jd_dpqd.js			#店铺签到
-	Evaluation.py 			#自动评价
 	jd_check_cookie.js		#检测cookie是否存活（暂时不能看到还有几天到期）
 	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
 EOF
@@ -470,7 +462,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plus2bean.js                 #plus专属礼
 	jd_supermarket.js		#京东超市游戏
 	jx_sign.js			#京喜签到
-	jd_tyt.js			#极速版赚金币推一推
 	jd_joy_park_task.js		#汪汪乐园
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
@@ -2350,7 +2341,7 @@ COMMENT
 	done
 
 	#资产变化强化版by-ccwav
-	#sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
+	sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
 }
 
 del_if() {
@@ -2638,7 +2629,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2
+	npm install -g ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	#安装python模块
