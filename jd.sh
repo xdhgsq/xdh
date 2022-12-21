@@ -219,6 +219,7 @@ for script_name in `cat $dir_file/config/tmp/lxk0301_script.txt | grep -v "#.*js
 do
 	echo -e "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/lxk0301_back/$script_name  $dir_file_js/$script_name
+	cp_if
 done
 
 
@@ -248,6 +249,7 @@ for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" |
 do
 	echo -e "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
+	cp_if
 done
 
 #6dylan6
@@ -266,10 +268,9 @@ EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
-{
 	echo -e "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
-}&
+	cp_if
 done
 
 sleep 5
@@ -417,6 +418,15 @@ done
 	fi
 
 	task #更新完全部脚本顺便检查一下计划任务是否有变
+
+}
+
+cp_if() {
+	if [ $? -eq 0 ]; then
+			echo -e ""
+	else
+		echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
+	fi
 
 }
 
