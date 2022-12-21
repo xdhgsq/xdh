@@ -202,7 +202,6 @@ cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
 	jd_fruit.js			#东东农场
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
-	jd_pet.js			#东东萌宠
 	jd_dreamFactory.js		#京喜工厂
 	jd_plantBean.js			#种豆得豆
 	jd_plantBean_help.js		#种豆得豆助力
@@ -648,7 +647,6 @@ EOF
 
 run_06_18() {
 cat >/tmp/jd_tmp/run_06_18 <<EOF
-	jd_pet.js 			#东东萌宠，跟手机商城同一时间
 	jd_dwapp.js			#积分换话费
 EOF
 	echo -e "${green} run_06_18$start_script_time ${white}"
@@ -815,7 +813,6 @@ $node $dir_file_js/jd_get_share_code.js >/tmp/get_share_code
 
 cat > /tmp/code_name <<EOF
 京东农场 fr
-京东萌宠 pet
 种豆得豆 pb
 京喜工厂 df
 京东赚赚 jdzz
@@ -2085,55 +2082,6 @@ baipiaoguai_fr="456e5601548642a5a9bcc86a54085154@61f21ef708c948568854ec50c362708
 
 	sed -i "s/dFruitBeanCard = false/dFruitBeanCard = $jd_fruit/g" $dir_file_js/jd_fruit.js #农场不浇水开始换豆
 
-	#萌宠
-ITdesk_pet="MTE1NDAxNzcwMDAwMDAwMzk1OTQ4Njk=@MTAxNzIxMDc1MTAwMDAwMDA1NTg4ODM0OQ==@MTE1NDY3NTMwMDAwMDAwODQxMTc2NTk=@MTExMjUxMTM0MDAwMDAwMDg0MjgyODc3@MTE1NDQ5OTUwMDAwMDAwMzk3NDgyMDE=@MTAxODEyOTI4MDAwMDAwMDQwMTIzMzcx@MTEzMzI0OTE0NTAwMDAwMDA0MzI3NzE3MQ=="
-
-ITdesk_random_pet="MTEzMzI1MTE4NDAwMDAwMDA1NDk0NzY0OQ==@MTEzMzI1MTE4NTAwMDAwMDA1NDk0NzYxMQ==@MTE1NDY3NTIwMDAwMDAwNTk0NjY5MDU=@MTEzMzI1MTE4NTAwMDAwMDA1OTQ2NjI2MQ==@MTEzMzI1MTE4NDAwMDAwMDA3MDk5NDQ1Nw==@MTAxNzIxMDc1MTAwMDAwMDA1MTk2NjQ4NQ==@MTEzMzI1MTE4NTAwMDAwMDA1MTgzMjM4MQ==@MTE1NDQ5MzYwMDAwMDAwNDUzMDI4NjM=@MTE0MDkyMjIwMDAwMDAwNDc4MzYyOTM=@MTE1NDUwMTI0MDAwMDAwMDQ1MzAyNjI5@MTE0MDkyMjEwMDAwMDAwNDg5MTA4MTE=@MTEyNzEzMjc0MDAwMDAwMDQ5OTA5Njg1@MTE1NDQ5OTIwMDAwMDAwNDUzMDYzMDc=@MTE5MzEwNTEzODAwMDAwMDA1MzIyNDQ1OQ==@MTAxODc2NTEzMTAwMDAwMDAwNjQ4MzU4NQ==@MTE5MzEwNTEzODAwMDAwMDA1NjQ5NjQ4Nw==@MTE1NDQ5OTUwMDAwMDAwNDAyNTYyMjM=@MTE1NDAxNzcwMDAwMDAwNDA4MzcyOTU=@MTEyNzEzMjc0MDAwMDAwMDQ4NjY4NjY3"
-zuoyou_20190516_pet="MTEzMzI0OTE0NTAwMDAwMDAzODYzNzU1NQ==@MTE1NDAxNzgwMDAwMDAwMzg2Mzc1Nzc=@MTE1NDAxNzgwMDAwMDAwMzg4MzI1Njc=@MTE1NDQ5OTIwMDAwMDAwNDM3MTM3ODc=@MTAxNzIyNTU1NDAwMDAwMDA1MDIyMjIwMQ=="
-	
-zuoyou_20190516_random_pet="MTAxNzIxMDc1MTAwMDAwMDA1MDIyMjE2OQ==@MTEzMzI1MTE4NDAwMDAwMDA1MDA5Nzg4MQ==@MTAxNzIxMDc1MTAwMDAwMDA1MDA5NzczOQ==@MTEzMzI1MTE4NDAwMDAwMDA1MDExNTc2MQ==@MTEzMzI1MTE4NDAwMDAwMDA1MDEyMzYxNw=="
-
-Javon_20201224_pet="MTE1NDUyMjEwMDAwMDAwNDE2NzYzNjc="
-	Javon_random_pet="MTE0MDQ3MzIwMDAwMDAwNDczODQ2MTM=@MTAxODc2NTEzMDAwMDAwMDAxODU0NzI3Mw==@MTE1NDAxNzgwMDAwMDAwNDI1MjkxMDU=@MTE1NDQ5OTIwMDAwMDAwNDIxMjgyNjM=@MTE1NDAxNzYwMDAwMDAwMzYwNjg0OTE=@MTE1NDQ5OTIwMDAwMDAwNDI4Nzk3NTE=@MTE1NDQ5OTUwMDAwMDAwNDMwMTIxMzc=@MTE1NDQ5MzYwMDAwMDAwNDQ0NTA5MzM=@MTEzMzI0OTE0NTAwMDAwMDA0NDQ1ODY4NQ=="
-	
-chiyu_pet="MTAxODEyOTI4MDAwMDAwMDQwNzYxOTUx"
-	ashou_20210516_pet="MTAxODEyOTI4MDAwMDAwMDM5NzM3Mjk5@MTEzMzI0OTE0NTAwMDAwMDAzOTk5ODU1MQ==@MTE1NDQ5OTIwMDAwMDAwNDIxMDIzMzM=@MTAxODEyMjkxMDAwMDAwMDQwMzc4ODU1@MTAxODc2NTEzMDAwMDAwMDAxOTcyMTM3Mw==@MTAxODc2NTEzMzAwMDAwMDAxOTkzMzM1MQ==@MTAxODc2NTEzNDAwMDAwMDAxNjA0NzEwNw=="
-
-Jhone_Potte_20200824_pet="MTE1NDAxNzcwMDAwMDAwNDE3MDkwNzE=@MTE1NDUyMjEwMDAwMDAwNDE3NDU2MjU="
-
-xiaodengzi_20190516_pet="MTE1NDUwMTI0MDAwMDAwMDM5NTc4ODQz@MTAxODExNDYxMTEwMDAwMDAwNDAxMzI0NTk="
-
-jidiyangguang_20190516_pet="MTE1NDQ5OTUwMDAwMDAwMzk2NTY2MTk=@MTE1NDQ5MzYwMDAwMDAwMzk2NTY2MTE="
-
-baipiaoguai_pet="MTE1NDQ5OTUwMDAwMDAwNDUyNzA4NDc=@MTEzMzI0OTE0NTAwMDAwMDA0NTIxOTk3MQ==@MTEyNjE4NjQ2MDAwMDAwMDQ4MTI4MjE3@MTEzMzE5ODE0NDAwMDAwMDA0OTYyMzYwNQ==@MTEyNzEzMjc0MDAwMDAwMDUzNjg2MTE5"
-
-	if [ ! $jd_sharecode_pet ];then
-		echo "萌宠本地助力码为空"
-		new_pet="$ITdesk_pet"
-	else
-		echo "开始添加萌宠本地助力码"
-		new_pet="$jd_sharecode_pet@$ITdesk_pet"
-	fi
-
-	random_pet="$ITdesk_random_pet@$zuoyou_20190516_random_pet@$Javon_random_pet@$baipiaoguai_pet"
-	random="$random_pet"
-	random_array
-	new_pet_set="'$new_pet@$chiyu_pet@$zuoyou_20190516_pet@$Javon_20201224_pet@$jidiyangguang_20190516_pet@$Jhone_Potte_20200824_pet@$ashou_20210516_pet@$xiaodengzi_20190516_pet@$random_set',"
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	pet_rows=$(grep -n "shareCodes =" $dir_file_js/jd_pet.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$pet_rows a \ $new_pet_set " $dir_file_js/jd_pet.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	petcode_rows=$(grep -n "PetShareCodes = \[" $dir_file_js/jdPetShareCodes.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$petcode_rows a \ $new_pet_set " $dir_file_js/jdPetShareCodes.js
-		js_amount=$(($js_amount - 1))
-	done
-
 	#种豆
 		  ITdesk_pb="4npkonnsy7xi3n46rivf5vyrszud7yvj7hcdr5a@fn5sjpg5zdejm2ebnsce2wsjvtu5xkzq4dvbdti@suqg5cye47cqngnqbudul6toucmr32r5nqw6hlq@4vvbjlml6tdfcbisdohaimuxzjin3vviavyubwq@mlrdw3aw26j3xeqso5asaq6zechwcl76uojnpha@nkvdrkoit5o65lgaousaj4dqrfmnij2zyntizsa@u5lnx42k5ifivyrtqhfjikhl56zsnbmk6v66uzi"
 ITdesk_random_pb="tnmcphpjys5icix3quq2q2em3bzzciltix2t6nq@u5lnx42k5ifiu6wgvad764nzeefohexgwsutp4y@e7lhibzb3zek3aczhci5fim2fjpypbw5y3pr3ky@l4ex6vx6yynovth6gd6nesvnkeimph3kozmj77i@mlrdw3aw26j3xv3imelq2znbjo2ksxcb5nyjsma@4npkonnsy7xi3fp63qlbql2mfudjnwmsbpc4egy@mlrdw3aw26j3xn447fyzg7h4kzlmyasgniqj4eq@aogye6x4cnc3pjc7clkvzuymko5xo6gnii54lua@e7lhibzb3zek2zfhyssxpnduf3vlv7xpfwbe3fq@llc3cyki3azsjryv3ovhiqpxtut2lkuv6hpeepa@bfgnkjwsawrkv7cnuqwybfujye3h7wlwy7o5jii@zalmhfy34qahymizttjksjba3bjixbgi6x2h7uy@olmijoxgmjutzy3d472v6l6xqdtegx4v4dpjo7q@mlrdw3aw26j3xwrjvz73nn6h3jwvnfsqe766zly@e7lhibzb3zek3giovoz45el7ymgcpt7ng5qq3ni@mlrdw3aw26j3xqggsyegc2itcc2h5yfpxyhctgq@e7lhibzb3zek234ckc2fm2yvkj5cbsdpe7y6p2a@u72q4vdn3zes24pmx6lh34pdcinjjexdfljybvi@bctcuetamr6idcvkftgulawwxu"
@@ -2365,17 +2313,6 @@ del_if() {
 		echo ""
 	fi
 
-	#不跑东东萌宠
-	if [ ! $jd_ddpet ];then
-		echo "没有要删除的东东萌宠文件"
-	else
-		js_name="东东萌宠"
-		jd_num="$jd_ddpet"
-		js_file="jd_pet.js"
-		del_js
-		echo ""
-	fi
-
 	#不跑宠汪汪
 	if [ ! $jd_ddjoy ];then
 		echo "没有要删除的宠汪汪文件"
@@ -2531,9 +2468,9 @@ share_code_generate() {
 }
 
 close_notification() {
-	#农场和东东萌宠关闭通知
+	#农场关闭通知
 	if [ `date +%A` == "Monday" ];then
-		echo -e "${green}今天周一不关闭农场萌宠通知${white}"
+		echo -e "${green}今天周一不关闭农场通知${white}"
 	else
 		case `date +%H` in
 		22|23|00|01)
@@ -2542,22 +2479,13 @@ close_notification() {
 				do
 				{
 					sed -i "s/jdNotify = true/jdNotify = false/g" $ccr_js_file/$i/jd_fruit.js
-					sed -i "s/jdNotify = true/jdNotify = false/g" $ccr_js_file/$i/jd_pet.js
 				}&
 				done
-				#ps_fr=$(ps -ww | grep "jd_fruit.js" | grep -v grep | wc -l)
-				#ps_pet=$(ps -ww | grep "jd_pet.js" | grep -v grep | wc -l)
-				#while [ $ps_fr -gt 0 ] && [ $ps_pet -gt 0 ];do
-				#	sleep 1
-				#	ps_fr=$(ps -ww | grep "jd_fruit.js" | grep -v grep | wc -l)
-				#	ps_pet=$(ps -ww | grep "jd_pet.js" | grep -v grep | wc -l)
-				#done
 			fi
 
 			sed -i "s/jdNotify = true/jdNotify = false/g" $dir_file_js/jd_fruit.js
-			sed -i "s/jdNotify = true/jdNotify = false/g" $dir_file_js/jd_pet.js
 
-			echo -e "${green}暂时不关闭农场和萌宠通知${white}"
+			echo -e "${green}暂时不关闭农场通知${white}"
 		;;
 		*)
 			if [ "$ccr_if" == "yes" ];then
@@ -2565,23 +2493,14 @@ close_notification() {
 				do
 				{
 					sed -i "s/jdNotify = false/jdNotify = true/g" $ccr_js_file/$i/jd_fruit.js
-					sed -i "s/jdNotify = false/jdNotify = true/g" $ccr_js_file/$i/jd_pet.js
 				}&
 				done
 
-				#ps_fr=$(ps -ww | grep "jd_fruit.js" | grep -v grep | wc -l)
-				#ps_pet=$(ps -ww | grep "jd_pet.js" | grep -v grep | wc -l)
-				#while [ $ps_fr -gt 0 ] && [ $ps_pet -gt 0 ];do
-				#	sleep 1
-				#	ps_fr=$(ps -ww | grep "jd_fruit.js" | grep -v grep | wc -l)
-				#	ps_pet=$(ps -ww | grep "jd_pet.js" | grep -v grep | wc -l)
-				#done
 			fi
 
 			sed -i "s/jdNotify = false/jdNotify = true/g" $dir_file_js/jd_fruit.js
-			sed -i "s/jdNotify = false/jdNotify = true/g" $dir_file_js/jd_pet.js
 
-			echo -e "${green}时间大于凌晨一点开始关闭农场和萌宠通知${white}"
+			echo -e "${green}时间大于凌晨一点开始关闭农场通知${white}"
 		;;
 		esac
 	fi
@@ -2764,7 +2683,7 @@ system_variable() {
 	#index_js
 	index_num="${yellow} 8.网页获取CK功能已关闭，没人修暂时就这样了${white}"
 
-	#农场萌宠关闭通知
+	#农场关闭通知
 	close_notification
 
 	#删除并发的文件
@@ -2942,9 +2861,6 @@ jd_openwrt_config() {
 	#不跑东东农场
 	jd_ddfruit=$(grep "jd_ddfruit" $jd_openwrt_config | awk -F "'" '{print $2}')
 
-	#不跑东东萌宠
-	jd_ddpet=$(grep "jd_ddpet" $jd_openwrt_config | awk -F "'" '{print $2}')
-
 	#不跑宠汪汪
 	jd_ddjoy=$(grep "jd_ddjoy" $jd_openwrt_config | awk -F "'" '{print $2}')
 
@@ -3024,9 +2940,6 @@ script_black=''
 #指定账号不跑东东农场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
 jd_ddfruit=''
 
-#指定账号不跑东东萌宠，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jd_ddpet=''
-
 #指定账号不跑宠汪汪，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
 jd_ddjoy=''
 
@@ -3051,9 +2964,6 @@ sh \$jd jd_sharecode                   #查询京东所有助力码
 
 #东东农场（助力码1@助力码2）
 jd_sharecode_fr=''
-
-#萌宠（助力码1@助力码2）
-jd_sharecode_pet=''
 
 #种豆（助力码1@助力码2）
 jd_sharecode_pb=''
