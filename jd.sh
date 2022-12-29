@@ -243,6 +243,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 	jd_nzjcj.js			#年终奖补贴抽奖
 	jd_nzjbtzl.js 			#年终奖补贴助力
+	jx_sign_help.js			#京喜签到助力
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -470,7 +471,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
 	jd_supermarket.js		#京东超市游戏
-	jx_sign.js			#京喜签到
 	jd_joy_park_task.js		#汪汪乐园
 	jd_speed_signred.js		#京东极速版签到红包
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
@@ -485,6 +485,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_nzjcj.js			#年终奖补贴抽奖
 	jd_nzjbtzl.js 			#年终奖补贴助力
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
+	jx_sign_help.js			#京喜签到助力
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -509,11 +510,11 @@ fi
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_ms.js			#秒秒币
 	jd_dreamFactory.js 		#京喜工厂
+	jx_sign.js			#京喜签到
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
 	jd_speed_signred.js		#京东极速版签到红包
-	jx_sign.js			#京喜签到
 	gua_cleancart.js		#清空购物车
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
