@@ -463,9 +463,15 @@ update_script() {
 	echo -e "${green} update_script$stop_script_time ${white}"
 }
 
+#gua_nhj_Red.js			#年货节red
+if [ ! -z "$JD_nhj_rebateCode" ];then
+	export JD_nhj_rebateCode="mIUOpeT"
+fi
+
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	gua_nhj_Red.js			#年货节red
 	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
 	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_ms.js			#秒秒币
