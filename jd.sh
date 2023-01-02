@@ -461,7 +461,7 @@ update_script() {
 }
 
 #gua_nhj_Red.js			#年货节red
-if [ ! -z "$JD_nhj_rebateCode" ];then
+if [  -z "$JD_nhj_rebateCode" ];then
 	export JD_nhj_rebateCode="mIUOpeT"
 fi
 
@@ -497,9 +497,7 @@ concurrent_js_run_07() {
 #清空购物车变量
 export gua_cleancart_Run="true"
 export gua_cleancart_SignUrl="https://jd.smiek.tk/jdcleancatr_21102717" # 算法url
-if [ -z $gua_cleancart_products ];then
-	echo ""
-else
+if [  -z "$gua_cleancart_products" ];then
 	export gua_cleancart_products="*@&@"
 fi
 
