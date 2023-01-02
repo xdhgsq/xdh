@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.20"
+	cron_version="4.21"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -116,7 +116,6 @@ cat >>/etc/crontabs/root <<EOF
 10 2-22/3 * * * $dir_file/jd.sh run_03 >/tmp/jd_run_03.log 2>&1 #天天加速 3小时运行一次，打卡时间间隔是6小时#100#
 40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
-0 0,7 * * * $node $dir_file_js/jd_bean_sign.js >/tmp/jd_bean_sign.log #京东多合一签到#100#
 0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴#100#
 45 6 * * * $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
 2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐#100#
@@ -244,6 +243,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_nzjcj.js			#年终奖补贴抽奖
 	jd_nzjbtzl.js 			#年终奖补贴助力
 	jx_sign_help.js			#京喜签到助力
+	jd_bean_sign.js			#京东多合一签到
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -252,6 +252,8 @@ do
 	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
 	cp_if
 done
+#复制依赖
+cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
@@ -327,10 +329,6 @@ done
 #zero205
 zero205_url="https://raw.githubusercontent.com/zero205/JD_tencent_scf/main"
 cat >$dir_file/config/tmp/zero205_url.txt <<EOF
-	sign_graphics_validate.js
-	jd_bean_sign.js			#京东多合一签到
-	JDSignValidator.js		#京东多合一签到依赖1
-	JDJRValidator_Aaron.js		#京东多合一签到依赖2
 	jd_get_share_code.js		#获取jd所有助力码脚本
 EOF
 
@@ -471,6 +469,7 @@ fi
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_bean_sign.js			#京东多合一签到
 	gua_nhj_Red.js			#年货节red
 	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
 	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
@@ -514,6 +513,7 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_bean_sign.js			#京东多合一签到
 	jd_ms.js			#秒秒币
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
