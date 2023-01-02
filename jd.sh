@@ -225,6 +225,7 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_zsz.js			#手机折上折12.29-1.5
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
@@ -468,6 +469,7 @@ fi
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_zsz.js			#手机折上折12.29-1.5 
 	jd_bean_sign.js			#京东多合一签到
 	gua_nhj_Red.js			#年货节red
 	jd_ms.js			#秒秒币
@@ -503,6 +505,7 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_zsz.js			#手机折上折12.29-1.5 
 	jd_bean_sign.js			#京东多合一签到
 	jd_ms.js			#秒秒币
 	jd_dreamFactory.js 		#京喜工厂
