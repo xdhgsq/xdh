@@ -225,25 +225,19 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
-	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
 	jd_supermarket.js		#京东超市游戏
 	jd_TreasureRank.js		#排行榜-宝藏榜
-	jd_live.js			#京东直播
 	jd_jxmc.js			#京喜牧场
-	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
-	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
-	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
-	jd_nzjcj.js			#年终奖补贴抽奖
-	jd_nzjbtzl.js 			#年终奖补贴助力
 	jx_sign_help.js			#京喜签到助力
 	jd_bean_sign.js			#京东多合一签到
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
+	jd_speed_redpocke.js		#京东极速版领红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -262,7 +256,6 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_plus2bean.js                 #plus专属礼
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
-	jd_speed_signred.js		#京东极速版签到红包
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_ms.js			#秒秒币
 	jd_comment.js			#自动评价带图
@@ -316,7 +309,6 @@ cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js		#摇京豆
 	jd_kd.js			#京东快递签到 一天运行一次即可
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
 EOF
 
 for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -375,8 +367,15 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	raw_main_jd_super_redrain.js
-	jd_super_redrain.js		#整点京豆雨
+	jd_nzjcj.js                     #年终奖补贴抽奖
+	jd_nzjbtzl.js                   #年终奖补贴助力
+	jd_speed_signred.js		#京东极速版签到红包
+	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
+	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
+	jd_joy_park_task.js		#汪汪乐园
+	jd_live.js			#京东直播
+	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
+	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -471,26 +470,19 @@ ccr_run() {
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_bean_sign.js			#京东多合一签到
 	gua_nhj_Red.js			#年货节red
-	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
-	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
 	jd_supermarket.js		#京东超市游戏
-	jd_joy_park_task.js		#汪汪乐园
-	jd_speed_signred.js		#京东极速版签到红包
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
-	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
-	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
-	jd_nzjcj.js			#年终奖补贴抽奖
-	jd_nzjbtzl.js 			#年终奖补贴助力
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	jx_sign_help.js			#京喜签到助力
+	jd_speed_redpocke.js		#京东极速版领红包
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -520,18 +512,14 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_club_lottery.js 		#摇京豆，没时间要求
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
-	jd_speed_signred.js		#京东极速版签到红包
 	gua_cleancart.js		#清空购物车
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
-	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
-	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
-	jd_nzjcj.js			#年终奖补贴抽奖
-	jd_nzjbtzl.js 			#年终奖补贴助力
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
+	jd_speed_redpocke.js		#京东极速版领红包
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -607,7 +595,6 @@ run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
 	gua_wealth_island.js		#京东财富岛
-	jd_live.js			#京东直播
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
@@ -642,7 +629,6 @@ EOF
 run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
-	jd_joy_park_task.js		#汪汪乐园
 	jd_jdzz.js			#京东赚赚
 EOF
 	echo -e "${green} run_03$start_script_time ${white}"
