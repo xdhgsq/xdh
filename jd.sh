@@ -1821,10 +1821,10 @@ backnas() {
 			read a
 			backnas
 		else
-			sshpass -p "$nas_pass" scp -P $nas_prot -r /tmp/$back_file_name $nas_user@$nas_ip:$nas_file
+			sshpass -p "$nas_pass" scp -P $nas_prot -O /tmp/$back_file_name $nas_user@$nas_ip:$nas_file
 		fi
 	else
-		scp -P $nas_prot -i $nas_secret_key -r /tmp/$back_file_name $nas_user@$nas_ip:$nas_file
+		scp -P $nas_prot -i $nas_secret_key -O /tmp/$back_file_name $nas_user@$nas_ip:$nas_file
 	fi
 
 	if [ $? -eq 0 ]; then
