@@ -1800,8 +1800,8 @@ backnas() {
 	echo -e "${green}>> 删除完成${white}"
 	sleep 5
 
-	echo -e "${green}>> 复制/etc/profile到$back_file_patch/JD_Script/profile${white}"
-	cp /etc/profile $back_file_patch/JD_Script/profile
+	echo -e "${green}>> 复制/etc/profile到$back_file_patch/profile${white}"
+	cp /etc/profile $back_file_patch/profile
 	echo "复制完成"
 	sleep 5
 
