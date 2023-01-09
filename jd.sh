@@ -225,7 +225,6 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_zsz.js			#手机折上折12.29-1.5
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
@@ -236,9 +235,10 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jx_sign_help.js			#京喜签到助力
-	jd_bean_sign.js			#京东多合一签到
+	#jd_bean_sign.js			#京东多合一签到
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#京东极速版领红包
+	jd_wzqddnh.js			#我最期待的年货
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -261,6 +261,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_ms.js			#秒秒币
 	jd_comment.js			#自动评价带图
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
+	jd_xnhvote.js			#新年货投票
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -368,15 +369,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_nzjcj.js                     #年终奖补贴抽奖
-	jd_nzjbtzl.js                   #年终奖补贴助力
-	jd_speed_signred.js		#京东极速版签到红包
-	jd_yili.js			#11.21-12.30 邀您参与伊利足球游戏
-	jd_mndt.js			#10.25-12.30 蒙牛世界杯答题赢好礼
-	jd_joy_park_task.js		#汪汪乐园
-	jd_live.js			#京东直播
-	jd_sk2.js			#11.1-11.31 SK2互动抽奖，至高赢经典神仙水
-	jd_TheWorldcup.js		#京彩足球预测任务(需要手动设置变量)
+	jd_zsz.js			#手机折上折12.29-1.5
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -469,8 +462,12 @@ fi
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_zsz.js			#手机折上折12.29-1.5 
-	jd_bean_sign.js			#京东多合一签到
+	zns_draw.js			#炸年兽
+	zns_game1.js			#炸年兽
+	zns_game2.js			#炸年兽
+	jd_wzqddnh.js			#我最期待的年货
+	jd_xnhvote.js			#新年货投票
+	#jd_bean_sign.js			#京东多合一签到
 	gua_nhj_Red.js			#年货节red
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
@@ -505,8 +502,12 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_zsz.js			#手机折上折12.29-1.5 
-	jd_bean_sign.js			#京东多合一签到
+	zns_draw.js			#炸年兽
+	zns_game1.js			#炸年兽
+	zns_game2.js			#炸年兽
+	jd_wzqddnh.js			#我最期待的年货
+	jd_xnhvote.js			#新年货投票
+	#jd_bean_sign.js			#京东多合一签到
 	jd_ms.js			#秒秒币
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
@@ -2553,7 +2554,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install -g tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	#安装python模块
@@ -2650,7 +2651,7 @@ system_variable() {
 
 		#USER_AGENTS.js
 		if [ ! -f "$openwrt_script_config/USER_AGENTS.js" ]; then
-			cp  $dir_file/git_clone/lxk0301_back/USER_AGENTS.js $openwrt_script_config/USER_AGENTS.js
+			cp  $dir_file/JSON/USER_AGENTS.js $openwrt_script_config/USER_AGENTS.js
 			rm -rf $dir_file_js/USER_AGENTS.js #用于删除旧的链接
 			ln -s $openwrt_script_config/USER_AGENTS.js $dir_file_js/USER_AGENTS.js
 		fi
