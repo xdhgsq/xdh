@@ -240,6 +240,8 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_wzqddnh.js			#我最期待的年货
 	jd_tj_sign.js			#京东特价版签到提现
+	jd_nhjs.js			#年货种草集市
+	jd_lotty2.js			#购物抵现金
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -484,6 +486,8 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jx_sign_help.js			#京喜签到助力
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
+	jd_nhjs.js			#年货种草集市
+	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -524,6 +528,8 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	jd_speed_redpocke.js		#京东极速版领红包
+	jd_nhjs.js			#年货种草集市
+	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
