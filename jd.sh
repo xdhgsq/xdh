@@ -239,6 +239,7 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_wzqddnh.js			#我最期待的年货
+	jd_tj_sign.js			#京东特价版签到提现
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -482,6 +483,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	jx_sign_help.js			#京喜签到助力
 	jd_speed_redpocke.js		#京东极速版领红包
+	jd_tj_sign.js			#京东特价版签到提现
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
