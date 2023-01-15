@@ -372,6 +372,9 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	zns_draw.js			#炸年兽
+	zns_game1.js			#炸年兽
+	zns_game2.js			#炸年兽
 	jd_zsz.js			#手机折上折12.29-1.5
 EOF
 
@@ -465,9 +468,6 @@ fi
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	zns_draw.js			#炸年兽
-	zns_game1.js			#炸年兽
-	zns_game2.js			#炸年兽
 	jd_wzqddnh.js			#我最期待的年货
 	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
@@ -508,9 +508,6 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	zns_draw.js			#炸年兽
-	zns_game1.js			#炸年兽
-	zns_game2.js			#炸年兽
 	jd_wzqddnh.js			#我最期待的年货
 	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
