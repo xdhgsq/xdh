@@ -228,7 +228,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
-	jd_supermarket.js		#京东超市游戏
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_jxmc.js			#京喜牧场
 	jd_jdzz.js			#京东赚赚
@@ -238,7 +237,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	#jd_bean_sign.js			#京东多合一签到
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#京东极速版领红包
-	jd_wzqddnh.js			#我最期待的年货
 	jd_tj_sign.js			#京东特价版签到提现
 	jd_nhjs.js			#年货种草集市
 	jd_lotty2.js			#购物抵现金
@@ -372,6 +370,8 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_wzqddnh.js			#我最期待的年货
+	jd_supermarket.js		#京东超市游戏
 	zns_draw.js			#炸年兽
 	zns_game1.js			#炸年兽
 	zns_game2.js			#炸年兽
@@ -468,13 +468,11 @@ fi
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_wzqddnh.js			#我最期待的年货
 	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
 	gua_nhj_Red.js			#年货节red
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
-	jd_supermarket.js		#京东超市游戏
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_fruit_help.js		#东东农场助力
@@ -508,7 +506,6 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_wzqddnh.js			#我最期待的年货
 	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
 	jd_ms.js			#秒秒币
