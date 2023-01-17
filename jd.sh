@@ -460,17 +460,12 @@ update_script() {
 	echo -e "${green} update_script$stop_script_time ${white}"
 }
 
-#gua_nhj_Red.js			#年货节red
-if [  -z "$JD_nhj_rebateCode" ];then
-	export JD_nhj_rebateCode="mIUOpeT"
-fi
 
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
-	gua_nhj_Red.js			#年货节red
 	jd_ms.js			#秒秒币
 	jd_plus2bean.js                 #plus专属礼
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
