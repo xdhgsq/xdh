@@ -238,7 +238,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
-	jd_nhjs.js			#年货种草集市
 	jd_lotty2.js			#购物抵现金
 EOF
 
@@ -255,14 +254,11 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
-	jd_plus2bean.js                 #plus专属礼
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_ms.js			#秒秒币
 	jd_comment.js			#自动评价带图
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
-	jd_xnhvote.js			#新年货投票
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -370,12 +366,10 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_wzqddnh.js			#我最期待的年货
-	jd_supermarket.js		#京东超市游戏
-	zns_draw.js			#炸年兽
-	zns_game1.js			#炸年兽
-	zns_game2.js			#炸年兽
-	jd_zsz.js			#手机折上折12.29-1.5
+	jd_xnhvote.js			#新年货投票
+	jd_ms.js			#秒秒币
+	jd_nhjs.js			#年货种草集市
+	jd_plus2bean.js
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -391,18 +385,13 @@ done
 		echo "脚本下载没有成功，重新执行代码"
 		update
 	fi
-	chmod 755 $dir_file_js/*
+	#chmod 755 $dir_file_js/*
 	#kill_index
 	#index_js
 	#删除重复的文件
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
 	rm -rf $openwrt_script_config/check_cookie.txt
-	
-	#删除之前的黑名单
-	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
-		rm　-rf $openwrt_script_config/Script_blacklist.txt
-	fi
 
 	additional_settings
 	concurrent_js_update
@@ -464,10 +453,7 @@ update_script() {
 ccr_run() {
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
-	jd_ms.js			#秒秒币
-	jd_plus2bean.js                 #plus专属礼
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_fruit_help.js		#东东农场助力
@@ -479,7 +465,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jx_sign_help.js			#京喜签到助力
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
-	jd_nhjs.js			#年货种草集市
 	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -501,9 +486,7 @@ fi
 
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_xnhvote.js			#新年货投票
 	#jd_bean_sign.js			#京东多合一签到
-	jd_ms.js			#秒秒币
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js 		#摇京豆，没时间要求
@@ -517,7 +500,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	jd_speed_redpocke.js		#京东极速版领红包
-	jd_nhjs.js			#年货种草集市
 	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
