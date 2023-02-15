@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.22"
+	cron_version="4.23"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -118,7 +118,6 @@ cat >>/etc/crontabs/root <<EOF
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
 0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴#100#
 45 6 * * * $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
-2 6 * * 5 $node $dir_file_js/jd_xs_zzl.js >/tmp/jd_xs_zzl.log	#京享周周乐#100#
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
@@ -224,17 +223,20 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_xm.js			#2.6-2.28 小米浏览商品赢大奖
+	jd_supermarket_dh.js		#京东超市兑换
+	jd_supermarket1.js		#京东超市任
+	jd_sk2.js			#2.1-2.28 SK2互动抽奖，至高赢经典神仙水
+	jd_jj.js			#2.12-2.28 家居开卡抽奖2期
 	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
-	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_jxmc.js			#京喜牧场
 	jd_jdzz.js			#京东赚赚
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jx_sign_help.js			#京喜签到助力
-	#jd_bean_sign.js			#京东多合一签到
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
@@ -253,6 +255,11 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_car_play_exchange.js		#头文字J兑换
+	jd_mpdz_carv.js			#头文字J
+	jd_marketxxl.js			#超市消消乐游戏
+	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
+	jd_bean_sign.js			#签到
 	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
@@ -290,7 +297,6 @@ done
 okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
 cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
 	#空.js
-	jd_xs_zzl.js			#京享周周乐
 EOF
 
 for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -360,16 +366,12 @@ done
 cat >>$dir_file/config/collect_script.txt <<EOF
 	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
 	jd_dpqd.js			#店铺签到
-	jd_check_cookie.js		#检测cookie是否存活（暂时不能看到还有几天到期）
 	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
 EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_xnhvote.js			#新年货投票
-	jd_ms.js			#秒秒币
-	jd_nhjs.js			#年货种草集市
-	jd_plus2bean.js
+	jd_TreasureRank.js		#排行榜-宝藏榜
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -451,12 +453,23 @@ update_script() {
 
 
 ccr_run() {
+#头文字Ｊ
+export car_addsku='true'
+export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_mpdz_carv.js			#头文字J
+	jd_car_play_exchange.js		#头文字J兑换
+	jd_marketxxl.js			#超市消消乐游戏
+	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
+	jd_xm.js			#2.6-2.28 小米浏览商品赢大奖
+	jd_supermarket_dh.js		#京东超市兑换
+	jd_supermarket1.js		#京东超市任
+	jd_sk2.js			#2.1-2.28 SK2互动抽奖，至高赢经典神仙水
+	jd_jj.js			#2.12-2.28 家居开卡抽奖2期
 	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
-	#jd_bean_sign.js			#京东多合一签到
+	jd_bean_sign.js			#京东多合一签到
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_TreasureRank.js		#排行榜-宝藏榜
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
@@ -485,9 +498,22 @@ if [  -z "$gua_cleancart_products" ];then
 	export gua_cleancart_products="*@&@"
 fi
 
+#头文字Ｊ
+export car_addsku='true'
+export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	#jd_bean_sign.js			#京东多合一签到
+	jd_mpdz_carv.js			#头文字J
+	jd_car_play_exchange.js		#头文字J兑换
+	jd_marketxxl.js			#超市消消乐游戏
+	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
+	jd_xm.js			#2.6-2.28 小米浏览商品赢大奖
+	jd_supermarket_dh.js		#京东超市兑换
+	jd_supermarket1.js		#京东超市任
+	jd_sk2.js			#2.1-2.28 SK2互动抽奖，至高赢经典神仙水
+	jd_jj.js			#2.12-2.28 家居开卡抽奖2期
+	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
+	jd_bean_sign.js			#京东多合一签到
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js 		#摇京豆，没时间要求
@@ -759,7 +785,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|jd_check_cookie.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}' |grep -v "#"`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
