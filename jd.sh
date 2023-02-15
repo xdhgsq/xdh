@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.21"
+	cron_version="4.22"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -123,7 +123,6 @@ cat >>/etc/crontabs/root <<EOF
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
-0 10 */7 * * $dir_file/jd.sh check_cookie_push >/tmp/check_cookie_push.log 2>&1 #每个7天推送cookie相关信息#100#
 20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
 5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 ###########100##########请将其他定时任务放到底下###############
@@ -1413,40 +1412,6 @@ check_cooike() {
 	echo "$pt_pin     $Current_date      $Expiration_date     $remark" >> $openwrt_script_config/check_cookie.txt
 }
 
-check_cookie_push() {
-	echo "----------------------------------------------"
-	cat $openwrt_script_config/check_cookie.txt
-	echo "----------------------------------------------"
-	echo "$line#### cookie数量:`cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l`$line" >/tmp/jd_check_cookie.txt
-	cat $openwrt_script_config/check_cookie.txt |sed "s/备注/$wrap$wrap_tab\# 备注/"  >>/tmp/jd_check_cookie.txt
-	$node $dir_file_js/jd_check_cookie1.js | grep "京东账号" >/tmp/jd_check_cookie_sort.txt
-
-	effective_cookie=$(cat /tmp/jd_check_cookie_sort.txt | grep "有效" )
-	Invalid_cookie=$(cat /tmp/jd_check_cookie_sort.txt | grep "失效" )
-	echo "$line#### cookie有效数量:`cat /tmp/jd_check_cookie_sort.txt | grep "有效"| wc -l`$line" >>/tmp/jd_check_cookie.txt
-
-	echo "$effective_cookie"　>>/tmp/jd_check_cookie.txt
-
-	if [ `echo $Invalid_cookie | wc -l` -ge "1" ];then
-		echo "$line#### cookie失效数量:`cat /tmp/jd_check_cookie_sort.txt | grep "失效"| wc -l`$line" >>/tmp/jd_check_cookie.txt
-		echo "$Invalid_cookie"　>>/tmp/jd_check_cookie.txt
-	else
-		echo "没有失效cookie"
-	fi
-
-	cookie_content=$(cat /tmp/jd_check_cookie.txt |sed "s/ /+/g"| sed "s/$/$wrap$wrap_tab/g" |  sed ':t;N;s/\n//;b t' )
-
-	server_content=$(echo "${cookie_content}${by}" | sed "s/$wrap_tab####/####/g" )
-
-	weixin_content_sort=$(cat /tmp/jd_check_cookie.txt |sed "s/####/<b>/g"   |sed "s/$line/<hr\/><\/b>/g" |sed "s/$wrap$wrap_tab/<br>/g" |sed "s/<br>#//g"  | sed "s/$/<br>/" |sed "s/<hr\/><\/b><br>/<hr\/><\/b>/g" |  sed ':t;N;s/\n//;b t' )
-	weixin_content=$(echo "$weixin_content_sort<br><b>$by")
-	weixin_desp=$(echo "$weixin_content" | sed "s/<hr\/><\/b><b>/$weixin_line\n/g" |sed "s/<hr\/><\/b>/\n$weixin_line\n/g"| sed "s/<b>/\n/g"| sed "s/<br>/\n/g" | sed "s/<br><br>/\n/g" | sed "s/#/\n/g" )
-
-	title="JD Cookie状态"
-	push_menu
-}
-
-
 push_menu() {
 case "$push_if" in
 		0)
@@ -1923,8 +1888,6 @@ help() {
 	echo -e "${green}  sh \$jd checklog ${white}  			#检测log日志是否有错误并推送"
 	echo ""
 	echo -e "${green}  sh \$jd that_day ${white}  			#检测JD_script仓库今天更新了什么"
-	echo ""
-	echo -e "${green}  sh \$jd check_cookie_push ${white}  		#推送cookie大概到期时间和是否有效"
 	echo ""
 	echo -e "${green}  sh \$jd script_name ${white}  			#显示所有JS脚本名称与作用"
 	echo ""
@@ -2997,7 +2960,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -3016,7 +2979,7 @@ else
 		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|check_cookie_push|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
