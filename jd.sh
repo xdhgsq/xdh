@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.23"
+	cron_version="4.24"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -117,9 +117,10 @@ cat >>/etc/crontabs/root <<EOF
 40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
 0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴#100#
-45 6 * * * $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
+45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
+5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
@@ -371,6 +372,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	gua_wealth_island.js		#京东财富岛
 	jd_TreasureRank.js		#排行榜-宝藏榜
 EOF
 
@@ -602,7 +604,6 @@ EOF
 run_01() {
 cat >/tmp/jd_tmp/run_01 <<EOF
 	jd_dreamFactory.js 		#京喜工厂
-	gua_wealth_island.js		#京东财富岛
 EOF
 	echo -e "${green} run_01$start_script_time ${white}"
 	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
@@ -2332,17 +2333,6 @@ del_if() {
 		del_js
 		echo ""
 	fi
-
-	#不跑京喜财富岛
-	if [ ! $jx_ddcfd ];then
-		echo "没有要删除的京喜财富岛文件"
-	else
-		js_name="京喜财富岛"
-		jd_num="$jx_ddcfd"
-		js_file="gua_wealth_island.js"
-		del_js
-		echo ""
-	fi
 	clear
 }
 
@@ -2849,9 +2839,6 @@ jd_openwrt_config() {
 	#不跑京喜牧场
 	jx_ddmc=$(grep "jx_ddmc" $jd_openwrt_config | awk -F "'" '{print $2}')
 
-	#不跑京喜财富岛
-	jx_ddcfd=$(grep "jx_ddcfd" $jd_openwrt_config | awk -F "'" '{print $2}')
-
 	#脚本黑名单
 	script_black=$(grep "script_black" $jd_openwrt_config | awk -F "'" '{print $2}')
 
@@ -2927,9 +2914,6 @@ jx_dddr=''
 
 #指定账号不跑京喜牧场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
 jx_ddmc=''
-
-#指定账号不跑京喜财富岛，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jx_ddcfd=''
 
 ******************----------------------------------------------------****************************
 
