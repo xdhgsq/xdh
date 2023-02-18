@@ -372,6 +372,7 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
+	jd_ddnc_farmpark.js		#东东乐园
 	gua_wealth_island.js		#京东财富岛
 	jd_TreasureRank.js		#排行榜-宝藏榜
 EOF
@@ -547,7 +548,6 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dpqd.js			#店铺签到
-	jd_ddnc_farmpark.js		#东东乐园
 	jd_club_lottery.js 		#摇京豆，没时间要求
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
