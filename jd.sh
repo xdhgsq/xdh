@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.24"
+	cron_version="4.25"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -116,7 +116,7 @@ cat >>/etc/crontabs/root <<EOF
 10 2-22/3 * * * $dir_file/jd.sh run_03 >/tmp/jd_run_03.log 2>&1 #天天加速 3小时运行一次，打卡时间间隔是6小时#100#
 40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
-0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东水果，6-9点 11-14点 17-21点可以领水滴#100#
+0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
 45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
@@ -525,7 +525,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	gua_cleancart.js		#清空购物车
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
-	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
+	jd_fruit.js			#东东农场，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
@@ -2041,7 +2041,7 @@ baipiaoguai_fr="456e5601548642a5a9bcc86a54085154@61f21ef708c948568854ec50c362708
 	random_fruit="$ITdesk_random_fr@$zuoyou_20190516_random_fr@$Javon_random_fr@$xiaodengzi_random_20190516_fr@$baipiaoguai_fr"
 	random="$random_fruit"
 	random_array
-	new_fruit_set="'$new_fruit1@$zuoyou_20190516_fr@$Javon_20201224_fr@$jidiyangguang_20190516_fr@$ashou_20210516_fr@$xiaodengzi_20190516_fr@$xiaobandeng_fr@$chiyu_fr@$random_set',"
+	new_fruit_set="'$new_fruit1@$chiyu_fr@$zuoyou_20190516_fr@$Javon_20201224_fr@$jidiyangguang_20190516_fr@$ashou_20210516_fr@$xiaodengzi_20190516_fr@$xiaobandeng_fr@$random_set',"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
 	fr_rows=$(grep -n "shareCodes =" $dir_file_js/jd_fruit_help.js | awk -F ":" '{print $1}')
@@ -2091,7 +2091,7 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 	random_plantBean="$ITdesk_random_pb@$zuoyou_20190516_random_pb@$Javon_random_pb@$baipiaoguai_pb"
 	random="$random_plantBean"
 	random_array
-	new_plantBean_set="'$new_plantBean1@$zuoyou_20190516_pb@$Javon_20201224_pb@$jidiyangguang_20190516_pb@$chiyu_pb@$ashou_20210516_pb@$random_set',"
+	new_plantBean_set="'$new_plantBean1@$chiyu_pb@$zuoyou_20190516_pb@$Javon_20201224_pb@$jidiyangguang_20190516_pb@$ashou_20210516_pb@$random_set',"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
 	pb_rows=$(grep -n "shareCodes =" $dir_file_js/jd_plantBean_help.js | awk -F ":" '{print $1}')
@@ -2138,7 +2138,7 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 	random_dreamFactory="$ITdesk_random_df@$zuoyou_20190516_random_df@$Javon_20201224_random_df"
 	random="$random_dreamFactory"
 	random_array
-	new_dreamFactory_set="'$new_dreamFactory@$zuoyou_20190516_df@$Javon_20201224_df@$jidiyangguang_20190516_df@$ashou_20210516_df@$Jhone_Potte_20200824_df@$chiyu_df@$random_set',"
+	new_dreamFactory_set="'$new_dreamFactory@$chiyu_df@$zuoyou_20190516_df@$Javon_20201224_df@$jidiyangguang_20190516_df@$ashou_20210516_df@$Jhone_Potte_20200824_df@$random_set',"
 
 	df_rows=$(grep -n "inviteCodes =" $dir_file_js/jd_dreamFactory.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
@@ -2256,7 +2256,7 @@ COMMENT
 	chiyu_jdzz="S7aUqCVsc91U"
 	ashou_20210516_jdzz="Sv_V1RRgf_VPSJhyb1A@Sa0DkmLenrwOA@S5KkcRRtN8wCBdUimlqVbJw@S5KkcRkoboVKEJRr3xvINdQ@S_aIzGEdFoAGJdw@S5KkcRhpI8VfXcR79wqVcIA@S5KkcRk1P8VTSdUmixvUIfQ@S-acrCh8Q_VE"
 	
-	new_jdzz_set="$new_jdzz@$zuoyou_20190516_jdzz@$jidiyangguang_20190516_jdzz@$chiyu_jdzz@$ashou_20210516_jdzz"
+	new_jdzz_set="$new_jdzz@$chiyu_jdzz@$zuoyou_20190516_jdzz@$jidiyangguang_20190516_jdzz@$ashou_20210516_jdzz"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
 	jdzzcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_jdzz.js | awk -F ":" '{print $1}')
