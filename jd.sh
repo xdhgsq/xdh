@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.25"
+	cron_version="4.26"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -121,6 +121,8 @@ cat >>/etc/crontabs/root <<EOF
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
+5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力
+5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
@@ -473,7 +475,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
 	jd_bean_sign.js			#京东多合一签到
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
@@ -523,7 +524,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_price.js 			#京东价保
 	jd_productZ4Brand.js		#特务Z
 	gua_cleancart.js		#清空购物车
-	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东农场，6-9点 11-14点 17-21点可以领水滴
 	jd_plantBean_help.js		#种豆得豆助力
