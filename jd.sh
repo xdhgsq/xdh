@@ -226,17 +226,15 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_xm.js			#2.6-2.28 小米浏览商品赢大奖
+	jd_yy.js			#3.24-4.20 预约赢新机
+	jd_gy.js			#京东工业品
+	jd_car_play.js			#头文字J
+	jd_car_play_exchange.js		#头文字J兑换
 	jd_supermarket_dh.js		#京东超市兑换
 	jd_supermarket1.js		#京东超市任
-	jd_sk2.js			#2.1-2.28 SK2互动抽奖，至高赢经典神仙水
-	jd_jj.js			#2.12-2.28 家居开卡抽奖2期
-	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
 	jd_try.js 			#京东试用（默认不启用）
-	jd_jxmc.js			#京喜牧场
-	jd_jdzz.js			#京东赚赚
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jx_sign_help.js			#京喜签到助力
@@ -258,11 +256,12 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	jd_car_play_exchange.js		#头文字J兑换
-	jd_mpdz_carv.js			#头文字J
+	jd_signbeanact.js		#签到领京豆
+	jd_jdzz_dh.js			#京东赚赚兑换
+	jd_cxjhelp.js			#京喜特价抽现金
+	jd_cashsign.js			#领现金
 	jd_marketxxl.js			#超市消消乐游戏
 	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
-	jd_bean_sign.js			#签到
 	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
@@ -374,9 +373,14 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_ddnc_farmpark.js		#东东乐园
-	gua_wealth_island.js		#京东财富岛
-	jd_TreasureRank.js		#排行榜-宝藏榜
+	jd_xm.js
+	jd_sk2.js
+	jd_jj.js
+	jd_a2.js
+	jd_jxmc.js
+	jd_jdzz.js
+	jd_mpdz_carv.js
+	jd_bean_sign.js
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -463,17 +467,18 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_mpdz_carv.js			#头文字J
+	jd_signbeanact.js		#签到领京豆
+	jd_jdzz_dh.js			#京东赚赚兑换
+	jd_cxjhelp.js			#京喜特价抽现金
+	jd_cashsign.js			#领现金
+	jd_yy.js			#3.24-4.20 预约赢新机
+	jd_gy.js			#京东工业品
+	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_marketxxl.js			#超市消消乐游戏
 	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
-	jd_xm.js			#2.6-2.28 小米浏览商品赢大奖
 	jd_supermarket_dh.js		#京东超市兑换
 	jd_supermarket1.js		#京东超市任
-	jd_sk2.js			#2.1-2.28 SK2互动抽奖，至高赢经典神仙水
-	jd_jj.js			#2.12-2.28 家居开卡抽奖2期
-	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
-	jd_bean_sign.js			#京东多合一签到
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
@@ -507,17 +512,18 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_mpdz_carv.js			#头文字J
+	jd_signbeanact.js		#签到领京豆
+	jd_jdzz_dh.js			#京东赚赚兑换
+	jd_cxjhelp.js			#京喜特价抽现金
+	jd_cashsign.js			#领现金
+	jd_yy.js			#3.24-4.20 预约赢新机
+	jd_gy.js			#京东工业品
+	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_marketxxl.js			#超市消消乐游戏
 	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
-	jd_xm.js			#2.6-2.28 小米浏览商品赢大奖
 	jd_supermarket_dh.js		#京东超市兑换
 	jd_supermarket1.js		#京东超市任
-	jd_sk2.js			#2.1-2.28 SK2互动抽奖，至高赢经典神仙水
-	jd_jj.js			#2.12-2.28 家居开卡抽奖2期
-	jd_a2.js			#2.1-2.28 a2集成长值赢千元礼包
-	jd_bean_sign.js			#京东多合一签到
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js 		#摇京豆，没时间要求
@@ -585,7 +591,6 @@ EOF
 
 run_030() {
 cat >/tmp/jd_tmp/run_030 <<EOF
-	jd_jxmc.js			#京喜牧场
 EOF
 	echo -e "${green} run_030$start_script_time ${white}"
 
@@ -638,7 +643,6 @@ EOF
 run_03() {
 #这里不会并发
 cat >/tmp/jd_tmp/run_03 <<EOF
-	jd_jdzz.js			#京东赚赚
 EOF
 	echo -e "${green} run_03$start_script_time ${white}"
 
@@ -786,7 +790,6 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
@@ -2259,9 +2262,7 @@ COMMENT
 	new_jdzz_set="$new_jdzz@$chiyu_jdzz@$zuoyou_20190516_jdzz@$jidiyangguang_20190516_jdzz@$ashou_20210516_jdzz"
 
 	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	jdzzcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_jdzz.js | awk -F ":" '{print $1}')
 	while [[ ${js_amount} -gt 0 ]]; do
-		#sed -i "$jdzzcode_rows a \ '$new_jdzz_set', " $dir_file_js/jd_jdzz.js
 		js_amount=$(($js_amount - 1))
 	done
 
@@ -2329,7 +2330,6 @@ del_if() {
 	else
 		js_name="京喜牧场"
 		jd_num="$jx_ddmc"
-		js_file="jd_jxmc.js"
 		del_js
 		echo ""
 	fi
