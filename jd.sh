@@ -226,6 +226,8 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
+	jd_AJMH.js			#4.1-4.30 安佳做任务开盲盒，赢好礼
 	jd_yy.js			#3.24-4.20 预约赢新机
 	jd_gy.js			#京东工业品
 	jd_car_play.js			#头文字J
@@ -261,7 +263,6 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_cxjhelp.js			#京喜特价抽现金
 	jd_cashsign.js			#领现金
 	jd_marketxxl.js			#超市消消乐游戏
-	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
 	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
@@ -467,6 +468,7 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
@@ -512,6 +514,7 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
