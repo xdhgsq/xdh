@@ -226,6 +226,7 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_xm.js			#预约抽奖赢新品
 	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_AJMH.js			#4.1-4.30 安佳做任务开盲盒，赢好礼
 	jd_yy.js			#3.24-4.20 预约赢新机
@@ -468,6 +469,7 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_xm.js			#预约抽奖赢新品
 	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
@@ -514,6 +516,7 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_xm.js			#预约抽奖赢新品
 	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
