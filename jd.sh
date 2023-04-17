@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.26"
+	cron_version="4.27"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -372,14 +372,11 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_xm.js
-	jd_sk2.js
-	jd_jj.js
-	jd_a2.js
-	jd_jxmc.js
-	jd_jdzz.js
-	jd_mpdz_carv.js
-	jd_bean_sign.js
+	jd_qbyql.js
+	jd_AJMH.js
+	jd_yy.js
+	jd_gy.js
+	jd_try.js
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
