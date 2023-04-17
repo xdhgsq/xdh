@@ -1861,12 +1861,21 @@ port='22'
 EOF
 }
 
+start_script() {
+	echo -e "${green} 开始回复定时任务${white}"
+	wskey
+	checkjs
+	help
+}
+
 stop_script() {
 	echo -e "${green} 删掉定时任务，这样就不会定时运行脚本了${white}"
 	task_delete
+	sed -i '/#102#/d' /etc/crontabs/root >/dev/null 2>&1
+	sed -i '/#120#/d' /etc/crontabs/root >/dev/null 2>&1
 	sleep 3
 	killall -9 node 
-	echo -e "${green}处理完成，需要重新启用，重新跑脚本sh \$jd 就会添加定时任务了${white}"
+	echo -e "${green}处理完成，需要重新启用，重新跑脚本${yellow}sh \$jd start_script$green就会添加定时任务了${white}"
 }
 
 
@@ -2955,7 +2964,7 @@ if [[ -z $action1 ]]; then
 	help
 else
 	case "$action1" in
-		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
+		start_script|run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
 		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
@@ -2974,7 +2983,7 @@ else
 		echo ""
 	else
 		case "$action2" in
-		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
+		start_script|run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
 		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
