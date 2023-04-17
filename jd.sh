@@ -227,17 +227,12 @@ done
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_xm.js			#预约抽奖赢新品
-	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
-	jd_AJMH.js			#4.1-4.30 安佳做任务开盲盒，赢好礼
-	jd_yy.js			#3.24-4.20 预约赢新机
-	jd_gy.js			#京东工业品
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_supermarket_dh.js		#京东超市兑换
 	jd_supermarket1.js		#京东超市任
 	jd_cjzdgf.js			#CJ组队瓜分京豆
 	jd_zdjr.js			#组队瓜分
-	jd_try.js 			#京东试用（默认不启用）
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jx_sign_help.js			#京喜签到助力
@@ -470,17 +465,13 @@ export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_xm.js			#预约抽奖赢新品
-	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
 	jd_cashsign.js			#领现金
-	jd_yy.js			#3.24-4.20 预约赢新机
-	jd_gy.js			#京东工业品
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_marketxxl.js			#超市消消乐游戏
-	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
 	jd_supermarket_dh.js		#京东超市兑换
 	jd_supermarket1.js		#京东超市任
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
@@ -517,17 +508,13 @@ export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_xm.js			#预约抽奖赢新品
-	jd_qbyql.js			#4.1-4.30 倩碧邀请礼
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
 	jd_cashsign.js			#领现金
-	jd_yy.js			#3.24-4.20 预约赢新机
-	jd_gy.js			#京东工业品
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_marketxxl.js			#超市消消乐游戏
-	jd_AJMH.js			#2.1-2.28 安佳做任务开盲盒，赢好礼
 	jd_supermarket_dh.js		#京东超市兑换
 	jd_supermarket1.js		#京东超市任
 	jd_dreamFactory.js 		#京喜工厂
@@ -798,7 +785,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js|jd_try.js" | awk '{print $1}' |grep -v "#"`;do
+	for i in `cat $jd_file/config/collect_script.txt | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
@@ -861,42 +848,6 @@ do
 done
 echo -e "${green}============整理完成，可以提交了（没加群的忽略）======${white}"
 
-}
-
-
-jd_try() {
-cat >/tmp/jd_tmp/jd_try_variable <<EOF
-	JD_TRY_TITLEFILTERS
-	JD_TRY_WHITELIST
-	JD_TRY_PRICE
-	JD_TRY_MINSUPPLYNUM
-	JD_TRY_TABID
-	JD_TRY_PLOG
-	JD_TRY_MAXLENGTH
-	JD_TRY_APPLYNUMFILTER
-	JD_TRY_TRIALPRICE
-EOF
-
-	for i in `cat /tmp/jd_tmp/jd_try_variable | grep -v "#.*js" | awk '{print $1}'`
-	do
-		export $i=$(cat $openwrt_script_config/jd_openwrt_script_config.txt | grep "$i" | awk -F "\"" '{print $2}')
-	done
-
-	JD_TRY=$(cat $openwrt_script_config/jd_openwrt_script_config.txt | grep "JD_TRY=" | awk -F "\"" '{print $2}')
-	if [ $JD_TRY == "true" ];then
-		export JD_TRY="true"
-		echo -e "${green} >> 开始执行试用脚本${white}"
-		for i in `ls $dir_file/jd_try_file/tmp | grep "jd_try"`
-		do
-		{
-			echo -e "${green} >> 开始跑$i${white}"
-			$node $dir_file/jd_try_file/tmp/$i
-		} &
-		done
-		wait
-	else
-		echo -e "$red >> 试用脚本开关没有打开${white}"
-	fi
 }
 
 jd_time()  {
@@ -1015,7 +966,7 @@ concurrent_js_update() {
 concurrent_js_clean(){
 		if [ "$ccr_if" == "yes" ];then
 			echo -e "${yellow}收尾一下${white}"
-			for i in `ps -ww | grep "$action" | grep -v 'grep\|index.js\|jd_try.js\|ssrplus\|opencard' | awk '{print $1}'`
+			for i in `ps -ww | grep "$action" | grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}'`
 			do
 				echo "开始kill $i"
 				kill -9 $i
@@ -1026,7 +977,7 @@ concurrent_js_clean(){
 kill_ccr() {
 	if [ "$ccr_if" == "yes" ];then
 		echo -e "${green}>>终止并发程序启动。请稍等。。。。${white}"
-		if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|jd_try.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` == "0" ];then
+		if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` == "0" ];then
 			sleep 2
 			echo ""
 			echo -e "${green}我曾经跨过山和大海，也穿过人山人海。。。${white}"
@@ -1037,7 +988,7 @@ kill_ccr() {
 			sleep 2
 			echo -e "${green}后台都没有进程妹子，散了散了。。。${white}"
 		else
-			for i in `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|jd_try.js\|ssrplus\|opencard' | awk '{print $1}'`
+			for i in `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}'`
 			do
 				kill -9 $i
 				echo "kill $i"
@@ -1045,7 +996,7 @@ kill_ccr() {
 			concurrent_js_clean
 			clear
 			echo -e "${green}再次检测一下并发程序是否还有存在${white}"
-			if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|jd_try.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` == "0" ];then
+			if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` == "0" ];then
 				echo -e "${yellow}>>并发程序已经全部结束${white}"
 			else
 				echo -e "${yellow}！！！检测到并发程序还有存在，再继续杀，请稍等。。。${white}"
@@ -2172,103 +2123,6 @@ baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x
 		js_amount=$(($js_amount - 1))
 	done
 
-
-	#京东试用
-	sed -i "/jd_try/d" $cron_file
-	JD_TRY=$(cat $openwrt_script_config/jd_openwrt_script_config.txt | grep "JD_TRY=" | awk -F "\"" '{print $2}')
-	if [ "$JD_TRY" == "true" ];then
-		#jd_try变量(更多详细内容请查看/usr/share/jd_openwrt_script/JD_Script/js/jd_try.js)
-		jd_try_ck=$(cat $openwrt_script_config/jd_openwrt_script_config.txt | grep "jd_try_ck" | awk -F "\"" '{print $2}')
-
-		if [ ! -d "$dir_file/jd_try_file" ]; then
-			mkdir $dir_file/jd_try_file
-			mkdir $dir_file/jd_try_file/tmp
-		else
-			rm -rf $dir_file/jd_try_file/*
-			mkdir $dir_file/jd_try_file/tmp
-		fi
-
-		ln -s $openwrt_script_config/sendNotify.js $dir_file/jd_try_file/tmp/sendNotify.js
-		ln -s $openwrt_script_config/USER_AGENTS.js $dir_file/jd_try_file/tmp/USER_AGENTS.js
-		cp $dir_file_js/jd_try.js $dir_file/jd_try_file/jd_try.js
-		wget https://raw.githubusercontent.com/xdhgsq/xdh/main/JSON/jdCookie.js -O $dir_file/jd_try_file/jdCookie.js
-
-		jd_try_if=$(grep "jd_try" $cron_file | wc -l)
-		if [ "$jd_try_if" == "0" ];then
-			echo "检测到试用开关开启，导入一下计划任务"
-			echo "0 10 * * * $dir_file/jd.sh jd_try >/tmp/jd_try.log" >>$cron_file
-			/etc/init.d/cron restart
-		else
-			echo "京东试用计划任务已经导入"
-		fi
-
-		if [ ! "$jd_try_ck" ];then
-			ck_num=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-			for i in `seq $ck_num`
-			do
-			{
-				cp $dir_file/jd_try_file/jd_try.js  $dir_file/jd_try_file/tmp/jd_try$i.js
-				cp $dir_file/jd_try_file/jdCookie.js $dir_file/jd_try_file/tmp/jdCookie$i.js
-				sed -i "s/jdCookie.js/jdCookie$i.js/g" $dir_file/jd_try_file/tmp/jd_try$i.js
-
-				jd_tryck=$(sed -n "$i p" $openwrt_script_config/js_cookie.txt)
-				sed -i "5a $jd_tryck" $dir_file/jd_try_file/tmp/jdCookie$i.js
-			}
-			done
-		else
-			echo "$jd_try_ck" >/tmp/jd_tmp/jd_tryck.txt
-			sed -i "s/@/\n/g" /tmp/jd_tmp/jd_tryck.txt
-			ck_num=$(cat /tmp/jd_tmp/jd_tryck.txt |wc -l)
-			for i in `seq $ck_num`
-			do
-			{
-				cp $dir_file/jd_try_file/jd_try.js  $dir_file/jd_try_file/tmp/jd_try$i.js
-				cp $dir_file/jd_try_file/jdCookie.js $dir_file/jd_try_file/tmp/jdCookie$i.js
-				sed -i "s/jdCookie.js/jdCookie$i.js/g" $dir_file/jd_try_file/tmp/jd_try$i.js
-
-				jd_tryck=$(sed -n "$i p" /tmp/jd_tmp/jd_tryck.txt)
-				jd_tryck1=$(grep "$jd_tryck" $openwrt_script_config/js_cookie.txt)
-				sed -i "5a $jd_tryck1" $dir_file/jd_try_file/tmp/jdCookie$i.js
-			}
-			done
-		fi
-	else
-		jd_try_if=$(grep "jd_try" $cron_file | wc -l)
-		if [ "$jd_try_if" == "1" ];then
-			echo "检测到试用开关关闭，清理一下之前的导入"
-			sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
-			/etc/init.d/cron restart
-		fi
-		echo "京东试用计划任务不导入"
-	fi
-:<<'COMMENT'
-	#签到领现金
-	new_jdcash="eU9Ya-iyZ68kpWrRmXBFgw@eU9YEJLQI4h1kiqNogJA@eU9YabrkZ_h1-GrcmiJB0A@eU9YM7bzIptVshyjrwlt@eU9YCLTrH5VesRWnvw5t@eU9YC6nQAZhYoiqgtw9x@eU9YCLXXPrhnhCiQlCRg@P2nGgK6JgLtCqJBeQJ0f27XXLQwYAFHrKmA2siZTuj8=@JuMHWNtZt4Ny_0ltvG6Ipg==@IRM2beu1b-En9mzUwnU@eU9YaOSwMP8m-D_XzHpF0w@eU9Yau-yMv8ho2fcnXAQ1Q@eU9YCovbMahykhWdvS9R@JxwyaOWzbvk7-W3WzHcV1mw"
-	zuoyou_20190516_jdcash="f1kwaQ@a1hzJOmy@eU9Ya7-wM_Qg-T_SyXIb0g@flpkLei3@eU9YD7rQHo1btTm9shR7@eU9YE67FOpl9hTG0mjNp@eU9YBJrlD5xcixKfrS1U@eU9YG7TVDLlhgAyBsRpw@eU9YG4X6HpZMixS8lBBu@eU9YH6THD4pXkiqTuCFi"
-	chiyu_jdcash="cENuJam3ZP0"
-	Jhone_Potte_20200824_jdcash="eU9Yaum1N_4j82-EzCUSgw@eU9Yar-7Nf518GyBniIWhw"
-	jidiyangguang_20190516_jdcash="eU9YaOjhYf4v8m7dnnBF1Q@eU9Ya762N_h3oG_RmXoQ0A"
-	ashou_20210516_jdcash="IhMxaeq0bvsj92i6iw@9qagtEUMPKtx@eU9YaenmYKhwpDyHySFChQ@eU9YariwMvp19G7WmXYU1w@YER3NLXuM6l4pg@eU9YaujjYv8moGrcnSFFgg@eU9Yar_kYvwjpD2DmXER3w@ZEFvJu27bvk"
-	dreamer_20200524_jdcash="IhM0aOyybv4l8266iw@eU9Yaem2bqhz-WzSyHdG1Q@eU9Ya77hNakv8GaGyXUa0Q@eU9YaLnmYv909mvWnyUX0g@aUNoKb_qI6Im9m_S"
-	test_jdcash="eU9YaO62NPh18j_dyHtA1Q@IhgybO66b_4g8me6iw@eU9YJJrOFbxPixuIshNw@eU9Yaey6MK4l9D3XwnQW1Q@eU9YaeThMqkn92vSn3Mb3w@eU9Ya-XkNfRypT_UmnRBhA"
-	new_jdcash_set="'$new_jdcash@$chiyu_jdcash@$jidiyangguang_20190516_jdcash@$Jhone_Potte_20200824_jdcash@$ashou_20210516_jdcash@$zuoyou_20190516_jdcash@$dreamer_20200524_jdcash@$test_jdcash',"
-
-
-	sed -i "s/$.isNode() ? 5 : 5/$.isNode() ? 5 : 0/g" $dir_file_js/jd_cash.js
-	sed -i "s/helpAuthor = true/helpAuthor = false/g" $dir_file_js/jd_cash.js
-	sed -i "s/https:\/\/raw.githubusercontent.com\/Aaron-lv\/updateTeam\/master\/shareCodes\/jd_updateCash.json//g" $dir_file_js/jd_cash.js
-	sed -i "s/https:\/\/purge.jsdelivr.net\/gh\/Aaron-lv\/updateTeam@master\/shareCodes\/jd_updateCash.json//g" $dir_file_js/jd_cash.js
-	sed -i "s/https:\/\/cdn.jsdelivr.net\/gh\/Aaron-lv\/updateTeam@master\/shareCodes\/jd_updateCash.json//g" $dir_file_js/jd_cash.js
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	sed -i "s/inviteCodes = \[/inviteCodes = \[\n/g" $dir_file_js/jd_cash.js
-	cashcode_rows=$(grep -n "inviteCodes = \[" $dir_file_js/jd_cash.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$cashcode_rows a \ $new_jdcash_set " $dir_file_js/jd_cash.js
-		js_amount=$(($js_amount - 1))
-	done
-COMMENT
-
-
 	#资产变化强化版by-ccwav
 	sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
 }
@@ -2928,30 +2782,6 @@ jd_sharecode_df=''
 
 *****+++++*********************************************+++++*****
 
-+++++++++++++++++++++++++++++++京东试用参数设置++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#京东试用 true开启  默认false(更多详细内容请查看/usr/share/jd_openwrt_script/JD_Script/js/jd_try.js)
-JD_TRY="false"
-
-#jd_try ck变量(那几个ck要跑，用@隔开，比如jd_01@jd_02(填写ck的用户名也就是pt_pin值)，这里不填就跑所有ck)
-jd_try_ck=""
-
-#jd_try黑名单
-export JD_TRY_TITLEFILTERS="腰垫@紧肤露@身体露@瑜伽裤@紧身裤@背奶包@白虾@牙膏@舍得酒@葡萄干@腊肉@足底按摩@健身@小龙虾@胶原蛋白@胶囊@洁面@防晒@控油@润霜@手机解码线@肌肉收紧@骨盆@打呼噜@跑步鞋@羊毛裤@腹部按摩器@脚垫@太阳镜@腰部按摩器@化妆镜@书房灯@台灯@吊灯@短靴@瑜伽垫@羊毛衫@甩脂机@水果@五粮股份@护膝@笔记本电池@毛毯@泡脚桶@手机转接头@电视天线@门锁@保暖棉鞋@健身板@礼券@洁面巾@茅台旗下@茅台股份@郎酒@蛋黄酥@礼盒@考题@试卷@短筒靴@双面胶@沉香@香薰@充电宝@网红零食礼盒@网红@矿泉水@热身膏@按摩膏@芝士片@莆田@男鞋@精粹水@娇兰@帝皇峰@古龙香水@保暖护膝@小凳子@真皮笔袋@牛皮笔袋@触控手写@电容笔@SD卡@电池iPhone@摄像头@康复训练器@单肩包@防火毯@应急逃生衣@硒鼓@休闲零食@电动割草机@除草剂@膝盖贴@艾灸@茶叶@青梅酒@食用油@话筒@燃油宝@燃油添加剂@洗衣液@汽车应急启动电源@背景板@摆件@创意礼盒@烧水壶@果酒@注射器@浴巾@靴子@警告牌@被芯@手电筒@潮牌@土工布@安美琪@爽肤水@健身轮@懒人鞋@抛光@文玩@包浆@机油@户外鞋@白葡萄酒@宝珠笔@签字笔@台秤@麻将机@卡片@钱码@贵州名酒@葡萄酒@四件套@平底锅@休闲潮鞋@地图@茅台镇@贵州茅台镇@养殖围栏@平光@蜡油@花架子@水龙头@沐浴露@止痒@洗衣凝珠@记事本@灯泡@休闲鞋@运动鞋@女靴@男装@修复贴@冻干@保密袋@手机屏蔽袋@拖把池@冻干粉@修颜@牛仔裤@苏打水@代餐@精华@洗发露@鸡毛掸@拖把@咖啡豆@精油@维生素@降血压@活络油@隔离网@养生茶@减肥@喷雾@正骨@枕头@925@PVC@qq名片@按摩霜@奥咖蚕精参肽片压片@白富美@白玉@棒@棒球帽@包皮@孢子@保护膜@保护套@保健@保湿乳@杯@鼻@鼻炎@壁纸@避孕@便携装@饼干@玻尿酸@不限速@不锈钢@补钙@补水@布鞋@擦杯布@产后修复@尝鲜@长袖@超薄@超长@车载充电器@成功学@虫@宠物@除臭@床垫@春节@纯棉@瓷砖@打底裤@大米@单肩包女@淡化@蛋糕@档案袋@电话@电脑椅@电商@吊带@吊坠@钓鱼@定情@抖音@抖音作品@痘印@端午节@短裤@俄语@儿童@儿童牛奶@耳钉@耳环@耳坠@防臭地漏@防晒霜@翡翠@粉底@风湿@辅导@妇女@钙片@肛门@钢化@钢化膜@钢圈@高跟鞋@高血压@隔离带@宫颈@狗@股票@挂画@挂件@冠心病@罐@国庆节@果树@和田白玉@和田玉@黑丝@狐臭@互动课@护眼仪@花洒@化妆爽肤水@化妆水@活动@激素@甲醛@尖锐@监控补光灯@僵尸粉@降敏@教程@脚气@洁面乳@睫毛@睫毛胶水@解酒@戒烟@戒指@界家居@金刚石@精华@精华水@精华液@镜片@咀嚼片@卷尺@开发@看房@看房游@抗皱@克尤@刻字@课@口@口臭咀嚼片@口腔@口罩@快手@垃圾@垃圾桶@懒人支架@老太太@类纸膜@灵芝@领带@流量@流量卡@六级@旅游@玛瑙@猫@帽@眉@美白@美容仪@美少女@门把手@门票@糜烂@棉签@面膜@面霜@膜@墨水@奶粉@男用喷剂@内裤@尿不湿@女纯棉@女孩@女内裤@女内衣@女士上衣@女鞋@女性内裤@女性内衣@女友@女装@泡沫@疱疹@培训@盆栽@皮带@皮带扣@皮鞋@屏风底座@菩提@旗袍@亲子@轻奢@情人节@祛斑@祛痘@驱蚊@去黑头@染色@日租@肉苁蓉@乳霜@软件@腮红@三角短裤@三角裤@杀@少妇@少女@少女内衣@伸缩带@生殖器@施华洛世奇@湿疣@实战@手表@手抄报@手环@手机壳@手机膜@手机套@手机支架@手链@手套@手镯@树脂@刷头@水管@水晶@睡袍@睡衣@四级@四角短裤@四六级@素@随身wifi@损伤膏@太阳能@糖果@糖尿病@题库@体验装@贴膜@贴纸@铁@通话@童鞋@童装@褪黑素@娃娃@袜@袜子@袜子一双@外套@网课@网络@网络课程@网校@卫生巾@卫生条@卫衣@文胸@卧室灯@西服@西装@洗面@系统@癣@项链@小白鞋@小红书@小靓美@小胸@鞋拔@卸妆@卸妆水@心动@性感@胸部按摩@胸罩@休闲裤@Ｔ恤@玄关画@鸭舌帽@牙刷头@延时湿巾@演唱会@眼@眼镜@眼影@洋娃娃@羊脂白玉@羊脂玉@腰带@药@一次性@一米线栏杆@医用@衣架@姨妈巾@益生菌@益智@阴道@阴道炎@银@印度神油@婴儿@英语@疣@幼儿@鱼@鱼饵@羽绒服@语@玉@玉石@孕妇@在线@在线网络@在线直播@早餐奶@蟑螂@照明@遮斑@遮痘@遮瑕@职称@纸尿裤@中年@中秋节@中小学@种子@咨询@滋润@钻@钻石@坐垫"
-
-#jd_try试用白名单
-JD_TRY_WHITELIST="耳机@键盘"
-
-#jd_try最小提供数量
-JD_TRY_PRICE="119"
-JD_TRY_PLOG="true"
-JD_TRY_MINSUPPLYNUM="0"
-JD_TRY_TABID="1@2@3@4@5@6@7@8@9@10@11@12@13@14@15@16"
-JD_TRY_MAXLENGTH="200"
-JD_TRY_APPLYNUMFILTER="10000"
-JD_TRY_TRIALPRICE="10"
-
-#这里的变量都可以自己修改，按自己的想法来
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 EOF
 }
 
@@ -2962,10 +2792,10 @@ if [[ -z $action1 ]]; then
 	help
 else
 	case "$action1" in
-		start_script|run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
+		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -2981,10 +2811,10 @@ else
 		echo ""
 	else
 		case "$action2" in
-		start_script|run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
+		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
 		concurrent_js_if
 		;;
-		wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_try|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
