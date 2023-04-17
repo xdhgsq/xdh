@@ -1864,14 +1864,12 @@ EOF
 start_script() {
 	echo -e "${green} 开始回复定时任务${white}"
 	wskey
-	checkjs
 	help
 }
 
 stop_script() {
 	echo -e "${green} 删掉定时任务，这样就不会定时运行脚本了${white}"
 	task_delete
-	sed -i '/#102#/d' /etc/crontabs/root >/dev/null 2>&1
 	sed -i '/#120#/d' /etc/crontabs/root >/dev/null 2>&1
 	sleep 3
 	killall -9 node 
