@@ -108,6 +108,8 @@ task() {
 }
 
 task_add() {
+sed -i '/jd_fruit_help.js/d' /etc/crontabs/root >/dev/null 2>&1
+sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
@@ -121,8 +123,8 @@ cat >>/etc/crontabs/root <<EOF
 3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
-5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力
-5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力
+5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力#100#
+5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
