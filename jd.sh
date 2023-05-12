@@ -257,7 +257,6 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
-	jd_speed_sign.js.js		#京东极速版签到+赚现金任务
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
@@ -278,6 +277,7 @@ do
 	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
 	cp_if
 done
+	cp  $dir_file/git_clone/6dylan6_script/jd_speed_sign.js.js  $dir_file_js/jd_speed_sign.js
 
 sleep 5
 
@@ -469,7 +469,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
-	jd_speed_sign.js.js		#京东极速版签到+赚现金任务
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
@@ -516,7 +516,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
-	jd_speed_sign.js.js		#京东极速版签到+赚现金任务
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
