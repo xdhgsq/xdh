@@ -228,7 +228,6 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_xm.js			#预约抽奖赢新品
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_supermarket_dh.js		#京东超市兑换
@@ -238,7 +237,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jx_sign_help.js			#京喜签到助力
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
 	jd_lotty2.js			#购物抵现金
@@ -256,6 +254,11 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_ttqdlxj.js			#天天签到礼享金
+	jd_ttlhb.js			#天天领红包
+	jd_hdcheck.js			#互动消息检测
+	jd_speed_sign.js.js		#京东极速版签到+赚现金任务
+	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
@@ -463,7 +466,11 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_xm.js			#预约抽奖赢新品
+	jd_ttqdlxj.js			#天天签到礼享金
+	jd_ttlhb.js			#天天领红包
+	jd_hdcheck.js			#互动消息检测
+	jd_speed_sign.js.js		#京东极速版签到+赚现金任务
+	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
@@ -506,7 +513,11 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_xm.js			#预约抽奖赢新品
+	jd_ttqdlxj.js			#天天签到礼享金
+	jd_ttlhb.js			#天天领红包
+	jd_hdcheck.js			#互动消息检测
+	jd_speed_sign.js.js		#京东极速版签到+赚现金任务
+	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cxjhelp.js			#京喜特价抽现金
@@ -650,7 +661,7 @@ EOF
 	wait
 
 	#极速版签到
-	run_jsqd
+	#run_jsqd
 
 	echo -e "${green} run_03$stop_script_time ${white}"
 }
@@ -2362,7 +2373,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install -g cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	#安装python模块
