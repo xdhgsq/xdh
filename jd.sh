@@ -228,6 +228,8 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_sk.js			#解锁心动时刻
+	jd_20zn.js			#京东20周年
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_supermarket_dh.js		#京东超市兑换
@@ -254,6 +256,8 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_sghelp.js			#数钱助力
+	jd_jdcxjhelp.js			#京东app抽现金
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
@@ -466,6 +470,10 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_sghelp.js			#数钱助力
+	jd_jdcxjhelp.js			#京东app抽现金
+	jd_sk.js			#解锁心动时刻
+	jd_20zn.js			#京东20周年
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
@@ -513,6 +521,10 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_sghelp.js			#数钱助力
+	jd_jdcxjhelp.js			#京东app抽现金
+	jd_sk.js			#解锁心动时刻
+	jd_20zn.js			#京东20周年
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
