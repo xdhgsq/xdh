@@ -228,7 +228,6 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_618_Red.js			#618红包助力
 	jd_cdj.js			#京东邀您抽大奖
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sk.js			#解锁心动时刻
@@ -463,20 +462,11 @@ update_script() {
 
 
 ccr_run() {
-
-if [ -z "$CODE618" ];then
-	export CODE618="OsFOB4e"
-else
-	echo "CODE618不为空"
-fi
-
-
 #头文字Ｊ
 export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_618_Red.js			#618红包助力
 	jd_cdj.js			#京东邀您抽大奖
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sghelp.js			#数钱助力
@@ -516,12 +506,6 @@ EOF
 }
 
 concurrent_js_run_07() {
-if [ -z "$CODE618" ];then
-	export CODE618="OsFOB4e"
-else
-	echo "CODE618不为空"
-fi
-
 #清空购物车变量
 export gua_cleancart_Run="true"
 export gua_cleancart_SignUrl="https://jd.smiek.tk/jdcleancatr_21102717" # 算法url
@@ -534,7 +518,6 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_618_Red.js			#618红包助力
 	jd_cdj.js			#京东邀您抽大奖
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sghelp.js			#数钱助力
