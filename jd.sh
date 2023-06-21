@@ -228,10 +228,7 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_cdj.js			#京东邀您抽大奖
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_sk.js			#解锁心动时刻
-	jd_20zn.js			#京东20周年
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
 	jd_supermarket_dh.js		#京东超市兑换
@@ -240,8 +237,6 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_zdjr.js			#组队瓜分
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
-	jx_sign_help.js			#京喜签到助力
-	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
 	jd_lotty2.js			#购物抵现金
 EOF
@@ -264,7 +259,6 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_hdcheck.js			#互动消息检测
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
-	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cashsign.js			#领现金
 	jd_marketxxl.js			#超市消消乐游戏
 	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
@@ -379,8 +373,12 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_jdcxjhelp.js			#京东app抽现金
-	jd_cxjhelp.js			#京喜特价抽现金
+	jd_jdzz_dh.js
+	jd_speed_redpocke.js		#京东极速版领红包
+	jx_sign_help.js			#京喜签到助力
+	jd_sk.js			#解锁心动时刻
+	jd_20zn.js			#京东20周年
+	jd_cdj.js			#京东邀您抽大奖
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -467,18 +465,14 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_cdj.js			#京东邀您抽大奖
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sghelp.js			#数钱助力
-	jd_sk.js			#解锁心动时刻
-	jd_20zn.js			#京东20周年
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
-	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cashsign.js			#领现金
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
@@ -491,8 +485,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
-	jx_sign_help.js			#京喜签到助力
-	jd_speed_redpocke.js		#京东极速版领红包
 	jd_tj_sign.js			#京东特价版签到提现
 	jd_lotty2.js			#购物抵现金
 EOF
@@ -518,18 +510,14 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_cdj.js			#京东邀您抽大奖
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sghelp.js			#数钱助力
-	jd_sk.js			#解锁心动时刻
-	jd_20zn.js			#京东20周年
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
 	jd_speed_sign.js		#京东极速版签到+赚现金任务
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
-	jd_jdzz_dh.js			#京东赚赚兑换
 	jd_cashsign.js			#领现金
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
@@ -547,7 +535,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
-	jd_speed_redpocke.js		#京东极速版领红包
 	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
