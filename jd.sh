@@ -228,6 +228,7 @@ done
 #KingRan
 KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
 cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
+	jd_lzkj_ttljd.js		#天天签到领京豆
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
@@ -465,6 +466,7 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_lzkj_ttljd.js		#天天签到领京豆
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sghelp.js			#数钱助力
 	jd_ttqdlxj.js			#天天签到礼享金
@@ -510,6 +512,7 @@ export car_addsku='true'
 export jd_car_play_exchangeid="10082bd15b4703"
 #这里不会并发
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
+	jd_lzkj_ttljd.js		#天天签到领京豆
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_sghelp.js			#数钱助力
 	jd_ttqdlxj.js			#天天签到礼享金
