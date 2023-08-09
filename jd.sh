@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.27"
+	cron_version="4.28"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -120,7 +120,6 @@ cat >>/etc/crontabs/root <<EOF
 5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
 0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
 45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
-3 6 * * 5 $node $dir_file_js/jd_vipgrowth.js >/tmp/jd_vipgrowth.log #京享值任务领豆，每周一次#100#
 0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
 5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力#100#
@@ -201,11 +200,9 @@ rm -rf $dir_file/config/tmp/*
 
 #lxk0301_back
 cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
-	jd_fruit.js			#东东农场
 	jd_fruit_help.js		#东东农场助力
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_dreamFactory.js		#京喜工厂
-	jd_plantBean.js			#种豆得豆
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
 	jd_unsubscribe.js		#取关京东店铺和商品
@@ -232,14 +229,9 @@ cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
-	jd_supermarket_dh.js		#京东超市兑换
-	jd_supermarket1.js		#京东超市任
-	jd_cjzdgf.js			#CJ组队瓜分京豆
-	jd_zdjr.js			#组队瓜分
 	jd_dwapp.js			#积分换话费
 	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
 	jd_tj_sign.js			#京东特价版签到提现
-	jd_lotty2.js			#购物抵现金
 EOF
 
 for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -254,16 +246,15 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	jd_sghelp.js			#数钱助力
+	jd_plantBean.js			#种豆得豆
+	jd_fruit.js			#东东农场
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
 	jd_gwfd.js			#非plus购物返豆领取
 	jd_signbeanact.js		#签到领京豆
 	jd_cashsign.js			#领现金
-	jd_marketxxl.js			#超市消消乐游戏
 	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
-	jd_vipgrowth.js			#京享值任务领豆，每周一次
 	jd_price.js			#京东价保
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_comment.js			#自动评价带图
@@ -374,12 +365,14 @@ EOF
 
 #删掉过期脚本
 cat >/tmp/del_js.txt <<EOF
-	jd_jdzz_dh.js
-	jd_speed_redpocke.js		#京东极速版领红包
-	jx_sign_help.js			#京喜签到助力
-	jd_sk.js			#解锁心动时刻
-	jd_20zn.js			#京东20周年
-	jd_cdj.js			#京东邀您抽大奖
+	jd_vipgrowth.js			#京享值任务领豆，每周一次
+	jd_marketxxl.js			#超市消消乐游戏
+	jd_sghelp.js			#数钱助力
+	jd_cjzdgf.js			#CJ组队瓜分京豆
+	jd_zdjr.js			#组队瓜分
+	jd_lotty2.js			#购物抵现金
+	jd_supermarket1.js		#京东超市任
+	jd_supermarket_dh.js		#京东超市兑换
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -468,7 +461,6 @@ export jd_car_play_exchangeid="10082bd15b4703"
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_lzkj_ttljd.js		#天天签到领京豆
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_sghelp.js			#数钱助力
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
@@ -478,9 +470,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_cashsign.js			#领现金
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
-	jd_marketxxl.js			#超市消消乐游戏
-	jd_supermarket_dh.js		#京东超市兑换
-	jd_supermarket1.js		#京东超市任
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_fruit_friend.js		#东东农场好友删减奖励
 	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
@@ -488,7 +477,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
 	jd_tj_sign.js			#京东特价版签到提现
-	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -514,7 +502,6 @@ export jd_car_play_exchangeid="10082bd15b4703"
 cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_lzkj_ttljd.js		#天天签到领京豆
 	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_sghelp.js			#数钱助力
 	jd_ttqdlxj.js			#天天签到礼享金
 	jd_ttlhb.js			#天天领红包
 	jd_hdcheck.js			#互动消息检测
@@ -524,9 +511,7 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_cashsign.js			#领现金
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
-	jd_marketxxl.js			#超市消消乐游戏
 	jd_supermarket_dh.js		#京东超市兑换
-	jd_supermarket1.js		#京东超市任
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js 		#摇京豆，没时间要求
@@ -538,7 +523,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_plantBean_help.js		#种豆得豆助力
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
 	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
-	jd_lotty2.js			#购物抵现金
 EOF
 	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
 	do
