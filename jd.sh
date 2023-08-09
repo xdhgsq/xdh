@@ -259,6 +259,7 @@ cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
 	jd_comment.js			#自动评价带图
 	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
+	jd_speed_sign.js		#京东极速版签到+赚现金任务
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -267,7 +268,6 @@ do
 	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
 	cp_if
 done
-	cp  $dir_file/git_clone/6dylan6_script/jd_speed_sign.js.js  $dir_file_js/jd_speed_sign.js
 
 sleep 5
 
@@ -511,7 +511,6 @@ cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
 	jd_cashsign.js			#领现金
 	jd_car_play.js			#头文字J
 	jd_car_play_exchange.js		#头文字J兑换
-	jd_supermarket_dh.js		#京东超市兑换
 	jd_dreamFactory.js 		#京喜工厂
 	jx_sign.js			#京喜签到
 	jd_club_lottery.js 		#摇京豆，没时间要求
