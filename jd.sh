@@ -176,9 +176,9 @@ update() {
 		git clone https://github.com/KingRan/KR.git $dir_file/git_clone/KingRan_script
 	else
 		cd $dir_file/git_clone/KingRan_script
-		git fetch --all
-		git reset --hard origin/main
-		cp -r $dir_file/git_clone/KingRan_script/function $dir_file_js
+		#git fetch --all
+		#git reset --hard origin/main
+		#cp -r $dir_file/git_clone/KingRan_script/function $dir_file_js
 	fi
 
 	if [ ! -d $dir_file/git_clone/6dylan6_script ];then
@@ -246,6 +246,13 @@ cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/refs/heads/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
+	jd_lzkj_ttljd.js		#天天签到领京豆
+	jd_tj_cxjhelp.js		#特价版-幸运抽奖
+	jd_car_play.js			#头文字J
+	jd_car_play_exchange.js		#头文字J兑换
+	jd_dwapp.js			#积分换话费
+	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
+	jd_tj_sign.js			#京东特价版签到提现
 	jd_plantBean.js			#种豆得豆
 	jd_fruit.js			#东东农场
 	jd_ttqdlxj.js			#天天签到礼享金
