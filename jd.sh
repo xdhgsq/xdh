@@ -244,7 +244,7 @@ done
 cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 
 #6dylan6
-github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/main"
+github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/refs/heads/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_plantBean.js			#种豆得豆
 	jd_fruit.js			#东东农场
@@ -1735,6 +1735,8 @@ backnas() {
 
 	echo -e "${green}>> 开始打包文件${white}"
 	tar -zcvf /tmp/$back_file_name $back_file_patch
+
+	#解压命令 tar -zxvf script_2023-06-01-19_45.tar.gz -C /
 	sleep 5
 
 	clear
