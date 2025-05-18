@@ -112,22 +112,22 @@ sed -i '/jd_fruit_help.js/d' /etc/crontabs/root >/dev/null 2>&1
 sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
-0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-0 2-23/1 * * * $dir_file/jd.sh run_01 >/tmp/jd_run_01.log 2>&1 #种豆得豆收瓶子#100#
-*/30 2-23 * * * $dir_file/jd.sh run_030 >/tmp/jd_run_030.log 2>&1 #京喜牧场#100#
-10 2-22/3 * * * $dir_file/jd.sh run_03 >/tmp/jd_run_03.log 2>&1 #天天加速 3小时运行一次，打卡时间间隔是6小时#100#
-40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
-5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
-0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
-45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
-0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
-5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
-5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力#100#
-5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力#100#
-50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
-46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
-20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
-5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
+#0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
+#0 2-23/1 * * * $dir_file/jd.sh run_01 >/tmp/jd_run_01.log 2>&1 #种豆得豆收瓶子#100#
+#*/30 2-23 * * * $dir_file/jd.sh run_030 >/tmp/jd_run_030.log 2>&1 #京喜牧场#100#
+#10 2-22/3 * * * $dir_file/jd.sh run_03 >/tmp/jd_run_03.log 2>&1 #天天加速 3小时运行一次，打卡时间间隔是6小时#100#
+#40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
+#5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
+#0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
+#45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
+#0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
+#5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
+#5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力#100#
+#5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力#100#
+#50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
+#46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
+#20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
+#5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
 ###########100##########请将其他定时任务放到底下###############
 #**********这里是backnas定时任务#100#******************************#
 45 12,19 * * * $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #每4个小时备份一次script,如果没有填写参数不会运行#100#
@@ -159,28 +159,6 @@ update() {
 		mkdir $dir_file/git_clone
 	fi
 
-	if [ ! -d $dir_file/git_clone/lxk0301_back ];then
-		echo ""
-		#git clone -b master git@gitee.com:lxk0301/jd_scripts.git $dir_file/git_clone/lxk0301
-		git clone https://github.com/ITdesk01/script_back.git $dir_file/git_clone/lxk0301_back
-	else
-		cd $dir_file/git_clone/lxk0301_back
-		git fetch --all
-		git reset --hard origin/main
-	fi
-
-	rm -rf $dir_file/git_clone/curtinlv_script
-
-	if [ ! -d $dir_file/git_clone/KingRan_script ];then
-		echo ""
-		git clone https://github.com/KingRan/KR.git $dir_file/git_clone/KingRan_script
-	else
-		cd $dir_file/git_clone/KingRan_script
-		#git fetch --all
-		#git reset --hard origin/main
-		#cp -r $dir_file/git_clone/KingRan_script/function $dir_file_js
-	fi
-
 	if [ ! -d $dir_file/git_clone/6dylan6_script ];then
 		echo ""
 		git clone https://github.com/6dylan6/jdpro.git $dir_file/git_clone/6dylan6_script
@@ -198,50 +176,6 @@ update() {
 
 rm -rf $dir_file/config/tmp/*
 
-#lxk0301_back
-cat >$dir_file/config/tmp/lxk0301_script.txt <<EOF
-	jd_fruit_help.js		#东东农场助力
-	jd_fruit_friend.js		#东东农场好友删减奖励
-	jd_dreamFactory.js		#京喜工厂
-	jd_plantBean_help.js		#种豆得豆助力
-	jd_delCoupon.js			#删除优惠券（默认不运行，有需要手动运行）
-	jd_unsubscribe.js		#取关京东店铺和商品
-	jdPetShareCodes.js
-	jdJxncShareCodes.js
-	jdFruitShareCodes.js
-	jdFactoryShareCodes.js
-	jdPlantBeanShareCodes.js
-	jdDreamFactoryShareCodes.js
-EOF
-
-for script_name in `cat $dir_file/config/tmp/lxk0301_script.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	echo -e "${yellow} copy ${green}$script_name${white}"
-	cp  $dir_file/git_clone/lxk0301_back/$script_name  $dir_file_js/$script_name
-	cp_if
-done
-
-
-#KingRan
-KingRan_url="https://raw.githubusercontent.com/KingRan/KR/main"
-cat >$dir_file/config/tmp/KingRan_url.txt <<EOF
-	jd_lzkj_ttljd.js		#天天签到领京豆
-	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_car_play.js			#头文字J
-	jd_car_play_exchange.js		#头文字J兑换
-	jd_dwapp.js			#积分换话费
-	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
-	jd_tj_sign.js			#京东特价版签到提现
-EOF
-
-for script_name in `cat $dir_file/config/tmp/KingRan_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	echo -e "${yellow} copy ${green}$script_name${white}"
-	cp  $dir_file/git_clone/KingRan_script/$script_name  $dir_file_js/$script_name
-	cp_if
-done
-#复制依赖
-cp -r $dir_file/git_clone/KingRan_script/utils $dir_file_js/
 
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/refs/heads/main"
@@ -277,81 +211,6 @@ do
 done
 
 sleep 5
-
-#smiek2221
-smiek2221_url="https://raw.githubusercontent.com/smiek2121/scripts/master"
-cat >$dir_file/config/tmp/smiek2221_url.txt <<EOF
-	gua_MMdou.js                    #赚京豆MM豆
-	gua_cleancart.js		#清空购物车
-EOF
-
-for script_name in `cat $dir_file/config/tmp/smiek2221_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$smiek2221_url"
-	wget $smiek2221_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
-
-#okyyds
-okyyds_url="https://raw.githubusercontent.com/okyyds/yyds/master"
-cat >$dir_file/config/tmp/okyyds_url.txt <<EOF
-	#空.js
-EOF
-
-for script_name in `cat $dir_file/config/tmp/okyyds_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$okyyds_url"
-	wget $okyyds_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
-
-#Aaron
-Aaron_url="https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts"
-cat >$dir_file/config/tmp/Aaron_url.txt <<EOF
-	jx_sign.js			#京喜签到
-	jd_club_lottery.js		#摇京豆
-	jd_kd.js			#京东快递签到 一天运行一次即可
-EOF
-
-for script_name in `cat $dir_file/config/tmp/Aaron_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$Aaron_url"
-	wget $Aaron_url/$script_name -O $dir_file_js/$script_name
-	update_if
-done
-
-#zero205
-zero205_url="https://raw.githubusercontent.com/zero205/JD_tencent_scf/main"
-cat >$dir_file/config/tmp/zero205_url.txt <<EOF
-	jd_get_share_code.js		#获取jd所有助力码脚本
-EOF
-
-for script_name in `cat $dir_file/config/tmp/zero205_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-{
-	url="$zero205_url"
-	wget $zero205_url/$script_name -O $dir_file_js/$script_name
-	update_if
-}&
-done
-
-#ccwav
-ccwav_url="https://raw.githubusercontent.com/ccwav/QLScript2/main"
-cat >$dir_file/config/tmp/ccwav_url.txt <<EOF
-	jd_bean_change.js		#资产变化强化版by-ccwav
-EOF
-
-for script_name in `cat $dir_file/config/tmp/ccwav_url.txt | grep -v "#.*js" | awk '{print $1}'`
-do
-	url="$ccwav_url"
-	wget $ccwav_url/$script_name -O $dir_file_js/$script_name
-	update_if
-done
-
 
 	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
 	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
