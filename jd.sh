@@ -91,7 +91,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.28"
+	cron_version="4.29"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
@@ -112,6 +112,7 @@ sed -i '/jd_fruit_help.js/d' /etc/crontabs/root >/dev/null 2>&1
 sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
+0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 #0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 #0 2-23/1 * * * $dir_file/jd.sh run_01 >/tmp/jd_run_01.log 2>&1 #种豆得豆收瓶子#100#
 #*/30 2-23 * * * $dir_file/jd.sh run_030 >/tmp/jd_run_030.log 2>&1 #京喜牧场#100#
@@ -408,8 +409,70 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
-	jd_dpqd.js			#店铺签到
-	jd_club_lottery.js 		#摇京豆，没时间要求
+	jd_global_task_.js	#京豆国际频道任务
+	jd_yssign.js		#ys每日签到
+	jd_jrsign.js		#金融签到
+	jd_signbeanact_.js	#领京豆签到
+	jd_kjsign.js		#kj每日签到
+	jd_bean_home.js		#领京豆-升级赚豆
+	jd_dailysign.js		#每日签到得豆
+	jd_daka_bean.js		#打卡领豆
+	jd_deliverySign_sign.js	#天天领豆
+	jd_dygetbeans_.js	#每日抽豆
+	jd_fl_draw.js		#任务抽小豆
+	jd_pkabeans.js		#礼品卡领豆
+	jd_plantBean.js		#种豆得豆任务
+	jd_red_Task.js		#每日领红包_任务
+	jd_water_new.js		#新农场浇水
+	jd_zzhb_draw_new.js	#Jd转赚红包_抽奖
+	jd_zzhb_new.js		#Jd转赚红包2
+	jd_yqs.js		#摇钱树
+	jd_newfarmlottery.js	#新农场幸运转盘
+	jd_sq_draw.js		#社区抽奖
+	jd_msDraw.js		#秒送抽奖
+	jd_huwai_draw.js	#户外管每日抽
+	jd_ttDraw.js		#天天抽奖
+	jd_luckyDraw.js		#幸运抽奖
+	jd_mkt_answer.js	#超市答题抽奖
+	jd_jiaju_draw.js	#0元家具_抽奖
+	jd_jiaz_draw.js		#家装_抽奖
+	jd_jipiao_draw.js	#抽免费机票
+	jd_dyf_draw.js		#dyf抽奖
+	jd_dplh0515.js		#大牌0515有水的时候跑，浏览店铺任务每天刷新
+	jd_dplhbshop.js		#大牌浏览店铺
+	jd_ouguan.js		#看欧冠赢奖票
+	jd_delLjq.js		#批量删垃圾券
+	jd_bgcity.js		#集碎片点亮城市
+	jd_book_draw.js 	#图书抽奖
+	jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆
+	jd_fcwb_auto.js		#欢乐挖宝任务
+	jd_hssign.js		#hs每日签到
+	jd_hlw_draw.js		#hlw抽奖
+	jd_health.js		#东东健康社区
+	jd_health_task.js	#健康能量任务
+	jd_health_collect.js	#健康社区收集能量
+	jd_health_draw.js	#健康_抽奖
+	#jd_zwb.js		#做任务赚汪贝
+	jd_mk_game.js		#赚汪贝兑礼品
+	jd_wbDraw.js		#汪贝刮超市卡
+	jd_joypark_task.js	#汪汪庄园任务
+	jd_wwmanor_merge.js	#汪汪庄园合成
+	jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行
+	jd_qqxing.js		#QQ星系牧场
+	jd_gwfd.js		#购物返豆领取
+	jx_fcwb_auto.js		#特价现金挖宝任务
+	#jx_fcwb_help.js		#特价现金挖宝助力
+	jd_tjqd_new.js		#特价版签到提现新
+	jd_video_task.js	#看视频赚现金-任务
+	jd_video_view.js	#看视频赚现金-浏览
+	jd_wduoyu.js		#多投多赚
+	jd_wyw_check.js		#玩一玩_兑换检测
+	jd_wyw_ffl_.js		#玩一玩-翻翻乐
+	jd_y1y.js		#摇一摇每天19点开始
+	jd_mohe.js		#plus天天盲盒
+	jd_dwapp.js		#积分换话费
+	jd_bean_info.js 	#京豆详情统计
+	jd_rmvcart.js		#清空购物车默认不执行清空购物车，清设置变量RMVCART='true
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -421,9 +484,9 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	run_06_18
-	run_030
-	run_01
+	#run_06_18
+	#run_030
+	#run_01
 	echo -e "${green} run_0$stop_script_time ${white}"
 }
 
@@ -647,7 +710,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "USER_AGENTS.js|JS_USER_AGENTS.js|JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
+	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "sendNotify_ccwav.js|sendNotify.js|ql.js|jd_CheckCK.js|jdCookie.js|USER_AGENTS.js|JS_USER_AGENTS.js|JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
