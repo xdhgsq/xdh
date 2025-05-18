@@ -262,11 +262,10 @@ done
 	#chmod 755 $dir_file_js/*
 	#kill_index
 	#index_js
-	#删除重复的文件
+	echo "删除重复的文件"
 	rm -rf $dir_file_js/*.js.*
 	rm -rf $dir_file_js/*.py.*
 	rm -rf $openwrt_script_config/check_cookie.txt
-
 	additional_settings
 	concurrent_js_update
 	source /etc/profile
@@ -648,7 +647,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `ls $jd_file/ccr_js/js_1 | grep -v "#.*js" | grep -Ev "jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
+	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
@@ -2228,7 +2227,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install -g curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	#安装python模块
@@ -2692,3 +2691,4 @@ else
 	esac
 	fi
 fi
+
