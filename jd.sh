@@ -166,8 +166,12 @@ update() {
 		cd $dir_file/git_clone/6dylan6_script
 		git fetch --all
 		git reset --hard origin/main
-		cp -r $dir_file/git_clone/6dylan6_script/function $dir_file_js
+		cp -r $dir_file/git_clone/6dylan6_script $dir_file_js
 	fi
+	
+	#临时删除之前的库
+	rm -rf $dir_file/git_clone/lxk0301_back
+	rm -rf $dir_file/git_clone/KingRan_script
 
 	echo -e "${green} update$start_script_time ${white}"
 	echo -e "${green}开始下载JS脚本，请稍等${white}"
@@ -206,14 +210,14 @@ EOF
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	echo -e "${yellow} copy ${green}$script_name${white}"
-	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
-	cp_if
+	#cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
+	#cp_if
 done
 
 sleep 5
 
-	wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
-	wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
+	#wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
+	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
 
 
 #将所有文本汇总
