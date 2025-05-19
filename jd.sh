@@ -454,7 +454,7 @@ EOF
 for script_name in `cat $dir_file/config/tmp/faker2_script.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	echo -e "${yellow} copy ${green}$script_name${white}"
-	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
+	cp  $dir_file/git_clone/faker2_script/$script_name  $dir_file_js/$script_name
 	cp_if
 done
 
