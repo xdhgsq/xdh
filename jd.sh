@@ -452,7 +452,7 @@ script_name() {
 
 Tjs()	{
 	#测试模块
-	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "sendNotify_ccwav.js|sendNotify.js|ql.js|jd_CheckCK.js|jdCookie.js|USER_AGENTS.js|JS_USER_AGENTS.js|JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|jd_unsubscribe.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
+	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "sendNotify_ccwav.js|sendNotify.js|ql.js|jd_CheckCK.js|jdCookie.js|USER_AGENTS.js|JS_USER_AGENTS.js|JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
@@ -1515,329 +1515,13 @@ additional_settings() {
 	done
 	wait
 
-	#东东超市兑换豆子
-	sed -i "s/coinToBeans = ''/coinToBeans = '超值京豆包'/g" $dir_file_js/jd_blueCoin.py
-	sed -i "s/blueCoin_Cc = False/blueCoin_Cc = True/g" $dir_file_js/jd_blueCoin.py
-
-	#宠汪汪路径修改
-	sed -i "s/..\/USER_AGENTS.js/.\/USER_AGENTS.js/g" $dir_file_js/JDJRValidator_Pure.js
-
-	#sed -i "s/\/JDJRValidator_Pure/.\/JDJRValidator_Pure/g"　$dir_file_js/jd_joy.js
-	#sed -i "s/.\/utils//g" $dir_file_js/jd_joy.js
-
-
-
-	#取消店铺从20个改成50个(没有星推官先默认20吧)
-	sed -i "s/|| 20/|| $jd_unsubscribe/g" $dir_file_js/jd_unsubscribe.js
-
 	if [ `cat $openwrt_script_config/sendNotify.js | grep "采用lxk0301开源JS脚本" | wc -l` == "0" ];then
 	sed -i "s/本脚本开源免费使用 By：https:\/\/gitee.com\/lxk0301\/jd_docker/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
 	sed -i "s/本脚本开源免费使用 By：https:\/\/github.com\/LXK0301\/jd_scripts/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
 	fi
 	
-
-	#东东农场
-ITdesk_fr="6632c8135d5c4e2c9ad7f4aa964d4d11@f0319fde539a485abcf782197b1b919c@21d98686048c4e6a9ac94a5cbe9cdeb3@d76a052300b8431bb0e3047e92579bb5@31a2097b10db48429013103077f2f037@5aa64e466c0e43a98cbfbbafcc3ecd02@bf0cbdb0083d443499a571796af20896"
-ITdesk_random_fr="4a75d8a6233344b1965857ae23831ce7@392acd7b14d9476bb48ebf2ac171cffc@e1625e7dae2c4dfa9124f5371d72d723@d093cbe35e0e47e68195c8d2cde12d06@c38428e6a9d14a3c9af202fddd27e831@3c3b3e3738694355bb0307764a2fa692@9bd54e69fb174a5fa188961ec17dd931@10cae0f60a43485c9920943f22c44b3d@91f4dbb39a4346b39126786a3a5d3383@0282b62c955349bc80c67dca4e85d6b5@2879a2162d744572889098827b49165e@1b20a9b3d7004d179fd6a1031553b017@529972002f044c6ca466e8998ab5ba6b@60d5528a7d004692a5516094d3c7afd6@b1e184275cc24382a606dada8df0a3b2@f1d4e4d5a5324cb08784dc4afde19513@5e54362c4a294f66853d14e777584598@f0f5edad899947ac9195bf7319c18c7f@52f4e9bdc02b44e98d34c2df77bf4aae"
-	
-zuoyou_20190516_fr="367e024351fe49acaafec9ee705d3836@3040465d701c4a4d81347bc966725137@82c164278e934d5aaeb1cf19027a88a3@a2504cd52108495496460fc8624ae6d4@4eb7542e28714d6e86739151f8aadc6e"
-
-zuoyou_20190516_random_fr="983be1208879492fa692c1b89a30fc15@ba02bdbac56a4b9c967443eae04bc8fa@3e3080883ea346d0a653afaeac74b357@e8bd1e69ccc24d65a4e183dcfb025606@ce0c26cd3375486c8ad41c4e1f61c449"
-
-Javon_20201224_fr="926a1ec44ddd459ab2edc39005628bf4@d535648ffa3b45d79ff66b997ec8b629"
-	Javon_random_fr="b2921984328744d7bc4302738235a4a8@8ac8cb7c9ded4a17b8057e27ed458104@e65a8b0cd1cc433a87bfd5925778fadc@669e5763877c4f97ab4ea64cd90c57fa@86ab77a88a574651827141e1e8c0b4c6@8ac8cb7c9ded4a17b8057e27ed458104@33b778b454a64b1e91add835e635256c@c9bb7ca2a80d4c8ab2cae6216d7a9fe6@dcfb05a919ff472680daca4584c832b8@0ce9d3a5f9cd40ccb9741e8f8cf5d801@54ac6b2343314f61bc4a6a24d7a2eba1@bad22aba416d4fffb18ad8534b56ea60@e5a87df07c914457b855cbb2f115d0a4@9a4370f99abb4eda8fa61d08be81c1d7@d535648ffa3b45d79ff66b997ec8b629@8b8b4872ab9d489896391cc5798a56e2"
-
-chiyu_fr="f227e8bb1ea3419e9253682b60e17ae5"
-	ashou_20210516_fr="9046fbd8945f48cb8e36a17fff9b0983@72abb03ca91a4569933c6c8a62a5622c@5e567ba1b9bd4389ae19fa09ca276f33@82b1494663f9484baa176589298ca4b3@616382e94efa476c90f241c1897742f1@d4e3080b06ed47d884e4ef9852cad568@ed2b2d28151a482eae49dff2e5a588f8@a8b204ae2a7541a18e54f5bfb7dcb04b"
-
-xiaodengzi_20190516_fr="e24edc5de45341dd98f352533e23f83a@8284c080686b45c89a6c6f7d1ea7baac@8dda5802f0d54f38af48c4059c591007"
-xiaodengzi_random_20190516_fr="e004a4244e244863b14d7210f8513113@f69821dde34540d39f95315c5290eb88@5e753c671d0644c7bb418523d3452975@c6f859ec57d74dda9dafc6b3c2af0a0f"
-	
-jidiyangguang_20190516_fr="3e6f0b7a2d054331a0b5b956f36645a9@304b39f17d6c4dac87933882d4dec6bc"
-
-baipiaoguai_fr="456e5601548642a5a9bcc86a54085154@61f21ef708c948568854ec50c3627085@72dd4d3e2245472986f729953c5be146@13be2ecb23344d86ada656a3d8a6cf92@3f67b8f4a53641ad992c2f0584cdf46d"
-
-	if [ ! $jd_sharecode_fr ];then
-		echo "东东农场本地助力码为空"
-		new_fruit1="$ITdesk_fr"
-	else
-		echo "开始添加东东农场本地助力码"
-		new_fruit1="$jd_sharecode_fr@$ITdesk_fr"
-	fi
-
-	random_fruit="$ITdesk_random_fr@$zuoyou_20190516_random_fr@$Javon_random_fr@$xiaodengzi_random_20190516_fr@$baipiaoguai_fr"
-	random="$random_fruit"
-	random_array
-	new_fruit_set="'$new_fruit1@$chiyu_fr@$zuoyou_20190516_fr@$Javon_20201224_fr@$jidiyangguang_20190516_fr@$ashou_20210516_fr@$xiaodengzi_20190516_fr@$xiaobandeng_fr@$random_set',"
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	fr_rows=$(grep -n "shareCodes =" $dir_file_js/jd_fruit_help.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$fr_rows a \ $new_fruit_set " $dir_file_js/jd_fruit_help.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	frcode_rows=$(grep -n "FruitShareCodes = \[" $dir_file_js/jdFruitShareCodes.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$frcode_rows a \ $new_fruit_set " $dir_file_js/jdFruitShareCodes.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	sed -i "s/dFruitBeanCard = false/dFruitBeanCard = $jd_fruit/g" $dir_file_js/jd_fruit.js #农场不浇水开始换豆
-
-	#种豆
-		  ITdesk_pb="4npkonnsy7xi3n46rivf5vyrszud7yvj7hcdr5a@fn5sjpg5zdejm2ebnsce2wsjvtu5xkzq4dvbdti@suqg5cye47cqngnqbudul6toucmr32r5nqw6hlq@4vvbjlml6tdfcbisdohaimuxzjin3vviavyubwq@mlrdw3aw26j3xeqso5asaq6zechwcl76uojnpha@nkvdrkoit5o65lgaousaj4dqrfmnij2zyntizsa@u5lnx42k5ifivyrtqhfjikhl56zsnbmk6v66uzi"
-ITdesk_random_pb="tnmcphpjys5icix3quq2q2em3bzzciltix2t6nq@u5lnx42k5ifiu6wgvad764nzeefohexgwsutp4y@e7lhibzb3zek3aczhci5fim2fjpypbw5y3pr3ky@l4ex6vx6yynovth6gd6nesvnkeimph3kozmj77i@mlrdw3aw26j3xv3imelq2znbjo2ksxcb5nyjsma@4npkonnsy7xi3fp63qlbql2mfudjnwmsbpc4egy@mlrdw3aw26j3xn447fyzg7h4kzlmyasgniqj4eq@aogye6x4cnc3pjc7clkvzuymko5xo6gnii54lua@e7lhibzb3zek2zfhyssxpnduf3vlv7xpfwbe3fq@llc3cyki3azsjryv3ovhiqpxtut2lkuv6hpeepa@bfgnkjwsawrkv7cnuqwybfujye3h7wlwy7o5jii@zalmhfy34qahymizttjksjba3bjixbgi6x2h7uy@olmijoxgmjutzy3d472v6l6xqdtegx4v4dpjo7q@mlrdw3aw26j3xwrjvz73nn6h3jwvnfsqe766zly@e7lhibzb3zek3giovoz45el7ymgcpt7ng5qq3ni@mlrdw3aw26j3xqggsyegc2itcc2h5yfpxyhctgq@e7lhibzb3zek234ckc2fm2yvkj5cbsdpe7y6p2a@u72q4vdn3zes24pmx6lh34pdcinjjexdfljybvi@bctcuetamr6idcvkftgulawwxu"
-
-zuoyou_20190516_pb="sz5infcskhz3woqbns6eertieu@mxskszygpa3kaouswi7rele2ji@4npkonnsy7xi3vk7khql3p7gkpodivnbwjoziga@cq7ylqusen234wdwxxbkf23g6y@iu237u55hwjio2j4q6dveezrcun6yqgyh6iyj7a"
-	
-zuoyou_20190516_random_pb="qo77jw3hunt3nwx5wzintmzzyeetch6vbwqskmy@dhsx55vjyuzkxicr2ttrsc6c47dzqhvbnhxu33y@66nvo67oyxpycn4ikn3qhdxcdn6mteht2kjzfma@66nvo67oyxpycs3powuv6bovdtfmlunzvyx4roa@suqg5cye47cqmod5cabkwhsnvol5lpdrhgb3frq"
-	
-
-Javon_20201224_pb="wpwzvgf3cyawfvqim3tlebm3evajyxv67k5fsza"
-			Javon_random_pb="g3ekvuxcunrery7ooivfylv2ci5ac3f4ijdgqji@wgkx2n7t2cr5oa6ro77edazro3kxfdgh6ixucea@qermg6jyrtndlahowraj6265fm@rug64eq6rdioosun4upct64uda5ac3f4ijdgqji@t4ahpnhib7i4hbcqqocijnecby@5a43e5atkvypfxat7paaht76zy@gdi2q3bsj3n4dgcs5lxnn2tyn4@mojrvk5gf5cfszku73tohtuwli@l4ex6vx6yynouzcgilo46gozezzpsoyqvp66rta@beda5sgrp3bnfrynnqutermxoe"
-	
-
-chiyu_pb="crydelzlvftgpeyuedndyctelq"
-		ashou_20210516_pb="3wmn5ktjfo7ukgaymbrakyuqry3h7wlwy7o5jii@chcdw36mwfu6bh72u7gtvev6em@mlrdw3aw26j3w2hy5trqwqmzn6ucqiz2ribf7na@olmijoxgmjutzdb4pf2fwevfnx4fxdmgld5xu2a@yaxz3zbedmnzhemvhmrbdc7xhq@olmijoxgmjutyy7u5s57pouxi5teo3r4r2mt36i@olmijoxgmjutzh77gykzjkyd6zwvkvm6oszb5ni@dixtq55kenw3ykejvsax6y3xrq"
-	
-xiaodengzi_20190516_pb="kcpj4m5kmd4sfdp7ilsvvtkdvu@4npkonnsy7xi32mpzw3ekc36hh7feakdgbbfjky@j3yggpcyulgljlovo4pwsyi3xa@uvutkok52dcpuntu3gwko34qta@vu2gwcgpheqlm5vzyxutfzc774"
-	
-jidiyangguang_20190516_pb="e7lhibzb3zek2zin4gnao3gynqwqgrzjyopvbua@4npkonnsy7xi3smz2qmjorpg6ldw5otnabrmlei"
-
-baipiaoguai_pb="nkiu2rskjyetbvmij6cinz4yh4gslwkrlieu3ki@uwgpfl3hsfqp3b4zn67l245x6cosobnqtyrbvaa@66nvo67oyxpycucmbw7emjhuj6xfe3d3ellmesq@h3cggkcy6agkgtvxoy76nn63ki7ans4blqb54vq@f5pavyxxlph5okvnqdbkpotqnauxqj6nyl5hm5a"
-
-	if [ ! $jd_sharecode_pb ];then
-		echo "种豆本地助力码为空"
-		new_plantBean1="$ITdesk_pb"
-	else
-		echo "开始添加种豆本地助力码"
-		new_plantBean1="$jd_sharecode_pb@$ITdesk_pb"
-	fi
-	random_plantBean="$ITdesk_random_pb@$zuoyou_20190516_random_pb@$Javon_random_pb@$baipiaoguai_pb"
-	random="$random_plantBean"
-	random_array
-	new_plantBean_set="'$new_plantBean1@$chiyu_pb@$zuoyou_20190516_pb@$Javon_20201224_pb@$jidiyangguang_20190516_pb@$ashou_20210516_pb@$random_set',"
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	pb_rows=$(grep -n "shareCodes =" $dir_file_js/jd_plantBean_help.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$pb_rows a \ $new_plantBean_set " $dir_file_js/jd_plantBean_help.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	pbcode_rows=$(grep -n "PlantBeanShareCodes = \[" $dir_file_js/jdPlantBeanShareCodes.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$pbcode_rows a \ $new_plantBean_set " $dir_file_js/jdPlantBeanShareCodes.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	#京喜工厂
-	ITdesk_df="4HL35B_v85-TsEGQbQTfFg==@q3X6tiRYVGYuAO4OD1-Fcg==@Gkf3Upy3YwQn2K3kO1hFFg==@1s8ZZnxD6DVDyjdEUu-zXA==@MrEZ6KupbLvOQ_2LDf_xgQ==@jwk7hHoEWAsvQyBkNrBS1Q==@iqAUAWEQx86GvVthAu7-jQ=="
-	
-	ITdesk_random_df="ga_4DMiCZm_RqninySPJQw==@0_XIjHNNfhz2vahAPsORWg==@5fR4SoV03xlnfBTzPY537A==@hnWIPXiodM4iebGFG5-c_w==@YtnXm9MD-z3jPe4-0L0Zjw==@1s8ZZnxD6DVDyjdEUu-zXA==@oK5uN03nIPjodWxbtdxPPA==@7VHDTh1iDT3_YEtiZ1iRPA==@KPmB_yK4CEvytAyuVu1zpA==@2oz-ZbJy_cNdcrgSgRJ4Nw==@RNpsm77e351Rmo_R3KwC-g==@SY7JjLpgyYem-rsx1ezHyQ==@ziq14nX6tEIoto9iGTimVQ==@yHZcWiQpCym6GPplpjgwJQ=="
-
-	zuoyou_20190516_df="oWcboKZa9XxTSWd28tCEPA==@sboe5PFeXgL2EWpxucrKYw==@rm-j1efPyFU50GBjacgEsw==@tZXnazfKhM0mZd2UGPWeCA==@9aUfCEmRqRW9fK7-P-eGnQ=="
-	
-	zuoyou_20190516_random_df="4yiyXPAaB_ReMPQy-st4AQ==@MmOfTa6Z79J9XRZA4roX1A==@rlJZquhGZTvDFksbDMhs2Q==@DriN9xUWha-XqE0cN3u7Fg==@krMPYOnVbZAAkZJiSz5cUw=="
-	
-	Javon_20201224_df="qXsC2yNWiylHJjOrjebXgQ==@P2nGgK6JgLtCqJBeQJ0f27XXLQwYAFHrKmA2siZTuj8=@LTyKtCPGU6v0uv-n1GSwfQ=="
-	Javon_20201224_random_df="P2nGgK6JgLtCqJBeQJ0f27XXLQwYAFHrKmA2siZTuj8=@Y4r32JTAKNBpMoCXvBf7oA==@KDhTwFSjylKffc2V7dp5HQ==@UdTgtWxsEwypwH1v6GETfA==@LTyKtCPGU6v0uv-n1GSwfQ==@JuMHWNtZt4Ny_0ltvG6Ipg==@WnaDbsWYwImvOD1CpkeVWA==@Z2t6d_X8aMYIp7IwTnuNyA==@1Oob_S4cfK2z2gApmzRBgw==@BsCgeeTl_H2x5JQKGte6ow==@y7KhVRopnOwB1qFo2vIefg==@zS1ivJY43UFvaqOUiFijZQ==@USNexnDxgdW3h1M84IA8hQ==@QcxX97p7yNgImbEEZVEcyw==@N3AXGi-1Gt51bwdrCo76-Q=="
-	chiyu_df="us6se4fFC6cSjHDSS_ScMw=="
-
-	Jhone_Potte_20200824_df="Q4Rij5_6085kuANMaAvBMA==@gTLa05neWl8UFTGKpFLeog=="
-
-	ashou_20210516_df="1rQLjMF_eWMiQ-RAWARW_w==@6h514zWW6JNRE_Kp-L4cjA==@2G-4uh8CqPAv48cQT7BbXQ==@cxWqqvvoGwDhojw6JDJzaA==@pvMjBwEJuWqNrupO6Pjn6w==@nNK5doo5rxvF1HjnP0Kwjw==@BoMD6oFV2DhQRRo_w-h83g==@PqXKBSk3K1QcHUS0QRsCBg=="
-
-	jidiyangguang_20190516_df="w8B9d4EVh3e3eskOT5PR1A==@FyYWfETygv_4XjGtnl2YSg=="
-
-
-	if [ ! $jd_sharecode_df ];then
-		echo "京喜工厂本地助力码为空"
-		new_dreamFactory="$ITdesk_df"
-	else
-		echo "开始添加京喜工厂本地助力码"
-		new_dreamFactory="$jd_sharecode_df@$ITdesk_df"
-	fi
-	
-	random_dreamFactory="$ITdesk_random_df@$zuoyou_20190516_random_df@$Javon_20201224_random_df"
-	random="$random_dreamFactory"
-	random_array
-	new_dreamFactory_set="'$new_dreamFactory@$chiyu_df@$zuoyou_20190516_df@$Javon_20201224_df@$jidiyangguang_20190516_df@$ashou_20210516_df@$Jhone_Potte_20200824_df@$random_set',"
-
-	df_rows=$(grep -n "inviteCodes =" $dir_file_js/jd_dreamFactory.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$df_rows a \ $new_dreamFactory_set " $dir_file_js/jd_dreamFactory.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	js_amount=$(cat $openwrt_script_config/js_cookie.txt | wc -l)
-	dfcode_rows=$(grep -n "shareCodes = \[" $dir_file_js/jdDreamFactoryShareCodes.js | awk -F ":" '{print $1}')
-	while [[ ${js_amount} -gt 0 ]]; do
-		sed -i "$dfcode_rows a \ $new_dreamFactory_set " $dir_file_js/jdDreamFactoryShareCodes.js
-		js_amount=$(($js_amount - 1))
-	done
-
-	#资产变化强化版by-ccwav
-	sed -i "s/.\/sendNotify/.\/sendNotify_ccwav.js/g"  $dir_file_js/jd_bean_change_ccwav.js
 }
 
-del_if() {
-	#脚本黑名单
-	if [ ! $script_black ];then
-		echo "脚本黑名单没有东西"
-	else
-		jd_num="black"
-		del_js
-		echo ""
-	fi
-
-	#不跑东东农场
-	if [ ! $jd_ddfruit ];then
-		echo "没有要删除的东东农场文件"
-	else
-		js_name="东东农场"
-		jd_num="$jd_ddfruit"
-		js_file="jd_fruit.js"
-		del_js
-		echo ""
-	fi
-
-	#不跑宠汪汪
-	if [ ! $jd_ddjoy ];then
-		echo "没有要删除的宠汪汪文件"
-	else
-		js_name="宠汪汪"
-		jd_num="$jd_ddjoy"
-		js_file="jd_joy.js"
-		del_js
-		echo ""
-	fi
-
-	#不跑种豆得豆
-	if [ ! $jd_ddplan ];then
-		echo "没有要删除的种豆得豆文件"
-	else
-		js_name="种豆得豆"
-		jd_num="$jd_ddplan"
-		js_file="jd_plantBean.js"
-		del_js
-		echo ""
-	fi
-
-	#不跑京喜工厂
-	if [ ! $jx_dddr ];then
-		echo "没有要删除的京喜工厂文件"
-	else
-		js_name="京喜工厂"
-		jd_num="$jx_dddr"
-		js_file="jd_dreamFactory.js"
-		del_js
-		echo ""
-	fi
-
-
-	clear
-}
-
-
-del_js() {
-	#检测变量删除对应并发文件夹的js文件，达到不跑的目的，缺点run文件会出现找不到文件提示，无伤大雅
-	del_ck=$(echo $jd_num | sed "s/@/\n/g")
-	for i in `echo "$del_ck"`
-	do
-		case "$i" in
-			1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71|72|73|74|75|76|77|78|79|80|81|82|83|84|85|86|87|88|89|90|91|92|93|94|95|96|97|98|99|100|101|102|103|104|105|106|107|108|109|110|111|112|113|114|115|116|117|118|119|120|121|122|123|124|125|126|127|128|129|130|131|132|133|134|135|136|137|138|139|140|141|142|143|144|145|146|147|148|149|150|151|152|153|154|155|156|157|158|159|160|161|162|163|164|165|166|167|168|169|170|171|172|173|174|175|176|177|178|179|180|181|182|183|184|185|186|187|188|189|190|191|192|193|194|195|196|197|198|199|200)
-				#先支持删除200以内
-				echo -e "******************${yellow}不跑${js_name}${white}******************"
-				jx_file=$(ls $ccr_js_file/js_$i | grep "$js_file"  | wc -l)
-				if [ "$jx_file" == "1" ];then
-					echo -e "${yellow}开始删除并发文件${white}js_$i的${green}${js_name}${white}文件"
-					rm -rf $ccr_js_file/js_$i/$js_file
-				else
-					echo -e "${yellow}并发文件${white}js_$i的${green}${js_name}${white}文件已经删除了"
-				fi
-				echo -e "*********${yellow}${js_name}${white}全部删除完毕，不会跑了*********"
-			;;
-			all)
-				echo -e "******************${yellow}不跑${js_name}${white}******************"
-				for i in `ls $ccr_js_file`
-				do
-					jx_file=$(ls $ccr_js_file/$i | grep "$js_file"  | wc -l)
-					if [ "$jx_file" == "1" ];then
-						echo -e "${yellow}开始删除并发文件${white}js_$i的${green}${js_name}${white}文件"
-						rm -rf $ccr_js_file/$i/$js_file
-					else
-						echo -e "${yellow}并发文件${white}$i的${green}${js_name}${white}文件已经删除了"
-					fi
-				done
-				#顺便删除一下js文件的脚本，做到真得不跑了
-				rm -rf $dir_file_js/$js_file
-				echo -e "*********${yellow}${js_name}${white}全部删除完毕，不会跑了*********"
-			;;
-			black)
-				
-				js_name="脚本黑名单"
-				js_file=$(echo "$script_black" | sed "s/@/\n/g")
-				echo -e "******************开始删除${yellow}${js_name}${white}里的脚本******************"
-				#删除并发文件里的脚本
-				for i in `ls $ccr_js_file`
-				do
-					for js_script in `echo $js_file`
-					do
-						jx_file=$(ls $ccr_js_file/$i | grep "$js_script"  | wc -l)
-						if [ "$jx_file" == "1" ];then
-							echo -e "${yellow}${js_name}${white}开始删除并发文件js_$i的${green}${js_script}${white}文件"
-							rm -rf $ccr_js_file/$i/$js_script
-						else
-							echo -e "${yellow}${js_name}${white}检测到并发文件$i的${green}${js_script}${white}文件已经删除了"
-						fi
-					done
-				done
-
-				#删除js文件夹中的脚本
-				for js_script in `echo $js_file`
-				do
-					jx_file=$(ls $jd_file_js | grep "$js_script"  | wc -l)
-					if [ "$jx_file" == "1" ];then
-						echo -e "${yellow}${js_name}${white}开始删除JS文件夹里的${green}${js_script}${white}文件"
-						rm -rf $jd_file_js/$js_script
-					else
-						echo -e "${yellow}${js_name}${white}检测到JS文件夹里的${green}${js_script}${white}文件已经删除了"
-					fi
-				done
-				echo -e "******************${yellow}${js_name}${white}里的脚本全部删除完毕******************"
-			;;
-			*)
-				jx_site=$(cat $openwrt_script_config/js_cookie.txt  | grep -n  "$i"  | awk '{print $1}' |sed "s/://g")
-				if [ ! $jx_site ];then
-					echo "填写的用户名找不到，不删除$js_name文件"
-				else
-					echo -e "******************${yellow}不跑${js_name}${white}******************"
-					jx_file=$(ls $ccr_js_file/js_$jx_site | grep "$js_file"  | wc -l)
-					if [ "$jx_file" == "1" ];then
-						echo -e "${yellow}开始删除并发文件${white}js_$jx_site的${green}${js_name}${white}文件"
-						rm -rf $ccr_js_file/js_$jx_site/$js_file
-					else
-						echo -e "${yellow}并发文件${white}js_$jx_site的${green}${js_name}${white}文件已经删除了"
-					fi
-					echo -e "*********${yellow}${js_name}${white}全部删除完毕，不会跑了*********"
-				fi
-			;;
-		esac
-	done
-	clear
-}
-
-share_code_generate() {
-	js_amount="10"
-	while [[ ${js_amount} -gt 0 ]]; do
-		share_code_value="$share_code_value&$share_code"
-		js_amount=$(($js_amount - 1))
-	done
-}
 
 close_notification() {
 	#农场关闭通知
@@ -2057,9 +1741,6 @@ system_variable() {
 
 	#农场关闭通知
 	close_notification
-
-	#删除并发的文件
-	del_if
 }
 
 wskey() {
@@ -2171,24 +1852,6 @@ jd_openwrt_config() {
 	push_if=$(grep "push_if" $jd_openwrt_config | awk -F "'" '{print $2}')
 	weixin2=$(grep "weixin2" $jd_openwrt_config | awk -F "'" '{print $2}')
 
-	#不跑东东农场
-	jd_ddfruit=$(grep "jd_ddfruit" $jd_openwrt_config | awk -F "'" '{print $2}')
-
-	#不跑宠汪汪
-	jd_ddjoy=$(grep "jd_ddjoy" $jd_openwrt_config | awk -F "'" '{print $2}')
-
-	#不跑种豆得豆
-	jd_ddplan=$(grep "jd_ddplan" $jd_openwrt_config | awk -F "'" '{print $2}')
-
-	#不跑京喜工厂
-	jx_dddr=$(grep "jx_dddr" $jd_openwrt_config | awk -F "'" '{print $2}')
-
-	#不跑京喜牧场
-	jx_ddmc=$(grep "jx_ddmc" $jd_openwrt_config | awk -F "'" '{print $2}')
-
-	#脚本黑名单
-	script_black=$(grep "script_black" $jd_openwrt_config | awk -F "'" '{print $2}')
-
 	jd_sharecode_fr=$(grep "jd_sharecode_fr" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_sharecode_pet=$(grep "jd_sharecode_pet" $jd_openwrt_config | awk -F "'" '{print $2}')
 	jd_sharecode_pb=$(grep "jd_sharecode_pb" $jd_openwrt_config | awk -F "'" '{print $2}')
@@ -2239,46 +1902,6 @@ jd_joy_steal='false'
 jd_unsubscribe='200'
 
 **********************************************************************************
-
-
-
-******************----------指定一些脚本不跑和黑名单---------------*******************************
-
-#脚本黑名单,默认空全跑，指定格式 脚本1.js@脚本2.js@脚本3.js，这样子三个脚本就不跑了，指的是所有账号都不跑这个脚本
-script_black=''
-
-#指定账号不跑东东农场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jd_ddfruit=''
-
-#指定账号不跑宠汪汪，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jd_ddjoy=''
-
-#指定账号不跑种豆得豆，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jd_ddplan=''
-
-#指定账号不跑京喜工厂，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jx_dddr=''
-
-#指定账号不跑京喜牧场，默认空全跑，指定格式1@2@3，这样子123账号就不跑了，只针对并发，支持数字指定账号或者用户名,all删除全部
-jx_ddmc=''
-
-******************----------------------------------------------------****************************
-
-
-*****+++++**************自定义本地助力****************+++++*****
-自定义助力（优先助力这里面的，有多的助力作者）
-sh \$jd jd_sharecode                   #查询京东所有助力码
-
-#东东农场（助力码1@助力码2）
-jd_sharecode_fr=''
-
-#种豆（助力码1@助力码2）
-jd_sharecode_pb=''
-
-#京喜工厂（助力码1@助力码2）
-jd_sharecode_df=''
-
-*****+++++*********************************************+++++*****
 
 EOF
 }
