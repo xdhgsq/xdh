@@ -90,7 +90,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.29"
+	cron_version="4.30"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		
@@ -108,7 +108,8 @@ sed -i '/jd_fruit_help.js/d' /etc/crontabs/root >/dev/null 2>&1
 sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
-0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
+0 0,6 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
+0 8 * * * $node $dir_file_js/jd_bean_info.js 	#京豆详情统计
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
@@ -374,7 +375,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_y1y.js		#摇一摇每天19点开始
 	jd_mohe.js		#plus天天盲盒
 	jd_dwapp.js		#积分换话费
-	jd_bean_info.js 	#京豆详情统计
 	jd_rmvcart.js		#清空购物车默认不执行清空购物车，清设置变量RMVCART='true
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
@@ -388,6 +388,7 @@ EOF
 		$run_sleep
 	done
 	echo -e "${green} run_0$stop_script_time ${white}"
+	ccr_run
 }
 
 
