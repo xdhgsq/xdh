@@ -113,12 +113,6 @@ sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-#0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-#0 2-23/1 * * * $dir_file/jd.sh run_01 >/tmp/jd_run_01.log 2>&1 #种豆得豆收瓶子#100#
-#*/30 2-23 * * * $dir_file/jd.sh run_030 >/tmp/jd_run_030.log 2>&1 #京喜牧场#100#
-#10 2-22/3 * * * $dir_file/jd.sh run_03 >/tmp/jd_run_03.log 2>&1 #天天加速 3小时运行一次，打卡时间间隔是6小时#100#
-#40 6-18/6 * * * $dir_file/jd.sh run_06_18 >/tmp/jd_run_06_18.log 2>&1 #不是很重要的，错开运行#100#
-#5 7 * * * $dir_file/jd.sh run_07 >/tmp/jd_run_07.log 2>&1 #不需要在零点运行的脚本#100#
 #0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
 #45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
 #0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
@@ -155,7 +149,11 @@ update() {
 	#ss_if
 
 	cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | grep -v "//'" |grep -v "// '" > $openwrt_script_config/js_cookie.txt
+	
+	#删除js文件
+	rm -rf $dir_file_js/*
 
+	#检测库下载
 	if [ ! -d $dir_file/git_clone ];then
 		mkdir $dir_file/git_clone
 	fi
@@ -170,16 +168,19 @@ update() {
 		cp -r $dir_file/git_clone/6dylan6_script/* $dir_file_js
 	fi
 	
+	cp $openwrt_script_config/jdCookie.js $dir_file_js
+	
 	#临时删除之前的库
 	rm -rf $dir_file/git_clone/lxk0301_back
 	rm -rf $dir_file/git_clone/KingRan_script
+	rm -rf $dir_file/config/tmp/*
 
 	echo -e "${green} update$start_script_time ${white}"
 	echo -e "${green}开始下载JS脚本，请稍等${white}"
 #cat script_name.txt | awk '{print length, $0}' | sort -rn | sed 's/^[0-9]\+ //'按照文件名长度降序：
 #cat script_name.txt | awk '{print length, $0}' | sort -n | sed 's/^[0-9]\+ //' 按照文件名长度升序
 
-rm -rf $dir_file/config/tmp/*
+	
 
 
 #6dylan6
@@ -218,9 +219,6 @@ done
 
 sleep 5
 
-	#wget https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/utils/JDJRValidator_Pure.js -O $dir_file_js/JDJRValidator_Pure.js #因为路径不同单独下载.
-	#wget https://raw.githubusercontent.com/ccwav/QLScript2/main/jd_bean_change.js -O $dir_file_js/jd_bean_change_ccwav.js		#资产变化强化版by-ccwav
-
 
 #将所有文本汇总
 echo > $dir_file/config/collect_script.txt
@@ -229,22 +227,10 @@ do
 	cat $dir_file/config/tmp/$i >> $dir_file/config/collect_script.txt
 done
 
-cat >>$dir_file/config/collect_script.txt <<EOF
-	jd_enen.js			#嗯嗯（尚方宝剑，一波流）
-	jd_dpqd.js			#店铺签到
-	getJDCookie.js			#扫二维码获取cookie有效时间可以90天
-EOF
 
-#删掉过期脚本
+#删掉过期脚本(后面废弃)
 cat >/tmp/del_js.txt <<EOF
 	jd_vipgrowth.js			#京享值任务领豆，每周一次
-	jd_marketxxl.js			#超市消消乐游戏
-	jd_sghelp.js			#数钱助力
-	jd_cjzdgf.js			#CJ组队瓜分京豆
-	jd_zdjr.js			#组队瓜分
-	jd_lotty2.js			#购物抵现金
-	jd_supermarket1.js		#京东超市任
-	jd_supermarket_dh.js		#京东超市兑换
 EOF
 
 for script_name in `cat /tmp/del_js.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -325,29 +311,9 @@ update_script() {
 
 
 ccr_run() {
-#头文字Ｊ
-export car_addsku='true'
-export jd_car_play_exchangeid="10082bd15b4703"
-#这里不会并发
+#脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_lzkj_ttljd.js		#天天签到领京豆
-	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_ttqdlxj.js			#天天签到礼享金
-	jd_ttlhb.js			#天天领红包
-	jd_hdcheck.js			#互动消息检测
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
-	jd_gwfd.js			#非plus购物返豆领取
-	jd_signbeanact.js		#签到领京豆
-	jd_cashsign.js			#领现金
-	jd_car_play.js			#头文字J
-	jd_car_play_exchange.js		#头文字J兑换
-	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_fruit_friend.js		#东东农场好友删减奖励
-	jd_fruit.js			#东东水果，6-9点 11-14点 17-21点可以领水滴
-	jd_plantBean_help.js		#种豆得豆助力
-	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
-	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
-	jd_tj_sign.js			#京东特价版签到提现
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -357,55 +323,6 @@ EOF
 	}&
 	done
 }
-
-concurrent_js_run_07() {
-#清空购物车变量
-export gua_cleancart_Run="true"
-export gua_cleancart_SignUrl="https://jd.smiek.tk/jdcleancatr_21102717" # 算法url
-if [  -z "$gua_cleancart_products" ];then
-	export gua_cleancart_products="*@&@"
-fi
-
-#头文字Ｊ
-export car_addsku='true'
-export jd_car_play_exchangeid="10082bd15b4703"
-#这里不会并发
-cat >/tmp/jd_tmp/concurrent_js_run_07 <<EOF
-	jd_lzkj_ttljd.js		#天天签到领京豆
-	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_ttqdlxj.js			#天天签到礼享金
-	jd_ttlhb.js			#天天领红包
-	jd_hdcheck.js			#互动消息检测
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
-	jd_gwfd.js			#非plus购物返豆领取
-	jd_signbeanact.js		#签到领京豆
-	jd_cashsign.js			#领现金
-	jd_car_play.js			#头文字J
-	jd_car_play_exchange.js		#头文字J兑换
-	jd_dreamFactory.js 		#京喜工厂
-	jx_sign.js			#京喜签到
-	jd_club_lottery.js 		#摇京豆，没时间要求
-	jd_price.js 			#京东价保
-	jd_productZ4Brand.js		#特务Z
-	gua_cleancart.js		#清空购物车
-	jd_fruit_friend.js		#东东农场好友删减奖励
-	jd_fruit.js			#东东农场，6-9点 11-14点 17-21点可以领水滴
-	jd_plantBean_help.js		#种豆得豆助力
-	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
-	jd_plantBean.js 		#种豆得豆，没时间要求，一个小时收一次瓶子
-EOF
-	for i in `cat /tmp/jd_tmp/concurrent_js_run_07 | grep -v "#.*js" | awk '{print $1}'`
-	do
-	{
-		$node $openwrt_script/JD_Script/js/$i
-		$run_sleep
-	}&
-	done
-	wait
-	$node $openwrt_script/JD_Script/js/jd_bean_change.js 	#资产变动强化版
-	checklog #检测log日志是否有错误并推送
-}
-
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
@@ -484,176 +401,9 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	#run_06_18
-	#run_030
-	#run_01
 	echo -e "${green} run_0$stop_script_time ${white}"
 }
 
-run_020() {
-cat >/tmp/jd_tmp/run_020 <<EOF
-	#gua_superRedBagDraw.js
-EOF
-	echo -e "${green} run_020$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_020 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-	echo -e "${green} run_020$stop_script_time ${white}"
-}
-
-run_030() {
-cat >/tmp/jd_tmp/run_030 <<EOF
-	#.js
-EOF
-	echo -e "${green} run_030$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_030 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-
-	echo -e "${green} run_030$stop_script_time ${white}"
-}
-
-run_01() {
-cat >/tmp/jd_tmp/run_01 <<EOF
-	jd_dreamFactory.js 		#京喜工厂
-EOF
-	echo -e "${green} run_01$start_script_time ${white}"
-	for i in `cat /tmp/jd_tmp/run_01 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-
-	echo -e "${green} run_01$stop_script_time ${white}"
-}
-
-run_02() {
-cat >/tmp/jd_tmp/run_02 <<EOF
-	#空.js
-EOF
-	echo -e "${green} run_02$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_02 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-	echo -e "${green} run_02$stop_script_time ${white}"
-}
-
-run_03() {
-#这里不会并发
-cat >/tmp/jd_tmp/run_03 <<EOF
-	#jd_jdzz.js			#京东赚赚
-EOF
-	echo -e "${green} run_03$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_03 | grep -v "#.*js" | awk '{print $1}'`
-	do
-	{
-		$node $dir_file_js/$i
-		$run_sleep
-	}&
-	done
-	wait
-
-	#极速版签到
-	#run_jsqd
-
-	echo -e "${green} run_03$stop_script_time ${white}"
-}
-
-
-run_06_18() {
-cat >/tmp/jd_tmp/run_06_18 <<EOF
-	jd_dwapp.js			#积分换话费
-EOF
-	echo -e "${green} run_06_18$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_06_18 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-	echo -e "${green} run_06_18$stop_script_time ${white}"
-}
-
-run_07() {
-cat >/tmp/jd_tmp/run_07 <<EOF
-	jd_kd.js 			#京东快递签到 一天运行一次即可
-	jd_unsubscribe.js 		#取关店铺，没时间要求
-        gua_MMdou.js                    #赚京豆MM豆
-EOF
-	echo -e "${green} run_07$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_07 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-	echo -e "${green} run_07$stop_script_time ${white}"
-}
-
-
-run_08_12_16() {
-cat >/tmp/jd_tmp/run_08_12_16 <<EOF
-	#空.js
-EOF
-	echo -e "${green} run_08_12_16$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_08_12_16 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-
-	echo -e "${green} run_08_12_16$stop_script_time ${white}"
-}
-
-run_10_15_20() {
-cat >/tmp/jd_tmp/run_10_15_20 <<EOF
-	#空.js
-EOF
-
-	echo -e "${green} run_10_15_20$start_script_time ${white}"
-
-	for i in `cat /tmp/jd_tmp/run_10_15_20 | grep -v "#.*js" | awk '{print $1}'`
-	do
-		num=$(python $dir_file/jd_random.py 20,1)
-		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
-		sleep $num
-		$node $dir_file_js/$i
-		$run_sleep
-	done
-	echo -e "${green} run_10_15_20$stop_script_time ${white}"
-}
 
 run_jsqd(){
 #极速版签到定制安排
@@ -730,50 +480,7 @@ jd_sharecode() {
 	echo ""
 	jd_sharecode_if
 }
-jd_sharecode_if() {
-	echo -e "${green}============是否生成提交助力码格式，方便提交助力码，1.生成 2.不生成============${white}"
-	read -p "请输入：" code_Decide
-	if [ "$code_Decide" == "1" ];then
-		jd_sharecode_generate
-	elif [ "$code_Decide" == "2" ];then
-		echo "不做任何操作"
-	else
-		echo "请不要随便乱输！！！"
-		jd_sharecode_if
-	fi
 
-}
-jd_sharecode_generate() {
-read -p "请输入你的名字和进群时间（例子：zhangsan_20210314，注意zhangsan是个例子，请写自己的名字～～～）：" you_name
-echo -e "${green}请稍等，号越多生成会比较慢。。。${white}"
-$node $dir_file_js/jd_get_share_code.js >/tmp/get_share_code
-
-cat > /tmp/code_name <<EOF
-京东农场 fr
-种豆得豆 pb
-京喜工厂 df
-京东赚赚 jdzz
-签到领现金 jdcash
-闪购盲盒 jdsgmh
-财富岛 cfd
-EOF
-
-
-code_number="0"
-echo -e "${green}============整理$you_name的Code============${white}"
-
-for i in `cat /tmp/code_name | awk '{print $1}'`
-do
-	code_number=$(expr $code_number + 1)
-	o=$(cat /tmp/get_share_code | grep  "$i" | wc -l)
-	p=$(cat /tmp/code_name | awk -v  a="$code_number" -v b="$you_name"  -v c="_" 'NR==a{print b c$2}')
-	echo ""
-	cat /tmp/get_share_code | grep  "$i" | awk -F '】' '{print $2}' | sed ':t;N;s/\n/@/;b t'  | sed "s/$/\"/" | sed "s/^/$i有$o个\Code：$p=\"/"
-	echo ""
-done
-echo -e "${green}============整理完成，可以提交了（没加群的忽略）======${white}"
-
-}
 
 jd_time()  {
 TimeError=2
@@ -992,58 +699,12 @@ concurrent_js_if() {
 			action="$action1"
 			ccr_run &
 			concurrent_js
-			wait
-			if [ ! $action2 ];then
-				concurrent_js_clean
-			else
-				case "$action2" in
-				run_07)
-					action="$action2"
-					concurrent_js
-					wait
-					concurrent_js_run_07
-					wait
-					concurrent_js_clean
-				;;
-				esac
-			fi
-		;;
-		run_07)
-			action="$action1"
-			concurrent_js
-			wait
-			concurrent_js_run_07
-			wait
-			concurrent_js_clean
-		;;
-		run_03)
-			run_03
-		;;
-		run_030)
-			action="$action1"
-			concurrent_js
-			wait
-			concurrent_js_clean
-		;;
-		run_01|run_02|run_08_12_16|run_020|run_10_15_20|run_06_18)
-			action="$action1"
-			concurrent_js
-			wait
-			concurrent_js_clean
 		;;
 		esac
 	else
 		case "$action1" in
 			run_0)
 			ccr_run &
-			$action1
-			;;
-			run_07)
-			ccr_run &
-			$action1
-			concurrent_js_run_07
-			;;
-			run_01|run_06_18|run_10_15_20|run_03|run_02|run_08_12_16|run_07|run_030|run_020)
 			$action1
 			;;
 		esac
@@ -1054,14 +715,6 @@ concurrent_js_if() {
 			case "$action2" in
 			run_0)
 			ccr_run &
-			$action2
-			;;
-			run_07)
-			ccr_run &
-			$action2
-			concurrent_js_run_07
-			;;
-			run_01|run_06_18|run_10_15_20|run_03|run_02|run_08_12_16|run_07|run_020)
 			$action2
 			;;
 		esac
@@ -1793,7 +1446,6 @@ help() {
 	echo ""
 	echo -e "${yellow} 2.jd.sh脚本命令${white}"
 	echo ""
-	echo -e "${green}  sh \$jd run_0  run_07			#运行全部脚本(除个别脚本不运行)${white}"
 	echo ""
 	echo -e "${yellow}个别脚本有以下："
 	echo ""
@@ -2719,7 +2371,7 @@ if [[ -z $action1 ]]; then
 	help
 else
 	case "$action1" in
-		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
+		run_0)
 		concurrent_js_if
 		;;
 		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
@@ -2738,7 +2390,7 @@ else
 		echo ""
 	else
 		case "$action2" in
-		run_0|run_01|run_06_18|run_10_15_20|run_02|run_03|run_08_12_16|run_07|run_030|run_020)
+		run_0)
 		concurrent_js_if
 		;;
 		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
