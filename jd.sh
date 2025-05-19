@@ -178,7 +178,7 @@ update() {
 #6dylan6
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/refs/heads/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	jd_lzkj_ttljd.js		#天天签到领京豆
+	#空.js
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -1412,75 +1412,46 @@ help() {
 	task
 	clear
 	echo ----------------------------------------------------
-	echo "	     JD.sh $version 使用说明"
+	echo "	     JD.sh $version 简单使用说明"
 	echo ----------------------------------------------------
-	echo -e "${yellow} 1.文件说明${white}"
+	echo -e "${yellow} 1.ck填入${white}"
+	echo -e "${green}  $openwrt_script_config/jdCookie.js ${white} 在此脚本内填写jdCookie.js脚本内有说明"
+	echo -e "获取到ck使用命令填入 ${green}  sh \$jd addcookie ${white} "
 	echo ""
-	echo -e "${green}  $openwrt_script_config/jdCookie.js ${white} 在此脚本内填写JD Cookie 脚本内有说明"
-	echo -e "${green}  $openwrt_script_config/sendNotify.js ${white} 在此脚本内填写推送服务的KEY，可以不填"
-	echo -e "${green}  $openwrt_script_config/USER_AGENTS.js ${white} 京东UA文件可以自定义也可以默认"
-	echo -e "${green}  $openwrt_script_config/JS_USER_AGENTS.js ${white} 京东极速版UA文件可以自定义也可以默认"
+	echo -e "${green}  如果你获取到的是wskey，请填入 /usr/share/jd_openwrt_script/script_config/wskey/jdwskey.txt，并执行sh \$jd wskey 看下是否成功${white} "
+	echo -e "${yellow} 2.推送到手机${white}"
+	echo -e "${green}  填写/usr/share/jd_openwrt_script/script_config/jd_openwrt_script_config.txt ${white} "
 	echo ""
-	echo -e "${yellow} JS脚本活动列表：${green} $dir_file/git_clone/lxk0301_back/README.md ${white}"
-	echo -e "${yellow} 浏览器获取京东cookie教程：${green} $dir_file/git_clone/lxk0301_back/backUp/GetJdCookie.md ${white}"
-	echo -e "${yellow} 获取到cookie填入脚本：${green} sh \$jd addcookie ${white}"
+	echo -e "${yellow} 3.测试是否能正常使用${white}"
+	echo -e "${green}  cd \$jd_file\js && node jd_bean_home.js  ${white} "
 	echo ""
-	echo -e "$red 注意：${white}请停掉你之前运行的其他jd脚本，然后把${green} JS脚本活动列表${white}的活动全部手动点开一次，不知活动入口的，$dir_file_js/你要的js脚本里有写"
+	echo -e "${yellow} 4.jd.sh其他脚本命令${white}"
 	echo ""
-	echo -e "${yellow} 2.jd.sh脚本命令${white}"
-	echo ""
-	echo ""
-	echo -e "${yellow}个别脚本有以下："
+	echo -e "${green}  sh \$jd run_0 ${white}  				#运行全部jd脚本"
 	echo ""
 	echo -e "${green}  sh \$jd wskey ${white}  				#调用wskey转换"
 	echo ""
-	echo -e "${green}  sh \$jd checkjs ${white}  				#调用checkjs监控上游脚本更新"
-	echo ""
-	echo -e "${green}  sh \$jd checkjs_tg ${white}  			#调用checkjs监控tg频道变量（需要docker容器）"
-	echo ""
 	echo -e "${green}  sh \$jd npm_install ${white}  			#安装 npm 模块"
-	echo ""
-	echo -e "${green}  sh \$jd checklog ${white}  			#检测log日志是否有错误并推送"
-	echo ""
-	echo -e "${green}  sh \$jd that_day ${white}  			#检测JD_script仓库今天更新了什么"
-	echo ""
-	echo -e "${green}  sh \$jd script_name ${white}  			#显示所有JS脚本名称与作用"
 	echo ""
 	echo -e "${green}  sh \$jd backnas ${white}  			#备份脚本到NAS存档"
 	echo ""
 	echo -e "${green}  sh \$jd stop_script ${white}  			#删除定时任务停用所用脚本"
 	echo ""
-	echo -e "${green}  sh \$jd kill_ccr ${white}  			#终止并发"
-	echo ""
-	echo -e "${green}  sh \$jd checktool ${white}  			#检测后台进程，方便排除问题"
-	echo ""
-	echo -e " 如果不喜欢这样，你也可以直接${green} cd \$jd_file/js${white},然后用${green} node 脚本名字.js${white} "
+	echo -e "${yellow} 5.常见报错${white}"
+	echo "  运行node jd_bean_home.js，报错，请检测你的ck是否正常，正确可以运行sh \$jd npm_install"
+	echo "  如果还不行请运行sh \$jd update_script && sh \$jd update && sh \$jd 更新到最新版本"
+	echo "  "
 	echo ""
 	echo -e "${yellow} 3.检测定时任务:${white} $cron_help"
 	echo -e "${yellow}   定时任务路径:${white}${green}/etc/crontabs/root${white}"
-	echo ""
-	echo -e "${yellow} 4.如何排错或者你想要的互助码:${white}"
-	echo ""
-	echo "  答1：如何排错有种东西叫更新，如sh \$jd update_script 和sh \$jd update"
-	echo "  答2：如何排错有种东西叫查日志，如/tmp/里面的jd开头.log结果的日志文件"
-	echo ""
-	echo "  看不懂代码又想白嫖，你还是洗洗睡吧，梦里啥都有，当然你可以用钞能力解决多数问题（你可以忽略这句，继续做梦）"
-	echo ""
 	echo -e "${yellow} 5.检测脚本是否最新:${white} $Script_status "
-	echo ""
-	echo -e "${yellow} 6.个性化配置：${white} $jd_config_version"
-	echo ""
 	echo -e "${yellow} 7.JD_Script报错你可以反馈到这里:${white}${green} https://github.com/xdhgsq/xdh/issues${white}"
-	echo ""
-	echo -e "$index_num"
-	echo ""
 	echo ""
 	echo -e "本脚本基于${green} x86主机测试${white}，一切正常，其他的机器自行测试，满足依赖一般问题不大"
 	echo ----------------------------------------------------
 	echo " 		by：ITdesk"
 	echo ----------------------------------------------------
 
-	time &
 }
 
 
@@ -1522,45 +1493,6 @@ additional_settings() {
 	
 }
 
-
-close_notification() {
-	#农场关闭通知
-	if [ `date +%A` == "Monday" ];then
-		echo -e "${green}今天周一不关闭农场通知${white}"
-	else
-		case `date +%H` in
-		22|23|00|01)
-			if [ "$ccr_if" == "yes" ];then
-				for i in `ls $ccr_js_file | grep -E "^js"`
-				do
-				{
-					sed -i "s/jdNotify = true/jdNotify = false/g" $ccr_js_file/$i/jd_fruit.js
-				}&
-				done
-			fi
-
-			sed -i "s/jdNotify = true/jdNotify = false/g" $dir_file_js/jd_fruit.js
-
-			echo -e "${green}暂时不关闭农场通知${white}"
-		;;
-		*)
-			if [ "$ccr_if" == "yes" ];then
-				for i in `ls $ccr_js_file | grep -E "^js"`
-				do
-				{
-					sed -i "s/jdNotify = false/jdNotify = true/g" $ccr_js_file/$i/jd_fruit.js
-				}&
-				done
-
-			fi
-
-			sed -i "s/jdNotify = false/jdNotify = true/g" $dir_file_js/jd_fruit.js
-
-			echo -e "${green}时间大于凌晨一点开始关闭农场通知${white}"
-		;;
-		esac
-	fi
-}
 random_array() {
 	#彻底完善，感谢minty大力支援
 	length=$(echo $random | awk -F '[@]' '{print NF}') #获取变量长度
@@ -1580,23 +1512,6 @@ random_array() {
 	fi
 }
 
-time() {
-	if [ $script_read == "0" ];then
-		echo ""
-		echo -e  "${green}你是第一次使用脚本，请好好阅读以上脚本说明${white}"
-		echo ""
-		seconds_left=120
-		while [[ ${seconds_left} -gt 0 ]]; do
-			echo -ne "${green}${seconds_left}秒以后才能正常使用脚本，不要想结束我。我无处不在。。。${white}"
-			sleep 1
-			seconds_left=$(($seconds_left - 1))
-			echo -ne "\r"
-		done
-		echo -e "${green}恭喜你阅读完成，祝玩的愉快，我也不想搞这波，但太多小白不愿意看说明然后一大堆问题，请你也体谅一下${white}"
-		echo "我已经阅读脚本说明" > $dir_file/script_read.txt
-		exit 0
-	fi
-}
 
 npm_install() {
 	echo -e "${green} 开始安装npm模块${white}"
@@ -1736,11 +1651,6 @@ system_variable() {
 
 	jd_openwrt_config
 
-	#index_js
-	index_num="${yellow} 8.网页获取CK功能已关闭，没人修暂时就这样了${white}"
-
-	#农场关闭通知
-	close_notification
 }
 
 wskey() {
