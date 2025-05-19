@@ -90,7 +90,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.31"
+	cron_version="4.32"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		
@@ -109,7 +109,8 @@ sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0,6 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-0 8 * * * $node $dir_file_js/jd_bean_info.js 	#京豆详情统计#100#
+0 8 * * * $node $dir_file_js/jd_bean_change.js 	#京东资产统计#100#
+0 */8 * * * $node $dir_file_js/jd_baglx.js	#红树林养育8小时执行一次#100#
 0 12,18 * * * $node $dir_file_js/jd_fruit_new.js #新农场，6-9点 11-14点 17-21点可以领水滴#100#
 0 20 * * * $node $dir_file_js/jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
 0 */4 * * * $node $dir_file_js/jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行#100#
@@ -340,6 +341,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pkabeans.js		#礼品卡领豆
 	jd_plantBean.js		#种豆得豆任务
 	jd_red_Task.js		#每日领红包_任务
+	jd_gRed.js		#每日领红包
 	jd_fruit_new.js		#新农场
 	jd_water_new.js		#新农场浇水
 	jd_newfarmlottery.js	#新农场幸运转盘
@@ -365,17 +367,18 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆
 	jd_fcwb_auto.js		#欢乐挖宝任务
 	jd_hssign.js		#hs每日签到
+	jd_3c_task.js		#3C每日签到
 	jd_hlw_draw.js		#hlw抽奖
 	jd_health.js		#东东健康社区
 	jd_health_task.js	#健康能量任务
 	jd_health_collect.js	#健康社区收集能量
 	jd_health_draw.js	#健康_抽奖
-	#jd_zwb.js		#做任务赚汪贝
+	jd_zwb.js		#做任务赚汪贝
 	jd_mk_game.js		#赚汪贝兑礼品
 	jd_wbDraw.js		#汪贝刮超市卡
+	jd_market_exchange.js	#超市汪贝兑好礼
 	jd_joypark_task.js	#汪汪庄园任务
 	jd_wwmanor_merge.js	#汪汪庄园合成
-	jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行
 	jd_qqxing.js		#QQ星系牧场
 	jd_gwfd.js		#购物返豆领取
 	jx_fcwb_auto.js		#特价现金挖宝任务
