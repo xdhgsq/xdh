@@ -115,7 +115,6 @@ cat >>/etc/crontabs/root <<EOF
 0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 #0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
 #45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
-#0 10 * * * $dir_file/jd.sh zcbh	>/tmp/jd_bean_change_ccwav.log	#资产变化一对一#100#
 #5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
 #5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力#100#
 #5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力#100#
@@ -146,7 +145,6 @@ ds_setup() {
 }
 
 update() {
-	#ss_if
 
 	cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | grep -v "//'" |grep -v "// '" > $openwrt_script_config/js_cookie.txt
 	
@@ -445,12 +443,6 @@ file_num=$(ls $ccr_js_file | wc -l)
 	done
 }
 
-zcbh() {
-	zcbh_token=$(cat /usr/share/jd_openwrt_script/script_config/sendNotify_ccwav.js | grep "let WP_APP_TOKEN_ONE" | awk -F "\"" '{print $2}')
-	export WP_APP_TOKEN_ONE="$zcbh_token"
-	cd $dir_file_js
-	$node jd_bean_change_ccwav.js
-}
 
 script_name() {
 	clear
@@ -472,15 +464,6 @@ Tjs()	{
 	done
 
 }
-
-jd_sharecode() {
-	echo -e "${green} 查询京东助力码$start_script_time ${white}"
-	$node $dir_file_js/jd_get_share_code.js #获取jd所有助力码脚本
-	echo -e "${green}查询完成$start_script_time ${white}"
-	echo ""
-	jd_sharecode_if
-}
-
 
 jd_time()  {
 TimeError=2
@@ -1457,10 +1440,6 @@ help() {
 	echo ""
 	echo -e "${green}  sh \$jd npm_install ${white}  			#安装 npm 模块"
 	echo ""
-	echo -e "${green}  sh \$jd zcbh ${white}				#资产变化一对一"
-	echo ""
-	echo -e "${green}  sh \$jd jd_sharecode ${white} 			#查询京东所有助力码"
-	echo ""
 	echo -e "${green}  sh \$jd checklog ${white}  			#检测log日志是否有错误并推送"
 	echo ""
 	echo -e "${green}  sh \$jd that_day ${white}  			#检测JD_script仓库今天更新了什么"
@@ -1484,7 +1463,6 @@ help() {
 	echo ""
 	echo "  答1：如何排错有种东西叫更新，如sh \$jd update_script 和sh \$jd update"
 	echo "  答2：如何排错有种东西叫查日志，如/tmp/里面的jd开头.log结果的日志文件"
-	echo "  答3：你想要的互助码 sh \$jd jd_sharecode"
 	echo ""
 	echo "  看不懂代码又想白嫖，你还是洗洗睡吧，梦里啥都有，当然你可以用钞能力解决多数问题（你可以忽略这句，继续做梦）"
 	echo ""
@@ -2164,65 +2142,6 @@ kill_index() {
 	done
 }
 
-
-ss_if() {
-	if [ -f /etc/config/shadowsocksr ];then
-		ss_server=$(grep "option global_server 'nil'" /etc/config/shadowsocksr | wc -l)
-		echo -e "${green}开启检测github是否联通，请稍等。。${white}"
-		if [ $ss_server == "0" ];then
-			wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
-			if [[ $? -eq 0 ]]; then
-				echo "github正常访问，不做任何操作"
-			else
-				ss_pid=$(ps -ww | grep "ssrplus" | grep -v grep | awk '{print $1}')
-				if [ $ss_pid == "2" ];then
-					echo "后台有ss进程，不做处理"
-				else
-					echo "无法ping通Github,重新加载ss进程"
-					/etc/init.d/shadowsocksr stop
-					/etc/init.d/shadowsocksr start
-					echo "重启进程完成"
-					wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
-					if [[ $? -eq 0 ]]; then
-						echo -e "${green} github正常访问，不做任何操作${white}"
-					else
-						echo "检测到ss服务器故障"
-						log_sort=$(echo "检测到ss故障，已经为你重启进程一次，但问题依旧，请手动检查，请尽快处理防止无法愉快跑脚本" |sed "s/$/$wrap$wrap_tab/" | sed ':t;N;s/\n//;b t' | sed "s/$wrap_tab####/####/g")
-						server_content=$(echo "${log_sort}${by}" | sed "s/$wrap_tab####/####/g" )
-
-						weixin_content_sort=$(echo  $log_sort |sed "s/####/<b>/g"   |sed "s/$line/<hr\/><\/b>/g" |sed "s/$wrap/<br>/g" |sed "s/<br>#//g"  | sed "s/$/<br>/" |sed "s/<hr\/><\/b><br>/<hr\/><\/b>/g" |sed "s/+/ /g"| sed "s/<br> <br>/<br>/g"|  sed ':t;N;s/\n//;b t' )
-						weixin_content=$(echo "$weixin_content_sort<br><b>$by")
-						weixin_desp=$(echo "$weixin_content" | sed "s/<hr\/><\/b><b>/$weixin_line\n/g" |sed "s/<hr\/><\/b>/\n$weixin_line\n/g"| sed "s/<b>/\n/g"| sed "s/<br>/\n/g" | sed "s/<br><br>/\n/g" | sed "s/#/\n/g" )
-						title="检测到ss服务器故障"
-						push_menu
-						echo -e "$red JD_Script 检测到ss故障，已经为你重启进程一次，但问题依旧，请手动检查${white}"
-						exit 0
-					fi
-				fi
-			fi
-		else
-			wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
-			if [[ $? -eq 0 ]]; then
-				echo "github正常访问，不做任何操作"
-			else
-				echo "检测到ss没有选择服务器，发送通知"
-				log_sort=$(echo "检测到ss没有选择服务器.无法联通网络，请尽快处理防止无法愉快跑脚本" |sed "s/$/$wrap$wrap_tab/" | sed ':t;N;s/\n//;b t' | sed "s/$wrap_tab####/####/g")
-				server_content=$(echo "${log_sort}${by}" | sed "s/$wrap_tab####/####/g" )
-
-				weixin_content_sort=$(echo  $log_sort |sed "s/####/<b>/g"   |sed "s/$line/<hr\/><\/b>/g" |sed "s/$wrap/<br>/g" |sed "s/<br>#//g"  | sed "s/$/<br>/" |sed "s/<hr\/><\/b><br>/<hr\/><\/b>/g" |sed "s/+/ /g"| sed "s/<br> <br>/<br>/g"|  sed ':t;N;s/\n//;b t' )
-				weixin_content=$(echo "$weixin_content_sort<br><b>$by")
-				weixin_desp=$(echo "$weixin_content" | sed "s/<hr\/><\/b><b>/$weixin_line\n/g" |sed "s/<hr\/><\/b>/\n$weixin_line\n/g"| sed "s/<b>/\n/g"| sed "s/<br>/\n/g" | sed "s/<br><br>/\n/g" | sed "s/#/\n/g" )
-				title="检测到你的ss服务器没有启动"
-				push_menu
-				echo -e "$red JD_Script 检测到你的ss服务器没有启动,暂时不更新脚本${white}"
-				exit 0
-			fi
-		fi
-	else
-		echo "在/etc/config没有找到shadowsocksr文件，不做任何操作"
-	fi
-}
-
 jd_openwrt_config() {
 	jd_openwrt_config_version="1.8"
 	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
@@ -2374,7 +2293,7 @@ else
 		run_0)
 		concurrent_js_if
 		;;
-		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -2393,7 +2312,7 @@ else
 		run_0)
 		concurrent_js_if
 		;;
-		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|jd_sharecode|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|ss_if|zcbh|jd_time|run_jsqd|Tjs|test)
+		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
