@@ -39,7 +39,6 @@ python3="/usr/bin/python3"
 sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
 
-#给强迫症的福利
 wan_ip=$(cat /etc/config/network | grep "wan" | wc -l)
 if [ ! $wan_ip ];then
 	wan_ip="找不到Wan IP"
@@ -94,9 +93,6 @@ task() {
 	cron_version="4.29"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
-		sed -i '/京享周周乐/d' /etc/crontabs/root >/dev/null 2>&1
-		sed -i '/京享值任务领豆，每周一次/d' /etc/crontabs/root >/dev/null 2>&1
-		sed -i '/jd_19E_help.log/d' /etc/crontabs/root >/dev/null 2>&1
 		
 		task_delete
 		task_add
@@ -113,18 +109,12 @@ sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-#0 12,18 * * * $node $dir_file_js/jd_fruit.js #东东农场，6-9点 11-14点 17-21点可以领水滴#100#
-#45 6 * * 5 $dir_file/jd.sh pj >/tmp/jd_pj.log	#每周五自动评价一次#100#
-#5 10 * * 1 $node $dir_file_js/jd_plantBean.js >/tmp/jd_plantBean.log	#每周一10点5分收奖励#100#
-#5 0 * * * $node $dir_file_js/jd_fruit_help.js >/tmp/jd_fruit_help.log	#东东农场助力#100#
-#5 7 * * * $node $dir_file_js/jd_fruit_help.js >>/tmp/jd_fruit_help.log	#东东农场助力#100#
-#50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
-#46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
-#20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
-#5 11,19,22 * * * $dir_file/jd.sh update >/tmp/jd_update.log 2>&1 && source /etc/profile #9,11,19,22点05分更新lxk0301脚本#100#
+50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
+46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
+20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
 ###########100##########请将其他定时任务放到底下###############
 #**********这里是backnas定时任务#100#******************************#
-45 12,19 * * * $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #每4个小时备份一次script,如果没有填写参数不会运行#100#
+45 12,19 * * * $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
 ############100###########请将其他定时任务放到底下###############
 EOF
 	/etc/init.d/cron restart
@@ -185,26 +175,6 @@ update() {
 github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/refs/heads/main"
 cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
 	jd_lzkj_ttljd.js		#天天签到领京豆
-	jd_tj_cxjhelp.js		#特价版-幸运抽奖
-	jd_car_play.js			#头文字J
-	jd_car_play_exchange.js		#头文字J兑换
-	jd_dwapp.js			#积分换话费
-	jd_fruit_watering.js		#东东农场快速浇水,成熟了自动收取红包和种植新的水果
-	jd_tj_sign.js			#京东特价版签到提现
-	jd_plantBean.js			#种豆得豆
-	jd_fruit.js			#东东农场
-	jd_ttqdlxj.js			#天天签到礼享金
-	jd_ttlhb.js			#天天领红包
-	jd_hdcheck.js			#互动消息检测
-	jd_gwfd.js			#非plus购物返豆领取
-	jd_signbeanact.js		#签到领京豆
-	jd_cashsign.js			#领现金
-	jd_farm_automation.js		#农场自动种植兑换(根据自己需要安排)
-	jd_price.js			#京东价保
-	jd_joypark_task.js		#汪汪乐园每日任务,只做部分任务
-	jd_comment.js			#自动评价带图
-	jd_qqxing.js			#QQ星儿童牛奶京东自营旗舰店->品牌会员->星系牧场
-	jd_speed_sign.js		#京东极速版签到+赚现金任务
 EOF
 
 for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -309,9 +279,27 @@ update_script() {
 
 
 ccr_run() {
+#农场助力
+export FRUIT_HELPNUM="8" #多少个助力停止,不检测助力码已获得助力数
+if [ -z "$NEWFRUITCODES" ];then
+	export NEWFRUITCODES = "ycXdOaS1kgvMCBcBeJ2tKaWY52FrSwgjLg" #可指定助力码，多个用&分割，不指定则自动搜寻日志或缓存的助力码
+else
+	export NEWFRUITCODES = "ycXdOaS1kgvMCBcBeJ2tKaWY52FrSwgjLg&${NEWFRUITCODES}" #可指定助力码，多个用&分割，不指定则自动搜寻日志或缓存的助力码
+fi
+
+#欢乐挖宝助力
+if [ -z "$JD_FCWB_InviterId" ];then
+	export JD_FCWB_InviterId = "VYlzzuDz-Y8seOROZFxje-gusZ0qMCAXkWRSg4DzCCQ&6f5661eb762741e083c729da9af9ca4911971747585491086" 
+else
+	export JD_FCWB_InviterId = "VYlzzuDz-Y8seOROZFxje-gusZ0qMCAXkWRSg4DzCCQ&6f5661eb762741e083c729da9af9ca4911971747585491086&${NEWFRUITCODES}" 
+fi
+
+
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_lzkj_ttljd.js		#天天签到领京豆
+	jd_farmnew_code_help.js	#新农场code助力
+	jd_farmshare.js		#新农场小程序助力
+	jx_fcwb_help.js		#欢乐挖宝助力
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -338,11 +326,12 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_pkabeans.js		#礼品卡领豆
 	jd_plantBean.js		#种豆得豆任务
 	jd_red_Task.js		#每日领红包_任务
+	jd_fruit_new.js		#新农场
 	jd_water_new.js		#新农场浇水
+	jd_newfarmlottery.js	#新农场幸运转盘
 	jd_zzhb_draw_new.js	#Jd转赚红包_抽奖
 	jd_zzhb_new.js		#Jd转赚红包2
 	jd_yqs.js		#摇钱树
-	jd_newfarmlottery.js	#新农场幸运转盘
 	jd_sq_draw.js		#社区抽奖
 	jd_msDraw.js		#秒送抽奖
 	jd_huwai_draw.js	#户外管每日抽
@@ -376,7 +365,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_qqxing.js		#QQ星系牧场
 	jd_gwfd.js		#购物返豆领取
 	jx_fcwb_auto.js		#特价现金挖宝任务
-	#jx_fcwb_help.js		#特价现金挖宝助力
 	jd_tjqd_new.js		#特价版签到提现新
 	jd_video_task.js	#看视频赚现金-任务
 	jd_video_view.js	#看视频赚现金-浏览
@@ -1884,23 +1872,6 @@ push_if='1'
 (push_if填写为3，这里就必须要填，不然无法推送，不为3,可以不填)
 weixin2=''
 
-#农场不浇水换豆 false关闭 true打开
-jd_fruit='false'
-
-#宠汪汪积分兑换500豆子，(350积分兑换20豆子，8000积分兑换500豆子要求等级16级，16000积分兑换1000京豆16级以后不能兑换)
-jd_joy_reward='500'
-
-
-#宠汪汪喂食(更多参数自己去看js脚本描述)
-jd_joy_feedPets='80'
-
-
-#宠汪汪不给好友喂食 false不喂食 true喂食
-jd_joy_steal='false'
-
-#取消店铺200个(觉得太多你可以自己调整)
-jd_unsubscribe='200'
-
 **********************************************************************************
 
 EOF
@@ -1916,7 +1887,7 @@ else
 		run_0)
 		concurrent_js_if
 		;;
-		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
+		ccr_run|start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -1935,7 +1906,7 @@ else
 		run_0)
 		concurrent_js_if
 		;;
-		start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
+		ccr_run|start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
