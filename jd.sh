@@ -1182,15 +1182,15 @@ backnas() {
 	back_file_name="script_${date_time}.tar.gz"
 	#判断所在文件夹
 	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
-		backnas_config_file="$openwrt_script_config/backnas_config.txt"
+		backnas_config_file="$jd_openwrt_config"
 		back_file_patch="$openwrt_script"
-		if [ ! -f "$openwrt_script_config/backnas_config.txt" ]; then
+		if [ ! -f "$jd_openwrt_config" ]; then
 			backnas_config
 		fi
 	else
-		backnas_config_file="$dir_file/config/backnas_config.txt"
+		backnas_config_file="$jd_openwrt_config"
 		back_file_patch="$dir_file"
-		if [ ! -f "$dir_file/config/backnas_config.txt" ]; then
+		if [ ! -f "$jd_openwrt_config" ]; then
 			backnas_config
 		fi
 	fi
@@ -1348,32 +1348,6 @@ backnas() {
 	echo -e "${green}>> 开始更新脚本并恢复并发文件夹${white}"
 	update
 	echo -e "${green}>> 脚本更新完成${white}"
-}
-
-backnas_config() {
-cat >$backnas_config_file <<EOF
-################################################################
-                 backnas_config版本$backnas_config_version
-用于备份JD_script 到NAS 采用scp传输，请确保你的nas，ssh端口有打开
-################################################################
-#填入你的nas账号(必填)
-user=''
-
-#填入你nas的密码(密码和密钥必须填一个)
-password=''
-
-#填入你nas的密钥位置(可以留空)(密钥 > 密码,有密钥的情况优先使用密钥而不是密码)
-secret_key=''
-
-#填入nas IP地址可以是域名(必填)
-nas_ip=''
-
-#填入nas保存路径(必填)
-nas_file=''
-
-#端口(默认即可，ssh端口有变填这里)
-port='22'
-EOF
 }
 
 start_script() {
@@ -1801,6 +1775,28 @@ push_if='1'
 weixin2=''
 
 **********************************************************************************
+
+################################################################
+                 backnas_config版本$backnas_config_version
+用于备份JD_script 到NAS 采用scp传输，请确保你的nas，ssh端口有打开
+################################################################
+#填入你的nas账号(必填)
+user=''
+
+#填入你nas的密码(密码和密钥必须填一个)
+password=''
+
+#填入你nas的密钥位置(可以留空)(密钥 > 密码,有密钥的情况优先使用密钥而不是密码)
+secret_key=''
+
+#填入nas IP地址可以是域名(必填)
+nas_ip=''
+
+#填入nas保存路径(必填)
+nas_file=''
+
+#端口(默认即可，ssh端口有变填这里)
+port='22'
 
 EOF
 }
