@@ -90,7 +90,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.32"
+	cron_version="4.33"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		
@@ -111,6 +111,7 @@ cat >>/etc/crontabs/root <<EOF
 0 0,6 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 0 8 * * * $node $dir_file_js/jd_bean_change.js 	#京东资产统计#100#
 0 */8 * * * $node $dir_file_js/jd_baglx.js	#红树林养育8小时执行一次#100#
+0 */2 * * * $node $dir_file_js/jd_kd_fruit.js			#快递种树两个小时执行一次#100#
 0 12,18 * * * $node $dir_file_js/jd_fruit_new.js #新农场，6-9点 11-14点 17-21点可以领水滴#100#
 0 20 * * * $node $dir_file_js/jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
 0 */4 * * * $node $dir_file_js/jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行#100#
@@ -186,269 +187,20 @@ update() {
 
 #faker2_script
 cat >$dir_file/config/tmp/faker2_script.txt <<EOF
-	jd_Advent_exchange.js	#临期京豆续命
-jd_Surprise_Red.js
-jd_UpdateUIDtoRemark.js
-jd_XinFarm_draw.js
-jd_XinFarm_helpnum.js
-jd_XinFarm_task.js
-jd_XinFarm_water.js
-jd_XinFarm_wxhelp.js
-jd_autock.js
-jd_baglx_sign.js
-jd_beanSign.js
-jd_beanday.js
-jd_beangame_sign.js
-jd_cacheIsvToken.js
-jd_car_draw.js
-jd_car_sign.js
-jd_cbdLottery.js
-jd_channel_follow.js
-jd_channel_venue_sign.js
-jd_chb.js
-jd_clean_cart.js
-jd_clean_coupon.js
-jd_clothing_beauty_sign.js
-jd_clothing_draw.js
-jd_completeInfoActivity.js
-jd_cp_draw.js
-jd_cxjhelp_draw.js
-jd_czs_draw.js
-jd_czs_help.js
-jd_daily.js
-jd_daily_bean.js
-jd_daily_yjd.js
-jd_day.js
-jd_daycj.js
-jd_dayf.js
-jd_dayf2.js
-jd_djggl_draw.js
-jd_dongDongFarm_help1.js
-jd_doudou.js
-jd_dplh0415.js
-jd_dplh0425.js
-jd_dplh0505.js
-jd_dplh_viewShop.js
-jd_dpqd_monitor.js
-jd_dpqd_record.js
-jd_drawCenter.js
-jd_drawShopGift.js
-jd_fanfanka.js
-jd_fanhaoli_draw.js
-jd_fanhaoli_help.js
-jd_fansDraw.js
-jd_fans_videofangrowth.js
-jd_fen2bean.js
-jd_follow.js
-jd_fruit_diyhelp.js
-jd_fruit_friend.js
-jd_fruit_help.js
-jd_fruit_task.js
-jd_fruit_watering.js
-jd_fz_draw.js
-jd_fzms_draw.js
-jd_fzmz_draw.js
-jd_gfjd_sign.js
-jd_gmart.js
-jd_gzsl_contact.js
-jd_gzsl_contactWare.js
-jd_gzsl_getLottery.js
-jd_gzsl_lottery.js
-jd_gzsl_shopGiftBag.js
-jd_healthCheck.js
-jd_healthy_task.js
-jd_huandou.js
-jd_jdjh.js
-jd_jdjoypark.js
-jd_jdzz_dh.js
-jd_jinggeng_blindBox.js
-jd_jinggeng_cart.js
-jd_jinggeng_drawOne.js
-jd_jinggeng_exchangeActDetail.js
-jd_jinggeng_favoriteShop.js
-jd_jinggeng_floor.js
-jd_jinggeng_loadBlindBox.js
-jd_jinggeng_perfectInformation.js
-jd_jinggeng_showCart.js
-jd_jinggeng_showDrawOne.js
-jd_jinggeng_showFavoriteShop.js
-jd_jinggeng_showInviteJoin.js
-jd_jinggeng_showPartition.js
-jd_jinggeng_showPerfectInformation.js
-jd_jinggeng_showSign.js
-jd_jinggeng_showTaskDraw.js
-jd_jinggeng_sign.js
-jd_jinggeng_taskDraw.js
-jd_jj_wwly.js
-jd_jj_wwly_help.js
-jd_joy_withdraw.js
-jd_joyrunred.js
-jd_jpt_draw.js
-jd_jr_fish_help.js
-jd_jr_sign.js
-jd_js_cash.js
-jd_jzfl_draw.js
-jd_kd_bean.js
-jd_kd_dlcs.js
-jd_kd_fruit.js
-jd_kd_qd.js
-jd_kd_task.js
-jd_kill_ck.js
-jd_ksjs.js
-jd_kuaid.js
-jd_kx_draw.js
-jd_kx_help.js
-jd_kx_jpdraw.js
-jd_kxbbp.js
-jd_live.js
-jd_liveLottery.js
-jd_lotterys.js
-jd_luck_draw.js
-jd_lxing_draw.js
-jd_lzaddCart.js
-jd_lzkj_lkFollowShop.js
-jd_lzkj_loreal_cart.js
-jd_lzkj_loreal_dailyGrabs.js
-jd_lzkj_loreal_daySign.js
-jd_lzkj_loreal_draw.js
-jd_lzkj_loreal_followGoods.js
-jd_lzkj_loreal_invite.js
-jd_lzkj_loreal_inviteFollowShop.js
-jd_lzkj_loreal_know.js
-jd_lzkj_loreal_lkFollowShop.js
-jd_lzkj_loreal_organizeTeam.js
-jd_lzkj_loreal_perfectInfo.js
-jd_lzkj_loreal_pointsExchange.js
-jd_lzkj_loreal_share.js
-jd_lzkj_loreal_shopGift.js
-jd_lzkj_loreal_sign.js
-jd_lzkj_organizeTeam.js
-jd_lzkj_perfectInfo.js
-jd_lzkj_pointsExchange.js
-jd_lzkj_share.js
-jd_lzkj_shopGift.js
-jd_lzkj_v2_birthday.js
-jd_lzkj_v2_cart.js
-jd_lzkj_v2_draw.js
-jd_lzkj_v2_perfectInfo.js
-jd_lzkj_v2_sign.js
-jd_lzkj_yili_medal.js
-jd_market_answer.js
-jd_market_draw.js
-jd_market_lottery.js
-jd_market_new.js
-jd_market_task.js
-jd_msSign.js
-jd_ms_draw.js
-jd_msdraw.js
-jd_mybbphdyh.js
-jd_mybbphdyh2.js
-jd_mybbphdyh2_give.js
-jd_mybbphdyh3.js
-jd_mybbphdyh3_give.js
-jd_mybbphdyh4.js
-jd_mybbphdyh4_give.js
-jd_mybbphdyh_give.js
-jd_notify.js
-jd_nzyq_draw.js
-jd_nzyq_help.js
-jd_opencard_0407.js
-jd_opencard_04071.js
-jd_opencard_0421.js
-jd_opencard_0423.js
-jd_opencard_0426.js
-jd_opencard_0428.js
-jd_opencard_gift.js
-jd_opencard_shopleague.js
-jd_pan_lottery.js
-jd_pcSign.js
-jd_plantBean_friend.js
-jd_plantBean_help1.js
-jd_plantBean_task.js
-jd_plus2bean.js
-jd_plus_blindbox.js
-jd_pluscore.js
-jd_pointExgBeans.js
-jd_pointExgECard.js
-jd_pointExgHb.js
-jd_pointExgShiWu.js
-jd_price.js
-jd_pro_lottery.js
-jd_pro_lottery_task.js
-jd_pro_sign.js
-jd_prodev.js
-jd_querryBeans.js
-jd_qy.js
-jd_qyhb.js
-jd_red618.js
-jd_red618_task.js
-jd_redRain.js
-jd_redrain_supermarket.js
-jd_seckillViewTask.js
-jd_seckill_viewTask.js
-jd_sendbeans.js
-jd_share2.js
-jd_shopSign.js
-jd_shop_lottery.js
-jd_shopping_red.js
-jd_sign.js
-jd_sj38_draw.js
-jd_star.js
-jd_super_zzj.js
-jd_super_zzj_exchange.js
-jd_superbrandhall.js
-jd_supermarket_draw.js
-jd_supermh.js
-jd_sx_draw.js
-jd_sx_help.js
-jd_tj_nnly.js
-jd_tj_qdtx.js
-jd_tj_ttlhb.js
-jd_tj_yqs.js
-jd_tower_collect.js
-jd_try.js
-jd_try_notify.js
-jd_txtotal.js
-jd_txzj_cart_item.js
-jd_txzj_collect_item.js
-jd_txzj_collect_shop.js
-jd_txzj_lottery.js
-jd_txzj_share_new.js
-jd_txzj_shop_gift.js
-jd_txzj_sign_in.js
-jd_unFollow.js
-jd_unsubscribeShop.js
-jd_video_shua.js
-jd_washbeans.js
-jd_wdzfd.js
-jd_wechat_openGroup.js
-jd_wechat_qd.js
-jd_wechat_signRedpacket.js
-jd_wechat_ttlzq.js
-jd_whx_drawShopGift.js
-jd_wrtred.js
-jd_wskey_logout.js
-jd_wxBuildActivity.js
-jd_wxCartKoi.js
-jd_wxCollectCard.js
-jd_wxCollectionActivity.js
-jd_wxCollectionActivity2.js
-jd_wxFansInterActionActivity.js
-jd_wxGameActivity.js
-jd_wxKnowledgeActivity.js
-jd_wxMcLevelAndBirthGifts.js
-jd_wxSecond.js
-jd_wxShareActivity.js
-jd_wxShopFollowActivity.js
-jd_wxShopGift.js
-jd_wxSign.js
-jd_wxSignPoint.js
-jd_wxSignRed.js
-jd_wxTeam.js
-jd_wxUnPackingActivity.js
-jd_wx_completeInfoActivity.js
-jd_wx_daily.js
-jd_wx_draw.js
+	jd_Advent_exchange.js		#临期京豆续命
+	jd_beanday.js			#天天领豆
+	jd_channel_follow.js		#频道关注
+	jd_channel_venue_sign.js	#频道场馆批量签到
+	jd_kd_bean.js			#快递领豆
+	jd_kd_fruit.js			#快递种树两个小时执行一次
+	jd_market_draw.js		#超市答题抽奖
+	jd_market_new.js		#超市新人奖励
+	jd_market_task.js		#超市做任务赚汪贝
+	jd_pro_sign.js			#频道签到
+	jd_seckillViewTask.js		#秒杀浏览商品领豆
+	jd_try.js			#京东试用
+	jd_try_notify.js		#京东试用通知
+	jd_wechat_signRedpacket.js	#京东微信签到红包
 EOF
 
 for script_name in `cat $dir_file/config/tmp/faker2_script.txt | grep -v "#.*js" | awk '{print $1}'`
@@ -662,6 +414,19 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_unsubscribe.js	#批量取消关注店铺
 	jd_OnceApply.js		#一键价保
 	jd_rmvcart.js		#清空购物车默认不执行清空购物车，清设置变量RMVCART='true
+	jd_Advent_exchange.js		#临期京豆续命
+	jd_beanday.js			#天天领豆
+	jd_channel_follow.js		#频道关注
+	jd_channel_venue_sign.js	#频道场馆批量签到
+	jd_kd_bean.js			#快递领豆
+	jd_market_draw.js		#超市答题抽奖
+	jd_market_new.js		#超市新人奖励
+	jd_market_task.js		#超市做任务赚汪贝
+	jd_pro_sign.js			#频道签到
+	jd_seckillViewTask.js		#秒杀浏览商品领豆
+	jd_try.js			#京东试用
+	jd_try_notify.js		#京东试用通知
+	jd_wechat_signRedpacket.js	#京东微信签到红包
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
 
@@ -1773,7 +1538,7 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install -g  crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	#安装python模块
