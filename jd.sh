@@ -90,7 +90,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.30"
+	cron_version="4.31"
 	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
 		echo "不存在计划任务开始设置"
 		
@@ -109,7 +109,10 @@ sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
 cat >>/etc/crontabs/root <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0,6 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-0 8 * * * $node $dir_file_js/jd_bean_info.js 	#京豆详情统计
+0 8 * * * $node $dir_file_js/jd_bean_info.js 	#京豆详情统计#100#
+0 12,18 * * * $node $dir_file_js/jd_fruit_new.js #新农场，6-9点 11-14点 17-21点可以领水滴#100#
+0 20 * * * $node $dir_file_js/jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
+0 */4 * * * $node $dir_file_js/jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行#100#
 50 23 * * * $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 20 12,22 * * * $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
