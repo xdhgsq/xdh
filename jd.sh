@@ -161,12 +161,20 @@ update() {
 		cp -r $dir_file/git_clone/6dylan6_script/* $dir_file_js
 	fi
 	
+	if [ ! -d $dir_file/git_clone/faker2_script ];then
+		echo ""
+		git clone https://github.com/shufflewzc/faker2.git $dir_file/git_clone/faker2_script
+	else
+		cd $dir_file/git_clone/faker2_script
+		git fetch --all
+		git reset --hard origin/main
+	fi
+
 	cp $openwrt_script_config/jdCookie.js $dir_file_js
 	
 	#临时删除之前的库
 	rm -rf $dir_file/git_clone/lxk0301_back
 	rm -rf $dir_file/git_clone/KingRan_script
-	rm -rf $dir_file/config/tmp/*
 
 	echo -e "${green} update$start_script_time ${white}"
 	echo -e "${green}开始下载JS脚本，请稍等${white}"
@@ -176,18 +184,278 @@ update() {
 	
 
 
-#6dylan6
-github_6dylan6_url_url="https://raw.githubusercontent.com/6dylan6/jdpro/refs/heads/main"
-cat >$dir_file/config/tmp/github_6dylan6_url_url.txt <<EOF
-	#空.js
+#faker2_script
+cat >$dir_file/config/tmp/faker2_script.txt <<EOF
+	jd_Advent_exchange.js	#临期京豆续命
+jd_Surprise_Red.js
+jd_UpdateUIDtoRemark.js
+jd_XinFarm_draw.js
+jd_XinFarm_helpnum.js
+jd_XinFarm_task.js
+jd_XinFarm_water.js
+jd_XinFarm_wxhelp.js
+jd_autock.js
+jd_baglx_sign.js
+jd_beanSign.js
+jd_beanday.js
+jd_beangame_sign.js
+jd_cacheIsvToken.js
+jd_car_draw.js
+jd_car_sign.js
+jd_cbdLottery.js
+jd_channel_follow.js
+jd_channel_venue_sign.js
+jd_chb.js
+jd_clean_cart.js
+jd_clean_coupon.js
+jd_clothing_beauty_sign.js
+jd_clothing_draw.js
+jd_completeInfoActivity.js
+jd_cp_draw.js
+jd_cxjhelp_draw.js
+jd_czs_draw.js
+jd_czs_help.js
+jd_daily.js
+jd_daily_bean.js
+jd_daily_yjd.js
+jd_day.js
+jd_daycj.js
+jd_dayf.js
+jd_dayf2.js
+jd_djggl_draw.js
+jd_dongDongFarm_help1.js
+jd_doudou.js
+jd_dplh0415.js
+jd_dplh0425.js
+jd_dplh0505.js
+jd_dplh_viewShop.js
+jd_dpqd_monitor.js
+jd_dpqd_record.js
+jd_drawCenter.js
+jd_drawShopGift.js
+jd_fanfanka.js
+jd_fanhaoli_draw.js
+jd_fanhaoli_help.js
+jd_fansDraw.js
+jd_fans_videofangrowth.js
+jd_fen2bean.js
+jd_follow.js
+jd_fruit_diyhelp.js
+jd_fruit_friend.js
+jd_fruit_help.js
+jd_fruit_task.js
+jd_fruit_watering.js
+jd_fz_draw.js
+jd_fzms_draw.js
+jd_fzmz_draw.js
+jd_gfjd_sign.js
+jd_gmart.js
+jd_gzsl_contact.js
+jd_gzsl_contactWare.js
+jd_gzsl_getLottery.js
+jd_gzsl_lottery.js
+jd_gzsl_shopGiftBag.js
+jd_healthCheck.js
+jd_healthy_task.js
+jd_huandou.js
+jd_jdjh.js
+jd_jdjoypark.js
+jd_jdzz_dh.js
+jd_jinggeng_blindBox.js
+jd_jinggeng_cart.js
+jd_jinggeng_drawOne.js
+jd_jinggeng_exchangeActDetail.js
+jd_jinggeng_favoriteShop.js
+jd_jinggeng_floor.js
+jd_jinggeng_loadBlindBox.js
+jd_jinggeng_perfectInformation.js
+jd_jinggeng_showCart.js
+jd_jinggeng_showDrawOne.js
+jd_jinggeng_showFavoriteShop.js
+jd_jinggeng_showInviteJoin.js
+jd_jinggeng_showPartition.js
+jd_jinggeng_showPerfectInformation.js
+jd_jinggeng_showSign.js
+jd_jinggeng_showTaskDraw.js
+jd_jinggeng_sign.js
+jd_jinggeng_taskDraw.js
+jd_jj_wwly.js
+jd_jj_wwly_help.js
+jd_joy_withdraw.js
+jd_joyrunred.js
+jd_jpt_draw.js
+jd_jr_fish_help.js
+jd_jr_sign.js
+jd_js_cash.js
+jd_jzfl_draw.js
+jd_kd_bean.js
+jd_kd_dlcs.js
+jd_kd_fruit.js
+jd_kd_qd.js
+jd_kd_task.js
+jd_kill_ck.js
+jd_ksjs.js
+jd_kuaid.js
+jd_kx_draw.js
+jd_kx_help.js
+jd_kx_jpdraw.js
+jd_kxbbp.js
+jd_live.js
+jd_liveLottery.js
+jd_lotterys.js
+jd_luck_draw.js
+jd_lxing_draw.js
+jd_lzaddCart.js
+jd_lzkj_lkFollowShop.js
+jd_lzkj_loreal_cart.js
+jd_lzkj_loreal_dailyGrabs.js
+jd_lzkj_loreal_daySign.js
+jd_lzkj_loreal_draw.js
+jd_lzkj_loreal_followGoods.js
+jd_lzkj_loreal_invite.js
+jd_lzkj_loreal_inviteFollowShop.js
+jd_lzkj_loreal_know.js
+jd_lzkj_loreal_lkFollowShop.js
+jd_lzkj_loreal_organizeTeam.js
+jd_lzkj_loreal_perfectInfo.js
+jd_lzkj_loreal_pointsExchange.js
+jd_lzkj_loreal_share.js
+jd_lzkj_loreal_shopGift.js
+jd_lzkj_loreal_sign.js
+jd_lzkj_organizeTeam.js
+jd_lzkj_perfectInfo.js
+jd_lzkj_pointsExchange.js
+jd_lzkj_share.js
+jd_lzkj_shopGift.js
+jd_lzkj_v2_birthday.js
+jd_lzkj_v2_cart.js
+jd_lzkj_v2_draw.js
+jd_lzkj_v2_perfectInfo.js
+jd_lzkj_v2_sign.js
+jd_lzkj_yili_medal.js
+jd_market_answer.js
+jd_market_draw.js
+jd_market_lottery.js
+jd_market_new.js
+jd_market_task.js
+jd_msSign.js
+jd_ms_draw.js
+jd_msdraw.js
+jd_mybbphdyh.js
+jd_mybbphdyh2.js
+jd_mybbphdyh2_give.js
+jd_mybbphdyh3.js
+jd_mybbphdyh3_give.js
+jd_mybbphdyh4.js
+jd_mybbphdyh4_give.js
+jd_mybbphdyh_give.js
+jd_notify.js
+jd_nzyq_draw.js
+jd_nzyq_help.js
+jd_opencard_0407.js
+jd_opencard_04071.js
+jd_opencard_0421.js
+jd_opencard_0423.js
+jd_opencard_0426.js
+jd_opencard_0428.js
+jd_opencard_gift.js
+jd_opencard_shopleague.js
+jd_pan_lottery.js
+jd_pcSign.js
+jd_plantBean_friend.js
+jd_plantBean_help1.js
+jd_plantBean_task.js
+jd_plus2bean.js
+jd_plus_blindbox.js
+jd_pluscore.js
+jd_pointExgBeans.js
+jd_pointExgECard.js
+jd_pointExgHb.js
+jd_pointExgShiWu.js
+jd_price.js
+jd_pro_lottery.js
+jd_pro_lottery_task.js
+jd_pro_sign.js
+jd_prodev.js
+jd_querryBeans.js
+jd_qy.js
+jd_qyhb.js
+jd_red618.js
+jd_red618_task.js
+jd_redRain.js
+jd_redrain_supermarket.js
+jd_seckillViewTask.js
+jd_seckill_viewTask.js
+jd_sendbeans.js
+jd_share2.js
+jd_shopSign.js
+jd_shop_lottery.js
+jd_shopping_red.js
+jd_sign.js
+jd_sj38_draw.js
+jd_star.js
+jd_super_zzj.js
+jd_super_zzj_exchange.js
+jd_superbrandhall.js
+jd_supermarket_draw.js
+jd_supermh.js
+jd_sx_draw.js
+jd_sx_help.js
+jd_tj_nnly.js
+jd_tj_qdtx.js
+jd_tj_ttlhb.js
+jd_tj_yqs.js
+jd_tower_collect.js
+jd_try.js
+jd_try_notify.js
+jd_txtotal.js
+jd_txzj_cart_item.js
+jd_txzj_collect_item.js
+jd_txzj_collect_shop.js
+jd_txzj_lottery.js
+jd_txzj_share_new.js
+jd_txzj_shop_gift.js
+jd_txzj_sign_in.js
+jd_unFollow.js
+jd_unsubscribeShop.js
+jd_video_shua.js
+jd_washbeans.js
+jd_wdzfd.js
+jd_wechat_openGroup.js
+jd_wechat_qd.js
+jd_wechat_signRedpacket.js
+jd_wechat_ttlzq.js
+jd_whx_drawShopGift.js
+jd_wrtred.js
+jd_wskey_logout.js
+jd_wxBuildActivity.js
+jd_wxCartKoi.js
+jd_wxCollectCard.js
+jd_wxCollectionActivity.js
+jd_wxCollectionActivity2.js
+jd_wxFansInterActionActivity.js
+jd_wxGameActivity.js
+jd_wxKnowledgeActivity.js
+jd_wxMcLevelAndBirthGifts.js
+jd_wxSecond.js
+jd_wxShareActivity.js
+jd_wxShopFollowActivity.js
+jd_wxShopGift.js
+jd_wxSign.js
+jd_wxSignPoint.js
+jd_wxSignRed.js
+jd_wxTeam.js
+jd_wxUnPackingActivity.js
+jd_wx_completeInfoActivity.js
+jd_wx_daily.js
+jd_wx_draw.js
 EOF
 
-for script_name in `cat $dir_file/config/tmp/github_6dylan6_url_url.txt | grep -v "#.*js" | awk '{print $1}'`
+for script_name in `cat $dir_file/config/tmp/faker2_script.txt | grep -v "#.*js" | awk '{print $1}'`
 do
-	echo "" 
-	#echo -e "${yellow} copy ${green}$script_name${white}"
-	#cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
-	#cp_if
+	echo -e "${yellow} copy ${green}$script_name${white}"
+	cp  $dir_file/git_clone/6dylan6_script/$script_name  $dir_file_js/$script_name
+	cp_if
 done
 
 sleep 5
@@ -236,7 +504,7 @@ done
 			cat $dir_file/config/tmp/wget_eeror.txt
 		fi
 	fi
-
+	rm -rf $dir_file/config/tmp/*
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 
 }
@@ -347,6 +615,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_newfarmlottery.js	#新农场幸运转盘
 	jd_zzhb_draw_new.js	#Jd转赚红包_抽奖
 	jd_zzhb_new.js		#Jd转赚红包2
+	jd_vu50.js		#V你50超市卡
 	jd_yqs.js		#摇钱树
 	jd_sq_draw.js		#社区抽奖
 	jd_msDraw.js		#秒送抽奖
@@ -382,7 +651,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_qqxing.js		#QQ星系牧场
 	jd_gwfd.js		#购物返豆领取
 	jx_fcwb_auto.js		#特价现金挖宝任务
-	jd_tjqd_new.js		#特价版签到提现新
 	jd_video_task.js	#看视频赚现金-任务
 	jd_video_view.js	#看视频赚现金-浏览
 	jd_wduoyu.js		#多投多赚
@@ -391,6 +659,8 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_y1y.js		#摇一摇每天19点开始
 	jd_mohe.js		#plus天天盲盒
 	jd_dwapp.js		#积分换话费
+	jd_unsubscribe.js	#批量取消关注店铺
+	jd_OnceApply.js		#一键价保
 	jd_rmvcart.js		#清空购物车默认不执行清空购物车，清设置变量RMVCART='true
 EOF
 	echo -e "${green} run_0$start_script_time ${white}"
