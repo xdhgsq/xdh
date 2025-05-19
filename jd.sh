@@ -318,6 +318,7 @@ EOF
 	{
 		$node $openwrt_script/JD_Script/js/$i
 		$run_sleep
+		sleep 5
 	}&
 	done
 }
