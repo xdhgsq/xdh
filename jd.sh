@@ -288,6 +288,13 @@ else
 	export NEWFRUITCODES = "ycXdOaS1kgvMCBcBeJ2tKaWY52FrSwgjLg&${NEWFRUITCODES}" #可指定助力码，多个用&分割，不指定则自动搜寻日志或缓存的助力码
 fi
 
+#种豆得豆助力
+if [ -z "$BEANCODES" ];then
+	export BEANCODES = "4npkonnsy7xi3n46rivf5vyrszud7yvj7hcdr5a" #可指定助力码，多个用&分割，不指定则自动搜寻日志或缓存的助力码
+else
+	export BEANCODES = "4npkonnsy7xi3n46rivf5vyrszud7yvj7hcdr5a&${NEWFRUITCODES}" #可指定助力码，多个用&分割，不指定则自动搜寻日志或缓存的助力码
+fi
+
 #欢乐挖宝助力
 if [ -z "$JD_FCWB_InviterId" ];then
 	export JD_FCWB_InviterId = "VYlzzuDz-Y8seOROZFxje-gusZ0qMCAXkWRSg4DzCCQ&6f5661eb762741e083c729da9af9ca4911971747585491086" 
@@ -300,6 +307,7 @@ fi
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_farmnew_code_help.js	#新农场code助力
 	jd_farmshare.js		#新农场小程序助力
+	jd_plantBean_help.js	#种豆得豆助力
 	jx_fcwb_help.js		#欢乐挖宝助力
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
