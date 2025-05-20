@@ -1571,7 +1571,7 @@ system_variable() {
 	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
 		#jdCookie.js
 		if [ ! -f "$openwrt_script_config/jdCookie.js" ]; then
-			cp  $dir_file/JSON/jdCookie.js  $openwrt_script_config/jdCookie.js
+			cp  $dir_file/back/JSON/jdCookie.js  $openwrt_script_config/jdCookie.js
 			rm -rf $dir_file_js/jdCookie.js #用于删除旧的链接
 			ln -s $openwrt_script_config/jdCookie.js $dir_file_js/jdCookie.js
 		fi
@@ -1584,7 +1584,7 @@ system_variable() {
 
 		#sendNotify.js
 		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
-			cp  $dir_file/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
+			cp  $dir_file/back/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
 			rm -rf $dir_file_js/sendNotify.js  #用于删除旧的链接
 			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
 		fi
@@ -1597,7 +1597,7 @@ system_variable() {
 
 		#sendNotify_ccwav.js
 		if [ ! -f "$openwrt_script_config/sendNotify_ccwav.js" ]; then
-			cp  $dir_file/JSON/sendNotify_ccwav.js $openwrt_script_config/sendNotify_ccwav.js
+			cp  $dir_file/back/JSON/sendNotify_ccwav.js $openwrt_script_config/sendNotify_ccwav.js
 			rm -rf $dir_file_js/sendNotify_ccwav.js  #用于删除旧的链接
 			ln -s $openwrt_script_config/sendNotify_ccwav.js $dir_file_js/sendNotify_ccwav.js
 		fi
@@ -1623,7 +1623,7 @@ system_variable() {
 
 		#ql.js
 		if [ ! -f "$openwrt_script_config/ql.js" ]; then
-			cp  $dir_file/JSON/ql.js $openwrt_script_config/ql.js
+			cp  $dir_file/back/JSON/ql.js $openwrt_script_config/ql.js
 			rm -rf $dir_file_js/ql.js  #用于删除旧的链接
 			ln -s $openwrt_script_config/ql.js $dir_file_js/ql.js
 		fi
@@ -1636,7 +1636,7 @@ system_variable() {
 
 		#USER_AGENTS.js
 		if [ ! -f "$openwrt_script_config/USER_AGENTS.js" ]; then
-			cp  $dir_file/JSON/USER_AGENTS.js $openwrt_script_config/USER_AGENTS.js
+			cp  $dir_file/back/JSON/USER_AGENTS.js $openwrt_script_config/USER_AGENTS.js
 			rm -rf $dir_file_js/USER_AGENTS.js #用于删除旧的链接
 			ln -s $openwrt_script_config/USER_AGENTS.js $dir_file_js/USER_AGENTS.js
 		fi
