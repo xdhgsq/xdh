@@ -1549,6 +1549,7 @@ npm_install() {
 }
 
 python_install() {
+	set -x
 	echo  "${green} 开始安装python模块${white}"
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo ""
