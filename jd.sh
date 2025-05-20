@@ -53,7 +53,7 @@ else
 	echo >$dir_file/Checkjs_Sckey.txt
 fi
 
-if [ "$dir_file" == "/usr/share/jd_openwrt_script/JD_Script" ];then
+if [ "$dir_file" -eq "/usr/share/jd_openwrt_script/JD_Script" ];then
 	SCKEY=$(grep "let SCKEY" $openwrt_script_config/sendNotify.js  | awk -F "'" '{print $2}')
 	if [ ! $SCKEY ];then
 		SCKEY=$(cat $openwrt_script_config/Checkjs_Sckey.txt)
@@ -1561,7 +1561,7 @@ system_variable() {
 		mkdir  /tmp/jd_tmp
 	fi
 
-	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
+	if [ "$dir_file" -eq "$openwrt_script/JD_Script" ];then
 		#jdCookie.js
 		if [ ! -f "$openwrt_script_config/jdCookie.js" ]; then
 			cp  $dir_file/JSON/jdCookie.js  $openwrt_script_config/jdCookie.js
@@ -1656,7 +1656,7 @@ system_variable() {
 
 	#添加系统变量
 	jd_script_path=$(cat /etc/profile | grep -o jd.sh | wc -l)
-	if [ "$jd_script_path" == "0" ]; then
+	if [ "$jd_script_path" -eq "0" ]; then
 		echo "export jd_file=$dir_file" >> /etc/profile
 		echo "export jd=$dir_file/jd.sh" >> /etc/profile
 		source /etc/profile
@@ -1748,7 +1748,7 @@ kill_index() {
 
 jd_openwrt_config() {
 	jd_openwrt_config_version="1.8"
-	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
+	if [ "$dir_file" -eq "$openwrt_script/JD_Script" ];then
 		jd_openwrt_config="$openwrt_script_config/jd_openwrt_script_config.txt"
 		if [ ! -f "$jd_openwrt_config" ]; then
 			jd_openwrt_config_description
