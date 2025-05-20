@@ -1649,32 +1649,6 @@ system_variable() {
 			rm -rf $dir_file_js/ql.js  #临时删除，解决最近不推送问题
 			ln -s $openwrt_script_config/ql.js $dir_file_js/ql.js
 		fi
-
-		#USER_AGENTS.js
-		if [ ! -f "$openwrt_script_config/USER_AGENTS.js" ]; then
-			cp  $dir_file/back/JSON/USER_AGENTS.js $openwrt_script_config/USER_AGENTS.js
-			rm -rf $dir_file_js/USER_AGENTS.js #用于删除旧的链接
-			ln -s $openwrt_script_config/USER_AGENTS.js $dir_file_js/USER_AGENTS.js
-		fi
-
-		#USER_AGENTS.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/USER_AGENTS.js" ]; then
-			rm -rf $dir_file_js/USER_AGENTS.js
-			ln -s $openwrt_script_config/USER_AGENTS.js $dir_file_js/USER_AGENTS.js
-		fi
-
-		#JS_USER_AGENTS.js
-		if [ ! -f "$openwrt_script_config/JS_USER_AGENTS.js" ]; then
-			cp  $dir_file/back/JSON/JS_USER_AGENTS.js $openwrt_script_config/JS_USER_AGENTS.js
-			rm -rf $dir_file_js/JS_USER_AGENTS.js #用于删除旧的链接
-			ln -s $openwrt_script_config/JS_USER_AGENTS.js $dir_file_js/JS_USER_AGENTS.js
-		fi
-
-		#JS_USER_AGENTS.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/JS_USER_AGENTS.js" ]; then
-			rm -rf $dir_file_js/JS_USER_AGENTS.js
-			ln -s $openwrt_script_config/JS_USER_AGENTS.js $dir_file_js/JS_USER_AGENTS.js
-		fi
 	fi
 
 	#添加系统变量
