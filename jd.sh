@@ -34,7 +34,6 @@ uname_if=$(uname -a | grep -o Ubuntu)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
-	cron_file="/etc/crontab"
 else
 	cron_file="/etc/crontabs/root"
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
@@ -106,9 +105,14 @@ task() {
 }
 
 task_add() {
-sed -i '/jd_fruit_help.js/d' /etc/crontabs/root >/dev/null 2>&1
-sed -i '/jd_try/d' /etc/crontabs/root >/dev/null 2>&1
-cat >>/etc/crontabs/root <<EOF
+if [ "$uname_if" = "Ubuntu" ];then
+	cron_file="/etc/crontab"
+else
+	cron_file="/etc/crontabs/root"
+fi
+sed -i '/jd_fruit_help.js/d' $cron_file >/dev/null 2>&1
+sed -i '/jd_try/d' $cron_file >/dev/null 2>&1
+cat >>$cron_file <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0,6 * * * $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 0 8 * * * $node $dir_file_js/jd_bean_change.js 	#京东资产统计#100#
@@ -125,6 +129,7 @@ cat >>/etc/crontabs/root <<EOF
 45 12,19 * * * $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
 ############100###########请将其他定时任务放到底下###############
 EOF
+
 	/etc/init.d/cron restart
 	cron_help="${yellow}定时任务更新完成，记得看下你的定时任务${white}"
 }
