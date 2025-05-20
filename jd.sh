@@ -34,6 +34,7 @@ uname_if=$(uname -a | grep -o Ubuntu)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
+	cron_file="/etc/crontab"
 else
 	cron_file="/etc/crontabs/root"
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
@@ -105,11 +106,6 @@ task() {
 }
 
 task_add() {
-if [ "$uname_if" = "Ubuntu" ];then
-	cron_file="/etc/crontab"
-else
-	cron_file="/etc/crontabs/root"
-fi
 sed -i '/jd_fruit_help.js/d' $cron_file >/dev/null 2>&1
 sed -i '/jd_try/d' $cron_file >/dev/null 2>&1
 cat >>$cron_file <<EOF
@@ -258,7 +254,7 @@ done
 	source /etc/profile
 	echo -e "${green} update$stop_script_time ${white}"
 	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
-		if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` == "0" ];then
+		if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` = "0" ];then
 			echo -e "${yellow}此次下载失败的脚本有以下：${white}"
 			cat $dir_file/config/tmp/wget_eeror.txt
 		fi
@@ -763,7 +759,7 @@ checktool() {
 		echo "负载情况：`uptime`"
 		echo ""
 		echo "进程状态："
-		if [ "$ps_check" == "0"  ];then
+		if [ "$ps_check" = "0"  ];then
 			echo ""
 			echo "	没有检测到并发进程"
 		else
@@ -785,7 +781,7 @@ getcookie() {
 
 addcookie() {
 	
-	if [ `cat /tmp/getcookie.txt | wc -l` == "1" ];then
+	if [ `cat /tmp/getcookie.txt | wc -l` = "1" ];then
 		clear
 		you_cookie=$(cat /tmp/getcookie.txt)
 		if [ -z $you_cookie ]; then
@@ -825,13 +821,13 @@ addcookie() {
 	echo -e "${yellow}\n开始为你查找是否存在这个cookie，有就更新，没有就新增。。。${white}\n"
 	sleep 2
 	if_you_cookie=$(cat /tmp/you_cookie.txt | wc -l)
-	if [ $if_you_cookie == "1" ];then
+	if [ $if_you_cookie = "1" ];then
 		you_cookie=$(cat /tmp/you_cookie.txt)
 		new_pt=$(echo $you_cookie)
 		pt_pin=$(echo $you_cookie | awk -F "pt_pin=" '{print $2}' | awk -F ";" '{print $1}')
 		pt_key=$(echo $you_cookie | awk -F "pt_key=" '{print $2}' | awk -F ";" '{print $1}')
 		you_remark=$(echo $you_cookie | awk -F "\/\/" '{print $2}')
-		if [ `echo "$pt_pin" | wc -l` == "1"  ] && [ `echo "$pt_key" | wc -l` == "1" ];then
+		if [ `echo "$pt_pin" | wc -l` = "1"  ] && [ `echo "$pt_key" | wc -l` = "1" ];then
 			addcookie_replace
 		else
 			echo "$pt_pin $pt_key　$you_remark $red异常${white}"
@@ -849,7 +845,7 @@ addcookie() {
 			pt_key=$(echo $you_cookie | awk -F "pt_key=" '{print $2}' | awk -F ";" '{print $1}')
 			you_remark=$(echo $you_cookie | awk -F "\/\/" '{print $2}')
 
-			if [ `echo "$pt_pin" | wc -l` == "1"  ] && [ `echo "$pt_key" | wc -l` == "1" ];then
+			if [ `echo "$pt_pin" | wc -l` = "1"  ] && [ `echo "$pt_key" | wc -l` = "1" ];then
 				addcookie_replace
 				sleep 2
 			else
@@ -862,7 +858,7 @@ addcookie() {
 	fi
 	del_expired_cookie
 
-	if [ `cat /tmp/getcookie.txt  | wc -l` == "1"  ];then
+	if [ `cat /tmp/getcookie.txt  | wc -l` = "1"  ];then
 		echo ""
 		rm -rf /tmp/getcookie.txt
 	else
@@ -874,7 +870,7 @@ addcookie() {
 }
 
 addcookie_replace(){
-	if [ `cat $openwrt_script_config/jdCookie.js | grep "$pt_pin;" | wc -l` == "1" ];then
+	if [ `cat $openwrt_script_config/jdCookie.js | grep "$pt_pin;" | wc -l` = "1" ];then
 		echo -e "${green}检测到 ${yellow}${pt_pin}${white} 已经存在，开始更新cookie。。${white}\n"
 		sleep 2
 		old_pt=$(cat $openwrt_script_config/jdCookie.js | grep "$pt_pin" | sed -e "s/',//g" -e "s/'//g")
@@ -887,7 +883,7 @@ addcookie_replace(){
 		sleep 2
 		cookie_quantity=$( cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l)
 		i=$(expr $cookie_quantity + 5)
-		if [ $i == "5" ];then
+		if [ $i = "5" ];then
 			sed -i "5a \  'pt_key=${pt_key};pt_pin=${pt_pin};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
 		else
 			sed -i "$i a\  'pt_key=${pt_key};pt_pin=${pt_pin};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
@@ -908,12 +904,12 @@ addcookie_replace(){
 addcookie_wait(){
 	echo ""
 	read -p "是否需要继续获取cookie（1.需要  2.不需要 ）：" cookie_continue
-	if [ "$cookie_continue" == "1" ];then
+	if [ "$cookie_continue" = "1" ];then
 		echo "请稍等。。。"
 		sleep 1
 		clear
 		addcookie
-	elif [ "$cookie_continue" == "2" ];then
+	elif [ "$cookie_continue" = "2" ];then
 		echo "退出脚本。。。"
 		exit 0
 	else
@@ -932,7 +928,7 @@ del_expired_cookie() {
 			#echo -e "$red$i${white}在$openwrt_script_config/jdCookie.js找不到"
 			echo "" >/dev/null 2>&1
 		else
-			if [ "$jd_cookie" == "$i" ];then
+			if [ "$jd_cookie" = "$i" ];then
 				#echo -e "${green}$i${white}在$openwrt_script_config/jdCookie.js正常存在"
 				echo "" >/dev/null 2>&1
 			else
@@ -973,10 +969,10 @@ delcookie() {
 		echo "---------------------------------------------------------------------------"
 		echo ""
 		read -p "是否需要删除cookie（1.需要  2.不需要 ）：" cookie_continue
-		if [ "$cookie_continue" == "1" ];then
+		if [ "$cookie_continue" = "1" ];then
 			echo "请稍等。。。"
 			delcookie
-		elif [ "$cookie_continue" == "2" ];then
+		elif [ "$cookie_continue" = "2" ];then
 			echo "退出脚本。。。"
 			exit 0
 		else
@@ -998,7 +994,7 @@ check_cooike() {
 	sed -i "1i\Cookie      添加时间      预计到期时间(不保证百分百准确)      备注" $openwrt_script_config/check_cookie.txt
 	Current_date=$(date +%Y-%m-%d)
 	Current_date_m=$(echo $Current_date | awk -F "-" '{print $2}')
-	if [ "$Current_date_m" == "12"  ];then
+	if [ "$Current_date_m" = "12"  ];then
 		Expiration_date=$(date +%Y-01-%d)
 	else
 		m=$(expr $Current_date_m + 1)
@@ -1058,7 +1054,7 @@ fi
 weixin_push() {
 current_time=$(date +%s)
 expireTime="7200"
-if [ $push_if == "3" ];then
+if [ $push_if = "3" ];then
 	weixinkey=$(grep "weixin2" $openwrt_script_config/jd_openwrt_script_config.txt | awk -F "'" '{print $2}')
 else
 	weixinkey=$(grep "let QYWX_AM" $openwrt_script_config/sendNotify.js | awk -F "'" '{print $2}')
@@ -1184,7 +1180,7 @@ that_day() {
 	fi
 	clear
 	git_branch=$(git branch -v | grep -o behind )
-	if [ "$git_branch" == "behind" ]; then
+	if [ "$git_branch" = "behind" ]; then
 		Script_status="建议更新"
 	else
 		Script_status="最新"
@@ -1227,7 +1223,7 @@ backnas() {
 	date_time=$(date +%Y-%m-%d-%H_%M)
 	back_file_name="script_${date_time}.tar.gz"
 	#判断所在文件夹
-	if [ "$dir_file" == "$openwrt_script/JD_Script" ];then
+	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
 		backnas_config_file="$jd_openwrt_config"
 		back_file_patch="$openwrt_script"
 		if [ ! -f "$jd_openwrt_config" ]; then
@@ -1243,7 +1239,7 @@ backnas() {
 
 	#判断config文件
 	backnas_config_version="1.0"
-	if [ `grep -o "backnas_config版本$backnas_config_version" $backnas_config_file |wc -l` == "0" ]; then
+	if [ `grep -o "backnas_config版本$backnas_config_version" $backnas_config_file |wc -l` = "0" ]; then
 		echo "backnas_config有变，开始更新"
 		backnas_config
 		echo "backnas计划任务设置完成"
@@ -1330,7 +1326,7 @@ backnas() {
 	echo "#########################################"
 
 	back_if=$(cat /tmp/backnas_if.log | sort -u )
-	if [ $back_if == "空" ];then
+	if [ $back_if = "空" ];then
 		echo ""
 		echo -e "$red重要参数为空 不执行备份操作，需要备份的，把参数填好,${white}填好以后运行${green} sh \$jd backnas ${white}测试一下是否正常${white}"
 		exit 0
@@ -1737,7 +1733,7 @@ index_js() {
 #后台默认运行index.js
 	openwrt_ip=$(ubus call network.interface.lan status | grep address  | grep -oE '([0-9]{1,3}.){3}[0-9]{1,3}')
 	index_if=$(ps -ww | grep "index.js" | grep -v grep | wc -l)
-	if [ $index_if == "1" ];then
+	if [ $index_if = "1" ];then
 		index_num="${yellow} 8.网页获取CK功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
 	else
 		echo -e "${green}启动网页获取CK功能${white}"
