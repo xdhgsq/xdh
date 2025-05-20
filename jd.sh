@@ -13,7 +13,7 @@ Source="$0"
 while [ -h "$Source"  ]; do
     dir_file="$( cd -P "$( dirname "$Source"  )" && pwd  )"
     Source="$(readlink "$Source")"
-    [[ $Source != /*  ]] && Source="$dir_file/$Source"
+    [ $Source != /*  ] && Source="$dir_file/$Source"
 done
 dir_file="$( cd -P "$( dirname "$Source"  )" && pwd  )"
 dir_file_js="$dir_file/js"
@@ -85,7 +85,7 @@ export DO_TEN_WATER_AGAIN="false"
 
 task() {
 	cron_version="4.33"
-	if [[ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]]; then
+	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]; then
 		echo "不存在计划任务开始设置"
 		
 		task_delete
@@ -270,7 +270,7 @@ update_if() {
 	else
 		num="1"
 		eeror_num="1"
-		while [[ ${num} -gt 0 ]]; do
+		while [ "${num}" -gt "0" ]; do
 			wget $url/$script_name -O $dir_file_js/$script_name
 			if [ $? -eq 0 ]; then
 				num=$(expr $num - 1)
@@ -503,7 +503,7 @@ jd_time()  {
 TimeError=2
 #copy SuperManito
  local Interface="https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5"
-    if [[ $(echo $(($(curl -sSL "${Interface}" | awk -F '\"' '{print$8}') - $(eval echo "$(date +%s)$(date +%N | cut -c1-3)"))) | sed "s|\-||g") -lt 10 ]]; then
+    if [ $(echo $(($(curl -sSL "${Interface}" | awk -F '\"' '{print$8}') - $(eval echo "$(date +%s)$(date +%N | cut -c1-3)"))) | sed "s|\-||g") -lt "10" ]; then
         echo -e "\n\033[32m------------ 检测到当前本地时间与京东服务器的时间差小于 10ms 因此不同步 ------------\033[0m\n"
     else
         echo -e "\n❖ 同步京东服务器时间"
@@ -523,7 +523,7 @@ TimeError=2
             ## 输出时间
             echo -e "\n京东时间戳：\033[34m${JDTimeStamp}\033[0m"
             echo -e "本地时间戳：\033[34m${LocalTimeStamp}\033[0m"
-            if [[ ${TimeDifference} -lt ${TimeError} ]]; then
+            if [ ${TimeDifference} -lt ${TimeError} ]; then
                 echo -e "\n\033[32m------------ 同步完成 ------------\033[0m\n"
                 if [ -s /etc/apt/sources.list ]; then
                     #apt-get install -y figlet toilet >/dev/null
@@ -553,11 +553,11 @@ TimeError=2
 
 concurrent_js_update() {
 	if [ "$ccr_if" == "yes" ];then
-		if [[ ! -d "$ccr_js_file" ]]; then
+		if [ ! -d "$ccr_js_file" ]; then
 			mkdir  $ccr_js_file
 		fi
 	else
-		if [[ ! -d "$ccr_js_file" ]]; then
+		if [ ! -d "$ccr_js_file" ]; then
 			echo ""
 		else
 			rm -rf $ccr_js_file
@@ -726,7 +726,7 @@ concurrent_js_if() {
 			;;
 		esac
 
-		if [[ -z $action2 ]]; then
+		if [ -z $action2 ]; then
 			echo ""
 		else
 			case "$action2" in
@@ -775,7 +775,7 @@ addcookie() {
 	if [ `cat /tmp/getcookie.txt | wc -l` == "1" ];then
 		clear
 		you_cookie=$(cat /tmp/getcookie.txt)
-		if [[ -z $you_cookie ]]; then
+		if [ -z $you_cookie ]; then
 			echo -e "$red cookie为空值，不做其他操作。。。${white}"
 			exit 0
 		else
@@ -801,7 +801,7 @@ addcookie() {
 		echo -e "${yellow} 请不要乱输，如果输错了可以用${green} sh \$jd delcookie${yellow}删除,\n 或者你手动去${green}$openwrt_script_config/jdCookie.js${yellow}删除也行\n${white}"
 		echo "---------------------------------------------------------------------------"
 		read -p "请填写你获取到的cookie(一次只能一个cookie,多个cookie要用＆连接起来)：" you_cookie
-		if [[ -z $you_cookie ]]; then
+		if [ -z $you_cookie ]; then
 			echo -e "$red请不要输入空值。。。${white}"
 			exit 0
 		fi
@@ -947,7 +947,7 @@ delcookie() {
 		echo "---------------------------------------------------------------------------"
 		echo ""
 		read -p "请填写你要删除的cookie（// 备注 或者pt_pin 名都行）：" you_cookie
-		if [[ -z $you_cookie ]]; then
+		if [ -z $you_cookie ]; then
 			echo -e "$red请不要输入空值。。。${white}"
 			exit 0
 		fi
@@ -1033,7 +1033,7 @@ else
 	echo -e "${green} server酱开始推送$title${white}"
 	curl -s "http://sc.ftqq.com/$SCKEY.send?text=$title++`date +%Y-%m-%d`++`date +%H:%M`" -d "&desp=$server_content" >/dev/null 2>&1
 
-	if [[ $? -eq 0 ]]; then
+	if [ $? -eq 0 ]; then
 		echo -e "${green} server酱推送完成${white}"
 	else
 		echo -e "$red server酱推送失败。请检查报错代码$title${white}"
@@ -1093,7 +1093,7 @@ fi
 	echo -e "${green} 企业微信开始推送$title${white}"
 	curl -s "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$access_token" -d "$msg_body"
 
-	if [[ $? -eq 0 ]]; then
+	if [ $? -eq "0" ]; then
 		echo -e "${green} 企业微信推送成功$title${white}"
 	else
 		echo -e "$red 企业微信推送失败。请检查报错代码$title${white}"
@@ -1158,10 +1158,10 @@ checklog() {
 #检测当天更新情况并推送
 that_day() {
 	 wget -t 1 -T 20 https://raw.githubusercontent.com/xdhgsq/xdh/main/README.md -O /tmp/test_README.md
-	if [[ $? -eq 0 ]]; then
+	if [ $? -eq 0 ]; then
 		cd $dir_file
 		git fetch
-		if [[ $? -eq 0 ]]; then
+		if [ $? -eq "0" ]; then
 			echo ""
 		else
 			echo "请检查你的网络，github更新失败，建议科学上网"
@@ -1171,7 +1171,7 @@ that_day() {
 	fi
 	clear
 	git_branch=$(git branch -v | grep -o behind )
-	if [[ "$git_branch" == "behind" ]]; then
+	if [ "$git_branch" == "behind" ]; then
 		Script_status="建议更新"
 	else
 		Script_status="最新"
@@ -1404,7 +1404,7 @@ help() {
 	echo "稍等一下，正在取回远端脚本源码，用于比较现在脚本源码，速度看你网络"
 	cd $dir_file
 	git fetch
-	if [[ $? -eq 0 ]]; then
+	if [ $? -eq "0" ]; then
 		echo ""
 	else
 		echo -e "$red>> 取回分支没有成功，重新执行代码${white}"
@@ -1412,7 +1412,7 @@ help() {
 	fi
 	clear
 	git_branch=$(git branch -v | grep -o behind )
-	if [[ "$git_branch" == "behind" ]]; then
+	if [ "$git_branch" == "behind" ]; then
 		Script_status="$red建议更新${white} (可以运行${green} sh \$jd update_script && sh \$jd update && source /etc/profile && sh \$jd ${white}更新 )"
 	else
 		Script_status="${green}最新${white}"
@@ -1549,15 +1549,15 @@ python_install() {
 
 system_variable() {
 
-	if [[ ! -d "$dir_file/config/tmp" ]]; then
+	if [ ! -d "$dir_file/config/tmp" ]; then
 		mkdir -p $dir_file/config/tmp
 	fi
 	
-	if [[ ! -d "$dir_file/js" ]]; then
+	if [ ! -d "$dir_file/js" ]; then
 		mkdir  $dir_file/js
 	fi
 
-	if [[ ! -d "/tmp/jd_tmp" ]]; then
+	if [ ! -d "/tmp/jd_tmp" ]; then
 		mkdir  /tmp/jd_tmp
 	fi
 
@@ -1656,7 +1656,7 @@ system_variable() {
 
 	#添加系统变量
 	jd_script_path=$(cat /etc/profile | grep -o jd.sh | wc -l)
-	if [[ "$jd_script_path" == "0" ]]; then
+	if [ "$jd_script_path" == "0" ]; then
 		echo "export jd_file=$dir_file" >> /etc/profile
 		echo "export jd=$dir_file/jd.sh" >> /etc/profile
 		source /etc/profile
@@ -1703,7 +1703,7 @@ checkjs_tg() {
 
 pj() {
 	pj_ck_num=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt |wc -l)
-	pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk -F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[[:space:]]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
+	pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk -F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[:space:]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 	if [ -f $dir_file/js/pinjia-amd64 ];then
 		clear
 		echo -e "$green开始进行评价,你一共有$pj_ck_num个账号$white"
@@ -1837,7 +1837,7 @@ EOF
 system_variable
 action1="$1"
 action2="$2"
-if [[ -z $action1 ]]; then
+if [ -z $action1 ]; then
 	help
 else
 	case "$action1" in
@@ -1856,7 +1856,7 @@ else
 		;;
 	esac
 
-	if [[ -z $action2 ]]; then
+	if [ -z $action2 ]; then
 		echo ""
 	else
 		case "$action2" in
