@@ -26,7 +26,6 @@ ccr_js_file="$dir_file/ccr_js"
 run_sleep=$(sleep 1)
 
 version="2.3"
-cron_file="/etc/crontabs/root"
 node="/usr/bin/node"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
@@ -35,7 +34,9 @@ uname_if=$(uname -a | grep -o Ubuntu)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
+	cron_file="/etc/crontab"
 else
+	cron_file="/etc/crontabs/root"
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
 	wan_ip=$(cat /etc/config/network | grep "wan" | wc -l)
 	if [ ! $wan_ip ];then
@@ -92,7 +93,7 @@ export DO_TEN_WATER_AGAIN="false"
 
 task() {
 	cron_version="4.33"
-	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` == "0" ]; then
+	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
 		task_delete
@@ -559,7 +560,7 @@ TimeError=2
 }
 
 concurrent_js_update() {
-	if [ "$ccr_if" == "yes" ];then
+	if [ "$ccr_if" = "yes" ];then
 		if [ ! -d "$ccr_js_file" ]; then
 			mkdir  $ccr_js_file
 		fi
@@ -571,7 +572,7 @@ concurrent_js_update() {
 		fi
 	fi
 
-	if [ "$ccr_if" == "yes" ];then
+	if [ "$ccr_if" = "yes" ];then
 		js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
 		echo -e "${green}>> 你有$js_amount个ck要创建并发文件夹${white}"
 		start_date=$(date +%s)
@@ -1506,7 +1507,7 @@ additional_settings() {
 	done
 	wait
 
-	if [ `cat $openwrt_script_config/sendNotify.js | grep "采用lxk0301开源JS脚本" | wc -l` == "0" ];then
+	if [ `cat $openwrt_script_config/sendNotify.js | grep "采用lxk0301开源JS脚本" | wc -l` = "0" ];then
 	sed -i "s/本脚本开源免费使用 By：https:\/\/gitee.com\/lxk0301\/jd_docker/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
 	sed -i "s/本脚本开源免费使用 By：https:\/\/github.com\/LXK0301\/jd_scripts/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
 	fi
@@ -1767,7 +1768,7 @@ jd_openwrt_config() {
 		fi
 	fi
 
-	if [ `grep "jd_openwrt_config $jd_openwrt_config_version" $jd_openwrt_config |wc -l` == "1"  ];then
+	if [ `grep "jd_openwrt_config $jd_openwrt_config_version" $jd_openwrt_config |wc -l` = "1"  ];then
 		jd_config_version="${green} jd_config最新 ${yellow}$jd_openwrt_config${white}"
 	else
 		jd_config_version="$red jd_config与新版不一致，请手动更新，更新办法先备份旧的jd_openwrt_config.txt/n，删除${green} rm -rf $jd_openwrt_config${white}然后更新一下脚本,再进去重新设置一下"
