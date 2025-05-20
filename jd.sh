@@ -265,7 +265,7 @@ done
 	fi
 	rm -rf $dir_file/config/tmp/*
 	task #更新完全部脚本顺便检查一下计划任务是否有变
-	exit 0
+	
 }
 
 cp_if() {
@@ -501,7 +501,7 @@ Tjs()	{
 	#测试模块
 	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "sendNotify_ccwav.js|sendNotify.js|ql.js|jd_CheckCK.js|jdCookie.js|USER_AGENTS.js|JS_USER_AGENTS.js|JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
 		echo -e "${green}>>>开始执行${yellow}$i${white}"
-		if [ `echo "$i" | grep -o "py"| wc -l` == "1" ];then
+		if [ `echo "$i" | grep -o "py"| wc -l` = "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
 		else
 			$node $jd_file/ccr_js/js_1/$i &
@@ -626,7 +626,7 @@ concurrent_js_update() {
 }
 
 concurrent_js_clean(){
-		if [ "$ccr_if" == "yes" ];then
+		if [ "$ccr_if" = "yes" ];then
 			echo -e "${yellow}收尾一下${white}"
 			for i in `ps -ww | grep "$action" | grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}'`
 			do
@@ -637,9 +637,9 @@ concurrent_js_clean(){
 }
 
 kill_ccr() {
-	if [ "$ccr_if" == "yes" ];then
+	if [ "$ccr_if" = "yes" ];then
 		echo -e "${green}>>终止并发程序启动。请稍等。。。。${white}"
-		if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` == "0" ];then
+		if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` = "0" ];then
 			sleep 2
 			echo ""
 			echo -e "${green}我曾经跨过山和大海，也穿过人山人海。。。${white}"
@@ -658,7 +658,7 @@ kill_ccr() {
 			concurrent_js_clean
 			clear
 			echo -e "${green}再次检测一下并发程序是否还有存在${white}"
-			if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` == "0" ];then
+			if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` = "0" ];then
 				echo -e "${yellow}>>并发程序已经全部结束${white}"
 			else
 				echo -e "${yellow}！！！检测到并发程序还有存在，再继续杀，请稍等。。。${white}"
@@ -696,7 +696,7 @@ if_ps() {
 	sleep $num1
 
 	echo ""
-	if [ "$process_num" == "0" ];then
+	if [ "$process_num" = "0" ];then
 		echo -e "${yellow}>>并发程序已经结束${white}"
 	else
 		sleep $num1
@@ -722,7 +722,7 @@ concurrent_js() {
 }
 
 concurrent_js_if() {
-	if [ "$ccr_if" == "yes" ];then
+	if [ "$ccr_if" = "yes" ];then
 		echo -e "${green}>>检测到开启了账号并发模式${white}"
 		case "$action1" in
 		run_0)
@@ -1425,7 +1425,7 @@ help() {
 	fi
 	clear
 	git_branch=$(git branch -v | grep -o behind )
-	if [ "$git_branch" == "behind" ]; then
+	if [ "$git_branch" = "behind" ]; then
 		Script_status="$red建议更新${white} (可以运行${green} sh \$jd update_script && sh \$jd update && source /etc/profile && sh \$jd ${white}更新 )"
 	else
 		Script_status="${green}最新${white}"
