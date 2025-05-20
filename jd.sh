@@ -348,6 +348,8 @@ EOF
 		sleep $num
 		$node $openwrt_script/JD_Script/js/$i
 		$run_sleep
+		wait
+		echo  "${green} ccr_run $stop_script_time ${white}"
 	}&
 	done
 }
@@ -444,8 +446,9 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	echo  "${green} run_0$stop_script_time ${white}"
 	ccr_run
+	wait
+	echo  "${green} run_0$stop_script_time ${white}"
 }
 
 
