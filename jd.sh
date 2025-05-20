@@ -30,15 +30,23 @@ cron_file="/etc/crontabs/root"
 node="/usr/bin/node"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
-sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
+uname_if=$(uname -a | grep -o Ubuntu)
 
-wan_ip=$(cat /etc/config/network | grep "wan" | wc -l)
-if [ ! $wan_ip ];then
-	wan_ip="找不到Wan IP"
+if [ "$uname_if" -eq "Ubuntu" ];then
+	echo "当前环境为ubuntu"
 else
-	wan_ip=$(ubus call network.interface.wan status | grep \"address\" | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
+	wan_ip=$(cat /etc/config/network | grep "wan" | wc -l)
+	if [ ! $wan_ip ];then
+		wan_ip="找不到Wan IP"
+	else
+		wan_ip=$(ubus call network.interface.wan status | grep \"address\" | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')
+	fi
+
 fi
+
+
 
 #Server酱
 wrap="%0D%0A%0D%0A" #Server酱换行
@@ -67,7 +75,6 @@ weixin_line="------------------------------------------------"
 
 start_script_time="脚本开始运行，当前时间：`date "+%Y-%m-%d %H:%M"`"
 stop_script_time="脚本结束，当前时间：`date "+%Y-%m-%d %H:%M"`"
-script_read=$(cat $dir_file/script_read.txt | grep "我已经阅读脚本说明"  | wc -l)
 
 export JD_JOY_REWARD_NAME="500"
 
