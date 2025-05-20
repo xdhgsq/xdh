@@ -1610,7 +1610,7 @@ system_variable() {
 
 		#CK_WxPusherUid.json
 		if [ ! -f "$openwrt_script_config/CK_WxPusherUid.json" ]; then
-			cp  $dir_file/JSON/CK_WxPusherUid.json $openwrt_script_config/CK_WxPusherUid.json
+			cp  $dir_file/back/JSON/CK_WxPusherUid.json $openwrt_script_config/CK_WxPusherUid.json
 			rm -rf $dir_file_js/CK_WxPusherUid.json  #用于删除旧的链接
 			ln -s $openwrt_script_config/CK_WxPusherUid.json $dir_file_js/CK_WxPusherUid.json
 		fi
@@ -1649,7 +1649,7 @@ system_variable() {
 
 		#JS_USER_AGENTS.js
 		if [ ! -f "$openwrt_script_config/JS_USER_AGENTS.js" ]; then
-			cp  $dir_file/git_clone/lxk0301_back/JS_USER_AGENTS.js $openwrt_script_config/JS_USER_AGENTS.js
+			cp  $dir_file/back/JSON/JS_USER_AGENTS.js $openwrt_script_config/JS_USER_AGENTS.js
 			rm -rf $dir_file_js/JS_USER_AGENTS.js #用于删除旧的链接
 			ln -s $openwrt_script_config/JS_USER_AGENTS.js $dir_file_js/JS_USER_AGENTS.js
 		fi
