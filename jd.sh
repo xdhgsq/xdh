@@ -30,7 +30,7 @@ node="/usr/bin/node"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
-uname_if=$(uname -a | grep -o Ubuntu)
+uname_if=$(cat /etc/profile | grep -o Ubuntu)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
@@ -131,7 +131,7 @@ EOF
 }
 
 task_delete() {
-        sed -i '/#100#/d' /etc/crontabs/root >/dev/null 2>&1
+        sed -i '/#100#/d' $cron_file >/dev/null 2>&1
 }
 
 ds_setup() {
@@ -1400,7 +1400,7 @@ start_script() {
 stop_script() {
 	echo  "${green} 删掉定时任务，这样就不会定时运行脚本了${white}"
 	task_delete
-	sed -i '/#120#/d' /etc/crontabs/root >/dev/null 2>&1
+	sed -i '/#120#/d' $cron_file >/dev/null 2>&1
 	sleep 3
 	killall -9 node 
 	echo  "${green}处理完成，需要重新启用，重新跑脚本${yellow}sh \$jd start_script$green就会添加定时任务了${white}"
@@ -1464,7 +1464,7 @@ help() {
 	echo "  "
 	echo ""
 	echo  "${yellow}   检测定时任务:${white} $cron_help"
-	echo  "${yellow}   定时任务路径:${white}${green}/etc/crontabs/root${white}"
+	echo  "${yellow}   定时任务路径:${white}${green}$cron_file${white}"
 	echo  "${yellow}   检测脚本是否最新:${white} $Script_status "
 	echo  "${yellow}   JD_Script报错你可以反馈到这里:${white}${green} https://github.com/xdhgsq/xdh/issues${white}"
 	echo ""
