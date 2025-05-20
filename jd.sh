@@ -30,7 +30,7 @@ node="/usr/bin/node"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
-uname_if=$(cat /etc/profile | grep -o Ubuntu)
+uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
@@ -1549,7 +1549,6 @@ npm_install() {
 }
 
 python_install() {
-	set -x
 	echo  "${green} 开始安装python模块${white}"
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo ""
