@@ -1551,8 +1551,13 @@ npm_install() {
 
 python_install() {
 	echo -e "${green} 开始安装python模块${white}"
-	python3 $dir_file/get-pip.py
-	pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple jieba requests rsa
+	if [ "$uname_if" = "Ubuntu" ];then
+		echo ""
+	else
+		python3 $dir_file/get-pip.py
+		pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple jieba requests rsa
+
+	fi
 	echo -e "${green}命令执行完成，如果一直报错我建议你重置系统或者重新编译重新刷${white}"
 }
 
