@@ -343,9 +343,11 @@ EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
 	{
+		num=$($python3 $dir_file/jd_random.py 30,1)
+		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
+		sleep $num
 		$node $openwrt_script/JD_Script/js/$i
 		$run_sleep
-		sleep 5
 	}&
 	done
 }
@@ -436,7 +438,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_0 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$($python3 $dir_file/jd_random.py 20,1)
+		num=$($python3 $dir_file/jd_random.py 30,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
