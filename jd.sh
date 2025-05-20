@@ -175,6 +175,7 @@ update() {
 	fi
 
 	cp $openwrt_script_config/jdCookie.js $dir_file_js
+	cp $openwrt_script_config/sendNotify.js $dir_file_js
 	
 	#临时删除之前的库
 	rm -rf $dir_file/git_clone/lxk0301_back
@@ -1439,7 +1440,9 @@ help() {
 	echo ""
 	echo  "${yellow} 2.推送到手机${white}"
 	echo ""
-	echo  "${green}  填写/usr/share/jd_openwrt_script/script_config/jd_openwrt_script_config.txt ${white} "
+	echo  "${green}  填写$openwrt_script_config/sendNotify.js${white} (必须填写)"
+	echo ""
+	echo  "${green}  填写/usr/share/jd_openwrt_script/script_config/jd_openwrt_script_config.txt ${white}（按需填写） "
 	echo ""
 	echo  "${yellow} 3.测试是否能正常使用${white}"
 	echo ""
@@ -1598,32 +1601,6 @@ system_variable() {
 			ln -s $openwrt_script_config/jdCookie.js $dir_file_js/jdCookie.js
 		fi
 
-		#sendNotify.js
-		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
-			cp  $dir_file/back/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
-			rm -rf $dir_file_js/sendNotify.js  #用于删除旧的链接
-			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
-		fi
-
-		#sendNotify.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/sendNotify.js" ]; then
-			rm -rf $dir_file_js/sendNotify.js  #临时删除，解决最近不推送问题
-			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
-		fi
-
-		#sendNotify_ccwav.js
-		if [ ! -f "$openwrt_script_config/sendNotify_ccwav.js" ]; then
-			cp  $dir_file/back/JSON/sendNotify_ccwav.js $openwrt_script_config/sendNotify_ccwav.js
-			rm -rf $dir_file_js/sendNotify_ccwav.js  #用于删除旧的链接
-			ln -s $openwrt_script_config/sendNotify_ccwav.js $dir_file_js/sendNotify_ccwav.js
-		fi
-
-		#sendNotify_ccwav.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/sendNotify_ccwav.js" ]; then
-			rm -rf $dir_file_js/sendNotify_ccwav.js  #临时删除，解决最近不推送问题
-			ln -s $openwrt_script_config/sendNotify_ccwav.js $dir_file_js/sendNotify_ccwav.js
-		fi
-
 		#CK_WxPusherUid.json
 		if [ ! -f "$openwrt_script_config/CK_WxPusherUid.json" ]; then
 			cp  $dir_file/back/JSON/CK_WxPusherUid.json $openwrt_script_config/CK_WxPusherUid.json
@@ -1749,11 +1726,6 @@ jd_openwrt_config() {
 		jd_openwrt_config="$openwrt_script_config/jd_openwrt_script_config.txt"
 		if [ ! -f "$jd_openwrt_config" ]; then
 			jd_openwrt_config_description
-		fi
-		#jd_openwrt_script_config用于升级以后恢复链接
-		if [ ! -L "$dir_file/config/jd_openwrt_script_config.txt" ]; then
-			rm rf $dir_file/config/jd_openwrt_script_config.txt
-			ln -s $jd_openwrt_config $dir_file/config/jd_openwrt_script_config.txt
 		fi
 	fi
 
