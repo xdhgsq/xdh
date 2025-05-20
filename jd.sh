@@ -180,8 +180,8 @@ update() {
 	rm -rf $dir_file/git_clone/lxk0301_back
 	rm -rf $dir_file/git_clone/KingRan_script
 
-	echo -e "${green} update$start_script_time ${white}"
-	echo -e "${green}开始下载JS脚本，请稍等${white}"
+	echo  "${green} update$start_script_time ${white}"
+	echo  "${green}开始下载JS脚本，请稍等${white}"
 #cat script_name.txt | awk '{print length, $0}' | sort -rn | sed 's/^[0-9]\+ //'按照文件名长度降序：
 #cat script_name.txt | awk '{print length, $0}' | sort -n | sed 's/^[0-9]\+ //' 按照文件名长度升序
 
@@ -208,7 +208,7 @@ EOF
 
 for script_name in `cat $dir_file/config/tmp/faker2_script.txt | grep -v "#.*js" | awk '{print $1}'`
 do
-	echo -e "${yellow} copy ${green}$script_name${white}"
+	echo  "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/faker2_script/$script_name  $dir_file_js/$script_name
 	cp_if
 done
@@ -236,7 +236,7 @@ done
 
 
 	if [ $? -eq 0 ]; then
-		echo -e ">>${green}脚本下载完成${white}"
+		echo  ">>${green}脚本下载完成${white}"
 	else
 		clear
 		echo "脚本下载没有成功，重新执行代码"
@@ -252,10 +252,10 @@ done
 	additional_settings
 	concurrent_js_update
 	source /etc/profile
-	echo -e "${green} update$stop_script_time ${white}"
+	echo  "${green} update$stop_script_time ${white}"
 	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
 		if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` = "0" ];then
-			echo -e "${yellow}此次下载失败的脚本有以下：${white}"
+			echo  "${yellow}此次下载失败的脚本有以下：${white}"
 			cat $dir_file/config/tmp/wget_eeror.txt
 		fi
 	fi
@@ -266,7 +266,7 @@ done
 
 cp_if() {
 	if [ $? -eq 0 ]; then
-			echo -e ""
+			echo  ""
 	else
 		echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
 	fi
@@ -275,7 +275,7 @@ cp_if() {
 
 update_if() {
 	if [ $? -eq 0 ]; then
-			echo -e ""
+			echo  ""
 	else
 		num="1"
 		eeror_num="1"
@@ -289,7 +289,7 @@ update_if() {
 					num=$(expr $num - 1)
 					echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
 				else
-					echo -e ">> ${yellow}$script_name${white}下载失败,开始尝试第$eeror_num次下载，3次下载失败就不再重试。"
+					echo  ">> ${yellow}$script_name${white}下载失败,开始尝试第$eeror_num次下载，3次下载失败就不再重试。"
 					eeror_num=$(expr $eeror_num + 1)
 				fi
 			fi
@@ -298,11 +298,11 @@ update_if() {
 }
 
 update_script() {
-	echo -e "${green} update_script$start_script_time ${white}"
+	echo  "${green} update_script$start_script_time ${white}"
 	cd $dir_file
 	git fetch --all
 	git reset --hard origin/main
-	echo -e "${green} update_script$stop_script_time ${white}"
+	echo  "${green} update_script$stop_script_time ${white}"
 }
 
 
@@ -430,7 +430,7 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_try_notify.js		#京东试用通知
 	jd_wechat_signRedpacket.js	#京东微信签到红包
 EOF
-	echo -e "${green} run_0$start_script_time ${white}"
+	echo  "${green} run_0$start_script_time ${white}"
 
 	for i in `cat /tmp/jd_tmp/run_0 | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -440,7 +440,7 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	echo -e "${green} run_0$stop_script_time ${white}"
+	echo  "${green} run_0$stop_script_time ${white}"
 	ccr_run
 }
 
@@ -455,31 +455,31 @@ file_num=$(ls $ccr_js_file | wc -l)
 	while [ ${file_num} -gt ${num} ]; do
 		ps_speed=$(ps -ww |grep "jd_speed_sign.js" | grep -v grep | wc -l)
 		if [ "$ps_speed" -gt "$ck_num" ];then
-			echo -e "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个，${white}已满$ck_num个暂时不跑了"
+			echo  "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个，${white}已满$ck_num个暂时不跑了"
 			while true; do
 				if [ ${num} -gt ${file_num} ];then
-					echo -e "${green}所有账号已经跑完了，停止脚本${white}"
+					echo  "${green}所有账号已经跑完了，停止脚本${white}"
 					break
 				else
 					if [ "$ps_speed" -gt "$ck_num" ];then
 						if [ ${num} -gt ${file_num} ];then
-							echo -e "${green}所有账号已经跑完了，停止脚本${white}"
+							echo  "${green}所有账号已经跑完了，停止脚本${white}"
 							break
 						else
-							echo -e "${green}开始休息60秒以后再干活${white}"
+							echo  "${green}开始休息60秒以后再干活${white}"
 							sleep 60
 						fi
 					else
-						echo -e "${yellow}休息结束开始干活${white}"
+						echo  "${yellow}休息结束开始干活${white}"
 						break
 					fi
 				fi
 			done
 		else
-			echo -e "${green}开始跑${yellow}js_${num}${green}文件里的jd_speed_sign.js${white}"
+			echo  "${green}开始跑${yellow}js_${num}${green}文件里的jd_speed_sign.js${white}"
 			$node $ccr_js_file/js_${num}/jd_speed_sign.js &
 			sleep 5
-			echo -e "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个"
+			echo  "${green}jd_speed_sign.js后台进程一共有${yellows}${ps_speed}${green}个"
 		fi
 		num=$(($num + 1))
 	done
@@ -488,20 +488,20 @@ file_num=$(ls $ccr_js_file | wc -l)
 
 script_name() {
 	clear
-	echo -e "${green} 显示所有JS脚本名称与作用${white}"
+	echo  "${green} 显示所有JS脚本名称与作用${white}"
 	cat $dir_file/config/collect_script.txt
 }
 
 Tjs()	{
 	#测试模块
 	for i in `ls $jd_file/ccr_js/js_1 | grep  "js" |grep -v "json" | grep -Ev "sendNotify_ccwav.js|sendNotify.js|ql.js|jd_CheckCK.js|jdCookie.js|USER_AGENTS.js|JS_USER_AGENTS.js|JDJRValidator_Pure.js|jd_enen.js|jd_delCoupon.js|sign_graphics_validate.js|JDSignValidator.js|JDJRValidator_Aaron.js|jd_get_share_code.js|jd_bean_sign.js|getJDCookie.js|.*py|jdPetShareCodes.js|jdJxncShareCodes.js|jdFruitShareCodes.js|jdFactoryShareCodes.js|jdPlantBeanShareCodes.js|jdDreamFactoryShareCodes.js" | awk '{print $1}' |grep -v "#"`;do
-		echo -e "${green}>>>开始执行${yellow}$i${white}"
+		echo  "${green}>>>开始执行${yellow}$i${white}"
 		if [ `echo "$i" | grep -o "py"| wc -l` = "1" ];then
 			$python3 $jd_file/ccr_js/js_1/$i &
 		else
 			$node $jd_file/ccr_js/js_1/$i &
 		fi
-		echo -e "${green}>>>${yellow}$i${green}执行完成，回车测试下一个${white}"
+		echo  "${green}>>>${yellow}$i${green}执行完成，回车测试下一个${white}"
 		read a
 	done
 
@@ -512,12 +512,12 @@ TimeError=2
 #copy SuperManito
  local Interface="https://api.m.jd.com/client.action?functionId=queryMaterialProducts&client=wh5"
     if [ $(echo $(($(curl -sSL "${Interface}" | awk -F '\"' '{print$8}') - $(eval echo "$(date +%s)$(date +%N | cut -c1-3)"))) | sed "s|\-||g") -lt "10" ]; then
-        echo -e "\n\033[32m------------ 检测到当前本地时间与京东服务器的时间差小于 10ms 因此不同步 ------------\033[0m\n"
+        echo  "\n\033[32m------------ 检测到当前本地时间与京东服务器的时间差小于 10ms 因此不同步 ------------\033[0m\n"
     else
-        echo -e "\n❖ 同步京东服务器时间"
-        echo -en "\n当前设置的允许误差时间为 ${TimeError}m，脚本将在 3s 后开始运行..."
+        echo  "\n❖ 同步京东服务器时间"
+        echo n "\n当前设置的允许误差时间为 ${TimeError}m，脚本将在 3s 后开始运行..."
         sleep 3
-        echo -e ''
+        echo  ''
         while true; do
             ## 先同步京东服务器时间
             date -s $(date -d @$(curl -sSL "${Interface}" | awk -F '\"' '{print$8}' | cut -c1-10) "+%H:%M:%S") >/dev/null
@@ -529,10 +529,10 @@ TimeError=2
             ## 定义当前时间差
             local TimeDifference=$(echo $((${JDTimeStamp} - ${LocalTimeStamp})) | sed "s|\-||g")
             ## 输出时间
-            echo -e "\n京东时间戳：\033[34m${JDTimeStamp}\033[0m"
-            echo -e "本地时间戳：\033[34m${LocalTimeStamp}\033[0m"
+            echo  "\n京东时间戳：\033[34m${JDTimeStamp}\033[0m"
+            echo  "本地时间戳：\033[34m${LocalTimeStamp}\033[0m"
             if [ ${TimeDifference} -lt ${TimeError} ]; then
-                echo -e "\n\033[32m------------ 同步完成 ------------\033[0m\n"
+                echo  "\n\033[32m------------ 同步完成 ------------\033[0m\n"
                 if [ -s /etc/apt/sources.list ]; then
                     #apt-get install -y figlet toilet >/dev/null
                     local ExitStatus=$?
@@ -540,19 +540,19 @@ TimeError=2
                     local ExitStatus=1
                 fi
                 if [ "$ExitStatus" -eq "0" ]; then
-                    echo -e "$(toilet -f slant -F border --gay SuperManito)\n"
+                    echo  "$(toilet -f slant -F border --gay SuperManito)\n"
                 else
-                    echo -e '\033[35m    _____                       __  ___            _ __       \033[0m'
-                    echo -e '\033[31m   / ___/__  ______  ___  _____/  |/  /___ _____  (_) /_____  \033[0m'
-                    echo -e '\033[33m   \__ \/ / / / __ \/ _ \/ ___/ /|_/ / __ `/ __ \/ / __/ __ \ \033[0m'
-                    echo -e '\033[32m  ___/ / /_/ / /_/ /  __/ /  / /  / / /_/ / / / / / /_/ /_/ / \033[0m'
-                    echo -e '\033[36m /____/\__,_/ .___/\___/_/  /_/  /_/\__,_/_/ /_/_/\__/\____/  \033[0m'
-                    echo -e '\033[34m           /_/                                                \033[0m\n'
+                    echo  '\033[35m    _____                       __  ___            _ __       \033[0m'
+                    echo  '\033[31m   / ___/__  ______  ___  _____/  |/  /___ _____  (_) /_____  \033[0m'
+                    echo  '\033[33m   \__ \/ / / / __ \/ _ \/ ___/ /|_/ / __ `/ __ \/ / __/ __ \ \033[0m'
+                    echo  '\033[32m  ___/ / /_/ / /_/ /  __/ /  / /  / / /_/ / / / / / /_/ /_/ / \033[0m'
+                    echo  '\033[36m /____/\__,_/ .___/\___/_/  /_/  /_/\__,_/_/ /_/_/\__/\____/  \033[0m'
+                    echo  '\033[34m           /_/                                                \033[0m\n'
                 fi
                 break
             else
                 sleep 1s
-                echo -e "\n未达到允许误差范围设定值，继续同步..."
+                echo  "\n未达到允许误差范围设定值，继续同步..."
             fi
         done
     fi
@@ -574,7 +574,7 @@ concurrent_js_update() {
 
 	if [ "$ccr_if" = "yes" ];then
 		js_amount=$(cat $openwrt_script_config/js_cookie.txt |wc -l)
-		echo -e "${green}>> 你有$js_amount个ck要创建并发文件夹${white}"
+		echo  "${green}>> 你有$js_amount个ck要创建并发文件夹${white}"
 		start_date=$(date +%s)
 		for i in `ls $ccr_js_file | grep -E "^js"`
 		do
@@ -612,17 +612,17 @@ concurrent_js_update() {
 		done
 		end_date=$(date +%s)
 		result_date=$(( $start_date - $end_date ))
-		echo -e "${yellow} 耗时:${green}$result_date秒${white}"
-		echo -e "${green}>> 创建$js_amount个并发文件夹完成${white}"
+		echo  "${yellow} 耗时:${green}$result_date秒${white}"
+		echo  "${green}>> 创建$js_amount个并发文件夹完成${white}"
 	else
-		echo -e "${yellow}>> 并发开关没有打开${white}"
+		echo  "${yellow}>> 并发开关没有打开${white}"
 	fi
 
 }
 
 concurrent_js_clean(){
 		if [ "$ccr_if" = "yes" ];then
-			echo -e "${yellow}收尾一下${white}"
+			echo  "${yellow}收尾一下${white}"
 			for i in `ps -ww | grep "$action" | grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}'`
 			do
 				echo "开始kill $i"
@@ -633,17 +633,17 @@ concurrent_js_clean(){
 
 kill_ccr() {
 	if [ "$ccr_if" = "yes" ];then
-		echo -e "${green}>>终止并发程序启动。请稍等。。。。${white}"
+		echo  "${green}>>终止并发程序启动。请稍等。。。。${white}"
 		if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` = "0" ];then
 			sleep 2
 			echo ""
-			echo -e "${green}我曾经跨过山和大海，也穿过人山人海。。。${white}"
+			echo  "${green}我曾经跨过山和大海，也穿过人山人海。。。${white}"
 			sleep 2
-			echo -e "${green}直到来到你这里。。。${white}"
+			echo  "${green}直到来到你这里。。。${white}"
 			sleep 2
-			echo -e "${green}逛了一圈空空如也，你确定不是在消遣我？？？${white}"
+			echo  "${green}逛了一圈空空如也，你确定不是在消遣我？？？${white}"
 			sleep 2
-			echo -e "${green}后台都没有进程妹子，散了散了。。。${white}"
+			echo  "${green}后台都没有进程妹子，散了散了。。。${white}"
 		else
 			for i in `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}'`
 			do
@@ -652,17 +652,17 @@ kill_ccr() {
 			done
 			concurrent_js_clean
 			clear
-			echo -e "${green}再次检测一下并发程序是否还有存在${white}"
+			echo  "${green}再次检测一下并发程序是否还有存在${white}"
 			if [ `ps -ww | grep "js$" | grep "JD_Script"| grep -v 'grep\|index.js\|ssrplus\|opencard' | awk '{print $1}' |wc -l` = "0" ];then
-				echo -e "${yellow}>>并发程序已经全部结束${white}"
+				echo  "${yellow}>>并发程序已经全部结束${white}"
 			else
-				echo -e "${yellow}！！！检测到并发程序还有存在，再继续杀，请稍等。。。${white}"
+				echo  "${yellow}！！！检测到并发程序还有存在，再继续杀，请稍等。。。${white}"
 				sleep 1
 				kill_ccr
 			fi
 		fi
 	else
-		echo -e "${green}>>你并发开关都没有打开，我终止啥？？？${white}"
+		echo  "${green}>>你并发开关都没有打开，我终止啥？？？${white}"
 	fi
 }
 
@@ -686,13 +686,13 @@ if_ps() {
 	done
 
 	num1="5"
-	echo -e "${green}>> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(30秒)，后再检测一下${white}"
+	echo  "${green}>> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(30秒)，后再检测一下${white}"
 	echo -ne "\r"
 	sleep $num1
 
 	echo ""
 	if [ "$process_num" = "0" ];then
-		echo -e "${yellow}>>并发程序已经结束${white}"
+		echo  "${yellow}>>并发程序已经结束${white}"
 	else
 		sleep $num1
 		echo -ne ">> $action并发程序还有${yellow}$process_num${green}进程在后台，等待(30秒)，后再检测一下${white}"
@@ -710,7 +710,7 @@ concurrent_js() {
 			$action &
 		done
 	else
-		echo -e "${green}>>并发文件夹为空开始下载${white}"
+		echo  "${green}>>并发文件夹为空开始下载${white}"
 			update
 			concurrent_js_if
 	fi
@@ -718,7 +718,7 @@ concurrent_js() {
 
 concurrent_js_if() {
 	if [ "$ccr_if" = "yes" ];then
-		echo -e "${green}>>检测到开启了账号并发模式${white}"
+		echo  "${green}>>检测到开启了账号并发模式${white}"
 		case "$action1" in
 		run_0)
 			action="$action1"
@@ -753,7 +753,7 @@ checktool() {
 	while [ 100 -ge 0 ];do
 		ps_check=$(ps -ww |grep "JD_Script" | grep -v "grep" |awk '{print $1}' | wc -l )
 		echo "---------------------------------------------------------------------------"
-		echo -e  "		检测者工具第${green}$i${white}次循环输出(ctrl+c终止)"
+		echo   "		检测者工具第${green}$i${white}次循环输出(ctrl+c终止)"
 		echo "---------------------------------------------------------------------------"
 		echo "负载情况：`uptime`"
 		echo ""
@@ -774,7 +774,7 @@ getcookie() {
 	#彻底完成感谢echowxsy大力支持
 	echo "此功能暂停使用，请用sh \$jd addcookie添加cookie "
 	exit 0
-	echo -e "${yellow} 温馨提示，如果你已经有cookie，不想扫码直接添加，可以用${green} sh \$jd addcookie${white} 增加cookie ${green} sh \$jd delcookie${white} 删除cookie"
+	echo  "${yellow} 温馨提示，如果你已经有cookie，不想扫码直接添加，可以用${green} sh \$jd addcookie${white} 增加cookie ${green} sh \$jd delcookie${white} 删除cookie"
 	$node $dir_file_js/getJDCookie.js && addcookie && addcookie_wait
 }
 
@@ -784,40 +784,40 @@ addcookie() {
 		clear
 		you_cookie=$(cat /tmp/getcookie.txt)
 		if [ -z $you_cookie ]; then
-			echo -e "$red cookie为空值，不做其他操作。。。${white}"
+			echo  "$red cookie为空值，不做其他操作。。。${white}"
 			exit 0
 		else
-			echo -e "\n${green}已经获取到cookie，稍等。。。${white}"
+			echo  "\n${green}已经获取到cookie，稍等。。。${white}"
 			sleep 1
 		fi
 	else
 		clear
 		echo "---------------------------------------------------------------------------"
-		echo -e "		新增cookie或者更新cookie"
+		echo  "		新增cookie或者更新cookie"
 		echo "---------------------------------------------------------------------------"
 		echo ""
-		echo -e "${yellow}单账号例子：${white}"
+		echo  "${yellow}单账号例子：${white}"
 		echo ""
-		echo -e "pt_key=xxxxxx;pt_pin=jd_xxxxxx; //二狗子"
+		echo  "pt_key=xxxxxx;pt_pin=jd_xxxxxx; //二狗子"
 		echo ""
-		echo -e "${yellow}多账号例子：（用＆分割账号）${white}"
+		echo  "${yellow}多账号例子：（用＆分割账号）${white}"
 		echo ""
-		echo -e "pt_key=xxxxxx;pt_pin=jd_xxxxxx; //二狗子&pt_key=xxxxxx;pt_pin=jd_xxxxxx; //雪糕兄"
+		echo  "pt_key=xxxxxx;pt_pin=jd_xxxxxx; //二狗子&pt_key=xxxxxx;pt_pin=jd_xxxxxx; //雪糕兄"
 		echo ""
-		echo -e "${yellow} pt_key=${green}密码  ${yellow} pt_pin=${green} 账号  ${yellow}// 二狗子 ${green}(备注这个账号是谁的)${white}"
+		echo  "${yellow} pt_key=${green}密码  ${yellow} pt_pin=${green} 账号  ${yellow}// 二狗子 ${green}(备注这个账号是谁的)${white}"
 		echo ""
-		echo -e "${yellow} 请不要乱输，如果输错了可以用${green} sh \$jd delcookie${yellow}删除,\n 或者你手动去${green}$openwrt_script_config/jdCookie.js${yellow}删除也行\n${white}"
+		echo  "${yellow} 请不要乱输，如果输错了可以用${green} sh \$jd delcookie${yellow}删除,\n 或者你手动去${green}$openwrt_script_config/jdCookie.js${yellow}删除也行\n${white}"
 		echo "---------------------------------------------------------------------------"
 		read -p "请填写你获取到的cookie(一次只能一个cookie,多个cookie要用＆连接起来)：" you_cookie
 		if [ -z $you_cookie ]; then
-			echo -e "$red请不要输入空值。。。${white}"
+			echo  "$red请不要输入空值。。。${white}"
 			exit 0
 		fi
 
 	fi
 	echo "$you_cookie" > /tmp/you_cookie.txt
 	sed -i "s/&/\n/g" /tmp/you_cookie.txt
-	echo -e "${yellow}\n开始为你查找是否存在这个cookie，有就更新，没有就新增。。。${white}\n"
+	echo  "${yellow}\n开始为你查找是否存在这个cookie，有就更新，没有就新增。。。${white}\n"
 	sleep 2
 	if_you_cookie=$(cat /tmp/you_cookie.txt | wc -l)
 	if [ $if_you_cookie = "1" ];then
@@ -837,7 +837,7 @@ addcookie() {
 		while [ $if_you_cookie -ge $num ];do
 			clear
 			echo  "------------------------------------------------------------------------------"
-			echo -e "你一共输入了${yellow}$if_you_cookie${white}条cookie现在开始替换第${green}$num${white}条cookie"
+			echo  "你一共输入了${yellow}$if_you_cookie${white}条cookie现在开始替换第${green}$num${white}条cookie"
 			you_cookie=$(sed -n "$num p" /tmp/you_cookie.txt)
 			new_pt=$(echo $you_cookie)
 			pt_pin=$(echo $you_cookie | awk -F "pt_pin=" '{print $2}' | awk -F ";" '{print $1}')
@@ -848,7 +848,7 @@ addcookie() {
 				addcookie_replace
 				sleep 2
 			else
-				echo -e "$pt_pin $pt_key $you_remark　$red异常${white}"
+				echo  "$pt_pin $pt_key $you_remark　$red异常${white}"
 				sleep 2
 			fi
 			num=$(( $num + 1))
@@ -870,15 +870,15 @@ addcookie() {
 
 addcookie_replace(){
 	if [ `cat $openwrt_script_config/jdCookie.js | grep "$pt_pin;" | wc -l` = "1" ];then
-		echo -e "${green}检测到 ${yellow}${pt_pin}${white} 已经存在，开始更新cookie。。${white}\n"
+		echo  "${green}检测到 ${yellow}${pt_pin}${white} 已经存在，开始更新cookie。。${white}\n"
 		sleep 2
 		old_pt=$(cat $openwrt_script_config/jdCookie.js | grep "$pt_pin" | sed -e "s/',//g" -e "s/'//g")
 		old_pt_key=$(cat $openwrt_script_config/jdCookie.js | grep "$pt_pin" | awk -F "pt_key=" '{print $2}' | awk -F ";" '{print $1}')
 		sed -i "s/$old_pt_key/$pt_key/g" $openwrt_script_config/jdCookie.js
-		echo -e "${green} 旧cookie：${yellow}${old_pt}${white}\n\n${green}更新为${white}\n\n${green}   新cookie：${yellow}${new_pt}${white}\n"
+		echo  "${green} 旧cookie：${yellow}${old_pt}${white}\n\n${green}更新为${white}\n\n${green}   新cookie：${yellow}${new_pt}${white}\n"
 		echo  "------------------------------------------------------------------------------"
 	else
-		echo -e "${green}检测到 ${yellow}${pt_pin}${white} 不存在，开始新增cookie。。${white}\n"
+		echo  "${green}检测到 ${yellow}${pt_pin}${white} 不存在，开始新增cookie。。${white}\n"
 		sleep 2
 		cookie_quantity=$( cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l)
 		i=$(expr $cookie_quantity + 5)
@@ -887,10 +887,10 @@ addcookie_replace(){
 		else
 			sed -i "$i a\  'pt_key=${pt_key};pt_pin=${pt_pin};\', \/\/$you_remark" $openwrt_script_config/jdCookie.js
 		fi
-		echo -e "\n已将新cookie：${green}${you_cookie}${white}\n\n插入到${yellow}$openwrt_script_config/jdCookie.js${white} 第$i行\n"
+		echo  "\n已将新cookie：${green}${you_cookie}${white}\n\n插入到${yellow}$openwrt_script_config/jdCookie.js${white} 第$i行\n"
 		cookie_quantity1=$( cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l)
 		echo  "------------------------------------------------------------------------------"
-		echo -e "${yellow}你增加了账号：${green}${pt_pin}${white}${yellow} 现在cookie一共有$cookie_quantity1个，具体以下：${white}"
+		echo  "${yellow}你增加了账号：${green}${pt_pin}${white}${yellow} 现在cookie一共有$cookie_quantity1个，具体以下：${white}"
 		cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | sed -e "s/',//g" -e "s/'//g"
 		echo  "------------------------------------------------------------------------------"
 	fi
@@ -919,16 +919,16 @@ addcookie_wait(){
 }
 
 del_expired_cookie() {
-	echo -e "${green}整理一下check_cookie.txt,删掉一些过期的信息${white}"
+	echo  "${green}整理一下check_cookie.txt,删掉一些过期的信息${white}"
 	for i in `cat $openwrt_script_config/check_cookie.txt | awk '{print $1}'| grep -v "Cookie"`
 	do
 		jd_cookie=$(grep "$i" $openwrt_script_config/jdCookie.js | awk -F "pt_pin=" '{print $2}' | awk -F ";" '{print $1}' | sed '/^\s*$/d' | grep -v "(.+?)")
 		if [ ! $jd_cookie ];then
-			#echo -e "$red$i${white}在$openwrt_script_config/jdCookie.js找不到"
+			#echo  "$red$i${white}在$openwrt_script_config/jdCookie.js找不到"
 			echo "" >/dev/null 2>&1
 		else
 			if [ "$jd_cookie" = "$i" ];then
-				#echo -e "${green}$i${white}在$openwrt_script_config/jdCookie.js正常存在"
+				#echo  "${green}$i${white}在$openwrt_script_config/jdCookie.js正常存在"
 				echo "" >/dev/null 2>&1
 			else
 				sed -i "/$i/d" $openwrt_script_config/check_cookie.txt
@@ -941,29 +941,29 @@ delcookie() {
 	cookie_quantity=$(cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l)
 	if [ `cat $openwrt_script_config/jdCookie.js | grep "$pt_pin" | wc -l` -ge "1" ];then
 		echo "---------------------------------------------------------------------------"
-		echo -e "		删除cookie"
+		echo  "		删除cookie"
 		echo "---------------------------------------------------------------------------"
-		echo -e "${green}例子：${white}"
+		echo  "${green}例子：${white}"
 		echo ""
-		echo -e "${green} pt_key=jd_10086jd_10086jd_10086jd_10086jd_10086jd_10086jd_10086;pt_pin=jd_10086; //二狗子${white}"
+		echo  "${green} pt_key=jd_10086jd_10086jd_10086jd_10086jd_10086jd_10086jd_10086;pt_pin=jd_10086; //二狗子${white}"
 		echo ""
-		echo -e "${yellow} 请填写你要删除的cookie（// 备注 或者pt_pin 名都行）：${green}二狗子 ${white}"
-		echo -e "${yellow} 请填写你要删除的cookie（// 备注 或者pt_pin 名都行）：${green} jd_10086${white} "
+		echo  "${yellow} 请填写你要删除的cookie（// 备注 或者pt_pin 名都行）：${green}二狗子 ${white}"
+		echo  "${yellow} 请填写你要删除的cookie（// 备注 或者pt_pin 名都行）：${green} jd_10086${white} "
 		echo "---------------------------------------------------------------------------"
-		echo -e "${yellow}你的cookie有$cookie_quantity个，具体如下：${white}"
+		echo  "${yellow}你的cookie有$cookie_quantity个，具体如下：${white}"
 		cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | sed -e "s/',//g" -e "s/'//g"
 		echo "---------------------------------------------------------------------------"
 		echo ""
 		read -p "请填写你要删除的cookie（// 备注 或者pt_pin 名都行）：" you_cookie
 		if [ -z $you_cookie ]; then
-			echo -e "$red请不要输入空值。。。${white}"
+			echo  "$red请不要输入空值。。。${white}"
 			exit 0
 		fi
 	
 		sed -i "/$you_cookie/d" $openwrt_script_config/jdCookie.js
 		clear
 		echo "---------------------------------------------------------------------------"
-		echo -e "${yellow}你删除账号或者备注：${green}${you_cookie}${white}${yellow} 现在cookie还有`cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l`个，具体以下：${white}"
+		echo  "${yellow}你删除账号或者备注：${green}${you_cookie}${white}${yellow} 现在cookie还有`cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | wc -l`个，具体以下：${white}"
 		cat $openwrt_script_config/jdCookie.js | sed -e "s/pt_key=XXX;pt_pin=XXX//g" -e "s/pt_pin=(//g" -e "s/pt_key=xxx;pt_pin=xxx//g"| grep "pt_pin" | sed -e "s/',//g" -e "s/'//g"
 		echo "---------------------------------------------------------------------------"
 		echo ""
@@ -979,7 +979,7 @@ delcookie() {
 			exit 0
 		fi
 	else
-		echo -e "${yellow}你的cookie空空如也，比地板都干净，你想删啥。。。。。${white}"
+		echo  "${yellow}你的cookie空空如也，比地板都干净，你想删啥。。。。。${white}"
 	fi
 
 }
@@ -1027,7 +1027,7 @@ case "$push_if" in
 			weixin_push
 		;;
 		*)
-			echo -e "${green} jd_openwrt_script_config.txt${white}的${yellow} push_if参数${white}$red填写错误，不进行推送${white}"
+			echo  "${green} jd_openwrt_script_config.txt${white}的${yellow} push_if参数${white}$red填写错误，不进行推送${white}"
 		;;
 	esac
 
@@ -1038,13 +1038,13 @@ server_push() {
 if [ ! $SCKEY ];then
 	echo "没找到Server酱key不做操作"
 else
-	echo -e "${green} server酱开始推送$title${white}"
+	echo  "${green} server酱开始推送$title${white}"
 	curl -s "http://sc.ftqq.com/$SCKEY.send?text=$title++`date +%Y-%m-%d`++`date +%H:%M`" -d "&desp=$server_content" >/dev/null 2>&1
 
 	if [ "$?" -eq "0" ]; then
-		echo -e "${green} server酱推送完成${white}"
+		echo  "${green} server酱推送完成${white}"
 	else
-		echo -e "$red server酱推送失败。请检查报错代码$title${white}"
+		echo  "$red server酱推送失败。请检查报错代码$title${white}"
 	fi
 fi
 
@@ -1098,13 +1098,13 @@ if [ ! $media_id ];then
 else
 	msg_body="{\"touser\":\"$touser\",\"agentid\":$agentid,\"msgtype\":\"mpnews\",\"mpnews\":{\"articles\":[{\"title\":\"$title\",\"thumb_media_id\":\"$media_id\",\"content\":\"$weixin_content\",\"digest\":\"$weixin_desp\"}]}}"
 fi
-	echo -e "${green} 企业微信开始推送$title${white}"
+	echo  "${green} 企业微信开始推送$title${white}"
 	curl -s "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=$access_token" -d "$msg_body"
 
 	if [ $? -eq "0" ]; then
-		echo -e "${green} 企业微信推送成功$title${white}"
+		echo  "${green} 企业微信推送成功$title${white}"
 	else
-		echo -e "$red 企业微信推送失败。请检查报错代码$title${white}"
+		echo  "$red 企业微信推送失败。请检查报错代码$title${white}"
 	fi
 
 }
@@ -1121,7 +1121,7 @@ checklog() {
 	ls ./ | grep -E "^j" | grep -v "jd_price.log" | sort >$log1
 
 	#筛选jd log 里面有几个是带错误的
-	echo -e "$line#### Model：$sys_model\n#### Wan+IP地址：+$wan_ip\n#### 系统版本:++$uname_version\n$line" >>$log3
+	echo  "$line#### Model：$sys_model\n#### Wan+IP地址：+$wan_ip\n#### 系统版本:++$uname_version\n$line" >>$log3
 	echo "#### $current_time+检测到错误日志的文件" >>$log3
 	for i in `cat $log1`
 	do
@@ -1145,7 +1145,7 @@ checklog() {
 
 	if [ $num = "no_error" ]; then
 		echo "**********************************************"
-		echo -e "${green} log日志没有发现错误，一切风平浪静${white}"
+		echo  "${green} log日志没有发现错误，一切风平浪静${white}"
 		echo "**********************************************"
 	else
 		log_sort=$(cat ${log3} | sed "s/&//g" | sed "s/$/$wrap$wrap_tab$sort_log/g" |  sed ':t;N;s/\n//;b t' )
@@ -1196,12 +1196,12 @@ that_day() {
 	echo $git_log >/tmp/git_log_if.log
 	git_log_if=$(cat /tmp/git_log_if.log | wc -l )
 	if [ $git_log_if -ge 1  ];then
-		echo -e "$line#### Model：$sys_model\n#### Wan+IP地址：+$wan_ip\n#### 系统版本:++$uname_version\n$line\n#### $current_time+`date +%H:%M`点+更新日志\n" >> $dir_file/git_log/${current_time}.log
+		echo  "$line#### Model：$sys_model\n#### Wan+IP地址：+$wan_ip\n#### 系统版本:++$uname_version\n$line\n#### $current_time+`date +%H:%M`点+更新日志\n" >> $dir_file/git_log/${current_time}.log
 		echo "  时间       +作者          +操作" >> $dir_file/git_log/${current_time}.log
 		echo "$git_log" >> $dir_file/git_log/${current_time}.log
 		echo "#### 当前脚本是否最新：$Script_status" >>$dir_file/git_log/${current_time}.log
 	else
-		echo -e "$line#### Model：$sys_model\n#### Wan+IP地址：+$wan_ip\n#### 系统版本:++$uname_version\n$line\n#### $current_time+更新日志\n" >> $dir_file/git_log/${current_time}.log
+		echo  "$line#### Model：$sys_model\n#### Wan+IP地址：+$wan_ip\n#### 系统版本:++$uname_version\n$line\n#### $current_time+更新日志\n" >> $dir_file/git_log/${current_time}.log
 		echo "作者泡妹子或者干饭去了$wrap$wrap_tab今天没有任何更新$wrap$wrap_tab不要催佛系玩。。。" >>$dir_file/git_log/${current_time}.log
 		echo "\n" >>$dir_file/git_log/${current_time}.log
 		echo "#### 当前脚本是否最新：$Script_status" >>$dir_file/git_log/${current_time}.log
@@ -1270,96 +1270,96 @@ backnas() {
 	echo "#########################################"
 	#判断用户名
 	if [ ! $nas_user ];then
-		echo -e "${yellow} 用户名:$red    空 ${white}"
+		echo  "${yellow} 用户名:$red    空 ${white}"
 		echo "空" >/tmp/backnas_if.log
 	else
-		echo -e "${yellow} 用户名：${green} $nas_user ${white}"
+		echo  "${yellow} 用户名：${green} $nas_user ${white}"
 		echo "正常" >/tmp/backnas_if.log
 	fi
 
 	#判断密码
 	if [ ! $nas_pass ];then
-		echo -e "${yellow} 密码：$red     空 ${white}"
+		echo  "${yellow} 密码：$red     空 ${white}"
 		echo "空" >>/tmp/backnas_if.log
 	else
-		echo -e "${yellow} 密码：${green}这是机密不显示给你看 ${white}"
+		echo  "${yellow} 密码：${green}这是机密不显示给你看 ${white}"
 		echo "正常" >>/tmp/backnas_if.log
 	fi
 
 	#判断密钥
 	if [ ! $nas_secret_key ];then
-		echo -e "${yellow} NAS 密钥：${green} 空(可以为空)${white}"
+		echo  "${yellow} NAS 密钥：${green} 空(可以为空)${white}"
 	else
-		echo -e "${yellow} NAS 密钥：${green} $nas_secret_key ${white}"
+		echo  "${yellow} NAS 密钥：${green} $nas_secret_key ${white}"
 		echo "正常" >>/tmp/backnas_if.log
 	fi
 
 	#判断IP
 	if [ ! $nas_ip ];then
-		echo -e "${yellow} NAS IP:$red    空 ${white}"
+		echo  "${yellow} NAS IP:$red    空 ${white}"
 		echo "空" >>/tmp/backnas_if.log
 	else
-		echo -e "${yellow} NAS IP：${green}$nas_ip ${white}"
+		echo  "${yellow} NAS IP：${green}$nas_ip ${white}"
 		echo "正常" >>/tmp/backnas_if.log
 	fi
 
 	#判断NAS文件夹
 	if [ ! $nas_file ];then
-		echo -e "${yellow} NAS文件夹:$red 空 ${white}"
+		echo  "${yellow} NAS文件夹:$red 空 ${white}"
 		echo "空" >>/tmp/backnas_if.log
 	else
-		echo -e "${yellow} NAS备份目录：${green} $nas_file ${white}"
+		echo  "${yellow} NAS备份目录：${green} $nas_file ${white}"
 		echo "正常" >>/tmp/backnas_if.log
 	fi
 
 	#判断端口
 	if [ ! $nas_prot ];then
-		echo -e "${yellow} NAS 端口:$red   空 ${white}"
+		echo  "${yellow} NAS 端口:$red   空 ${white}"
 	else
-		echo -e "${yellow} NAS 端口：${green} $nas_prot ${white}"
+		echo  "${yellow} NAS 端口：${green} $nas_prot ${white}"
 	fi
 
-	echo -e "${yellow} 使用协议：${green} SCP${white}"
+	echo  "${yellow} 使用协议：${green} SCP${white}"
 	echo ""
-	echo -e "${yellow} 参数填写${green}$backnas_config_file${white}"
+	echo  "${yellow} 参数填写${green}$backnas_config_file${white}"
 	echo "#########################################"
 
 	back_if=$(cat /tmp/backnas_if.log | sort -u )
 	if [ $back_if = "空" ];then
 		echo ""
-		echo -e "$red重要参数为空 不执行备份操作，需要备份的，把参数填好,${white}填好以后运行${green} sh \$jd backnas ${white}测试一下是否正常${white}"
+		echo  "$red重要参数为空 不执行备份操作，需要备份的，把参数填好,${white}填好以后运行${green} sh \$jd backnas ${white}测试一下是否正常${white}"
 		exit 0
 	fi
 
-	echo -e "${green}>> 开始备份到nas${white}"
+	echo  "${green}>> 开始备份到nas${white}"
 	sleep 5
 
-	echo -e "${green}>> 打包前处理，删除ccr_js文件"
+	echo  "${green}>> 打包前处理，删除ccr_js文件"
 	rm -rf $back_file_patch/JD_Script/ccr_js/*
-	echo -e "${green}>> 删除完成${white}"
+	echo  "${green}>> 删除完成${white}"
 	sleep 5
 
-	echo -e "${green}>> 复制/etc/profile到$back_file_patch/profile${white}"
+	echo  "${green}>> 复制/etc/profile到$back_file_patch/profile${white}"
 	cp /etc/profile $back_file_patch/profile
 	echo "复制完成"
 	sleep 5
 
-	echo -e "${green}>> 开始打包文件${white}"
+	echo  "${green}>> 开始打包文件${white}"
 	tar -zcvf /tmp/$back_file_name $back_file_patch
 
 	#解压命令 tar -zxvf script_2023-06-01-19_45.tar.gz -C /
 	sleep 5
 
 	clear
-	echo -e "${green}>> 开始上传文件 ${white}"
-	echo -e "${yellow}注意事项: 首次连接NAS的ssh会遇见${green} Do you want to continue connecting?${white}然后你输入y卡住不动"
-	echo -e "${yellow}解决办法:ctrl+c ，然后${green} ssh -p $nas_prot $nas_user@$nas_ip ${white}连接成功以后输${green} logout${white}退出NAS，重新执行${green} sh \$jd backnas${white}"
+	echo  "${green}>> 开始上传文件 ${white}"
+	echo  "${yellow}注意事项: 首次连接NAS的ssh会遇见${green} Do you want to continue connecting?${white}然后你输入y卡住不动"
+	echo  "${yellow}解决办法:ctrl+c ，然后${green} ssh -p $nas_prot $nas_user@$nas_ip ${white}连接成功以后输${green} logout${white}退出NAS，重新执行${green} sh \$jd backnas${white}"
 	echo ""
-	echo -e "${green}>> 上传文件中，请稍等。。。。 ${white}"
+	echo  "${green}>> 上传文件中，请稍等。。。。 ${white}"
 
 	if [ ! $nas_secret_key ];then
 		if [ ! $nas_pass ];then
-			echo -e "$red 密码：为空 ${white}参数填写${green}$backnas_config_file${white}"
+			echo  "$red 密码：为空 ${white}参数填写${green}$backnas_config_file${white}"
 			read a
 			backnas
 		else
@@ -1371,39 +1371,39 @@ backnas() {
 
 	if [ $? -eq 0 ]; then
 		sleep 5
-		echo -e "${green}>> 上传文件完成 ${white}"
+		echo  "${green}>> 上传文件完成 ${white}"
 		echo ""
 		echo "#############################################################################"
 		echo ""
-		echo -e "${green} $date_time将$back_file_name上传到$nas_ip 的$nas_file目录${white}"
+		echo  "${green} $date_time将$back_file_name上传到$nas_ip 的$nas_file目录${white}"
 		echo ""
 		echo "#############################################################################"
 	else
-		echo -e "$red>> 上传文件失败，请检查你的参数是否正确${white}"
+		echo  "$red>> 上传文件失败，请检查你的参数是否正确${white}"
 	fi
 	echo ""
-	echo -e "${green}>> 清理tmp文件 ${white}"
+	echo  "${green}>> 清理tmp文件 ${white}"
 	rm -rf /tmp/*.tar.gz
 	sleep 5
 
-	echo -e "${green}>> 开始更新脚本并恢复并发文件夹${white}"
+	echo  "${green}>> 开始更新脚本并恢复并发文件夹${white}"
 	update
-	echo -e "${green}>> 脚本更新完成${white}"
+	echo  "${green}>> 脚本更新完成${white}"
 }
 
 start_script() {
-	echo -e "${green} 开始回复定时任务${white}"
+	echo  "${green} 开始回复定时任务${white}"
 	wskey
 	help
 }
 
 stop_script() {
-	echo -e "${green} 删掉定时任务，这样就不会定时运行脚本了${white}"
+	echo  "${green} 删掉定时任务，这样就不会定时运行脚本了${white}"
 	task_delete
 	sed -i '/#120#/d' /etc/crontabs/root >/dev/null 2>&1
 	sleep 3
 	killall -9 node 
-	echo -e "${green}处理完成，需要重新启用，重新跑脚本${yellow}sh \$jd start_script$green就会添加定时任务了${white}"
+	echo  "${green}处理完成，需要重新启用，重新跑脚本${yellow}sh \$jd start_script$green就会添加定时任务了${white}"
 }
 
 
@@ -1415,7 +1415,7 @@ help() {
 	if [ $? -eq "0" ]; then
 		echo ""
 	else
-		echo -e "$red>> 取回分支没有成功，重新执行代码${white}"
+		echo  "$red>> 取回分支没有成功，重新执行代码${white}"
 		system_variable
 	fi
 	clear
@@ -1430,45 +1430,45 @@ help() {
 	echo ----------------------------------------------------
 	echo "	     JD.sh $version 简单使用说明"
 	echo ----------------------------------------------------
-	echo -e "${yellow} 1.ck填入${white}"
-	echo -e "  获取到ck手动填入${green}  $openwrt_script_config/jdCookie.js ${white} 在此脚本内填写脚本内有说明"
-	echo -e "  获取到ck使用命令填入 ${green}  sh \$jd addcookie ${white} "
+	echo  "${yellow} 1.ck填入${white}"
+	echo  "  获取到ck手动填入${green}  $openwrt_script_config/jdCookie.js ${white} 在此脚本内填写脚本内有说明"
+	echo  "  获取到ck使用命令填入 ${green}  sh \$jd addcookie ${white} "
 	echo ""
-	echo -e "${green}  如果你获取到的是wskey，请填入 /usr/share/jd_openwrt_script/script_config/wskey/jdwskey.txt${white} "
-	echo -e "${green}  并执行sh \$jd wskey 看下是否成功${white} "
+	echo  "${green}  如果你获取到的是wskey，请填入 /usr/share/jd_openwrt_script/script_config/wskey/jdwskey.txt${white} "
+	echo  "${green}  并执行sh \$jd wskey 看下是否成功${white} "
 	echo ""
-	echo -e "${yellow} 2.推送到手机${white}"
+	echo  "${yellow} 2.推送到手机${white}"
 	echo ""
-	echo -e "${green}  填写/usr/share/jd_openwrt_script/script_config/jd_openwrt_script_config.txt ${white} "
+	echo  "${green}  填写/usr/share/jd_openwrt_script/script_config/jd_openwrt_script_config.txt ${white} "
 	echo ""
-	echo -e "${yellow} 3.测试是否能正常使用${white}"
+	echo  "${yellow} 3.测试是否能正常使用${white}"
 	echo ""
-	echo -e "${green}  cd \$jd_file\js && node jd_bean_home.js  ${white} "
+	echo  "${green}  cd \$jd_file\js && node jd_bean_home.js  ${white} "
 	echo ""
-	echo -e "${yellow} 4.jd.sh其他脚本命令${white}"
+	echo  "${yellow} 4.jd.sh其他脚本命令${white}"
 	echo ""
-	echo -e "${green}  sh \$jd run_0 ${white}  			#运行全部jd脚本"
+	echo  "${green}  sh \$jd run_0 ${white}  			#运行全部jd脚本"
 	echo ""
-	echo -e "${green}  sh \$jd wskey ${white}  			#调用wskey转换"
+	echo  "${green}  sh \$jd wskey ${white}  			#调用wskey转换"
 	echo ""
-	echo -e "${green}  sh \$jd npm_install ${white}  			#安装 npm 模块"
+	echo  "${green}  sh \$jd npm_install ${white}  			#安装 npm 模块"
 	echo ""
-	echo -e "${green}  sh \$jd backnas ${white}  			#备份脚本到NAS存档"
+	echo  "${green}  sh \$jd backnas ${white}  			#备份脚本到NAS存档"
 	echo ""
-	echo -e "${green}  sh \$jd stop_script ${white}  			#删除定时任务停用所用脚本"
+	echo  "${green}  sh \$jd stop_script ${white}  			#删除定时任务停用所用脚本"
 	echo ""
-	echo -e "${yellow} 5.常见报错${white}"
+	echo  "${yellow} 5.常见报错${white}"
 	echo ""
 	echo "  运行node jd_bean_home.js，报错，请检测你的ck是否正常，正确可以运行sh \$jd npm_install"
 	echo "  如果还不行请运行sh \$jd update_script && sh \$jd update && sh \$jd 更新到最新版本"
 	echo "  "
 	echo ""
-	echo -e "${yellow}   检测定时任务:${white} $cron_help"
-	echo -e "${yellow}   定时任务路径:${white}${green}/etc/crontabs/root${white}"
-	echo -e "${yellow}   检测脚本是否最新:${white} $Script_status "
-	echo -e "${yellow}   JD_Script报错你可以反馈到这里:${white}${green} https://github.com/xdhgsq/xdh/issues${white}"
+	echo  "${yellow}   检测定时任务:${white} $cron_help"
+	echo  "${yellow}   定时任务路径:${white}${green}/etc/crontabs/root${white}"
+	echo  "${yellow}   检测脚本是否最新:${white} $Script_status "
+	echo  "${yellow}   JD_Script报错你可以反馈到这里:${white}${green} https://github.com/xdhgsq/xdh/issues${white}"
 	echo ""
-	echo -e "本脚本基于${green} x86主机测试${white}，一切正常，其他的机器自行测试，满足依赖一般问题不大"
+	echo  "本脚本基于${green} x86主机测试${white}，一切正常，其他的机器自行测试，满足依赖一般问题不大"
 	echo ----------------------------------------------------
 	echo " 		by：ITdesk"
 	echo ----------------------------------------------------
@@ -1535,7 +1535,7 @@ random_array() {
 
 
 npm_install() {
-	echo -e "${green} 开始安装npm模块${white}"
+	echo  "${green} 开始安装npm模块${white}"
 	#安装js模块
 	cd $openwrt_script
 	npm install -g npm@8.3.0
@@ -1549,7 +1549,7 @@ npm_install() {
 }
 
 python_install() {
-	echo -e "${green} 开始安装python模块${white}"
+	echo  "${green} 开始安装python模块${white}"
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo ""
 	else
@@ -1557,7 +1557,7 @@ python_install() {
 		pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple jieba requests rsa
 
 	fi
-	echo -e "${green}命令执行完成，如果一直报错我建议你重置系统或者重新编译重新刷${white}"
+	echo  "${green}命令执行完成，如果一直报错我建议你重置系统或者重新编译重新刷${white}"
 }
 
 system_variable() {
@@ -1681,7 +1681,7 @@ system_variable() {
 
 wskey() {
 	if [ -z "$wskey" ];then
-		echo -e "${red}wskey脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh${white}　是否存在"
+		echo  "${red}wskey脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh${white}　是否存在"
 		echo "如果存在,请重启路由使全局变量生效"
 		echo "如果不存在请去https://github.com/xdhgsq/wskey_convert.git下载"
 	else
@@ -1692,7 +1692,7 @@ wskey() {
 
 checkjs() {
 	if [ -z "$checkjs" ];then
-		echo -e "${red}checkjs脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/Checkjs/checkjs.sh${white}　是否存在"
+		echo  "${red}checkjs脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/Checkjs/checkjs.sh${white}　是否存在"
 		echo "如果存在,请重启路由使全局变量生效"
 		echo "如果不存在请去https://github.com/ITdesk01/Checkjs.git下载"
 	else
@@ -1703,7 +1703,7 @@ checkjs() {
 
 checkjs_tg() {
 	if [ -z "$checkjs" ];then
-		echo -e "${red}checkjs脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/Checkjs/checkjs.sh${white}　是否存在"
+		echo  "${red}checkjs脚本为空,$white请检查${green}/usr/share/jd_openwrt_script/Checkjs/checkjs.sh${white}　是否存在"
 		echo "如果存在,请重启路由使全局变量生效"
 		echo "如果不存在请去https://github.com/ITdesk01/Checkjs.git下载"
 	else
@@ -1719,16 +1719,16 @@ pj() {
 	pj_ck=$(cat /usr/share/jd_openwrt_script/script_config/js_cookie.txt | awk -F "'," '{print $1}' | sed "s/'//g" |sed "s/$/\&/g" | sed 's/[:space:]//g' | sed ':t;N;s/\n//;b t' | sed "s/&$//")
 	if [ -f $dir_file/js/pinjia-amd64 ];then
 		clear
-		echo -e "$green开始进行评价,你一共有$pj_ck_num个账号$white"
+		echo  "$green开始进行评价,你一共有$pj_ck_num个账号$white"
 		export JD_COOKIE="$pj_ck"
 		$dir_file/js/pinjia-amd64
 	else
 		clear
-		echo -e "$yellow没有发现评价程序开始下载$white"
+		echo  "$yellow没有发现评价程序开始下载$white"
 		wget https://raw.githubusercontent.com/chendianwu0828/jd_pinjia/main/pinjia-amd64 -O $dir_file/js/pinjia-amd64
 		chmod +x $dir_file/js/pinjia-amd64
 		export JD_COOKIE="pj_ck"
-		echo -e "$green开始进行评价,你一共有$pj_ck_num个账号$white"
+		echo  "$green开始进行评价,你一共有$pj_ck_num个账号$white"
 		$dir_file/js/pinjia-amd64
 	fi
 }
@@ -1740,7 +1740,7 @@ index_js() {
 	if [ $index_if = "1" ];then
 		index_num="${yellow} 8.网页获取CK功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
 	else
-		echo -e "${green}启动网页获取CK功能${white}"
+		echo  "${green}启动网页获取CK功能${white}"
 		node $dir_file/jd_sms_login/index.js &
 		if [ $? -eq 0 ]; then
 			index_num="${yellow} 8.网页获取CK功能已启动，网页输入${green}$openwrt_ip:6789${white}${yellow},就可以访问了${white}"
