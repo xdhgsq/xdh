@@ -265,7 +265,7 @@ done
 	fi
 	rm -rf $dir_file/config/tmp/*
 	task #更新完全部脚本顺便检查一下计划任务是否有变
-
+	exit 0
 }
 
 cp_if() {
