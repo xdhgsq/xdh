@@ -33,7 +33,7 @@ python3="/usr/bin/python3"
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
 uname_if=$(uname -a | grep -o Ubuntu)
 
-if [ "$uname_if" -eq "Ubuntu" ];then
+if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
 else
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
@@ -61,7 +61,7 @@ else
 	echo >$dir_file/Checkjs_Sckey.txt
 fi
 
-if [ "$dir_file" -eq "/usr/share/jd_openwrt_script/JD_Script" ];then
+if [ "$dir_file" = "/usr/share/jd_openwrt_script/JD_Script" ];then
 	SCKEY=$(grep "let SCKEY" $openwrt_script_config/sendNotify.js  | awk -F "'" '{print $2}')
 	if [ ! $SCKEY ];then
 		SCKEY=$(cat $openwrt_script_config/Checkjs_Sckey.txt)
@@ -538,7 +538,7 @@ TimeError=2
                 else
                     local ExitStatus=1
                 fi
-                if [ $ExitStatus -eq 0 ]; then
+                if [ "$ExitStatus" -eq "0" ]; then
                     echo -e "$(toilet -f slant -F border --gay SuperManito)\n"
                 else
                     echo -e '\033[35m    _____                       __  ___            _ __       \033[0m'
@@ -1040,7 +1040,7 @@ else
 	echo -e "${green} server酱开始推送$title${white}"
 	curl -s "http://sc.ftqq.com/$SCKEY.send?text=$title++`date +%Y-%m-%d`++`date +%H:%M`" -d "&desp=$server_content" >/dev/null 2>&1
 
-	if [ $? -eq 0 ]; then
+	if [ "$?" -eq "0" ]; then
 		echo -e "${green} server酱推送完成${white}"
 	else
 		echo -e "$red server酱推送失败。请检查报错代码$title${white}"
@@ -1568,7 +1568,7 @@ system_variable() {
 		mkdir  /tmp/jd_tmp
 	fi
 
-	if [ "$dir_file" -eq "$openwrt_script/JD_Script" ];then
+	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
 		#jdCookie.js
 		if [ ! -f "$openwrt_script_config/jdCookie.js" ]; then
 			cp  $dir_file/JSON/jdCookie.js  $openwrt_script_config/jdCookie.js
@@ -1755,7 +1755,7 @@ kill_index() {
 
 jd_openwrt_config() {
 	jd_openwrt_config_version="1.8"
-	if [ "$dir_file" -eq "$openwrt_script/JD_Script" ];then
+	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
 		jd_openwrt_config="$openwrt_script_config/jd_openwrt_script_config.txt"
 		if [ ! -f "$jd_openwrt_config" ]; then
 			jd_openwrt_config_description
