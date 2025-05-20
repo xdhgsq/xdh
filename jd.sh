@@ -1540,8 +1540,18 @@ npm_install() {
 	cd $openwrt_script
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
-	npm install -g  crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install -g  crc http-cookie-agent qs sharp curl cheerio ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
+
+	if [ "$uname_if" = "Ubuntu" ];then
+		if [ ! `cat /etc/profile |grep -o "NODE_PATH" |sort -u` = "NODE_PATH" ];then
+			echo "export NODE_PATH=/usr/local/lib/node_modules" >> /etc/profile
+			source /etc/profile
+		fi
+	else
+		echo ""
+
+	fi
 
 	#安装python模块
 	python_install
