@@ -18,15 +18,9 @@ done
 dir_file="$( cd -P "$( dirname "$Source"  )" && pwd  )"
 dir_file_js="$dir_file/js"
 
-#检测当前位置
-if [ "$dir_file" == "/usr/share/jd_openwrt_script/JD_Script" ];then
-	openwrt_script="/usr/share/jd_openwrt_script"
-	openwrt_script_config="/usr/share/jd_openwrt_script/script_config"
-else
-	clear
-	echo -e "$red检测到你使用本地安装方式安装脚本，不再支持本地模式！！！${white}"
-	exit 0
-fi
+openwrt_script="/usr/share/jd_openwrt_script"
+openwrt_script_config="/usr/share/jd_openwrt_script/script_config"
+
 
 ccr_js_file="$dir_file/ccr_js"
 run_sleep=$(sleep 1)
