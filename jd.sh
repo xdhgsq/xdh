@@ -436,7 +436,7 @@ EOF
 
 	for i in `cat /tmp/jd_tmp/run_0 | grep -v "#.*js" | awk '{print $1}'`
 	do
-		num=$(python $dir_file/jd_random.py 20,1)
+		num=$($python3 $dir_file/jd_random.py 20,1)
 		echo "$i脚本延迟$num秒以后再开始跑，请耐心等待"
 		sleep $num
 		$node $dir_file_js/$i
@@ -1548,13 +1548,12 @@ npm_install() {
 	npm install --save axios
 
 	if [ "$uname_if" = "Ubuntu" ];then
-		if [ ! `cat /etc/profile |grep -o "NODE_PATH" |sort -u` = "NODE_PATH" ];then
+		if [ "$(cat /etc/profile |grep -o "NODE_PATH" |sort -u)" != "NODE_PATH" ];then
 			echo "export NODE_PATH=/usr/local/lib/node_modules" >> /etc/profile
 			source /etc/profile
 		fi
 	else
-		echo ""
-
+		echo "NODE_PATH变量已导入"
 	fi
 
 	#安装python模块
@@ -1626,6 +1625,11 @@ system_variable() {
 		if [ ! -L "$dir_file_js/ql.js" ]; then
 			rm -rf $dir_file_js/ql.js  #临时删除，解决最近不推送问题
 			ln -s $openwrt_script_config/ql.js $dir_file_js/ql.js
+		fi
+
+		#sendNotify.js
+		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
+			cp  $dir_file/back/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
 		fi
 	fi
 
