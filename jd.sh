@@ -190,7 +190,7 @@ update() {
 
 
 #faker2_script
-cat >$dir_file/config/tmp/faker2_script.txt <<EOF
+cat >/tmp/jd_tmp/faker2_script.txt <<EOF
 	jd_Advent_exchange.js		#临期京豆续命
 	jd_beanday.js			#天天领豆
 	jd_channel_follow.js		#频道关注
@@ -207,7 +207,7 @@ cat >$dir_file/config/tmp/faker2_script.txt <<EOF
 	jd_wechat_signRedpacket.js	#京东微信签到红包
 EOF
 
-for script_name in `cat $dir_file/config/tmp/faker2_script.txt | grep -v "#.*js" | awk '{print $1}'`
+for script_name in `cat /tmp/jd_tmp/faker2_script.txt | grep -v "#.*js" | awk '{print $1}'`
 do
 	echo  "${yellow} copy ${green}$script_name${white}"
 	cp  $dir_file/git_clone/faker2_script/$script_name  $dir_file_js/$script_name
@@ -218,12 +218,13 @@ sleep 5
 
 
 #将所有文本汇总
-echo > $dir_file/config/collect_script.txt
-for i in `ls  $dir_file/config/tmp`
+echo > /tmp/jd_tmp/collect_script.txt
+for i in `ls  /tmp/jd_tmp/`
 do
-	cat $dir_file/config/tmp/$i >> $dir_file/config/collect_script.txt
+	cat /tmp/jd_tmp/$i >> /tmp/jd_tmp/collect_script.txt
 done
 
+rm -rf $dir_file/config
 
 #删掉过期脚本(后面废弃)
 cat >/tmp/del_js.txt <<EOF
@@ -254,13 +255,13 @@ done
 	concurrent_js_update
 	source /etc/profile
 	echo  "${green} update$stop_script_time ${white}"
-	if [ -f $dir_file/config/tmp/wget_eeror.txt ];then
-		if [ ! `cat $dir_file/config/tmp/wget_eeror.txt | wc -l` = "0" ];then
+	if [ -f /tmp/jd_tmp/wget_eeror.txt ];then
+		if [ ! `cat /tmp/jd_tmp/wget_eeror.txt | wc -l` = "0" ];then
 			echo  "${yellow}此次下载失败的脚本有以下：${white}"
-			cat $dir_file/config/tmp/wget_eeror.txt
+			cat /tmp/jd_tmp/wget_eeror.txt
 		fi
 	fi
-	rm -rf $dir_file/config/tmp/*
+	rm -rf /tmp/jd_tmp/*
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
 }
@@ -269,7 +270,7 @@ cp_if() {
 	if [ $? -eq 0 ]; then
 			echo  ""
 	else
-		echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
+		echo "$script_name" >>/tmp/jd_tmp/wget_eeror.txt
 	fi
 
 }
@@ -288,7 +289,7 @@ update_if() {
 				if [ $eeror_num -ge 3 ];then
 					echo ">> ${yellow}$script_name${white}下载$eeror_num次都失败，跳过这个下载"
 					num=$(expr $num - 1)
-					echo "$script_name" >>$dir_file/config/tmp/wget_eeror.txt
+					echo "$script_name" >>/tmp/jd_tmp/wget_eeror.txt
 				else
 					echo  ">> ${yellow}$script_name${white}下载失败,开始尝试第$eeror_num次下载，3次下载失败就不再重试。"
 					eeror_num=$(expr $eeror_num + 1)
@@ -490,7 +491,7 @@ file_num=$(ls $ccr_js_file | wc -l)
 script_name() {
 	clear
 	echo  "${green} 显示所有JS脚本名称与作用${white}"
-	cat $dir_file/config/collect_script.txt
+	cat /tmp/jd_tmp/collect_script.txt
 }
 
 Tjs()	{
@@ -1481,7 +1482,7 @@ help() {
 
 additional_settings() {
 
-	for i in `cat $dir_file/config/collect_script.txt | grep -v "#.*js" | awk '{print $1}'`
+	for i in `cat /tmp/jd_tmp/collect_script.txt | grep -v "#.*js" | awk '{print $1}'`
 	do
 	{
 		sed -i "s/$.isNode() ? 20 : 5/0/g" $dir_file_js/$i
@@ -1575,8 +1576,8 @@ python_install() {
 
 system_variable() {
 
-	if [ ! -d "$dir_file/config/tmp" ]; then
-		mkdir -p $dir_file/config/tmp
+	if [ ! -d "/tmp/jd_tmp/" ]; then
+		mkdir -p /tmp/jd_tmp/
 	fi
 	
 	if [ ! -d "$dir_file/js" ]; then
