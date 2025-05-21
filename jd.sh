@@ -1543,6 +1543,31 @@ random_array() {
 	fi
 }
 
+path_install() {
+cat > /tmp/path_if.txt <<EOF
+export uname_if=Ubuntu
+export NODE_PATH=/usr/local/lib/node_modules
+export wskey_file=$dir_file/script_config/wskey
+export wskey=$dir_file/script_config/wskey/wskey.sh
+export checkjs_file=$dir_file/Checkjs
+export checkjs=$dir_file/Checkjs/checkjs.sh
+EOF
+	path_num=$(cat /tmp/path_if.txt|wc -l)
+	num="1"
+	while [ $path_num -ge $num ];do
+		path_value=$(sed ${num}p /tmp/path_if.txt)
+		path_name=$(cat $path_value | awk -F "=" '{print $1}' | sed "s/export //g")
+
+		if [ "$(cat /etc/profile |grep -o "$path_name" |sort -u)" != "$path_name" ];then
+			echo "$path_value" >> /etc/profile
+			$bash source /etc/profile
+		else
+			echo "$path_name变量已导入"
+		fi
+		num=$(( $num + 1))
+	done
+}
+
 
 npm_install() {
 	echo  "${green} 开始安装npm模块${white}"
@@ -1824,7 +1849,7 @@ else
 		run_0)
 		concurrent_js_if
 		;;
-		ccr_run|start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
+		path_install|ccr_run|start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
 		$action1
 		;;
 		kill_ccr)
@@ -1843,7 +1868,7 @@ else
 		run_0)
 		concurrent_js_if
 		;;
-		ccr_run|start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
+		path_install|ccr_run|start_script|wskey|checkjs|checkjs_tg|pj|system_variable|update|update_script|task|ds_setup|checklog|that_day|stop_script|script_name|backnas|npm_install|checktool|concurrent_js_clean|if_ps|getcookie|addcookie|delcookie|python_install|concurrent_js_update|kill_index|del_expired_cookie|jd_time|run_jsqd|Tjs|test)
 		$action2
 		;;
 		kill_ccr)
