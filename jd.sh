@@ -29,6 +29,7 @@ version="2.3"
 node="/usr/bin/node"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
+bash="/usr/bin/bash"
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
 uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
 
@@ -139,7 +140,7 @@ ds_setup() {
 	task_delete
 	echo "JD_Script删除全局变量"
 	sed -i '/JD_Script/d' /etc/profile >/dev/null 2>&1
-	source /etc/profile
+	$bash source /etc/profile
 	echo "JD_Script定时任务和全局变量删除完成，脚本彻底不会自动运行了"
 }
 
@@ -253,7 +254,7 @@ done
 	rm -rf $openwrt_script_config/check_cookie.txt
 	additional_settings
 	concurrent_js_update
-	source /etc/profile
+	$bash source /etc/profile
 	echo  "${green} update$stop_script_time ${white}"
 	if [ -f /tmp/jd_tmp/wget_eeror.txt ];then
 		if [ ! `cat /tmp/jd_tmp/wget_eeror.txt | wc -l` = "0" ];then
@@ -1555,7 +1556,7 @@ npm_install() {
 	if [ "$uname_if" = "Ubuntu" ];then
 		if [ "$(cat /etc/profile |grep -o "NODE_PATH" |sort -u)" != "NODE_PATH" ];then
 			echo "export NODE_PATH=/usr/local/lib/node_modules" >> /etc/profile
-			source /etc/profile
+			$bash source /etc/profile
 		fi
 	else
 		echo "NODE_PATH变量已导入"
@@ -1643,7 +1644,7 @@ system_variable() {
 	if [ "$jd_script_path" -eq "0" ]; then
 		echo "export jd_file=$dir_file" >> /etc/profile
 		echo "export jd=$dir_file/jd.sh" >> /etc/profile
-		source /etc/profile
+		$bash source /etc/profile
 	fi
 
 	jd_openwrt_config
