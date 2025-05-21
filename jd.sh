@@ -192,6 +192,7 @@ update() {
 
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
+	jd_ttthb_help.js		#推推红包助力
 	jd_Advent_exchange.js		#临期京豆续命
 	jd_beanday.js			#天天领豆
 	jd_channel_follow.js		#频道关注
@@ -335,6 +336,7 @@ fi
 
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_ttthb_help.js	#推推红包助力
 	jd_farmnew_code_help.js	#新农场code助力
 	jd_farmshare.js		#新农场小程序助力
 	jd_plantBean_help.js	#种豆得豆助力
@@ -357,6 +359,7 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
+	jd_tuitui_red_task.js	#推推红包每日任务
 	jd_global_task_.js	#京豆国际频道任务
 	jd_yssign.js		#ys每日签到
 	jd_jrsign.js		#金融签到
