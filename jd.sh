@@ -140,7 +140,7 @@ ds_setup() {
 	task_delete
 	echo "JD_Script删除全局变量"
 	sed -i '/JD_Script/d' /etc/profile >/dev/null 2>&1
-	$bash source /etc/profile
+	 . /etc/profile
 	echo "JD_Script定时任务和全局变量删除完成，脚本彻底不会自动运行了"
 }
 
@@ -254,7 +254,7 @@ done
 	rm -rf $openwrt_script_config/check_cookie.txt
 	additional_settings
 	concurrent_js_update
-	$bash source /etc/profile
+	 . /etc/profile
 	echo  "${green} update$stop_script_time ${white}"
 	if [ -f /tmp/jd_tmp/wget_eeror.txt ];then
 		if [ ! `cat /tmp/jd_tmp/wget_eeror.txt | wc -l` = "0" ];then
@@ -1560,7 +1560,7 @@ EOF
 
 		if [ "$(cat /etc/profile |grep -o "$path_name" |sort -u)" != "$path_name" ];then
 			echo "$path_value" >> /etc/profile
-			$bash source /etc/profile
+			 . /etc/profile
 		else
 			echo "$path_name变量已导入"
 		fi
@@ -1581,7 +1581,7 @@ npm_install() {
 	if [ "$uname_if" = "Ubuntu" ];then
 		if [ "$(cat /etc/profile |grep -o "NODE_PATH" |sort -u)" != "NODE_PATH" ];then
 			echo "export NODE_PATH=/usr/local/lib/node_modules" >> /etc/profile
-			$bash source /etc/profile
+			 . /etc/profile
 		fi
 	else
 		echo "NODE_PATH变量已导入"
@@ -1669,7 +1669,7 @@ system_variable() {
 	if [ "$jd_script_path" -eq "0" ]; then
 		echo "export jd_file=$dir_file" >> /etc/profile
 		echo "export jd=$dir_file/jd.sh" >> /etc/profile
-		$bash source /etc/profile
+		 . /etc/profile
 	fi
 
 	jd_openwrt_config
