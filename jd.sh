@@ -1555,7 +1555,7 @@ EOF
 	path_num=$(cat /tmp/path_if.txt|wc -l)
 	num="1"
 	while [ $path_num -ge $num ];do
-		path_value=$(sed ${num}p /tmp/path_if.txt)
+		path_value=$(sed -n ${num}p /tmp/path_if.txt)
 		path_name=$(echo $path_value | awk -F "=" '{print $1}' | sed "s/export //g")
 
 		if [ "$(cat /etc/profile |grep -o "$path_name" |sort -u)" != "$path_name" ];then
