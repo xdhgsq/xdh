@@ -362,7 +362,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_tuitui_red_task.js	#推推红包每日任务
 	jd_global_task_.js	#京豆国际频道任务
 	jd_yssign.js		#ys每日签到
-	jd_jrsign.js		#金融签到
 	jd_signbeanact_.js	#领京豆签到
 	jd_kjsign.js		#kj每日签到
 	jd_bean_home.js		#领京豆-升级赚豆
