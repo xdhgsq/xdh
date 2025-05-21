@@ -35,7 +35,7 @@ uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
-	cron_file="/etc/crontab"
+	cron_file="/etc/cron.d/jd_cron"
 else
 	cron_file="/etc/crontabs/root"
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
