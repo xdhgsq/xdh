@@ -1546,10 +1546,10 @@ path_install() {
 cat > /tmp/path_if.txt <<EOF
 export uname_if=Ubuntu
 export NODE_PATH=/usr/local/lib/node_modules
-export wskey_file=$dir_file/script_config/wskey
 export wskey=$dir_file/script_config/wskey/wskey.sh
-export checkjs_file=$dir_file/Checkjs
+export wskey_file=$dir_file/script_config/wskey
 export checkjs=$dir_file/Checkjs/checkjs.sh
+export checkjs_file=$dir_file/Checkjs
 EOF
 	path_num=$(cat /tmp/path_if.txt|wc -l)
 	num="1"
