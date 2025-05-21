@@ -1546,13 +1546,21 @@ random_array() {
 }
 
 path_install() {
+#临时删除一下
+sed -i '/wskey/d' /etc/profile >/dev/null 2>&1
+sed -i '/checkjs/d' /etc/profile >/dev/null 2>&1
+sed -i '/Checkjs/d' /etc/profile >/dev/null 2>&1
+sed -i '/uname_if/d' /etc/profile >/dev/null 2>&1
+sed -i '/NODE_PATH/d' /etc/profile >/dev/null 2>&1
+
+
 cat > /tmp/path_if.txt <<EOF
 export uname_if=Ubuntu
 export NODE_PATH=/usr/local/lib/node_modules
-export wskey=$dir_file/script_config/wskey/wskey.sh
-export wskey_file=$dir_file/script_config/wskey
-export checkjs=$dir_file/Checkjs/checkjs.sh
-export checkjs_file=$dir_file/Checkjs
+export wskey=/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh
+export wskey_file=/usr/share/jd_openwrt_script/script_config/wskey
+export checkjs=/usr/share/jd_openwrt_script/Checkjs/checkjs.sh
+export checkjs_file=/usr/share/jd_openwrt_script/Checkjs
 EOF
 	path_num=$(cat /tmp/path_if.txt|wc -l)
 	num="1"
