@@ -380,7 +380,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_vu50.js		#V你50超市卡
 	jd_sq_draw.js		#社区抽奖
 	jd_msDraw.js		#秒送抽奖
-	jd_huwai_draw.js	#户外管每日抽
 	jd_ttDraw.js		#天天抽奖
 	jd_luckyDraw.js		#幸运抽奖
 	jd_mkt_answer.js	#超市答题抽奖
