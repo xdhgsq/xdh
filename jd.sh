@@ -269,6 +269,8 @@ done
 			cat /tmp/jd_tmp/wget_eeror.txt
 		fi
 	fi
+	#ln js模块到指定位置
+	ln -s $openwrt_script_config/node_modules $dir_file_js
 	rm -rf /tmp/jd_tmp/*
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
@@ -614,7 +616,7 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
-			ln -s $dir_file_js/node_modules $ccr_js_file/js_$ck_num/node_modules
+			ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/node_modules
 		} &
 		done
 		#wait
@@ -1586,8 +1588,8 @@ EOF
 
 npm_install() {
 	echo  "${green} 开始安装npm模块${white}"
-	#安装js模块
-	cd /usr/share/jd_openwrt_script/JD_Script/js
+	#安装js模块到script_config,然后再ln过去
+	cd $openwrt_script_config
 	npm install got crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
