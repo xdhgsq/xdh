@@ -27,6 +27,7 @@ run_sleep=$(sleep 1)
 
 version="2.3"
 node="/usr/bin/node"
+NODE_PATH="/usr/local/lib/node_modules"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
 bash="/usr/bin/bash"
