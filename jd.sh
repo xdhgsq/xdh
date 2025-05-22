@@ -252,7 +252,7 @@ done
 		echo "脚本下载没有成功，重新执行代码"
 		update
 	fi
-	#chmod 755 $dir_file_js/*
+	chmod 755 $dir_file_js/*
 	#kill_index
 	#index_js
 	echo "删除重复的文件"
@@ -1586,7 +1586,7 @@ EOF
 npm_install() {
 	echo  "${green} 开始安装npm模块${white}"
 	#安装js模块
-	cd $openwrt_script
+	cd /usr/share/jd_openwrt_script/JD_Script/js
 	npm install -g npm@8.3.0
 	npm install got@11.5.1 -g
 	npm install -g  crc http-cookie-agent qs sharp curl cheerio ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
