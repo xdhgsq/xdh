@@ -31,7 +31,12 @@ tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
 bash="/usr/bin/bash"
 uname_version=$(uname -a | awk -v i="+" '{print $1i $2i $3}')
-uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
+
+if [ -z $uname_if ];then
+	uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
+fi
+
+
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
