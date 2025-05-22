@@ -614,7 +614,7 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
-			cp -r $dir_file_js/node_modules $ccr_js_file/js_$ck_num/
+			ln -s $dir_file_js/node_modules $ccr_js_file/js_$ck_num/node_modules
 		} &
 		done
 		#wait
@@ -1588,9 +1588,7 @@ npm_install() {
 	echo  "${green} 开始安装npm模块${white}"
 	#安装js模块
 	cd /usr/share/jd_openwrt_script/JD_Script/js
-	npm install -g npm@8.3.0
-	npm install got@11.5.1 -g
-	npm install -g  crc http-cookie-agent qs sharp curl cheerio ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install got@11.5.1 npm@8.3.0 crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	if [ "$uname_if" = "Ubuntu" ];then
