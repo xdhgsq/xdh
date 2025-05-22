@@ -614,6 +614,7 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
+			cp -r $dir_file_js/node_modules $ccr_js_file/js_$ck_num/
 		} &
 		done
 		#wait
