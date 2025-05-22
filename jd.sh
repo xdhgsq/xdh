@@ -35,7 +35,7 @@ uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
 
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
-	cron_file="/etc/cron.d/jd_cron"
+	cron_file="/etc/cron.d/jd-cron"
 else
 	cron_file="/etc/crontabs/root"
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
@@ -93,7 +93,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.33"
+	cron_version="4.34"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
