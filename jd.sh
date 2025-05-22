@@ -36,8 +36,6 @@ if [ -z $uname_if ];then
 	uname_if=$(cat /etc/profile | grep -o Ubuntu |sort -u)
 fi
 
-
-
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
 	cron_file="/etc/cron.d/jd-cron"
@@ -349,6 +347,7 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plantBean_help.js	#种豆得豆助力
 	jx_fcwb_help.js		#欢乐挖宝助力
 	jd_AutoEval.js		#带图评价默认不执行, 请设置变量 ONEVAL='true'
+	jd_bean_info.js		#京豆详细统计
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
