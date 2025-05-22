@@ -198,6 +198,8 @@ update() {
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
 	jd_ttthb_help.js		#推推红包助力
+	jd_opencard05211.js		#5.31 端午情长“粽”有心意
+	jd_opencard0521.js		#5.31 联合开卡活动
 	jd_Advent_exchange.js		#临期京豆续命
 	jd_beanday.js			#天天领豆
 	jd_channel_follow.js		#频道关注
@@ -365,6 +367,7 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_tuitui_red_task.js	#推推红包每日任务
+	jd_jrsign.js		#金融签到
 	jd_global_task_.js	#京豆国际频道任务
 	jd_yssign.js		#ys每日签到
 	jd_signbeanact_.js	#领京豆签到
@@ -403,13 +406,11 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆
 	jd_fcwb_auto.js		#欢乐挖宝任务
 	jd_hssign.js		#hs每日签到
-	jd_3c_task.js		#3C每日签到
 	jd_hlw_draw.js		#hlw抽奖
 	jd_health.js		#东东健康社区
 	jd_health_task.js	#健康能量任务
 	jd_health_collect.js	#健康社区收集能量
 	jd_health_draw.js	#健康_抽奖
-	jd_zwb.js		#做任务赚汪贝
 	jd_mk_game.js		#赚汪贝兑礼品
 	jd_wbDraw.js		#汪贝刮超市卡
 	jd_market_exchange.js	#超市汪贝兑好礼
@@ -453,7 +454,6 @@ EOF
 		$node $dir_file_js/$i
 		$run_sleep
 	done
-	ccr_run
 	wait
 	echo  "${green} run_0$stop_script_time ${white}"
 }
