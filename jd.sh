@@ -223,14 +223,6 @@ done
 
 sleep 5
 
-
-#将所有文本汇总
-echo > /tmp/jd_tmp/collect_script.txt
-for i in `ls  /tmp/jd_tmp/`
-do
-	cat /tmp/jd_tmp/$i >> /tmp/jd_tmp/collect_script.txt
-done
-
 rm -rf $dir_file/config
 
 #删掉过期脚本(后面废弃)
