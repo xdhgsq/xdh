@@ -269,7 +269,8 @@ done
 		cp $openwrt_script_config/sendNotify.js $dir_file_js
 		rm -rf /tmp/jd_tmp/*
 	else
-		echo ""
+		cp $openwrt_script_config/jdCookie.js $dir_file_js
+		cp $openwrt_script_config/sendNotify.js $dir_file_js
 	fi
 
 	task #更新完全部脚本顺便检查一下计划任务是否有变
