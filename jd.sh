@@ -27,7 +27,7 @@ run_sleep=$(sleep 1)
 
 version="2.3"
 node="/usr/bin/node"
-NODE_PATH="/usr/local/lib/node_modules"
+NODE_PATH="NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
 bash="/usr/bin/bash"
@@ -1563,7 +1563,7 @@ sed -i '/NODE_PATH/d' /etc/profile >/dev/null 2>&1
 
 cat > /tmp/path_if.txt <<EOF
 export uname_if=Ubuntu
-export NODE_PATH=/usr/local/lib/node_modules
+export NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules
 export wskey=/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh
 export wskey_file=/usr/share/jd_openwrt_script/script_config/wskey
 export checkjs=/usr/share/jd_openwrt_script/Checkjs/checkjs.sh
@@ -1595,7 +1595,7 @@ npm_install() {
 
 	if [ "$uname_if" = "Ubuntu" ];then
 		if [ "$(cat /etc/profile |grep -o "NODE_PATH" |sort -u)" != "NODE_PATH" ];then
-			echo "export NODE_PATH=/usr/local/lib/node_modules" >> /etc/profile
+			echo "export NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules" >> /etc/profile
 			 . /etc/profile
 		fi
 	else
