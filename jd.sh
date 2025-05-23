@@ -195,6 +195,8 @@ update() {
 
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
+	jd_tjfb.js			#推金风暴
+	jd_fish_help.js			#金融捕鱼助力
 	jd_ttthb_help.js		#推推红包助力
 	jd_opencard05211.js		#5.31 端午情长“粽”有心意
 	jd_opencard0521.js		#5.31 联合开卡活动
@@ -221,7 +223,7 @@ do
 	cp_if
 done
 
-cp -r $dir_file/git_clone/faker2_script/utils/smashUtils  $dir_file_js/utils
+cp -r $dir_file/git_clone/faker2_script/utils/smashUtils.js  $dir_file_js/utils/smashUtils.js
 
 sleep 5
 
@@ -347,6 +349,7 @@ fi
 
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_tjfb_help.js		#推金风暴助力
 	jd_ttthb_help.js	#推推红包助力
 	jd_farmnew_code_help.js	#新农场code助力
 	jd_farmshare.js		#新农场小程序助力
@@ -371,6 +374,9 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
+	jd_opencard05211.js	#5.31 端午情长“粽”有心意
+	jd_opencard0521.js	#5.31 联合开卡活动
+	jd_tjfb.js		#推金风暴
 	jd_tuitui_red_task.js	#推推红包每日任务
 	jd_jrsign.js		#金融签到
 	jd_global_task_.js	#京豆国际频道任务
