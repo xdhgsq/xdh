@@ -616,7 +616,12 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
-			ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+			if [ "$uname_if" = "Ubuntu" ];then
+				echo "当前环境为ubuntu"
+				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+			else
+				echo ""
+			fi
 		} &
 		done
 		#wait
