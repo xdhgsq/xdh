@@ -178,9 +178,6 @@ update() {
 		git fetch --all
 		git reset --hard origin/main
 	fi
-
-	cp $openwrt_script_config/jdCookie.js $dir_file_js
-	cp $openwrt_script_config/sendNotify.js $dir_file_js
 	
 	#临时删除之前的库
 	rm -rf $dir_file/git_clone/lxk0301_back
@@ -616,7 +613,7 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
-			ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/node_modules
+			ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
 		} &
 		done
 		#wait
@@ -1590,7 +1587,9 @@ npm_install() {
 	echo  "${green} 开始安装npm模块${white}"
 	#安装js模块到script_config,然后再ln过去
 	cd $openwrt_script_config
-	npm install got crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+	npm install npm
+	npm install got
+	npm install request uuid har-validator crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
 
 	if [ "$uname_if" = "Ubuntu" ];then
@@ -1645,6 +1644,19 @@ system_variable() {
 		if [ ! -L "$dir_file_js/jdCookie.js" ]; then
 			rm -rf $dir_file_js/jdCookie.js
 			ln -s $openwrt_script_config/jdCookie.js $dir_file_js/jdCookie.js
+		fi
+
+		#sendNotify.js
+		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
+			cp  $dir_file/back/JSON/sendNotify.js  $openwrt_script_config/sendNotify.js
+			rm -rf $dir_file_js/sendNotify.js #用于删除旧的链接
+			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
+		fi
+
+		#sendNotify.js用于升级以后恢复链接
+		if [ ! -L "$dir_file_js/sendNotify.js" ]; then
+			rm -rf $dir_file_js/sendNotify.js
+			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
 		fi
 
 		#CK_WxPusherUid.json
