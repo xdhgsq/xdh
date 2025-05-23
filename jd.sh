@@ -1497,35 +1497,6 @@ help() {
 
 additional_settings() {
 
-	for i in `cat /tmp/jd_tmp/collect_script.txt | grep -v "#.*js" | awk '{print $1}'`
-	do
-	{
-		sed -i "s/$.isNode() ? 20 : 5/0/g" $dir_file_js/$i
-		sed -i "s/$.isNode() ? 10 : 5/0/g" $dir_file_js/$i
-		#合并左右规则
-		sed -i 's/helpShareFlag = "true"/helpShareFlag = "false"/g' $dir_file_js/$i
-		sed -i 's/HelpAuthorFlag = true/HelpAuthorFlag = false/g' $dir_file_js/$i
-		sed -i 's/ShHelpAuthorFlag = true/ShHelpAuthorFlag = false/g' $dir_file_js/$i
-		sed -i 's/pKHelpAuthorFlag = true/pKHelpAuthorFlag = false/g' $dir_file_js/$i
-		sed -i 's/helpAuthor = true/helpAuthor = false/g' $dir_file_js/$i
-		sed -i 's/helpAuthor=true/helpAuthor=false/g' $dir_file_js/$i
-		sed -i 's/helpAu = true/helpAu = false/g' $dir_file_js/$i
-		#Aaron
-		sed -i 's/master\/shareCodes/12345/g' $dir_file_js/$i
-		sed -i "s/transfer.nz.lu\/jxmc/1234/g" $dir_file_js/$i
-		#Cdle
-		sed -i 's/jdsharecode.xyz/12345.xyz/g' $dir_file_js/$i
-		#Zero
-		sed -i 's/main\/shareCodes/12345/g' $dir_file_js/$i
-		#Star261
-		sed -i 's/lukelucky6\/code/12345/g' $dir_file_js/$i
-		#Smiek
-		sed -i 's/jd.smiek.tk/jd.12345.tk/g' $dir_file_js/$i
-
-	}&
-	done
-	wait
-
 	if [ `cat $openwrt_script_config/sendNotify.js | grep "采用lxk0301开源JS脚本" | wc -l` = "0" ];then
 	sed -i "s/本脚本开源免费使用 By：https:\/\/gitee.com\/lxk0301\/jd_docker/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
 	sed -i "s/本脚本开源免费使用 By：https:\/\/github.com\/LXK0301\/jd_scripts/#### 脚本仓库地址:https:\/\/github.com\/xdhgsq\/xdh/g" $openwrt_script_config/sendNotify.js
