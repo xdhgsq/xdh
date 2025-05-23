@@ -27,7 +27,6 @@ run_sleep=$(sleep 1)
 
 version="2.3"
 node="/usr/bin/node"
-NODE_PATH="NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules"
 tsnode="/usr/bin/ts-node"
 python3="/usr/bin/python3"
 bash="/usr/bin/bash"
@@ -40,7 +39,10 @@ fi
 if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
 	cron_file="/etc/cron.d/jd-cron"
+	NODE_PATH="NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules"
+	cron_user="root"
 else
+	cron_user=""
 	cron_file="/etc/crontabs/root"
 	sys_model=$(cat /tmp/sysinfo/model | awk -v i="+" '{print $1i$2i$3i$4}')
 	wan_ip=$(cat /etc/config/network | grep "wan" | wc -l)
@@ -97,7 +99,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.35"
+	cron_version="4.36"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -115,19 +117,19 @@ sed -i '/jd_fruit_help.js/d' $cron_file >/dev/null 2>&1
 sed -i '/jd_try/d' $cron_file >/dev/null 2>&1
 cat >>$cron_file <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
-0 0,6 * * * root $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-0 8 * * * root $node $dir_file_js/jd_bean_change.js 	#京东资产统计#100#
-0 */8 * * * root $node $dir_file_js/jd_baglx.js	#红树林养育8小时执行一次#100#
-0 */2 * * * root $node $dir_file_js/jd_kd_fruit.js			#快递种树两个小时执行一次#100#
-0 12,18 * * * root $node $dir_file_js/jd_fruit_new.js #新农场，6-9点 11-14点 17-21点可以领水滴#100#
-0 20 * * * root $node $dir_file_js/jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
-0 */4 * * * root $node $dir_file_js/jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行#100#
-50 23 * * * root $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
-46 23 * * * root rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
-20 12,22 * * * root $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
+0 0,6 * * * $cron_user $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
+0 8 * * * $cron_user $node $dir_file_js/jd_bean_change.js 	#京东资产统计#100#
+0 */8 * * * $cron_user $node $dir_file_js/jd_baglx.js	#红树林养育8小时执行一次#100#
+0 */2 * * * $cron_user $node $dir_file_js/jd_kd_fruit.js			#快递种树两个小时执行一次#100#
+0 12,18 * * * $cron_user $node $dir_file_js/jd_fruit_new.js #新农场，6-9点 11-14点 17-21点可以领水滴#100#
+0 20 * * * $cron_user $node $dir_file_js/jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
+0 */4 * * * $cron_user $node $dir_file_js/jd_joypark_leave.js	#汪汪庄园离线收金币,可定时4小时一次执行#100#
+50 23 * * * $cron_user $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
+46 23 * * * $cron_user rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
+20 12,22 * * * $cron_user $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
 ###########100##########请将其他定时任务放到底下###############
 #**********这里是backnas定时任务#100#******************************#
-45 12,19 * * * root $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
+45 12,19 * * * $cron_user $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
 ############100###########请将其他定时任务放到底下###############
 EOF
 
@@ -266,11 +268,18 @@ done
 			cat /tmp/jd_tmp/wget_eeror.txt
 		fi
 	fi
-	#ln js模块到指定位置
-	ln -s $openwrt_script_config/node_modules $dir_file_js
-	cp $openwrt_script_config/jdCookie.js $dir_file_js
-	cp $openwrt_script_config/sendNotify.js $dir_file_js
-	rm -rf /tmp/jd_tmp/*
+
+	if [ "$uname_if" = "Ubuntu" ];then
+		echo "当前环境为ubuntu"
+		#ln js模块到指定位置
+		ln -s $openwrt_script_config/node_modules $dir_file_js
+		cp $openwrt_script_config/jdCookie.js $dir_file_js
+		cp $openwrt_script_config/sendNotify.js $dir_file_js
+		rm -rf /tmp/jd_tmp/*
+	else
+		echo ""
+	fi
+
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
 }
@@ -1590,23 +1599,23 @@ npm_install() {
 	#安装js模块到script_config,然后再ln过去
 	cd $openwrt_script_config
 
-	npm install npm@8.3.0
-	npm install got@11.5.1
-	npm install crc http-cookie-agent qs sharp curl cheerio ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
-	npm install --save axios
-
-	#npm install npm@11.4.1
-	#npm install got
-	#npm install request uuid har-validator crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
-	#npm install --save axios
-
 	if [ "$uname_if" = "Ubuntu" ];then
-		if [ "$(cat /etc/profile |grep -o "NODE_PATH" |sort -u)" != "NODE_PATH" ];then
-			echo "export NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules" >> /etc/profile
-			 . /etc/profile
-		fi
+		echo "当前环境为ubuntu"
+		npm install npm@8.3.0
+		npm install got@11.5.1
+		npm install crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+		npm install --save axios
+
+		#npm install npm@11.4.1
+		#npm install got
+		#npm install request uuid har-validator crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+		#npm install --save axios
 	else
-		echo "NODE_PATH变量已导入"
+		npm install -g npm@8.3.0
+		npm install -g got@11.5.1
+		npm install -g crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+		npm install --save axios
+
 	fi
 
 	#安装python模块
