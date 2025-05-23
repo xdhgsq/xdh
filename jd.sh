@@ -224,6 +224,7 @@ do
 done
 
 cp -r $dir_file/git_clone/faker2_script/utils/smashUtils.js  $dir_file_js/utils/smashUtils.js
+cp -r $dir_file/git_clone/faker2_script/utils/baseUtils.js  $dir_file_js/utils/baseUtils.js
 
 sleep 5
 
