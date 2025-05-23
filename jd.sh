@@ -221,6 +221,8 @@ do
 	cp_if
 done
 
+cp -r $dir_file/git_clone/faker2_script/utils/smashUtils  $dir_file_js/utils
+
 sleep 5
 
 rm -rf $dir_file/config
