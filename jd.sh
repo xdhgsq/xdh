@@ -268,6 +268,8 @@ done
 	fi
 	#ln js模块到指定位置
 	ln -s $openwrt_script_config/node_modules $dir_file_js
+	cp $openwrt_script_config/jdCookie.js $dir_file_js
+	cp $openwrt_script_config/sendNotify.js $dir_file_js
 	rm -rf /tmp/jd_tmp/*
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
@@ -1587,7 +1589,7 @@ npm_install() {
 	echo  "${green} 开始安装npm模块${white}"
 	#安装js模块到script_config,然后再ln过去
 	cd $openwrt_script_config
-	npm install npm
+	npm install npm@11.4.1
 	npm install got
 	npm install request uuid har-validator crc http-cookie-agent@latest qs sharp curl cheerio ds audit crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 	npm install --save axios
