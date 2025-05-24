@@ -376,6 +376,8 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
+	jd_dplh052402.js	#大牌052402
+	jd_dplh0524.js		#大牌0524
 	jd_opencard05211.js	#5.31 端午情长“粽”有心意
 	jd_opencard0521.js	#5.31 联合开卡活动
 	jd_tjfb.js		#推金风暴
