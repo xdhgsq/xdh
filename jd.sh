@@ -197,6 +197,7 @@ update() {
 
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
+	jd_by_sign.js			#捕鱼签到（需要手动进行点一下）
 	jd_day.js			#每日抽
 	jd_daycj.js			#外卖整点抽
 	jd_tjfb.js			#推金风暴
@@ -378,6 +379,7 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
+	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
 	jd_day.js		#每日抽
 	jd_dplh052402.js	#大牌052402
 	jd_dplh0524.js		#大牌0524
