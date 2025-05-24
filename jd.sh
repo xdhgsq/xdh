@@ -358,7 +358,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_plantBean_help.js	#种豆得豆助力
 	jx_fcwb_help.js		#欢乐挖宝助力
 	jd_AutoEval.js		#带图评价默认不执行, 请设置变量 ONEVAL='true'
-	jd_bean_info.js		#京豆详细统计
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
@@ -470,6 +469,7 @@ EOF
 		$run_sleep
 	done
 	wait
+	$node $dir_file_js/jd_bean_info.js		#京豆详细统计
 	echo  "${green} run_0$stop_script_time ${white}"
 }
 
