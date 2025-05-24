@@ -228,8 +228,7 @@ do
 	cp_if
 done
 
-cp -r $dir_file/git_clone/faker2_script/utils/smashUtils.js  $dir_file_js/utils/smashUtils.js
-cp -r $dir_file/git_clone/faker2_script/utils/baseUtils.js  $dir_file_js/utils/baseUtils.js
+cp -r $dir_file/git_clone/faker2_script/utils/*  $dir_file_js/utils
 
 sleep 5
 
