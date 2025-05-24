@@ -99,7 +99,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.38"
+	cron_version="4.39"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -131,7 +131,7 @@ cat >>$cron_file <<EOF
 20 12,22 * * * $cron_user $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
 ###########100##########请将其他定时任务放到底下###############
 #**********这里是backnas定时任务#100#******************************#
-45 12,19 * * * $cron_user $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
+#45 12,19 * * * $cron_user $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
 ############100###########请将其他定时任务放到底下###############
 EOF
 
@@ -273,7 +273,7 @@ done
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo "当前环境为ubuntu"
 		#ln js模块到指定位置
-		cp -r $openwrt_script_config/node_modules $dir_file_js
+		ln -s $openwrt_script_config/node_modules $dir_file_js
 		cp $openwrt_script_config/jdCookie.js $dir_file_js
 		cp $openwrt_script_config/sendNotify.js $dir_file_js
 		rm -rf /tmp/jd_tmp/*
@@ -636,7 +636,7 @@ concurrent_js_update() {
 			done
 			if [ "$uname_if" = "Ubuntu" ];then
 				echo "当前环境为ubuntu"
-				cp -r $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
 			else
 				echo ""
 			fi
