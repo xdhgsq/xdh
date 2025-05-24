@@ -273,7 +273,7 @@ done
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo "当前环境为ubuntu"
 		#ln js模块到指定位置
-		ln -s $openwrt_script_config/node_modules $dir_file_js
+		cp -r $openwrt_script_config/node_modules $dir_file_js
 		cp $openwrt_script_config/jdCookie.js $dir_file_js
 		cp $openwrt_script_config/sendNotify.js $dir_file_js
 		rm -rf /tmp/jd_tmp/*
@@ -636,7 +636,7 @@ concurrent_js_update() {
 			done
 			if [ "$uname_if" = "Ubuntu" ];then
 				echo "当前环境为ubuntu"
-				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+				cp -r $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
 			else
 				echo ""
 			fi
