@@ -628,7 +628,7 @@ concurrent_js_update() {
 			done
 			if [ "$uname_if" = "Ubuntu" ];then
 				echo "当前环境为ubuntu"
-				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/node_modules
 			else
 				echo ""
 			fi
@@ -1689,7 +1689,7 @@ system_variable() {
 		if [ "$uname_if" = "Ubuntu" ];then
 			echo "当前环境为ubuntu"
 			if [ ! -d "$dir_file_js/node_modules" ]; then
-				ln -s $openwrt_script_config/node_modules $dir_file_js
+				ln -s $openwrt_script_config/node_modules $dir_file_js/node_modules
 			fi
 		fi
 
