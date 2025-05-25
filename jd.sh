@@ -160,9 +160,6 @@ update() {
 	rm -rf $dir_file_js/*
 	rm -rf /tmp/jd_tmp/*
 
-	#恢复依赖
-	system_variable
-
 	#检测库下载
 	if [ ! -d $dir_file/git_clone ];then
 		mkdir $dir_file/git_clone
@@ -274,6 +271,8 @@ done
 		fi
 	fi
 
+	#恢复依赖（要在复制脚本以后，不然会被覆盖掉）
+	system_variable
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
 }
@@ -1622,7 +1621,7 @@ system_variable() {
 	fi
 
 	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
-		echo "${green}检查常用依赖是否正常${white}"
+		echo "》》${green}检查常用依赖是否正常${white}"
 cat > /tmp/path_if.txt <<EOF
 -f jdCookie.js
 -f sendNotify.js
@@ -1638,7 +1637,6 @@ EOF
 			path_name=$(echo $path_value | awk '{print $2}')
 			if [ $path_if "$openwrt_script_config/$path_name" ]; then
 				echo "${green}$path_name文件存在${white}"
-				rm -rf $dir_file_js/$path_name
 				ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
 			else
 				echo "${red}$path_name文件不存在${white}"
