@@ -1638,14 +1638,16 @@ EOF
 			if [ $path_if "$openwrt_script_config/$path_name" ]; then
 				echo "${green}$path_name文件存在${white}"
 				if [ ! -L "$dir_file_js/$path_name" ];then
+					rm -rf $dir_file_js/$path_name
 					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
 				fi
 			else
 				echo "${red}$path_name文件不存在${white}"
 				if [ "$path_name" = "node_modules" ];then
-					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+					echo "${red}$openwrt_script_config/$path_name不存在，请执行sh \$jd npm_install && sh \$jd update${white}"
 				else
 					cp  $dir_file/back/JSON/$path_name  $openwrt_script_config/$path_name
+					rm -rf $dir_file_js/$path_name
 					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
 				fi
 			fi
