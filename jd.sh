@@ -1637,7 +1637,9 @@ EOF
 			path_name=$(echo $path_value | awk '{print $2}')
 			if [ $path_if "$openwrt_script_config/$path_name" ]; then
 				echo "${green}$path_name文件存在${white}"
-				ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+				if [ ! -L "$dir_file_js/$path_name" ];then
+					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+				fi
 			else
 				echo "${red}$path_name文件不存在${white}"
 				if [ "$path_name" = "node_modules" ];then
