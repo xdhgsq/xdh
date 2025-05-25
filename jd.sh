@@ -626,12 +626,6 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
-			if [ "$uname_if" = "Ubuntu" ];then
-				echo "当前环境为ubuntu"
-				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num
-			else
-				echo ""
-			fi
 		} &
 		done
 		#wait
@@ -1628,92 +1622,35 @@ system_variable() {
 	fi
 
 	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
-		#jdCookie.js
-		if [ ! -f "$openwrt_script_config/jdCookie.js" ]; then
-			cp  $dir_file/back/JSON/jdCookie.js  $openwrt_script_config/jdCookie.js
-			rm -rf $dir_file_js/jdCookie.js #用于删除旧的链接
-			ln -s $openwrt_script_config/jdCookie.js $dir_file_js/jdCookie.js
-		fi
-
-		#jdCookie.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/jdCookie.js" ]; then
-			rm -rf $dir_file_js/jdCookie.js
-			ln -s $openwrt_script_config/jdCookie.js $dir_file_js/jdCookie.js
-		fi
-
-		#sendNotify.js
-		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
-			cp  $dir_file/back/JSON/sendNotify.js  $openwrt_script_config/sendNotify.js
-			rm -rf $dir_file_js/sendNotify.js #用于删除旧的链接
-			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
-		fi
-
-		#sendNotify.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/sendNotify.js" ]; then
-			rm -rf $dir_file_js/sendNotify.js
-			ln -s $openwrt_script_config/sendNotify.js $dir_file_js/sendNotify.js
-		fi
-
-		#CK_WxPusherUid.json
-		if [ ! -f "$openwrt_script_config/CK_WxPusherUid.json" ]; then
-			cp  $dir_file/back/JSON/CK_WxPusherUid.json $openwrt_script_config/CK_WxPusherUid.json
-			rm -rf $dir_file_js/CK_WxPusherUid.json  #用于删除旧的链接
-			ln -s $openwrt_script_config/CK_WxPusherUid.json $dir_file_js/CK_WxPusherUid.json
-		fi
-
-		#CK_WxPusherUid.json用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/CK_WxPusherUid.json" ]; then
-			rm -rf $dir_file_js/CK_WxPusherUid.json  #临时删除，解决最近不推送问题
-			ln -s $openwrt_script_config/CK_WxPusherUid.json $dir_file_js/CK_WxPusherUid.json
-		fi
-
-		#ql.js
-		if [ ! -f "$openwrt_script_config/ql.js" ]; then
-			cp  $dir_file/back/JSON/ql.js $openwrt_script_config/ql.js
-			rm -rf $dir_file_js/ql.js  #用于删除旧的链接
-			ln -s $openwrt_script_config/ql.js $dir_file_js/ql.js
-		fi
-
-		#ql.js用于升级以后恢复链接
-		if [ ! -L "$dir_file_js/ql.js" ]; then
-			rm -rf $dir_file_js/ql.js  #临时删除，解决最近不推送问题
-			ln -s $openwrt_script_config/ql.js $dir_file_js/ql.js
-		fi
-
-		#sendNotify.js
-		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
-			cp  $dir_file/back/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
-		fi
-		
-		#ln js模块到指定位置
-		if [ "$uname_if" = "Ubuntu" ];then
-			echo "当前环境为ubuntu"
-			if [ -d "$dir_file_js/node_modules" ]; then
-				echo "node_modules文件存在"
+		echo "${green}检查常用依赖是否正常${white}"
+cat > /tmp/path_if.txt <<EOF
+-f jdCookie.js
+-f sendNotify.js
+-f CK_WxPusherUid.json
+-f ql.js
+-d node_modules
+EOF
+		path_num=$(cat /tmp/path_if.txt|wc -l)
+		num="1"
+		while [ $path_num -ge $num ];do
+			path_value=$(sed -n ${num}p /tmp/path_if.txt)
+			path_if=$(echo $path_value | awk '{print $1}')
+			path_name=$(echo $path_value | awk '{print $2}')
+			if [ $path_if "$openwrt_script_config/$path_name" ]; then
+				echo "${green}$path_name文件存在${white}"
+				rm -rf $dir_file_js/$path_name
+				ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
 			else
-				echo "node_modules文件不存在"
-				ln -s $openwrt_script_config/node_modules $dir_file_js
+				echo "${red}$path_name文件不存在${white}"
+				if [ "$path_name" = "node_modules" ];then
+					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+				else
+					cp  $dir_file/back/JSON/$path_name  $openwrt_script_config/$path_name
+					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+				fi
 			fi
-		fi
-
-		#判断脚本是否有执行权限
-		if [ -f "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ]; then
-  			if [  -x "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ];then
-  				echo "wskey.sh文件有执行权限"
-  			else
-  				echo "wskey.sh文件没有执行权限"
-  				chmod 755 /usr/share/jd_openwrt_script/script_config/wskey/wskey.sh
-  			fi
-		fi
-
-		if [ -f "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ]; then
-  			if [  -x "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ];then
-  				echo "checkjs.sh文件有执行权限"
-  			else
-  				echo "checkjs.sh文件没有执行权限"
-  				chmod 755 /usr/share/jd_openwrt_script/Checkjs/checkjs.sh
-  			fi
-		fi
+			num=$(( $num + 1))
+		done
 	fi
 
 
