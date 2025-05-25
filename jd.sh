@@ -40,7 +40,7 @@ if [ "$uname_if" = "Ubuntu" ];then
 	echo "当前环境为ubuntu"
 	cron_file="/etc/cron.d/jd-cron"
 	NODE_PATH="NODE_PATH=/usr/share/jd_openwrt_script/script_config/node_modules"
-	cron_user="root"
+	cron_user="root export uname_if="Ubuntu" &&"
 else
 	cron_user=""
 	cron_file="/etc/crontabs/root"
@@ -99,7 +99,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.39"
+	cron_version="4.40"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -628,7 +628,7 @@ concurrent_js_update() {
 			done
 			if [ "$uname_if" = "Ubuntu" ];then
 				echo "当前环境为ubuntu"
-				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/node_modules
+				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
 			else
 				echo ""
 			fi
@@ -1688,20 +1688,29 @@ system_variable() {
 		#ln js模块到指定位置
 		if [ "$uname_if" = "Ubuntu" ];then
 			echo "当前环境为ubuntu"
-			if [ ! -d "$dir_file_js/node_modules" ]; then
-				ln -s $openwrt_script_config/node_modules $dir_file_js/node_modules
+			if [ -d "$dir_file_js/node_modules" ]; then
+				echo "node_modules文件存在"
+			else
+				echo "node_modules文件不存在"
+				ln -s $openwrt_script_config/node_modules $dir_file_js/
 			fi
 		fi
 
 		#判断脚本是否有执行权限
 		if [ -f "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ]; then
-  			if [ -x "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ];then
+  			if [  -x "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ];then
+  				echo "wskey.sh文件有执行权限"
+  			else
+  				echo "wskey.sh文件没有执行权限"
   				chmod 755 /usr/share/jd_openwrt_script/script_config/wskey/wskey.sh
   			fi
 		fi
 
 		if [ -f "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ]; then
-  			if [ -x "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ];then
+  			if [  -x "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ];then
+  				echo "checkjs.sh文件有执行权限"
+  			else
+  				echo "checkjs.sh文件没有执行权限"
   				chmod 755 /usr/share/jd_openwrt_script/Checkjs/checkjs.sh
   			fi
 		fi
