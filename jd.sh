@@ -1638,12 +1638,12 @@ EOF
 			if [ $path_if "$openwrt_script_config/$path_name" ]; then
 				echo "${green}$path_name文件存在${white}"
 				if [ -L "$dir_file_js/$path_name" ];then
-					echo "》${green}$path_name软连接已创建${white}"
+					echo "》${green}$dir_file_js/$path_name软连接已创建${white}"
 				else
 					echo "》${red}$path_name软连接没有创建，开始创建${white}"
 					rm -rf $dir_file_js/$path_name
 					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
-					echo "》》${green}$path_name软连接已创建${white}"
+					echo "》》${green}$dir_file_js/$path_name软连接已创建${white}"
 				fi
 			else
 				echo "${red}$path_name文件不存在${white}"
