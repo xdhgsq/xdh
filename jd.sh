@@ -1685,14 +1685,25 @@ system_variable() {
 			cp  $dir_file/back/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
 		fi
 		
-		
+		#ln js模块到指定位置
 		if [ "$uname_if" = "Ubuntu" ];then
 			echo "当前环境为ubuntu"
-			#ln js模块到指定位置
 			if [ ! -d "$dir_file_js/node_modules" ]; then
-				rm -rf $dir_file_js/node_modules  
 				ln -s $openwrt_script_config/node_modules $dir_file_js
 			fi
+		fi
+
+		#判断脚本是否有执行权限
+		if [ -f "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ]; then
+  			if [ -x "/usr/share/jd_openwrt_script/script_config/wskey/wskey.sh" ];then
+  				chmod 755 /usr/share/jd_openwrt_script/script_config/wskey/wskey.sh
+  			fi
+		fi
+
+		if [ -f "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ]; then
+  			if [ -x "/usr/share/jd_openwrt_script/Checkjs/checkjs.sh" ];then
+  				chmod 755 /usr/share/jd_openwrt_script/Checkjs/checkjs.sh
+  			fi
 		fi
 	fi
 
