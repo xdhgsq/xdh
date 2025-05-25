@@ -628,7 +628,7 @@ concurrent_js_update() {
 			done
 			if [ "$uname_if" = "Ubuntu" ];then
 				echo "当前环境为ubuntu"
-				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num
 			else
 				echo ""
 			fi
@@ -1692,7 +1692,7 @@ system_variable() {
 				echo "node_modules文件存在"
 			else
 				echo "node_modules文件不存在"
-				ln -s $openwrt_script_config/node_modules $dir_file_js/
+				ln -s $openwrt_script_config/node_modules $dir_file_js
 			fi
 		fi
 
@@ -1715,6 +1715,7 @@ system_variable() {
   			fi
 		fi
 	fi
+
 
 	#添加系统变量
 	jd_script_path=$(cat /etc/profile | grep -o jd.sh | wc -l)
