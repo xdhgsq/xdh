@@ -158,6 +158,10 @@ update() {
 	
 	#删除js文件
 	rm -rf $dir_file_js/*
+	rm -rf /tmp/jd_tmp/*
+
+	#恢复依赖
+	system_variable
 
 	#检测库下载
 	if [ ! -d $dir_file/git_clone ];then
@@ -270,18 +274,6 @@ done
 		fi
 	fi
 
-	if [ "$uname_if" = "Ubuntu" ];then
-		echo "当前环境为ubuntu"
-		#ln js模块到指定位置
-		ln -s $openwrt_script_config/node_modules $dir_file_js
-		cp $openwrt_script_config/jdCookie.js $dir_file_js
-		cp $openwrt_script_config/sendNotify.js $dir_file_js
-		rm -rf /tmp/jd_tmp/*
-	else
-		cp $openwrt_script_config/jdCookie.js $dir_file_js
-		cp $openwrt_script_config/sendNotify.js $dir_file_js
-	fi
-	system_variable
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
 }
