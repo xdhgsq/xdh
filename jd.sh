@@ -1692,6 +1692,16 @@ system_variable() {
 		if [ ! -f "$openwrt_script_config/sendNotify.js" ]; then
 			cp  $dir_file/back/JSON/sendNotify.js $openwrt_script_config/sendNotify.js
 		fi
+		
+		
+		if [ "$uname_if" = "Ubuntu" ];then
+			echo "当前环境为ubuntu"
+			#ln js模块到指定位置
+			if [ ! -d "$dir_file_js/node_modules" ]; then
+				rm -rf $dir_file_js/node_modules  
+				ln -s $openwrt_script_config/node_modules $dir_file_js
+			fi
+		fi
 	fi
 
 	#添加系统变量
