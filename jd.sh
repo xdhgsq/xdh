@@ -347,7 +347,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_tjfb_help.js		#推金风暴助力
 	jd_ttthb_help.js	#推推红包助力
 	jd_farmnew_code_help.js	#新农场code助力
-	jd_farmshare.js		#新农场小程序助力
 	jd_plantBean_help.js	#种豆得豆助力
 	jx_fcwb_help.js		#欢乐挖宝助力
 	jd_AutoEval.js		#带图评价默认不执行, 请设置变量 ONEVAL='true'
@@ -372,6 +371,8 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_day.js		#每日抽
 	jd_dplh052402.js	#大牌052402
 	jd_dplh0524.js		#大牌0524
+	jd_dplh0525.js		#打牌0525
+	jd_fdshkj.js		#有加购任务
 	jd_opencard05211.js	#5.31 端午情长“粽”有心意
 	jd_opencard0521.js	#5.31 联合开卡活动
 	jd_tjfb.js		#推金风暴
@@ -406,7 +407,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jiaz_draw.js		#家装_抽奖
 	jd_jipiao_draw.js	#抽免费机票
 	jd_dyf_draw.js		#dyf抽奖
-	jd_dplh0515.js		#大牌0515有水的时候跑，浏览店铺任务每天刷新
 	jd_dplhbshop.js		#大牌浏览店铺
 	jd_ouguan.js		#看欧冠赢奖票
 	jd_delLjq.js		#批量删垃圾券
@@ -415,7 +415,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆
 	jd_fcwb_auto.js		#欢乐挖宝任务
 	jd_hssign.js		#hs每日签到
-	jd_hlw_draw.js		#hlw抽奖
 	jd_health.js		#东东健康社区
 	jd_health_task.js	#健康能量任务
 	jd_health_collect.js	#健康社区收集能量
