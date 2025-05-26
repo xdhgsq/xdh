@@ -99,7 +99,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.40"
+	cron_version="4.41"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -118,7 +118,7 @@ sed -i '/jd_try/d' $cron_file >/dev/null 2>&1
 cat >>$cron_file <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0,6 * * * $cron_user $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
-0 8 * * * $cron_user $node $dir_file_js/jd_bean_change.js  >>/tmp/jd_tmp/jd.txt	#京东资产统计#100#
+0 8 * * * $cron_user $node $dir_file_js/jd_bean_info.js  >>/tmp/jd_tmp/jd.txt	#京豆详情统计#100#
 0 19 * * * $cron_user $node $dir_file_js/jd_y1y.js >>/tmp/jd_tmp/jd.txt #摇一摇#100#
 0 8,10,12,14,16,18,20 * * * $cron_user $node $dir_file_js/jd_daycj.js >>/tmp/jd_tmp/jd.txt		#外卖整点抽#100#
 0 */8 * * * $cron_user $node $dir_file_js/jd_baglx.js >>/tmp/jd_tmp/jd.txt	#红树林养育8小时执行一次#100#
@@ -625,6 +625,10 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
+			if [ "$uname_if" = "Ubuntu" ];then
+				echo "开始设置并发文件，当前环境为ubuntu"
+				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
+			fi
 		} &
 		done
 		#wait
