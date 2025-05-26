@@ -1644,7 +1644,7 @@ EOF
 				if [ -L "$dir_file_js/$path_name" ];then
 					echo "》${green}$dir_file_js/$path_name软连接已创建${white}"
 				else
-					echo "》${red}$path_name软连接没有创建，开始创建${white}"
+					echo "》${red}$path_name软连接没有创建，开始创建${green}(执行sh \$jd update 出现这个提示是正常的)${white}"
 					rm -rf $dir_file_js/$path_name
 					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
 					echo "》》${green}$dir_file_js/$path_name软连接已创建${white}"
