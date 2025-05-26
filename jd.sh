@@ -261,6 +261,8 @@ done
 	rm -rf $dir_file_js/*.py.*
 	rm -rf $openwrt_script_config/check_cookie.txt
 	additional_settings
+	#恢复依赖（要在复制脚本以后，不然会被覆盖掉）
+	system_variable
 	concurrent_js_update
 	 . /etc/profile
 	echo  "${green} update$stop_script_time ${white}"
@@ -270,9 +272,6 @@ done
 			cat /tmp/jd_tmp/wget_eeror.txt
 		fi
 	fi
-
-	#恢复依赖（要在复制脚本以后，不然会被覆盖掉）
-	system_variable
 	task #更新完全部脚本顺便检查一下计划任务是否有变
 	
 }
@@ -625,10 +624,6 @@ concurrent_js_update() {
 			do
 				cp -r $dir_file_js/$i $ccr_js_file/js_$ck_num/$i
 			done
-			if [ "$uname_if" = "Ubuntu" ];then
-				echo "开始设置并发文件，当前环境为ubuntu"
-				ln -s $openwrt_script_config/node_modules $ccr_js_file/js_$ck_num/
-			fi
 		} &
 		done
 		#wait
