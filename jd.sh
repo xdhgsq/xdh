@@ -99,7 +99,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.42"
+	cron_version="4.43"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -124,8 +124,8 @@ cat >>$cron_file <<EOF
 0 */8 * * * $cron_user $node $dir_file_js/jd_baglx.js >>/tmp/jd_tmp/jd.txt	#红树林养育8小时执行一次#100#
 0 */2 * * * $cron_user $node $dir_file_js/jd_kd_fruit.js >>/tmp/jd_tmp/jd.txt			#快递种树两个小时执行一次#100#
 0 12,18 * * * $cron_user $node $dir_file_js/jd_fruit_new.js >>/tmp/jd_tmp/jd.txt #新农场，6-9点 11-14点 17-21点可以领水滴#100#
+0 3-23/1 * * * $cron_user $node $dir_file_js/jd_plantBean.js >>/tmp/jd_tmp/jd.txt		#种豆得豆任务#100#
 0 20 * * * $cron_user $node $dir_file_js/jd_cjzzj.js >>/tmp/jd_tmp/jd.txt		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
-0 */4 * * * $cron_user $node $dir_file_js/jd_joypark_leave.js >>/tmp/jd_tmp/jd.txt	#汪汪庄园离线收金币,可定时4小时一次执行#100#
 50 23 * * * $cron_user $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * $cron_user rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
 20 12,22 * * * $cron_user $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
