@@ -343,6 +343,9 @@ else
 fi
 
 
+#端午节焕新周 粽享生活抽奖
+export opencard_draw="5"
+
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_tjfb_help.js		#推金风暴助力
@@ -350,6 +353,12 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_farmnew_code_help.js	#新农场code助力
 	jd_plantBean_help.js	#种豆得豆助力
 	jx_fcwb_help.js		#欢乐挖宝助力
+	jd_dplh052402.js	#大牌052402
+	jd_dplh0524.js		#大牌0524
+	jd_dplh0525.js		#打牌0525
+	jd_10dou.js		#5.31 任务10豆
+	jd_opencard052701.js	#端午节焕新周 粽享生活_6.3
+	jd_opencard0527.js	#端午礼遇周 嗨购618_6.3
 	jd_AutoEval.js		#带图评价默认不执行, 请设置变量 ONEVAL='true'
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
@@ -369,12 +378,9 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
-	jd_10dou.js		#5.31 任务10豆
+	jd_taskgBean.js		#做任务赚豆
 	jd_day.js		#每日抽
 	jd_jjg.js		#家居馆
-	jd_dplh052402.js	#大牌052402
-	jd_dplh0524.js		#大牌0524
-	jd_dplh0525.js		#打牌0525
 	jd_fdshkj.js		#有加购任务
 	jd_opencard05211.js	#5.31 端午情长“粽”有心意
 	jd_opencard0521.js	#5.31 联合开卡活动
