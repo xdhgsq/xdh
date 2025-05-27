@@ -18,7 +18,8 @@
       <h3>自助获取CK</h3>
     </div>
     <div class="alert alert-primary" role="alert" id="info">
-      抄自https://t.me/cheese2024
+      获取cooke成功，以后没有其他账号，
+      关闭界面，有其他账号刷新一下界面，继续填
     </div>
     <form class="myForm">
       <div class="form-group">
@@ -80,7 +81,7 @@
     }).then((data) => {
       if (data.ok) {
         $.message({
-          message: '获取cooke成功，并进行更新，晚点再去看下',
+          message: '获取cooke成功，后台自动更新，没有其他账号，请关闭此界面',
         });
         $('#cookie').val(data.data.ck);
       } else {
