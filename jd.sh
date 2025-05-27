@@ -99,7 +99,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.43"
+	cron_version="4.44"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -120,7 +120,7 @@ cat >>$cron_file <<EOF
 0 0,6 * * * $cron_user $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 0 8 * * * $cron_user $node $dir_file_js/jd_bean_info.js  >>/tmp/jd_tmp/jd.txt	#京豆详情统计#100#
 0 19 * * * $cron_user $node $dir_file_js/jd_y1y.js >>/tmp/jd_tmp/jd.txt #摇一摇#100#
-15 8,10,12,14,16,18,20 * * * $cron_user $node $dir_file_js/jd_daycj.js >>/tmp/jd_tmp/jd.txt		#外卖整点抽#100#
+#15 8,10,12,14,16,18,20 * * * $cron_user $node $dir_file_js/jd_daycj.js >>/tmp/jd_tmp/jd.txt		#外卖整点抽#100#
 0 */8 * * * $cron_user $node $dir_file_js/jd_baglx.js >>/tmp/jd_tmp/jd.txt	#红树林养育8小时执行一次#100#
 0 */2 * * * $cron_user $node $dir_file_js/jd_kd_fruit.js >>/tmp/jd_tmp/jd.txt			#快递种树两个小时执行一次#100#
 0 12,18 * * * $cron_user $node $dir_file_js/jd_fruit_new.js >>/tmp/jd_tmp/jd.txt #新农场，6-9点 11-14点 17-21点可以领水滴#100#
@@ -199,6 +199,7 @@ update() {
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
 	jd_by_sign.js			#捕鱼签到（需要手动进行点一下）
+	jd_10dou.js			#5.31 任务10豆
 	jd_day.js			#每日抽
 	jd_daycj.js			#外卖整点抽
 	jd_tjfb.js			#推金风暴
@@ -368,7 +369,9 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
+	jd_10dou.js		#5.31 任务10豆
 	jd_day.js		#每日抽
+	jd_jjg.js		#家居馆
 	jd_dplh052402.js	#大牌052402
 	jd_dplh0524.js		#大牌0524
 	jd_dplh0525.js		#打牌0525
