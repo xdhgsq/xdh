@@ -348,6 +348,8 @@ export opencard_draw="5"
 
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+ jd_dplh0601.js
+ jd_tuitui_bhz.js
 	jd_tjfb_help.js		#推金风暴助力
 	jd_ttthb_help.js	#推推红包助力
 	jd_farmnew_code_help.js	#新农场code助力
