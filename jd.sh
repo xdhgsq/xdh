@@ -357,7 +357,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_ttthb_help.js	#推推红包助力
 	jd_farmnew_code_help.js	#新农场code助力
 	jd_plantBean_help.js	#种豆得豆助力
-	jx_fcwb_help.js		#欢乐挖宝助力
 	jd_dplh052402.js	#大牌052402
 	jd_dplh0524.js		#大牌0524
 	jd_dplh0525.js		#打牌0525
@@ -425,7 +424,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_bgcity.js		#集碎片点亮城市
 	jd_book_draw.js 	#图书抽奖
 	jd_cjzzj.js		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆
-	jd_fcwb_auto.js		#欢乐挖宝任务
 	jd_hssign.js		#hs每日签到
 	jd_health.js		#东东健康社区
 	jd_health_task.js	#健康能量任务
