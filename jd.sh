@@ -348,8 +348,9 @@ export opencard_draw="5"
 
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
- jd_dplh0601.js
- jd_tuitui_bhz.js
+	jd_opencard0603.js	#6.9 开门迎好价 年中购物潮
+ 	jd_dplh0601.js		#大牌0601
+ 	jd_tuitui_bhz.js	#夺宝骑兵-保护罩任务
 	jd_tjfb_help.js		#推金风暴助力
 	jd_ttthb_help.js	#推推红包助力
 	jd_farmnew_code_help.js	#新农场code助力
@@ -383,7 +384,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_taskgBean.js		#做任务赚豆
 	jd_day.js		#每日抽
 	jd_jjg.js		#家居馆
-	jd_fdshkj.js		#有加购任务
 	jd_opencard05211.js	#5.31 端午情长“粽”有心意
 	jd_opencard0521.js	#5.31 联合开卡活动
 	jd_tjfb.js		#推金风暴
@@ -411,7 +411,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_vu50.js		#V你50超市卡
 	jd_sq_draw.js		#社区抽奖
 	jd_msDraw.js		#秒送抽奖
-	jd_ttDraw.js		#天天抽奖
 	jd_luckyDraw.js		#幸运抽奖
 	jd_mkt_answer.js	#超市答题抽奖
 	jd_jiaju_draw.js	#0元家具_抽奖
