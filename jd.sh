@@ -1644,19 +1644,21 @@ EOF
 			path_if=$(echo $path_value | awk '{print $1}')
 			path_name=$(echo $path_value | awk '{print $2}')
 			if [ $path_if "$openwrt_script_config/$path_name" ]; then
-				echo "${green}$path_name文件存在${white}"
+				echo $echo_num "${green}$path_name文件存在${white}"
 				if [ -L "$dir_file_js/$path_name" ];then
-					echo "》${green}$dir_file_js/$path_name软连接已创建${white}"
+					echo $echo_num "》${green}$dir_file_js/$path_name软连接已创建${white}"
 				else
-					echo "》${red}$path_name软连接没有创建，开始创建${green}(执行sh \$jd update 出现这个提示是正常的)${white}"
+					echo $echo_num "》${red}$path_name软连接没有创建，开始创建${green}(执行sh \$jd update 出现这个提示是正常的)${white}"
 					rm -rf $dir_file_js/$path_name
 					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
-					echo "》》${green}$dir_file_js/$path_name软连接已创建${white}"
+					echo $echo_num "》》${green}$dir_file_js/$path_name软连接已创建${white}"
 				fi
 			else
-				echo "${red}$path_name文件不存在${white}"
+				echo $echo_num "${red}$path_name文件不存在${white}"
 				if [ "$path_name" = "node_modules" ];then
-					echo "${red}$openwrt_script_config/$path_name不存在，请执行sh \$jd npm_install && sh \$jd update${white}"
+					echo $echo_num "${red}$openwrt_script_config/$path_name不存在，${green}开始请执行sh \$jd npm_install && sh \$jd update${white}"
+					npm_install
+					update
 				else
 					cp  $dir_file/back/JSON/$path_name  $openwrt_script_config/$path_name
 					rm -rf $dir_file_js/$path_name
