@@ -1684,13 +1684,15 @@ EOF
 					echo $echo_num "》》${green}$dir_file_js/$path_name软连接已创建${white}"
 				fi
 			else
-				echo $echo_num "${red}$path_name文件不存在${white}"
-				if [ "$path_name" = "node_modules" ];then
-					echo $echo_num "${red}$openwrt_script_config/$path_name不存在，${green}请手动执行sh \$jd npm_install && sh \$jd update进行安装${white}"
-				else
-					cp  $dir_file/back/JSON/$path_name  $openwrt_script_config/$path_name
-					rm -rf $dir_file_js/$path_name
-					ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+				if [ "$uname_if" = "Ubuntu" ];then
+					echo $echo_num "${red}$path_name文件不存在${white}"
+					if [ "$path_name" = "node_modules" ];then
+						echo $echo_num "${red}$openwrt_script_config/$path_name不存在，${green}请手动执行sh \$jd npm_install && sh \$jd update进行安装${white}"
+					else
+						cp  $dir_file/back/JSON/$path_name  $openwrt_script_config/$path_name
+						rm -rf $dir_file_js/$path_name
+						ln -s $openwrt_script_config/$path_name $dir_file_js/$path_name
+					fi
 				fi
 			fi
 			num=$(( $num + 1))
