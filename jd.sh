@@ -361,8 +361,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_dplh0524.js		#大牌0524
 	jd_dplh0525.js		#打牌0525
 	jd_10dou.js		#5.31 任务10豆
-	jd_opencard052701.js	#端午节焕新周 粽享生活_6.3
-	jd_opencard0527.js	#端午礼遇周 嗨购618_6.3
 	jd_AutoEval.js		#带图评价默认不执行, 请设置变量 ONEVAL='true'
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
