@@ -1574,14 +1574,11 @@ EOF
 npm_install() {
 	echo $echo_num "${green} 开始安装npm模块${white}"
 	#安装js模块到script_config,然后再ln过去
-	cd $openwrt_script_config
 
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo "当前环境为ubuntu"
-		npm install npm@8.3.0
-		npm install got@11.5.1
-		npm install crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
-		npm install --save axios
+		npm install --prefix $openwrt_script_config got@11.5.1 crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom@26.1.0 md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+		npm install --prefix $openwrt_script_config --save axios
 
 		#npm install npm@11.4.1
 		#npm install got
@@ -1654,9 +1651,7 @@ EOF
 			else
 				echo $echo_num "${red}$path_name文件不存在${white}"
 				if [ "$path_name" = "node_modules" ];then
-					echo $echo_num "${red}$openwrt_script_config/$path_name不存在，${green}开始请执行sh \$jd npm_install && sh \$jd update${white}"
-					npm_install
-					update
+					echo $echo_num "${red}$openwrt_script_config/$path_name不存在，${green}请手动执行sh \$jd npm_install && sh \$jd update进行安装${white}"
 				else
 					cp  $dir_file/back/JSON/$path_name  $openwrt_script_config/$path_name
 					rm -rf $dir_file_js/$path_name
