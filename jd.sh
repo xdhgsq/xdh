@@ -1622,7 +1622,7 @@ npm_install() {
 	else
 		npm install -g npm@8.3.0
 		npm install -g got@11.5.1
-		npm install -g crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
+		npm install -g crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom@26.1.0 md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
 		npm install --save axios
 
 	fi
