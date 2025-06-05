@@ -1577,8 +1577,43 @@ npm_install() {
 
 	if [ "$uname_if" = "Ubuntu" ];then
 		echo "当前环境为ubuntu"
-		npm install --prefix $openwrt_script_config got@11.5.1 crc http-cookie-agent qs sharp curl cheerio tough-cookie ds audit crypto crypto-js date-fns dotenv download fs http js-base64 jsdom@26.1.0 md5 png-js request requests set-cookie-parser stream tough-cookie ts-md5 vm zlib iconv-lite qrcode-terminal ws express@4.17.1 body-parser@1.19.2 moment
-		npm install --prefix $openwrt_script_config --save axios
+		npm install --prefix $openwrt_script_config \
+		got@11.5.1 \
+		crc@4.3.2 \
+		http-cookie-agent@7.0.1 \
+		qs@6.14.0 \
+		sharp@0.34.2 \
+		curl@0.1.4 \
+		cheerio@1.0.0 \
+		tough-cookie@5.1.2 \
+		ds@2.0.2 \
+		audit@0.0.6 \
+		crypto@1.0.1 \
+		crypto-js@4.2.0 \
+		date-fns@4.1.0 \
+		dotenv@16.5.0 \
+		download@8.0.0 \
+		fs@0.0.1-security \
+		http@0.0.1-security \
+		js-base64@3.7.7 \
+		jsdom@26.1.0 \
+		md5@2.3.0 \
+		png-js@1.0.0 \
+		request@2.88.2 \
+		requests@0.3.0 \
+		set-cookie-parser@2.7.1 \
+		stream@0.0.3 \
+		ts-md5@1.3.1 \
+		vm@0.1.0 \
+		zlib@1.0.5 \
+		iconv-lite@0.6.3 \
+		qrcode-terminal@0.12.0 \
+		ws@8.18.2 \
+		express@4.17.1 \
+		body-parser@1.19.2 \
+		moment@2.30.1
+
+		npm install --prefix $openwrt_script_config --save axios@1.9.0
 
 		#npm install npm@11.4.1
 		#npm install got
