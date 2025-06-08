@@ -1476,7 +1476,7 @@ help() {
 	echo ""
 	echo $echo_num "${yellow} 3.测试是否能正常使用${white}"
 	echo ""
-	echo $echo_num "${green}  cd \$jd_file\js && node jd_bean_home.js  ${white} "
+	echo $echo_num "${green}  cd \$jd_file/js && node jd_bean_home.js  ${white} "
 	echo ""
 	echo $echo_num "${yellow} 4.jd.sh其他脚本命令${white}"
 	echo ""
@@ -1660,7 +1660,7 @@ system_variable() {
 	fi
 
 	if [ "$dir_file" = "$openwrt_script/JD_Script" ];then
-		echo "》》${green}检查常用依赖是否正常${white}"
+		echo $echo_num "》》${green}检查常用依赖是否正常${white}"
 cat > /tmp/path_if.txt <<EOF
 -f jdCookie.js
 -f sendNotify.js
