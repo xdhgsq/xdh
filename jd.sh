@@ -380,6 +380,9 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
+	jd_xinqi_draw.js	#新奇抽奖
+	jd_sldraw.js		#SL任务抽奖合集
+	jd_lmdraw.js		#LM任务抽奖合集
 	jd_taskgBean.js		#做任务赚豆
 	jd_day.js		#每日抽
 	jd_jjg.js		#家居馆
