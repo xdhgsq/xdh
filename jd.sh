@@ -200,6 +200,8 @@ update() {
 
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
+	jd_opencard_0609.js		#6.18 一「促」即发 囤货趁现在
+	jd_opencard_06091.js		#6.18 狂欢618焕新省到家
 	jd_by_sign.js			#捕鱼签到（需要手动进行点一下）
 	jd_10dou.js			#5.31 任务10豆
 	jd_day.js			#每日抽
@@ -350,18 +352,20 @@ export opencard_draw="5"
 
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_opencard0603.js	#6.9 开门迎好价 年中购物潮
- 	jd_dplh0601.js		#大牌0601
- 	jd_tuitui_bhz.js	#夺宝骑兵-保护罩任务
-	jd_tjfb_help.js		#推金风暴助力
-	jd_ttthb_help.js	#推推红包助力
-	jd_farmnew_code_help.js	#新农场code助力
-	jd_plantBean_help.js	#种豆得豆助力
-	jd_dplh052402.js	#大牌052402
-	jd_dplh0524.js		#大牌0524
-	jd_dplh0525.js		#打牌0525
-	jd_10dou.js		#5.31 任务10豆
-	jd_AutoEval.js		#带图评价默认不执行, 请设置变量 ONEVAL='true'
+	jd_opencard_0609.js		#6.18 一「促」即发 囤货趁现在
+	jd_opencard_06091.js		#6.18 狂欢618焕新省到家
+	jd_opencard0603.js		#6.9 开门迎好价 年中购物潮
+ 	jd_dplh0601.js			#大牌0601
+ 	jd_tuitui_bhz.js		#夺宝骑兵-保护罩任务
+	jd_tjfb_help.js			#推金风暴助力
+	jd_ttthb_help.js		#推推红包助力
+	jd_farmnew_code_help.js		#新农场code助力
+	jd_plantBean_help.js		#种豆得豆助力
+	jd_dplh052402.js		#大牌052402
+	jd_dplh0524.js			#大牌0524
+	jd_dplh0525.js			#打牌0525
+	jd_10dou.js			#5.31 任务10豆
+	jd_AutoEval.js			#带图评价默认不执行, 请设置变量 ONEVAL='true'
 EOF
 	for i in `cat /tmp/jd_tmp/ccr_run | grep -v "#.*js" | awk '{print $1}'`
 	do
