@@ -354,7 +354,6 @@ export opencard_draw="5"
 cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_opencard_0609.js		#6.18 一「促」即发 囤货趁现在
 	jd_opencard_06091.js		#6.18 狂欢618焕新省到家
-	jd_opencard0603.js		#6.9 开门迎好价 年中购物潮
  	jd_dplh0601.js			#大牌0601
  	jd_tuitui_bhz.js		#夺宝骑兵-保护罩任务
 	jd_tjfb_help.js			#推金风暴助力
@@ -424,7 +423,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_jipiao_draw.js	#抽免费机票
 	jd_dyf_draw.js		#dyf抽奖
 	jd_dplhbshop.js		#大牌浏览店铺
-	jd_ouguan.js		#看欧冠赢奖票
 	jd_delLjq.js		#批量删垃圾券
 	jd_bgcity.js		#集碎片点亮城市
 	jd_book_draw.js 	#图书抽奖
