@@ -209,8 +209,6 @@ cat >/tmp/jd_tmp/faker2_script.txt <<EOF
 	jd_tjfb.js			#推金风暴
 	jd_fish_help.js			#金融捕鱼助力
 	jd_ttthb_help.js		#推推红包助力
-	jd_opencard05211.js		#5.31 端午情长“粽”有心意
-	jd_opencard0521.js		#5.31 联合开卡活动
 	jd_Advent_exchange.js		#临期京豆续命
 	jd_beanday.js			#天天领豆
 	jd_channel_follow.js		#频道关注
@@ -383,14 +381,13 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
+ 	jd_fdshkj.js		#每日浏览5豆
 	jd_xinqi_draw.js	#新奇抽奖
 	jd_sldraw.js		#SL任务抽奖合集
 	jd_lmdraw.js		#LM任务抽奖合集
 	jd_taskgBean.js		#做任务赚豆
 	jd_day.js		#每日抽
 	jd_jjg.js		#家居馆
-	jd_opencard05211.js	#5.31 端午情长“粽”有心意
-	jd_opencard0521.js	#5.31 联合开卡活动
 	jd_tjfb.js		#推金风暴
 	jd_tuitui_red_task.js	#推推红包每日任务
 	jd_jrsign.js		#金融签到
