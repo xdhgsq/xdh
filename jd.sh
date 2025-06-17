@@ -472,7 +472,7 @@ EOF
 		$run_sleep
 	done
 	wait
-	$node $dir_file_js/jd_bean_info.js		#京豆详细统计
+	#$node $dir_file_js/jd_bean_info.js		#京豆详细统计
 	echo $echo_num "${green} run_0$stop_script_time ${white}"
 }
 
