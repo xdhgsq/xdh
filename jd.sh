@@ -347,9 +347,9 @@ fi
 
 #端午节焕新周 粽享生活抽奖
 export opencard_draw="5"
-
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_opencard0623.js		#618狂欢go 大牌好礼享不停_6.23
 	jd_opencard_0609.js		#6.18 一「促」即发 囤货趁现在
 	jd_opencard_06091.js		#6.18 狂欢618焕新省到家
  	jd_dplh0601.js			#大牌0601
