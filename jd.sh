@@ -417,7 +417,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_mkt_answer.js	#超市答题抽奖
 	jd_jiaju_draw.js	#0元家具_抽奖
 	jd_jiaz_draw.js		#家装_抽奖
-	jd_jipiao_draw.js	#抽免费机票
 	jd_dyf_draw.js		#dyf抽奖
 	jd_dplhbshop.js		#大牌浏览店铺
 	jd_delLjq.js		#批量删垃圾券
