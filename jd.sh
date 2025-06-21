@@ -101,7 +101,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.44"
+	cron_version="4.45"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -121,6 +121,7 @@ cat >>$cron_file <<EOF
 #**********这里是JD_Script的定时任务$cron_version版本#100#**********#
 0 0,6 * * * $cron_user $dir_file/jd.sh run_0  >/tmp/jd_run_0.log 2>&1 #0点0分执行全部脚本#100#
 0 8 * * * $cron_user $node $dir_file_js/jd_bean_info.js  >>/tmp/jd_tmp/jd.txt	#京豆详情统计#100#
+0 20 6 * * $cron_user $node $dir_file_js/jd_new_vote.js  >>/tmp/jd_tmp/jd.txt	#新奇投票#100#
 0 19 * * * $cron_user $node $dir_file_js/jd_y1y.js >>/tmp/jd_tmp/jd.txt #摇一摇#100#
 #15 8,10,12,14,16,18,20 * * * $cron_user $node $dir_file_js/jd_daycj.js >>/tmp/jd_tmp/jd.txt		#外卖整点抽#100#
 0 */8 * * * $cron_user $node $dir_file_js/jd_baglx.js >>/tmp/jd_tmp/jd.txt	#红树林养育8小时执行一次#100#
@@ -350,6 +351,8 @@ fi
 export opencard_draw="5"
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_qy_sign.js			#权益中心签到
+	jd_fs_sign.js			#签到领红包
 	jd_quanyi_sign.js		#jd_quanyi_sign.js
 	jd_opencard0617.js		#618狂欢go 大牌好礼享不停_6.23
 	jd_dplh0617.js			#大牌0617
