@@ -378,7 +378,6 @@ EOF
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
- 	jd_fdshkj.js		#每日浏览5豆
 	jd_xinqi_draw.js	#新奇抽奖
 	jd_sldraw.js		#SL任务抽奖合集
 	jd_lmdraw.js		#LM任务抽奖合集
@@ -399,8 +398,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_fl_draw.js		#任务抽小豆
 	jd_pkabeans.js		#礼品卡领豆
 	jd_plantBean.js		#种豆得豆任务
-	jd_red_Task.js		#每日领红包_任务
-	jd_gRed.js		#每日领红包
 	jd_fruit_new.js		#新农场
 	jd_water_new.js		#新农场浇水
 	jd_newfarmlottery.js	#新农场幸运转盘
@@ -410,7 +407,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_sq_draw.js		#社区抽奖
 	jd_msDraw.js		#秒送抽奖
 	jd_luckyDraw.js		#幸运抽奖
-	jd_mkt_answer.js	#超市答题抽奖
 	jd_jiaju_draw.js	#0元家具_抽奖
 	jd_jiaz_draw.js		#家装_抽奖
 	jd_dyf_draw.js		#dyf抽奖
