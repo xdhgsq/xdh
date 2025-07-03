@@ -131,7 +131,7 @@ cat >>$cron_file <<EOF
 0 20 * * * $cron_user $node $dir_file_js/jd_cjzzj.js >>/tmp/jd_tmp/jd.txt		#超级抓抓机 每晚8点开放兑换，100币兑10豆，200币兑20豆#100#
 50 23 * * * $cron_user $dir_file/jd.sh kill_ccr #杀掉所有并发进程，为零点准备#100#
 46 23 * * * $cron_user rm -rf /tmp/*.log #删掉所有log文件，为零点准备#100#
-20 12,22 * * * $cron_user $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
+20 22 * * * $cron_user $dir_file/jd.sh update_script that_day >/tmp/jd_update_script.log 2>&1 #22点20更新JD_Script脚本#100#
 ###########100##########请将其他定时任务放到底下###############
 #**********这里是backnas定时任务#100#******************************#
 #45 12,19 * * * $cron_user $dir_file/jd.sh backnas  >/tmp/jd_backnas.log 2>&1 #12点，19点备份一次script,如果没有填写参数不会运行#100#
@@ -351,6 +351,7 @@ fi
 export opencard_draw="5"
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+<<<<<<< HEAD
 	jd_qy_sign.js			#权益中心签到
 	jd_fs_sign.js			#签到领红包
 	jd_quanyi_sign.js		#jd_quanyi_sign.js
@@ -359,6 +360,10 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_opencard0623.js		#618狂欢go 大牌好礼享不停_6.23
 	jd_opencard_0609.js		#6.18 一「促」即发 囤货趁现在
 	jd_opencard_06091.js		#6.18 狂欢618焕新省到家
+=======
+	jd_video_task.js		#看视频赚现金-任务
+	jd_video_view.js		#看视频赚现金-浏览
+>>>>>>> 88f3f97 (更新)
  	jd_dplh0601.js			#大牌0601
  	jd_tuitui_bhz.js		#夺宝骑兵-保护罩任务
 	jd_tjfb_help.js			#推金风暴助力
@@ -406,7 +411,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dailysign.js		#每日签到得豆
 	jd_daka_bean.js		#打卡领豆
 	jd_deliverySign_sign.js	#天天领豆
-	jd_dygetbeans_.js	#每日抽豆
 	jd_fl_draw.js		#任务抽小豆
 	jd_pkabeans.js		#礼品卡领豆
 	jd_plantBean.js		#种豆得豆任务
