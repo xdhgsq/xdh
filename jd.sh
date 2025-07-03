@@ -395,7 +395,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_dailysign.js		#每日签到得豆
 	jd_daka_bean.js		#打卡领豆
 	jd_deliverySign_sign.js	#天天领豆
-	jd_fl_draw.js		#任务抽小豆
 	jd_pkabeans.js		#礼品卡领豆
 	jd_plantBean.js		#种豆得豆任务
 	jd_fruit_new.js		#新农场
@@ -407,7 +406,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_sq_draw.js		#社区抽奖
 	jd_msDraw.js		#秒送抽奖
 	jd_luckyDraw.js		#幸运抽奖
-	jd_jiaju_draw.js	#0元家具_抽奖
 	jd_jiaz_draw.js		#家装_抽奖
 	jd_dyf_draw.js		#dyf抽奖
 	jd_dplhbshop.js		#大牌浏览店铺
