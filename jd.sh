@@ -101,7 +101,7 @@ export BEANCHANGE_DISABLELIST="汪汪乐园&金融养猪＆喜豆查询"
 export DO_TEN_WATER_AGAIN="false"
 
 task() {
-	cron_version="4.46"
+	cron_version="4.47"
 	if [ `grep -o "JD_Script的定时任务$cron_version" $cron_file |wc -l` = "0" ]; then
 		echo "不存在计划任务开始设置"
 		
@@ -385,8 +385,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_day.js		#每日抽
 	jd_jjg.js		#家居馆
 	jd_tjfb.js		#推金风暴
-	jd_tuitui_red_task.js	#推推红包每日任务
-	jd_jrsign.js		#金融签到
 	jd_global_task_.js	#京豆国际频道任务
 	jd_yssign.js		#ys每日签到
 	jd_signbeanact_.js	#领京豆签到
