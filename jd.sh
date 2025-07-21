@@ -349,6 +349,8 @@ fi
 export opencard_draw="5"
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_jmt.js			#京民通签到
+	jd_dplh0720.js			#大牌0720
 	jd_qy_sign.js			#权益中心签到
 	jd_fs_sign.js			#签到领红包
 	jd_quanyi_sign.js		#jd_quanyi_sign.js
@@ -377,7 +379,6 @@ EOF
 
 run_0() {
 cat >/tmp/jd_tmp/run_0 <<EOF
-	jd_by_sign.js		#捕鱼签到（需要手动进行点一下）
 	jd_xinqi_draw.js	#新奇抽奖
 	jd_sldraw.js		#SL任务抽奖合集
 	jd_lmdraw.js		#LM任务抽奖合集
