@@ -349,7 +349,6 @@ fi
 export opencard_draw="5"
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_evdraw.js			#抽奖一次性
 	jd_jmt.js			#京民通签到
 	jd_dplh0720.js			#大牌0720
 	jd_qy_sign.js			#权益中心签到
