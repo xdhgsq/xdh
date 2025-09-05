@@ -384,8 +384,6 @@ cat >/tmp/jd_tmp/run_0 <<EOF
 	jd_sldraw.js		#SL任务抽奖合集
 	jd_lmdraw.js		#LM任务抽奖合集
 	jd_taskgBean.js		#做任务赚豆
-	jd_day.js		#每日抽
-	jd_jjg.js		#家居馆
 	jd_tjfb.js		#推金风暴
 	jd_global_task_.js	#京豆国际频道任务
 	jd_yssign.js		#ys每日签到
