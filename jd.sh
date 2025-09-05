@@ -352,7 +352,6 @@ cat >/tmp/jd_tmp/ccr_run <<EOF
 	jd_dplh0901.js		#大牌0901
 	jd_xqmh.js			#新奇盲盒
 	jd_scdacall.js			#苏超打call赢百寸电视
-	jd_jmt.js			#京民通签到
 	jd_qy_sign.js			#权益中心签到
 	jd_fs_sign.js			#签到领红包
 	jd_quanyi_sign.js		#jd_quanyi_sign.js
