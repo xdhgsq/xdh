@@ -349,12 +349,10 @@ fi
 export opencard_draw="5"
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
-	jd_dplh0801.js			#大牌0801
+	jd_dplh0901.js		#大牌0901
 	jd_xqmh.js			#新奇盲盒
 	jd_scdacall.js			#苏超打call赢百寸电视
- 	jd_opencard0728.js		#大牌相聚・畅享暑期 _8.1
 	jd_jmt.js			#京民通签到
-	jd_dplh0720.js			#大牌0720
 	jd_qy_sign.js			#权益中心签到
 	jd_fs_sign.js			#签到领红包
 	jd_quanyi_sign.js		#jd_quanyi_sign.js
