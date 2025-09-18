@@ -201,6 +201,7 @@ update() {
 
 #faker2_script
 cat >/tmp/jd_tmp/faker2_script.txt <<EOF
+	jd_opencard0918.js		#开卡
 	jd_quanyi_sign.js		#jd_quanyi_sign.js
 	jd_by_sign.js			#捕鱼签到（需要手动进行点一下）
 	jd_10dou.js			#5.31 任务10豆
@@ -349,6 +350,7 @@ fi
 export opencard_draw="5"
 #脚本填这里不会并发
 cat >/tmp/jd_tmp/ccr_run <<EOF
+	jd_opencard0918.js		#开卡
 	jd_dplh0901.js		#大牌0901
 	jd_xqmh.js			#新奇盲盒
 	jd_scdacall.js			#苏超打call赢百寸电视
